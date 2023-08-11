@@ -1,0 +1,1305 @@
+syntax = "proto3";
+
+package oneCloud.v1;
+option go_package = "oneCloud/api/oneCloud/v1;v1";
+
+//import "google/api/annotations.proto";
+//import "google/protobuf/timestamp.proto";
+import "validate/validate.proto";
+
+service oneCloud {
+  // platform
+  // 列出支持的云平台
+
+  rpc ListSupportPlatform (ListSupportPlatformReq) returns (ListSupportPlatformReply)  {};
+  rpc ListPlatform (ListPlatformReq) returns (ListPlatformReply)  {};
+  // Account
+  // 添加云平台账号
+  rpc AddPlatformAccount (AddPlatformAccountReq) returns (AddPlatformAccountReply)  {};
+  // 列出云平台账号
+  rpc ListPlatformAccount (ListPlatformAccountReq) returns (ListPlatformAccountReply)  {};
+  // 删除云平台账号
+  rpc DelPlatformAccount (DelPlatformAccountReq) returns (DelPlatformAccountReply) {};
+  // 添加云平台子账号
+  rpc AddPlatformSubAccount (AddPlatformSubAccountReq) returns (AddPlatformSubAccountReply) {};
+  // 获取云平台子账户
+  rpc ListPlatformSubAccount (ListPlatformSubAccountReq) returns (ListPlatformSubAccountReply) {};
+  // 删除云平台子账户
+  rpc DelPlatformSubAccount (DelPlatformSubAccountReq) returns (DelPlatformSubAccountReply) {};
+  // 添加子账户 AccessKey
+  rpc CreateAccessKey (CreateAccessKeyReq) returns (CreateAccessKeyReply) {};
+  // 获取子账户 AccessKey
+  rpc GetAccessKey (GetAccessKeyReq) returns (GetAccessKeyReply) {};
+  // 删除子账户 AccessKey
+  rpc DelAccessKey (DelAccessKeyReq) returns (DelAccessKeyReply) {};
+  // 更改自己的控制台登录密码 - 若遗忘后台密码，可以使用该功能进行登录
+  //rpc ChangeSubAccountPassword(ChangeSubAccountPasswordReq) returns (ChangeSubAccountPasswordReply) {};
+
+
+  // 获取临时安全Token
+  rpc GetSecurityToken (GetSecurityTokenReq) returns (GetSecurityTokenReply) {};
+  // 生成临时安全Token对应的"单一"Policy
+  rpc GenerateObjectStorageSecurityTokenPutPolicy (GenerateObjectStorageSecurityTokenPutPolicyReq) returns (GenerateObjectStorageSecurityTokenPutPolicyReply) {};
+  // Bill
+  //
+  rpc AccountBalance (AccountBalanceReq) returns (AccountBalanceReply) {};
+
+
+  // Certificate
+  // 购买证书
+  rpc BuyCertificate (BuyCertificateReq) returns (BuyCertificateReply) {};
+  // 解析证书
+  rpc ParseCertificate (ParseCertificateReq) returns (ParseCertificateReply) {};
+  // 录入证书
+  rpc RecordCertificate (RecordCertificateReq) returns (RecordCertificateReply) {};
+  // 列出证书
+  rpc ListCertificate (ListCertificateReq) returns (ListCertificateReply) {};
+  // 删除证书
+  rpc DelCertificate (DelCertificateReq) returns (DelCertificateReply) {};
+  // 通过 uuid 获取证书
+  rpc GetCertificateByUuid (GetCertificateByUuidReq) returns (GetCertificateByUuidReply) {};
+
+
+  // DNS
+  // 列出域名dns
+  rpc ListDomainDns (ListDomainDnsReq) returns (ListDomainDnsReply) {};
+  // 列出云平台域名dns
+  rpc ListCloudDomainDns (ListCloudDomainDnsReq) returns (ListCloudDomainDnsReply) {};
+  // 导入域名dns
+  rpc ImportDomainDns (ImportDomainDnsReq) returns (ImportDomainDnsReply) {};
+  // 列出云平台域名DNS记录
+  rpc ListCloudDomainDnsRecord (ListCloudDomainDnsRecordReq) returns (ListCloudDomainDnsRecordReply) {};
+  // 同步云平台域名DNS记录
+  rpc SyncCloudDomainDnsRecord (SyncCloudDomainDnsRecordReq) returns (SyncCloudDomainDnsRecordReply) {};
+  // 获取同步云平台域名DNS记录
+  rpc GetSyncCloudDomainDnsRecord (GetSyncCloudDomainDnsRecordReq) returns (GetSyncCloudDomainDnsRecordReply) {};
+  // 获取同步云平台域名DNS - 不支持同步的记录
+  rpc GetUnSupportSyncCloudDomainDnsRecord (GetUnSupportSyncCloudDomainDnsRecordReq) returns (GetUnSupportSyncCloudDomainDnsRecordReply) {};
+
+  // ECS
+  rpc GetECSFamily (GetECSFamilyReq) returns (GetECSFamilyReply) {};
+  rpc CreateECS (CreateECSReq) returns (CreateECSReply) {};
+  rpc DeleteECS (ReleaseECSReq) returns (ReleaseECSReply) {};
+  rpc UpdateECS (UpdateECSReq) returns (UpdateECSReply) {};
+  rpc ShutdownECS (ShutdownECSReq) returns (ShutdownECSReply) {};
+  rpc GetECS (GetECSReq) returns (GetECSReply) {};
+
+
+  // EIP
+  rpc CreateEIP (CreateEIPReq) returns (CreateEIPReply) {};
+  rpc GetEIP (GetEIPReq) returns (GetEIPReply) {};
+  rpc UpdateEIP (UpdateEIPReq) returns (UpdateEIPReply) {};
+  rpc ReleaseEIP (ReleaseEIPReq) returns (ReleaseEIPReply) {};
+
+
+  // RDS
+  rpc CreateRDS (CreateRDSReq) returns (CreateRDSReply) {};
+  rpc GetRDS (GetRDSReq) returns (GetRDSReply) {};
+  rpc ListRDS(ListRDSReq) returns (ListRDSReply) {};
+  rpc ListRDSSlowLogs (ListRDSSlowLogsReq) returns (ListRDSSlowLogsReply) {};
+  rpc ListRDSErrLogs (ListRDSErrLogsReq) returns (ListRDSErrLogsReply) {};
+  // LoadBalance
+
+  rpc CreateLB (CreateLBReq) returns (CreateLBReply) {};
+  rpc GetLB (GetLBReq) returns (GetLBReply) {};
+  rpc ReleaseLB (ReleaseLBReq) returns (ReleaseLBReply) {};
+
+
+  // CDN
+  // 列出CDN记录
+  rpc ListCDN (ListCDNReq) returns (ListCDNReply) {};
+  // 添加CDN记录
+  rpc AddCDN (AddCDNReq) returns (AddCDNReply) {};
+  // 导入CDN记录
+  rpc ImportCDN (ImportCDNReq) returns (ImportCDNReply) {};
+  // 获取CDN详情
+  rpc GetCDN (GetCDNReq) returns (GetCDNReply) {};
+  // 释放CDN
+  rpc ReleaseCDN (ReleaseCDNReq) returns (ReleaseCDNReply) {};
+  // 更新CDN
+  rpc UpdateCDN (UpdateCDNReq) returns (UpdateCDNReply) {};
+  // 刷新CDN缓存
+  rpc RefreshCDNCache (RefreshCDNCacheReq) returns (RefreshCDNCacheReply) {};
+  // CDN配额
+  rpc GetCDNQuota (GetCDNQuotaReq) returns (GetCDNQuotaReply) {};
+  // 是否是CDN IP
+  rpc IsCdnIp (IsCdnIpReq) returns (IsCdnIpReply) {};
+  // 查询CDN节点IP可用状态
+  rpc GetCdnIpStatus (GetCdnIpStatusReq) returns (GetCdnIpStatusReply) {};
+
+
+  // 对象存储
+  // 列出对象存储桶
+  rpc ListOSSBucket (ListOSSBucketReq) returns (ListOSSBucketReply) {};
+  // 创建对象存储桶
+  rpc CreateOSSBucket (CreateOSSBucketReq) returns (CreateOSSBucketReply) {};
+  // 获取对象存储桶
+  rpc GetOSSBucket (GetOSSBucketReq) returns (GetOSSBucketReply) {};
+  // 删除对象存储对象
+  rpc DelOSSObject (DelOSSObjectReq) returns (DelOSSObjectReply) {};
+  // 获取对象存储对象元数据
+  rpc GetOSSObjectMeta (GetOSSObjectMetaReq) returns (GetOSSObjectMetaReply) {};
+  // 解冻对象存储对象
+  rpc RestoreOSSObject (RestoreOSSObjectReq) returns (RestoreOSSObjectReply) {};
+
+
+  rpc CreateObjectStorageSecurityTokenGenerator (CreateObjectStorageSecurityTokenGeneratorReq) returns (CreateObjectStorageSecurityTokenGeneratorReply) {};
+  rpc ExistObjectStorageSecurityTokenGenerator (ExistObjectStorageSecurityTokenGeneratorReq) returns (ExistObjectStorageSecurityTokenGeneratorReply) {};
+  rpc GetObjectStorageSecurityTokenGenerator (GetObjectStorageSecurityTokenGeneratorReq) returns (GetObjectStorageSecurityTokenGeneratorReply) {};
+  rpc DelObjectStorageSecurityTokenGenerator (DelObjectStorageSecurityTokenGeneratorReq) returns (DelObjectStorageSecurityTokenGeneratorReply) {};
+
+  rpc ListObjectStorageSecurityTokenGenerator (ListObjectStorageSecurityTokenGeneratorReq) returns (ListObjectStorageSecurityTokenGeneratorReply) {};
+  rpc GetObjectStorageSecurityTokenByToken (GetObjectStorageSecurityTokenByTokenReq) returns (GetObjectStorageSecurityTokenByTokenReply) {};
+  rpc GetObjectStorageSecurityTokenByGenerator (GetObjectStorageSecurityTokenByGeneratorReq) returns (GetObjectStorageSecurityTokenByGeneratorReply) {};
+
+  // 云平台Region
+  rpc AddOrgCloudPlatformRegion (AddCloudPlatformRegionReq ) returns (AddCloudPlatformRegionReply) {};
+  rpc DelOrgCloudPlatformRegion (DelCloudPlatformRegionReq ) returns (DelCloudPlatformRegionReply) {};
+  rpc ListOrgCloudPlatformRegion (ListCloudPlatformRegionReq ) returns (ListCloudPlatformRegionReply) {};
+
+}
+
+// Platform
+message ListSupportPlatformReq {
+}
+message ListSupportPlatformReply {
+  repeated Platform platform = 1;
+  message Platform {
+    int32 id = 1;
+    string name = 2;
+    string describe = 3;
+    string homeUrl = 4;
+  }
+}
+
+// Platform
+message ListPlatformReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+}
+message ListPlatformReply {
+  repeated Platform platform = 1;
+  message Platform {
+    int32 id = 1;
+    string name = 2;
+    string describe = 3;
+    string homeUrl = 4;
+  }
+}
+
+
+// 账号
+// 添加云平台账号 - 组织产品级别
+message AddPlatformAccountReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  int32 platformId = 4;
+  string name = 5 [(validate.rules).string.min_len = 1];
+  string accountName = 6 [(validate.rules).string.min_len = 1];
+  string email = 7;
+  int64 phoneNumber = 8;
+  string describe = 9;
+}
+message AddPlatformAccountReply {
+  bool result = 1;
+}
+// 列出云平台账号 - 组织产品级别
+message ListPlatformAccountReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  int32 platformId = 4;
+}
+message ListPlatformAccountReply {
+  repeated PlatformAccount platformAccount = 1;
+  message PlatformAccount {
+    string uuid = 1;
+    string orgUuid = 2;
+    string productUuid = 3;
+    string ownerUuid = 4;
+    string name = 5;
+    int32 platformId = 6;
+    string accountName = 7;
+    string email = 8;
+    int64 phoneNumber = 9;
+    string describe = 10;
+    int64 createTime = 11;
+  }
+}
+// 删除云平台账号 - 组织产品级别
+message DelPlatformAccountReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string accountUuid = 4 [(validate.rules).string.min_len = 1];
+}
+message DelPlatformAccountReply {
+  bool result = 1;
+}
+// 创建云平台子账号 - 组织产品级别
+message AddPlatformSubAccountReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string accountUuid = 4  [(validate.rules).string.min_len = 1];
+  string username = 5  [(validate.rules).string.min_len = 1];
+  string email = 6;
+  int64 phoneNumber = 7;
+  string describe = 8;
+}
+message AddPlatformSubAccountReply {
+  bool result = 1;
+}
+// 获取云平台子账号 - 组织产品级别
+message ListPlatformSubAccountReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string accountUuid = 4  [(validate.rules).string.min_len = 1];
+}
+message ListPlatformSubAccountReply {
+  repeated PlatformSubAccount platformSubAccounts = 1;
+  message PlatformSubAccount {
+    string uuid = 1;
+    string platformAccountUuid = 2;
+    string ownerUuid = 3;
+    string username = 4;
+    string email = 5;
+    int64 phoneNumber = 6;
+    string describe = 7;
+    int64 createTime = 8;
+  }
+}
+// 删除云平台子账号 - 组织产品级别
+message DelPlatformSubAccountReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string subAccountUuid = 4 [(validate.rules).string.min_len = 1];
+}
+message DelPlatformSubAccountReply {
+  bool result = 1;
+}
+// 添加云平台子账号 AccessKey
+message CreateAccessKeyReq{
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string subAccountUuid = 2 [(validate.rules).string.min_len = 1];
+  string accessKey = 3 [(validate.rules).string.min_len = 1];
+  string secretKey = 4 [(validate.rules).string.min_len = 1];
+  string describe = 5;
+}
+message CreateAccessKeyReply {
+  bool result = 1;
+}
+// 获取云平台子账户 AccessKey
+message GetAccessKeyReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string subAccountUuid = 4 [(validate.rules).string.min_len = 1];
+}
+message GetAccessKeyReply {
+  repeated AccessKey accessKeys = 1;
+  message AccessKey {
+    string uuid = 1;
+    string subAccountUuid = 2;
+    string accessKey = 4;
+    string describe = 5;
+    int64 createTime = 6;
+  }
+}
+// 删除云平台子账户 AccessKey
+message DelAccessKeyReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string subAccountUuid = 4 [(validate.rules).string.min_len = 1];
+  string accessKeyUuid = 5 [(validate.rules).string.min_len = 1];
+}
+message DelAccessKeyReply {
+  bool result = 1;
+}
+
+// 获取临时安全Token
+message GetSecurityTokenReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  int32 platformId = 4;
+  string accountUuid = 5 [(validate.rules).string.min_len = 1];
+  string subAccountUuid = 6 [(validate.rules).string.min_len = 1];
+  string subAccountAccessKeyUuid = 7 [(validate.rules).string.min_len = 1];
+  string ARN = 8 [(validate.rules).string.min_len = 1];
+  string sessionName = 9 [(validate.rules).string.min_len = 1];
+  int64 durationSeconds = 10;
+  string policy = 11;
+}
+message GetSecurityTokenReply {
+  string accessKeyId = 1;
+  string accessKeySecret = 2;
+  string securityToken = 3;
+  string extendPolicy = 4;
+  string expiration = 5;
+}
+// 配置临时上传对象存储
+// 建议使用公共账户创建
+message CreateObjectStorageSecurityTokenGeneratorReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  int32 platformId = 4;
+  string accountUuid = 5 [(validate.rules).string.min_len = 1];
+  string subAccountUuid = 6 [(validate.rules).string.min_len = 1];
+  string subAccountAccessKeyUuid = 7 [(validate.rules).string.min_len = 1];
+  string bucket = 8 [(validate.rules).string.min_len = 1];
+  string endpoint = 9 [(validate.rules).string.min_len = 1];
+  string arn = 10 [(validate.rules).string.min_len = 1];
+  //string relativeId = 11;
+}
+message CreateObjectStorageSecurityTokenGeneratorReply {
+  bool result = 1;
+}
+message ExistObjectStorageSecurityTokenGeneratorReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  int32 platformId = 4;
+  string bucket = 5 [(validate.rules).string.min_len = 1];
+}
+message ExistObjectStorageSecurityTokenGeneratorReply {
+  bool result = 1;
+}
+message GetObjectStorageSecurityTokenGeneratorReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string generatorUuid = 4 [(validate.rules).string.min_len = 1];
+}
+message GetObjectStorageSecurityTokenGeneratorReply {
+  string uuid = 1;
+  string orgUuid = 2;
+  string productUuid = 3;
+  int32 platformId = 4;
+  string platformName = 11;
+  string accountUuid = 5;
+  string accessKeyUuid = 6;
+  string bucketName = 7;
+  string endpoint = 8;
+  string arn = 9;
+  int64 createTime = 10;
+}
+message DelObjectStorageSecurityTokenGeneratorReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string generatorUuid = 4 [(validate.rules).string.min_len = 1];
+}
+message DelObjectStorageSecurityTokenGeneratorReply {
+  bool result = 1;
+}
+message ListObjectStorageSecurityTokenGeneratorReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+}
+message ListObjectStorageSecurityTokenGeneratorReply {
+  repeated Generator generator = 1;
+  message Generator {
+    string uuid = 1;
+    string orgUuid = 2;
+    string productUuid = 3;
+    int32 platformId = 4;
+    string platformName = 11;
+    string accountUuid = 5;
+    string accessKeyUuid = 6;
+    string bucketName = 7;
+    string endpoint = 8;
+    string arn = 9;
+    int64 createTime = 10;
+  }
+}
+// 通过 ObjectStorageSecurityTokenGenerator 配置，获取临时 Token
+message GetObjectStorageSecurityTokenByGeneratorReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string generatorUuid = 4 [(validate.rules).string.min_len = 1];
+  string relativeId = 5 [(validate.rules).string.min_len = 1];
+}
+message GetObjectStorageSecurityTokenByGeneratorReply {
+  string accessKeyId = 1;
+  string accessKeySecret = 2;
+  string securityToken = 3;
+  string extendPolicy = 4;
+  string expiration = 5;
+  string bucket = 6;
+  string endpoint = 7;
+  int32 platform_id = 8;
+  string platform = 9;
+}
+// 通过 ObjectStorageSecurityTokenGenerator 配置，获取临时 Token - by Token (给每个Generator生成N个Token，方便程序调用)
+message GetObjectStorageSecurityTokenByTokenReq {
+  string generatorUuid = 1 [(validate.rules).string.min_len = 1];
+  string token = 2 [(validate.rules).string.min_len = 1];
+  string relativeId = 3 [(validate.rules).string.min_len = 1];
+}
+message GetObjectStorageSecurityTokenByTokenReply {
+  string accessKeyId = 1;
+  string accessKeySecret = 2;
+  string securityToken = 3;
+  string expiration = 4;
+}
+
+// relativeId: ${bucketName}/${objectPath}
+message GenerateObjectStorageSecurityTokenPutPolicyReq {
+  int32 platformId = 1;
+  string relativeId = 2 [(validate.rules).string.min_len = 1];
+}
+message GenerateObjectStorageSecurityTokenPutPolicyReply {
+  string policy = 1;
+}
+
+
+// Bill - 账单
+message AccountBalanceReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  int32 platformId = 4;
+  string accountUuid = 5 [(validate.rules).string.min_len = 1];
+  string subAccountUuid = 6 [(validate.rules).string.min_len = 1];
+  string subAccountAccessKeyUuid = 7 [(validate.rules).string.min_len = 1];
+}
+message AccountBalanceReply {
+  double balance = 1;
+  double cashAccountBalance = 2;
+  double oweAmount = 3;
+  bool isAllowArrears = 4;
+  bool isCreditLimited = 5;
+  double creditAmount = 6;
+  double creditBalance = 7;
+  double realCreditBalance = 8;
+  string currency = 9;
+}
+
+
+// ECS
+message GetECSFamilyReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  int32 platformId = 2;
+  string accessKeyUuid = 3 [(validate.rules).string.min_len = 1];
+  string regionId = 4 [(validate.rules).string.min_len = 1];
+  int32 cpuCore = 5;
+  int32 memory = 6;
+}
+message GetECSFamilyReply {
+
+}
+message GetECSReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  int32 platformId = 4;
+  string accessKeyUuid = 5 [(validate.rules).string.min_len = 1];
+}
+message GetECSReply {
+
+}
+message CreateECSReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  int32 platformId = 4;
+  string accessKeyUuid = 5 [(validate.rules).string.min_len = 1];
+}
+message CreateECSReply {
+
+}
+message ReleaseECSReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  int32 platformId = 4;
+  string accessKeyUuid = 5 [(validate.rules).string.min_len = 1];
+}
+message ReleaseECSReply {
+
+}
+message UpdateECSReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  int32 platformId = 4;
+  string accessKeyUuid = 5 [(validate.rules).string.min_len = 1];
+}
+message UpdateECSReply {
+
+}
+message ShutdownECSReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  int32 platformId = 4;
+  string accessKeyUuid = 5 [(validate.rules).string.min_len = 1];
+}
+message ShutdownECSReply {
+
+}
+
+// EIP
+message CreateEIPReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  int32 platformId = 4;
+  string accessKeyUuid = 5 [(validate.rules).string.min_len = 1];
+}
+message CreateEIPReply {
+
+}
+message GetEIPReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  int32 platformId = 2;
+  string accessKeyUuid = 3 [(validate.rules).string.min_len = 1];
+}
+message GetEIPReply {
+
+}
+message UpdateEIPReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  int32 platformId = 4;
+  string accessKeyUuid = 5 [(validate.rules).string.min_len = 1];
+}
+message UpdateEIPReply {
+
+}
+message ReleaseEIPReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  int32 platformId = 4;
+  string accessKeyUuid = 5 [(validate.rules).string.min_len = 1];
+}
+message ReleaseEIPReply {
+
+}
+
+
+// rds
+message CreateRDSReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  int32 platformId = 4;
+  string accountUuid = 5 [(validate.rules).string.min_len = 1];
+  string subAccountUuid = 6 [(validate.rules).string.min_len = 1];
+  string subAccountAccessKeyUuid = 7 [(validate.rules).string.min_len = 1];
+}
+message CreateRDSReply {
+
+}
+message GetRDSReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  int32 platformId = 4;
+  string accountUuid = 5 [(validate.rules).string.min_len = 1];
+  string subAccountUuid = 6 [(validate.rules).string.min_len = 1];
+  string subAccountAccessKeyUuid = 7 [(validate.rules).string.min_len = 1];
+}
+message GetRDSReply {
+
+}
+message ListRDSReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  int32 platformId = 4;
+  string accountUuid = 5 [(validate.rules).string.min_len = 1];
+  string subAccountUuid = 6 [(validate.rules).string.min_len = 1];
+  string subAccountAccessKeyUuid = 7 [(validate.rules).string.min_len = 1];
+  string region = 8  [(validate.rules).string.min_len = 1];
+}
+message ListRDSReply {
+  repeated Instance instances = 1;
+  message Instance {
+    string instanceId = 1;
+    string instanceName = 2;
+    int64 publicNet = 3;
+    int64 cpu = 4;
+    int64 memory = 5;
+    int64 qps = 6;
+    int64 status = 7;
+    int64 autoRenew = 8;
+    int64 instanceType = 9;
+    int64 createTime = 10;
+    int64 deadlineTime = 11;
+    int64 cdbError = 12;
+    string region = 13;
+  }
+}
+message ListRDSSlowLogsReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  int32 platformId = 4;
+  string accountUuid = 5 [(validate.rules).string.min_len = 1];
+  string subAccountUuid = 6 [(validate.rules).string.min_len = 1];
+  string subAccountAccessKeyUuid = 7 [(validate.rules).string.min_len = 1];
+  string region = 8  [(validate.rules).string.min_len = 1];
+  string instanceId = 9 [(validate.rules).string.min_len = 1];
+  int64 startTime = 10 [(validate.rules).int64.gt = 1];
+  int64 endTime = 11 [(validate.rules).int64.gt = 1];
+}
+message ListRDSSlowLogsReply {
+  repeated SlowLog SlowLogs = 1;
+  message SlowLog {
+    int64 timestamp = 1;
+    string userHost = 2;
+    string userName = 3;
+    string database = 4;
+    string sqlQuery = 5;
+    double queryTime = 6;
+    double lockTime = 7;
+    int64 scanRow = 8;
+    int64 resultRow = 9;
+  }
+}
+message ListRDSErrLogsReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  int32 platformId = 4;
+  string accountUuid = 5 [(validate.rules).string.min_len = 1];
+  string subAccountUuid = 6 [(validate.rules).string.min_len = 1];
+  string subAccountAccessKeyUuid = 7 [(validate.rules).string.min_len = 1];
+  string region = 8  [(validate.rules).string.min_len = 1];
+  string instanceId = 9 [(validate.rules).string.min_len = 1];
+  int64 startTime = 10 [(validate.rules).int64.gt = 1];
+  int64 endTime = 11 [(validate.rules).int64.gt = 1];
+}
+message ListRDSErrLogsReply {
+  repeated ErrLog errLogs = 1;
+  message ErrLog {
+    int64 timestamp = 1;
+    string content = 2;
+  }
+}
+// slb
+message CreateLBReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  int32 platformId = 4;
+  string accessKeyUuid = 5 [(validate.rules).string.min_len = 1];
+}
+message CreateLBReply {
+
+}
+message GetLBReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  int32 platformId = 4;
+  string accessKeyUuid = 5 [(validate.rules).string.min_len = 1];
+}
+message GetLBReply {
+
+}
+message ReleaseLBReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  int32 platformId = 4;
+  string accessKeyUuid = 5 [(validate.rules).string.min_len = 1];
+}
+message ReleaseLBReply {
+
+}
+
+
+// CDN
+// 列出 CDN 记录
+message ListCDNReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  int32 platformId = 4;
+  string accountUuid = 5 [(validate.rules).string.min_len = 1];
+  string subAccountUuid = 6 [(validate.rules).string.min_len = 1];
+  string subAccountAccessKeyUuid = 7 [(validate.rules).string.min_len = 1];
+}
+message ListCDNReply {
+  repeated Cdn cdn = 1;
+  message Cdn {
+    string domainId = 1;
+    string domainName = 2;
+    string status = 3;
+    string cname = 4;
+    repeated Origin origin = 5;
+    repeated Origin backupOrigin = 6;
+  }
+  message Origin {
+    string origin = 1;
+    string serverName = 2;
+    string type = 3;
+  }
+}
+// 获取 CDN 记录
+message GetCDNReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  int32 platformId = 4;
+  string accountUuid = 5 [(validate.rules).string.min_len = 1];
+  string subAccountUuid = 6 [(validate.rules).string.min_len = 1];
+  string subAccountAccessKeyUuid = 7 [(validate.rules).string.min_len = 1];
+  string domainName = 8 [(validate.rules).string.min_len = 1];
+}
+message GetCDNReply {
+  string domain = 1;
+  string status = 2;
+  string cname = 3;
+  repeated Origin origin = 4;
+  repeated Origin backupOrigin = 5;
+  message Origin {
+    string origin = 1;
+    string serverName = 2;
+    string type = 3;
+  }
+}
+// 添加 CDN 记录
+message AddCDNReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  int32 platformId = 4;
+  string accountUuid = 5 [(validate.rules).string.min_len = 1];
+  string subAccountUuid = 6 [(validate.rules).string.min_len = 1];
+  string subAccountAccessKeyUuid = 7 [(validate.rules).string.min_len = 1];
+  string domainName = 8 [(validate.rules).string.min_len = 1];
+  string source = 9 [(validate.rules).string.min_len = 1];
+}
+message AddCDNReply {
+  bool result = 1;
+}
+//
+message ImportCDNReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  int32 platformId = 4;
+  string accountUuid = 5 [(validate.rules).string.min_len = 1];
+  string subAccountUuid = 6 [(validate.rules).string.min_len = 1];
+  string subAccountAccessKeyUuid = 7 [(validate.rules).string.min_len = 1];
+  string domainName = 8 [(validate.rules).string.min_len = 1];
+}
+message ImportCDNReply {
+  bool result = 1;
+}
+// 释放 CDN 记录
+message ReleaseCDNReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  int32 platformId = 4;
+  string accountUuid = 5 [(validate.rules).string.min_len = 1];
+  string subAccountUuid = 6 [(validate.rules).string.min_len = 1];
+  string subAccountAccessKeyUuid = 7 [(validate.rules).string.min_len = 1];
+}
+message ReleaseCDNReply {
+  bool result = 1;
+}
+// 更新 CDN 记录
+message UpdateCDNReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  int32 platformId = 4;
+  string accountUuid = 5 [(validate.rules).string.min_len = 1];
+  string subAccountUuid = 6 [(validate.rules).string.min_len = 1];
+  string subAccountAccessKeyUuid = 7 [(validate.rules).string.min_len = 1];
+}
+message UpdateCDNReply {
+  bool result = 1;
+}
+// 刷新 CDN 缓存
+message RefreshCDNCacheReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  int32 platformId = 4;
+  string accountUuid = 5 [(validate.rules).string.min_len = 1];
+  string subAccountUuid = 6 [(validate.rules).string.min_len = 1];
+  string subAccountAccessKeyUuid = 7 [(validate.rules).string.min_len = 1];
+  int32 type = 8;
+  repeated string paths = 9;
+}
+message RefreshCDNCacheReply {
+  bool result = 1;
+}
+// CDN 配额
+message GetCDNQuotaReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  int32 platformId = 4;
+  string accountUuid = 5 [(validate.rules).string.min_len = 1];
+  string subAccountUuid = 6 [(validate.rules).string.min_len = 1];
+  string subAccountAccessKeyUuid = 7 [(validate.rules).string.min_len = 1];
+}
+message GetCDNQuotaReply {
+  int32 refreshUrlQuota = 1;
+  int32 refreshUrlRemain = 2;
+  int32 refreshDirQuota = 3;
+  int32 refreshDirRemain = 4;
+  int32 preloadQuota = 5;
+  int32 preloadRemain = 6;
+  int32 blockQuota = 7;
+  int32 blockRemain = 8;
+}
+// 获取 CDN 节点IP
+message IsCdnIpReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  int32 platformId = 4;
+  string accountUuid = 5 [(validate.rules).string.min_len = 1];
+  string subAccountUuid = 6 [(validate.rules).string.min_len = 1];
+  string subAccountAccessKeyUuid = 7 [(validate.rules).string.min_len = 1];
+  string ip = 8 [(validate.rules).string.ip = true];
+}
+message IsCdnIpReply {
+  string cdnIp = 1;
+  string ispName = 2;
+  string region = 3;
+}
+// 获取CDN IP状态
+message GetCdnIpStatusReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  int32 platformId = 4;
+  string accountUuid = 5 [(validate.rules).string.min_len = 1];
+  string subAccountUuid = 6 [(validate.rules).string.min_len = 1];
+  string subAccountAccessKeyUuid = 7 [(validate.rules).string.min_len = 1];
+  repeated string ips = 8;
+}
+message GetCdnIpStatusReply {
+  repeated CdnIpStatus ipStatus = 1;
+  message CdnIpStatus {
+    string ip = 1;
+    string status = 2;
+  }
+}
+
+
+// DNS - 域名解析
+// 列出域名
+message ListDomainDnsReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+}
+message ListDomainDnsReply {
+  repeated Domain domain = 1;
+  message Domain {
+    string name = 1;
+    string domainId = 2;
+    string accountName = 3;
+    int64 accountPlatform = 4;
+    string resourceGroupId = 5;
+    string dnsServer = 6;
+    int64 createTime = 7;
+  }
+}
+// 列出
+message ListCloudDomainDnsReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  int32 platformId = 4;
+  string accountUuid = 5 [(validate.rules).string.min_len = 1];
+  string subAccountUuid = 6 [(validate.rules).string.min_len = 1];
+  string subAccountAccessKeyUuid = 7 [(validate.rules).string.min_len = 1];
+}
+message ListCloudDomainDnsReply {
+  repeated Domain domain = 1;
+  message Domain {
+    string name = 1;
+    string domainId = 2;
+    string resourceGroupId = 3;
+    string dnsServer = 4;
+  }
+}
+// 导入域名
+message ImportDomainDnsReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  int32 platformId = 4;
+  string accountUuid = 5 [(validate.rules).string.min_len = 1];
+  string subAccountUuid = 6 [(validate.rules).string.min_len = 1];
+  string subAccountAccessKeyUuid = 7 [(validate.rules).string.min_len = 1];
+  string domainName = 8 [(validate.rules).string.min_len = 1];
+}
+message ImportDomainDnsReply {
+  bool result = 1;
+}
+message ListCloudDomainDnsRecordReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  int32 platformId = 4;
+  string accountUuid = 5 [(validate.rules).string.min_len = 1];
+  string subAccountUuid = 6 [(validate.rules).string.min_len = 1];
+  string subAccountAccessKeyUuid = 7 [(validate.rules).string.min_len = 1];
+  string domainName = 8 [(validate.rules).string.min_len = 1];
+  string keyword = 9;
+}
+message ListCloudDomainDnsRecordReply {
+  repeated Record records = 1;
+  message Record {
+    string recordId = 1;
+    string domainName = 2;
+    string rr = 3;
+    string type = 4;
+    string value = 5;
+    string line = 6;
+    int64 ttl = 7;
+    string status = 8;
+    bool lock = 9;
+  }
+}
+// 添加 DNS 记录
+message AddCloudDomainDNSRecordReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  int32 platformId = 4;
+  string accountUuid = 5 [(validate.rules).string.min_len = 1];
+  string subAccountUuid = 6 [(validate.rules).string.min_len = 1];
+  string subAccountAccessKeyUuid = 7 [(validate.rules).string.min_len = 1];
+  string domainName = 8 [(validate.rules).string.min_len = 1];
+  string rr = 9 [(validate.rules).string.min_len = 1];
+  string type = 10 [(validate.rules).string.min_len = 1];
+  string value = 11 [(validate.rules).string.min_len = 1];
+  string line = 12;
+  int64 ttl = 13;
+}
+message AddCloudDomainDNSRecordReply {
+  bool result = 1;
+}
+// 删除 DNS 记录
+message DelCloudDomainDNSRecordReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  int32 platformId = 4;
+  string accountUuid = 5 [(validate.rules).string.min_len = 1];
+  string subAccountUuid = 6 [(validate.rules).string.min_len = 1];
+  string subAccountAccessKeyUuid = 7 [(validate.rules).string.min_len = 1];
+  string domainName = 8 [(validate.rules).string.min_len = 1];
+  string recordId = 9 [(validate.rules).string.min_len = 1];
+}
+message DelCloudDomainDNSRecordReply {
+  bool result = 1;
+}
+// 更新 DNS 记录
+message UpdateCloudDomainDNSRecordReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  int32 platformId = 4;
+  string accountUuid = 5 [(validate.rules).string.min_len = 1];
+  string subAccountUuid = 6 [(validate.rules).string.min_len = 1];
+  string subAccountAccessKeyUuid = 7 [(validate.rules).string.min_len = 1];
+  string domainName = 8 [(validate.rules).string.min_len = 1];
+  string recordId = 9 [(validate.rules).string.min_len = 1];
+  string rr = 10 [(validate.rules).string.min_len = 1];
+  string type = 11 [(validate.rules).string.min_len = 1];
+  string value = 12 [(validate.rules).string.min_len = 1];
+  string line = 13;
+  int64 ttl = 14;
+}
+message UpdateCloudDomainDNSRecordReply {
+  bool result = 1;
+}
+// 同步云厂商间 DNS 记录
+message SyncCloudDomainDnsRecordReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  int32 sourcePlatformId = 4;
+  string sourceAccountUuid = 5 [(validate.rules).string.min_len = 1];
+  string sourceSubAccountUuid = 6 [(validate.rules).string.min_len = 1];
+  string sourceSubAccountAccessKeyUuid = 7 [(validate.rules).string.min_len = 1];
+  string sourceDomainName = 8 [(validate.rules).string.min_len = 1];
+  int32 destPlatformId = 9;
+  string destAccountUuid = 10 [(validate.rules).string.min_len = 1];
+  string destSubAccountUuid = 11 [(validate.rules).string.min_len = 1];
+  string destSubAccountAccessKeyUuid = 12 [(validate.rules).string.min_len = 1];
+  string destDomainName = 13 [(validate.rules).string.min_len = 1];
+}
+message SyncCloudDomainDnsRecordReply {
+  string taskId = 1;
+}
+// 获取同步云厂商间 DNS 记录
+message GetSyncCloudDomainDnsRecordReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string taskId = 4 [(validate.rules).string.min_len = 1];
+}
+message GetSyncCloudDomainDnsRecordReply {
+  string srcPlatform = 1;
+  string srcAccountUuid = 2;
+  string srcSubAccountUuid = 3;
+  string srcDomainName = 4;
+  string destPlatform = 5;
+  string destAccountUuid = 6;
+  string destSubAccountUuid = 7;
+  string destDomainName = 8;
+  int32 result = 9;
+  string describe = 10;
+  int64 createTime = 11;
+  int64 overTime = 12;
+}
+//
+message GetUnSupportSyncCloudDomainDnsRecordReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string taskId = 4 [(validate.rules).string.min_len = 1];
+}
+message GetUnSupportSyncCloudDomainDnsRecordReply {
+  repeated UnSupportSyncCloudDomainDnsRecord unSupportSyncCloudDomainDnsRecords = 1;
+  message UnSupportSyncCloudDomainDnsRecord {
+    string taskId = 1;
+    string domain = 2;
+    string rr = 3;
+    string type = 4;
+    string value = 5;
+    int64 ttl = 6;
+    string describe = 7;
+  }
+}
+// certificate
+// 购买证书，certificate
+message BuyCertificateReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  int32 platformId = 4;
+  string accessKeyUuid = 5 [(validate.rules).string.min_len = 1];
+};
+message BuyCertificateReply {
+};
+// 解析证书，不需要验证用户 - 功能
+message ParseCertificateReq {
+  string certificate = 1 [(validate.rules).string.min_len = 1]; // 内容为: base64 encode 之后的值
+}
+message ParseCertificateReply {
+  int32 version = 1;
+  string serialNumber = 2;
+  string subject = 3;
+  repeated string dnsNames = 4;
+  string issuer = 5;
+  int64 notAfter = 6;
+  int64 notBefore = 7;
+}
+// 录入证书
+message RecordCertificateReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string key = 4 [(validate.rules).string.min_len = 1];
+  string certificate = 5 [(validate.rules).string.min_len = 1];
+}
+message RecordCertificateReply {
+  bool result = 1;
+}
+// 列出证书
+message ListCertificateReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string domainName = 4;
+  bool notExpire = 5;
+}
+message ListCertificateReply {
+  repeated Certificate  certificate = 1;
+  message Certificate {
+    string uuid = 1;
+    string orgUuid = 2;
+    string key = 3;
+    string pem = 4;
+    int32 version = 5;
+    int64 startDate = 6;
+    int64 endDate = 7;
+    string subject = 8;
+    string serialNumber = 9;
+    string issuer = 10;
+    string dnsNames = 11;
+    int64 createTime = 12;
+  }
+}
+// 删除组织产品内的证书
+message DelCertificateReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string certificateUuid = 4 [(validate.rules).string.min_len = 1];
+  string serialNumber = 5 [(validate.rules).string.min_len = 1];
+}
+message DelCertificateReply {
+  bool result = 1;
+}
+// 获取证书 By Uuid - 仅提供给内部调用
+message GetCertificateByUuidReq {
+  string orgUuid = 1 [(validate.rules).string.min_len = 1];
+  string productUuid = 2 [(validate.rules).string.min_len = 1];
+  string uuid = 3 [(validate.rules).string.min_len = 1];
+}
+message GetCertificateByUuidReply {
+  string uuid = 1;
+  string orgUuid = 2;
+  string productUuid = 3;
+  string key = 4;
+  string pem = 5;
+  int32 version = 6;
+  int64 startDate = 7;
+  int64 endDate = 8;
+  string subject = 9;
+  string serialNumber = 10;
+  string issuer = 11;
+  string dnsNames = 12;
+  int64 createTime = 13;
+}
+
+
+// 对象存储
+// 列出对象存储桶
+message ListOSSBucketReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  int32 platformId = 4;
+  string accountUuid = 5 [(validate.rules).string.min_len = 1];
+  string subAccountUuid = 6 [(validate.rules).string.min_len = 1];
+  string subAccountAccessKeyUuid = 7 [(validate.rules).string.min_len = 1];
+}
+message ListOSSBucketReply {
+  repeated Bucket bucket = 1;
+  message Bucket {
+    string name = 1;
+    string location = 2;
+    string createTime = 3;
+    string storageClass = 4;
+  }
+}
+// 创建对象存储桶
+message CreateOSSBucketReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  int32 platformId = 4;
+  string accountUuid = 5 [(validate.rules).string.min_len = 1];
+  string subAccountUuid = 6 [(validate.rules).string.min_len = 1];
+  string subAccountAccessKeyUuid = 7 [(validate.rules).string.min_len = 1];
+  string name = 8 [(validate.rules).string.min_len = 1];
+  // 1. 私有写公共读，2. 私有写私有读 3. 公共写公共读 (拒绝该类创建)
+  int32 permission = 9;
+}
+message CreateOSSBucketReply {
+  bool result = 1;
+}
+// 获取对象存储桶
+message GetOSSBucketReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  int32 platformId = 4;
+  string accountUuid = 5 [(validate.rules).string.min_len = 1];
+  string subAccountUuid = 6 [(validate.rules).string.min_len = 1];
+  string subAccountAccessKeyUuid = 7 [(validate.rules).string.min_len = 1];
+}
+message GetOSSBucketReply {
+  string name = 1;
+}
+// 删除对象存储对象 - 暂时不进行支持
+message DelOSSObjectReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  int32 platformId = 4;
+  string accountUuid = 5 [(validate.rules).string.min_len = 1];
+  string subAccountUuid = 6 [(validate.rules).string.min_len = 1];
+  string subAccountAccessKeyUuid = 7 [(validate.rules).string.min_len = 1];
+}
+message DelOSSObjectReply {
+  bool result = 1;
+}
+//获取对象存储对象元数据
+message GetOSSObjectMetaReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  int32 platformId = 4;
+  string accountUuid = 5 [(validate.rules).string.min_len = 1];
+  string subAccountUuid = 6 [(validate.rules).string.min_len = 1];
+  string subAccountAccessKeyUuid = 7 [(validate.rules).string.min_len = 1];
+}
+message GetOSSObjectMetaReply {
+
+}
+// 解冻对象存储对象
+message RestoreOSSObjectReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  int32 platformId = 4;
+  string accountUuid = 5 [(validate.rules).string.min_len = 1];
+  string subAccountUuid = 6 [(validate.rules).string.min_len = 1];
+  string subAccountAccessKeyUuid = 7 [(validate.rules).string.min_len = 1];
+}
+message RestoreOSSObjectReply {
+  bool result = 1;
+}
+// 云服务Region
+message AddCloudPlatformRegionReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  int32 platformId = 3;
+  string region = 4 [(validate.rules).string.min_len = 1];
+  string regionName = 5 [(validate.rules).string.min_len = 1];
+}
+message AddCloudPlatformRegionReply {
+  bool result = 1;
+}
+message DelCloudPlatformRegionReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string regionUuid = 3 [(validate.rules).string.min_len = 1];
+}
+message DelCloudPlatformRegionReply {
+  bool result = 1;
+}
+message ListCloudPlatformRegionReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  int32 platformId = 3;
+}
+message ListCloudPlatformRegionReply {
+  repeated Region region = 1;
+  message Region {
+    string uuid = 1;
+    int32 platformId = 2;
+    string region = 3 [(validate.rules).string.min_len = 1];
+    string regionName = 4 [(validate.rules).string.min_len = 1];
+  }
+}

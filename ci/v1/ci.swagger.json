@@ -1,0 +1,145 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "api/ci/v1/ci.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "ci"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {},
+  "definitions": {
+    "CiDetail": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "content": {
+          "type": "string"
+        },
+        "createTime": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "CiDetails": {
+      "type": "object",
+      "properties": {
+        "ciDetail": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CiDetail"
+          }
+        }
+      }
+    },
+    "CiDetailsReply": {
+      "type": "object",
+      "properties": {
+        "errCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "requestId": {
+          "type": "string"
+        },
+        "details": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/CiDetails"
+          }
+        }
+      }
+    },
+    "CiReply": {
+      "type": "object",
+      "properties": {
+        "errCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "requestId": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "CiResult": {
+      "type": "object",
+      "properties": {
+        "taskId": {
+          "type": "string"
+        },
+        "result": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "createTime": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "CiResultReply": {
+      "type": "object",
+      "properties": {
+        "errCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "requestId": {
+          "type": "string"
+        },
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CiResult"
+          }
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "type_url": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}

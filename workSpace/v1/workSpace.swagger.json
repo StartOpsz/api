@@ -1,0 +1,252 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "api/workSpace/v1/workSpace.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "WorkSpace"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {},
+  "definitions": {
+    "ListFaultReplyFault": {
+      "type": "object",
+      "properties": {
+        "orgUuid": {
+          "type": "string"
+        },
+        "productUuid": {
+          "type": "string"
+        },
+        "uuid": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "level": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "startTime": {
+          "type": "string",
+          "format": "int64"
+        },
+        "endTime": {
+          "type": "string",
+          "format": "int64"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "optimize": {
+          "type": "string"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1CloseTaskReply": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1CloseWorkOrderReply": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1CreateFaultReply": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1CreateFaultStreamReply": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1CreateKnowledgePrivateLabelReply": {
+      "type": "object"
+    },
+    "v1CreateKnowledgePrivateResourceReply": {
+      "type": "object"
+    },
+    "v1CreateKnowledgePublicLabelReply": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1CreateKnowledgePublicResourceReply": {
+      "type": "object"
+    },
+    "v1CreateOnDutyReply": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1CreateTaskReply": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1CreateTodoReply": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1CreateWorkOrderReply": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1CreateWorkOrderStepReply": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1DelFaultReply": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1DelFaultStreamReply": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1DelOnDutyReply": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1DelTodoReply": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1ListFaultReply": {
+      "type": "object",
+      "properties": {
+        "faults": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListFaultReplyFault"
+          }
+        }
+      }
+    },
+    "v1ListFaultStreamReply": {
+      "type": "object",
+      "properties": {
+        "uuid": {
+          "type": "string"
+        },
+        "startTime": {
+          "type": "string",
+          "format": "int64"
+        },
+        "endTime": {
+          "type": "string",
+          "format": "int64"
+        },
+        "do": {
+          "type": "string"
+        }
+      }
+    },
+    "v1ListOnDutyReply": {
+      "type": "object"
+    },
+    "v1ListTaskReply": {
+      "type": "object"
+    },
+    "v1ListTodoReply": {
+      "type": "object"
+    },
+    "v1ListWorkOrderReply": {
+      "type": "object"
+    },
+    "v1ListWorkOrderStepReply": {
+      "type": "object"
+    }
+  }
+}

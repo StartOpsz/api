@@ -1,0 +1,120 @@
+syntax = "proto3";
+
+package robot.v1;
+option go_package = "robot/api/robot/v1;v1";
+
+//import "google/api/annotations.proto";
+//import "google/protobuf/timestamp.proto";
+import "validate/validate.proto";
+
+
+service Robot {
+  // 一问一答
+  rpc CreateQuestion (CreateQuestionReq) returns (CreateQuestionReply);
+  rpc GetAnswer (GetAnswerReq) returns (GetAnswerReply);
+  rpc GetQuestionHis (GetQuestionHisReq) returns (GetQuestionHisReply);
+  // chat session
+  rpc CreateChatSession (CreateChatSessionReq) returns (CreateChatSessionReply);
+  rpc ListChatSession (ListChatSessionReq) returns (ListChatSessionReply);
+  rpc SendChatSessionMsg (SendChatSessionMsgReq) returns (SendChatSessionMsgReply);
+  //
+  rpc DingTalkBotAssistant (DingTalkBotAssistantReq) returns (DingTalkBotAssistantReply);
+  // 第三方 chat websocket
+  rpc GetThirdChatWsInfo (GetThirdChatWsInfoReq) returns (GetThirdChatWsInfoReply);
+}
+
+// 一问一答 - 问
+message CreateQuestionReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string question = 3 [(validate.rules).string.min_len = 1];
+}
+message CreateQuestionReply {
+  string taskId = 1;
+}
+// 一问一答 - 答
+message GetAnswerReq {
+  string userUuid = 1;
+  string orgUuid = 2;
+  string taskId = 3;
+}
+message GetAnswerReply {
+  string sessionUuid = 1;
+  string question = 2;
+  string answer = 3; // Reply
+  int32 result = 4;
+  int32 assistant = 5;
+  int64 createTime = 6;
+}
+// 获取历史提问
+message GetQuestionHisReq {
+  string userUuid = 1;
+  string orgUuid = 2;
+}
+message GetQuestionHisReply {
+  repeated Question questions = 1;
+  message Question {
+    string sessionUuid = 1;
+    string question = 2;
+    string answer = 3; // Reply
+    int32 result = 4;
+    int32 assistant = 5;
+    int64 createTime = 6;
+  }
+}
+//
+message CreateChatSessionReq {
+  string systemRole = 1;
+}
+message CreateChatSessionReply {
+  bool result = 1;
+}
+//
+message ListChatSessionReq {
+
+}
+message ListChatSessionReply {
+
+}
+//
+message SendChatSessionMsgReq {
+
+}
+message SendChatSessionMsgReply {
+
+}
+// 钉钉交流小助理
+message DingTalkBotAssistantReq {
+  string timestamp = 1;
+  string sign = 2;
+  string msgId = 3;
+  string content = 4;
+  string conversationType = 5;
+  string conversationId = 6;
+  string conversationTitle = 7;
+  string senderCorpId = 8;
+  string senderId = 9;
+  string senderNick = 10;
+  string sessionWebhook = 11;
+  int64 sessionWebhookExpiredTime = 12;
+  bool isAdmin = 13;
+  string chatbotCorpId = 14;
+  bool isInAtList = 15;
+  string senderStaffId = 16;
+  string chatbotUserId = 17;
+  string bizSessionId = 18;
+}
+message DingTalkBotAssistantReply {
+  bool result = 1;
+}
+
+message GetThirdChatWsInfoReq {
+  string userUuid = 1;
+}
+message GetThirdChatWsInfoReply {
+  string orgUuid = 1;
+  string appId = 2;
+  string userUuid = 3;
+  int64 timestamp = 4;
+  string token = 5;
+}

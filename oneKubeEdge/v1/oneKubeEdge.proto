@@ -1,0 +1,1162 @@
+syntax = "proto3";
+
+package oneKubeEdge.v1;
+
+option go_package = "github.com/startopsz/oneKubeEdge/api/oneKubeEdge/v1;v1";
+
+//import "google/api/annotations.proto";
+//import "google/protobuf/timestamp.proto";
+import "validate/validate.proto";
+
+service oneKubeEdge {
+  rpc GetClusterSummary (GetClusterSummaryReq) returns (GetClusterSummaryReply) {};
+
+  // nameSpace
+  rpc CreateNameSpace (CreateNameSpaceReq) returns (CreateNameSpaceReply) {};
+  rpc ListNameSpace (ListNameSpaceReq) returns (ListNameSpaceReply) {};
+  //rpc GetNameSpace (GetNameSpaceReq) returns (GetNameSpaceReply) {};
+  rpc DelNameSpace (DelNameSpaceReq) returns (DelNameSpaceReply) {};
+
+  // ConfigMap
+  rpc CreateConfigMap (CreateConfigMapReq) returns (CreateConfigMapReply) {};
+  rpc ListConfigMap (ListConfigMapReq) returns (ListConfigMapReply) {};
+  rpc GetConfigMap (GetConfigMapReq) returns (GetConfigMapReply) {};
+  rpc DelConfigMap (DelConfigMapReq) returns (DelConfigMapReply) {};
+  rpc UpdateConfigMap (UpdateConfigMapReq) returns (UpdateConfigMapReply) {};
+
+  // Secret
+  rpc ListSecret (ListSecretReq) returns (ListSecretReply) {};
+  rpc GetSecret (GetSecretReq) returns (GetSecretReply) {};
+  rpc DelSecret (DelSecretReq) returns (DelSecretReply) {};
+
+  rpc GetExpiringSoonKubernetesTls (GetExpiringSoonKubernetesTlsReq) returns (GetExpiringSoonKubernetesTlsReply) {};
+
+  rpc CreateTlsSecret (CreateTlsSecretReq) returns (CreateTlsSecretReply) {};
+  rpc CreateOpaqueSecret (CreateOpaqueSecretReq) returns (CreateOpaqueSecretReply) {};
+  rpc CreateDockerConfigJsonSecret (CreateDockerConfigJsonSecretReq) returns (CreateDockerConfigJsonSecretReply) {};
+  rpc CreateBasicAuthSecret (CreateBasicAuthSecretReq) returns (CreateBasicAuthSecretReply) {};
+  rpc CreateSshAuthSecret (CreateSshAuthSecretReq) returns (CreateSshAuthSecretReply) {};
+  //rpc CreateTokenSecret (CreateTokenSecretReq) returns (CreateTokenSecretReply) {};
+  rpc UpdateTlsSecret (UpdateTlsSecretReq) returns (UpdateTlsSecretReply) {};
+  rpc UpdateOpaqueSecret (UpdateOpaqueSecretReq) returns (UpdateOpaqueSecretReply) {};
+  rpc UpdateDockerConfigJsonSecret (UpdateDockerConfigJsonSecretReq) returns (UpdateDockerConfigJsonSecretReply) {};
+  rpc UpdateBasicAuthSecret (UpdateBasicAuthSecretReq) returns (UpdateBasicAuthSecretReply) {};
+  rpc UpdateSshAuthSecret (UpdateSshAuthSecretReq) returns (UpdateSshAuthSecretReply) {};
+  //rpc UpdateTokenSecret (UpdateTokenSecretReq) returns (UpdateTokenSecretReply) {};
+
+  // Deployment
+  rpc CreateDeployment (CreateDeploymentReq) returns (CreateDeploymentReply) {};
+  rpc ListDeployment (ListDeploymentReq) returns (ListDeploymentReply) {};
+  rpc GetDeployment (GetDeploymentReq) returns (GetDeploymentReply) {};
+  rpc DelDeployment (DelDeploymentReq) returns (DelDeploymentReply) {};
+  rpc ListDeploymentStatus (ListDeploymentStatusReq) returns (ListDeploymentStatusReply) {};
+  rpc UpdateDeployment (UpdateDeploymentReq) returns (UpdateDeploymentReply) {};
+  rpc UpdateDeploymentReplaceSet (UpdateDeploymentReplaceSetReq) returns (UpdateDeploymentReplaceSetReply) {};
+  rpc ListRolloutHis (ListRolloutHisReq) returns (ListRolloutHisReply) {};
+
+  rpc FilterDeployment (FilterDeploymentReq) returns (FilterDeploymentReply) {};
+  // Event
+
+  // Job
+  rpc CreateJob (CreateJobReq) returns (CreateJobReply) {};
+  rpc ListJob (ListJobReq) returns (ListJobReply) {};
+  rpc GetJob (GetJobReq) returns (GetJobReply) {};
+  rpc DelJob (DelJobReq) returns (DelJobReply) {};
+
+  // Metrics
+  rpc GetNodeMetrics (GetNodeMetricsReq) returns (GetNodeMetricsReply) {};
+  rpc GetPodMetrics (GetPodMetricsReq) returns (GetPodMetricsReply) {};
+
+  // Node
+  rpc GetNode (GetNodeReq) returns (GetNodeReply) {};
+  rpc ListNode (ListNodeReq) returns (ListNodeReply) {};
+
+  // Pod
+  rpc ListPod (ListPodReq) returns (ListPodReply) {};
+  rpc GetPod (GetPodReq) returns (GetPodReply) {};
+  rpc SearchPod (SearchPodReq) returns (SearchPodReply) {};
+  rpc DelPod (DelPodReq) returns (DelPodReply) {};
+  rpc EvictPod (EvictPodReq) returns (EvictPodReply) {};
+  rpc DelEvictPod (DelEvictPodReq) returns (DelEvictPodReply) {};
+  // Service
+  rpc CreateService (CreateServiceReq) returns (CreateServiceReply) {};
+  rpc ListService (ListServiceReq) returns (ListServiceReply) {};
+  rpc GetService (GetServiceReq) returns (GetServiceReply) {};
+  rpc DelService (DelServiceReq) returns (DelServiceReply) {};
+
+  rpc CreateIngress (CreateIngressReq) returns (CreateIngressReply) {};
+  rpc UpdateIngress (UpdateIngressReq) returns (UpdateIngressReply) {};
+  rpc ListIngress (ListIngressReq) returns (ListIngressReply) {};
+  rpc GetIngress (GetIngressReq) returns (GetIngressReply) {};
+  rpc DelIngress (DelIngressReq) returns (DelIngressReply) {};
+
+  rpc CreateLoadBalancer (CreateLoadBalancerReq) returns (CreateLoadBalancerReply) {};
+  rpc ListLoadBalancer (ListLoadBalancerReq) returns (ListLoadBalancerReply) {};
+  rpc GetLoadBalancer (GetLoadBalancerReq) returns (GetLoadBalancerReply) {};
+  rpc DelLoadBalancer (DelLoadBalancerReq) returns (DelLoadBalancerReply) {};
+
+  // StatefulSet
+  rpc CreateStatefulSet (CreateStatefulSetReq) returns (CreateStatefulSetReply) {};
+  rpc ListStatefulSet (ListStatefulSetReq) returns (ListStatefulSetReply) {};
+  rpc GetStatefulSet (GetStatefulSetReq) returns (GetStatefulSetReply) {};
+  rpc DelStatefulSet (DelStatefulSetReq) returns (DelStatefulSetReply) {};
+
+  // Volume
+  rpc ListPersistentVolume (ListPersistentVolumeReq) returns (ListPersistentVolumeReply) {};
+  rpc ListPersistentVolumeClaim (ListPersistentVolumeClaimReq) returns (ListPersistentVolumeClaimReply) {};
+}
+
+message GetClusterSummaryReq {
+
+}
+
+message GetClusterSummaryReply {
+  int64 capacityCpu = 1;
+  int64 capacityMemory = 2;
+  int64 capacityStorage = 3;
+  int64 allocatableCpu = 4;
+  int64 allocatableMemory = 5;
+  int64 allocatableStorage = 6;
+  float allocatableCpuPercent = 7;
+  float allocatableMemoryPercent = 8;
+  float allocatableStoragePercent = 9;
+
+  int64 assignedCpu = 10;
+  int64 assignedMemory = 11;
+  int64 assignedStorage = 12;
+
+  float assignedCpuPercent = 13;
+  float assignedMemoryPercent = 14;
+  float assignedStoragePercent = 15;
+}
+
+message GetNodeMetricsReq {
+  string name = 1 [(validate.rules).string.min_len = 1];
+}
+message GetNodeMetricsReply {
+  string cpu = 1;
+  string memory = 2;
+  string window = 3;
+  int64 timestamp = 4;
+}
+message GetPodMetricsReq {
+  string namespace = 1 [(validate.rules).string.min_len = 1];
+  string name = 2 [(validate.rules).string.min_len = 1];
+}
+message GetPodMetricsReply {
+  repeated ContainerMetrics podMetrics = 1;
+  message ContainerMetrics {
+    string name = 1;
+    string cpu = 2;
+    string memory = 3;
+    string window = 4;
+    int64 timestamp = 5;
+  }
+}
+// 创建 NameSpace
+message CreateNameSpaceReq {
+  string namespace = 1;
+}
+message CreateNameSpaceReply {
+  bool result = 1;
+}
+message ListNameSpaceReq {
+}
+message ListNameSpaceReply {
+  repeated NameSpace namespace = 1;
+  message NameSpace {
+    string name = 1;
+    int64  createTime = 2;
+    string status = 3;
+  }
+}
+message DelNameSpaceReq {
+  string namespace = 1;
+}
+message DelNameSpaceReply {
+  bool result = 1;
+}
+// ConfigMap
+message ConfigMap {
+  string namespace = 1;
+  string name = 2;
+  map<string, string> data = 3;
+  bool immutable = 4;
+}
+message CreateConfigMapReq {
+  string namespace = 1 [(validate.rules).string.min_len = 1];
+  string name = 2 [(validate.rules).string.min_len = 1];
+  map<string, string> data = 3 [(validate.rules).map.min_pairs = 1];
+  bool immutable = 4;
+}
+message CreateConfigMapReply {
+  bool result = 1;
+}
+message ListConfigMapReq {
+  string namespace = 1 [(validate.rules).string.min_len = 1];
+}
+message ListConfigMapReply {
+  repeated ConfigMap configMap = 1;
+}
+message GetConfigMapReq {
+  string namespace = 1 [(validate.rules).string.min_len = 1];
+  string name = 2 [(validate.rules).string.min_len = 1];
+}
+message GetConfigMapReply {
+  string namespace = 1;
+  string name = 2;
+  map<string, string> data = 3;
+  bool immutable = 4;
+}
+message DelConfigMapReq {
+  string namespace = 1 [(validate.rules).string.min_len = 1];
+  string name = 2 [(validate.rules).string.min_len = 1];
+}
+message DelConfigMapReply {
+  bool result = 1;
+}
+message UpdateConfigMapReq {
+  string namespace = 1 [(validate.rules).string.min_len = 1];
+  string name = 2 [(validate.rules).string.min_len = 1];
+  map<string, string> data = 3 [(validate.rules).map.min_pairs = 1];
+  bool immutable = 4;
+}
+message UpdateConfigMapReply {
+  bool result = 1;
+}
+// Deployment
+message Deployment {
+  ObjectMeta objectMeta = 1;
+  DeploymentSpec spec = 2;
+  DeploymentStatus status = 3;
+}
+message ObjectMeta {
+  string namespace = 1;
+  string name = 2;
+  map <string, string> annotations = 3;
+  map <string, string> labels = 4;
+}
+message DeploymentSpec {
+  // 指定所需 Pod 的可选字段
+  int32 replicas = 1;
+  // 指定本 Deployment 的 Pod 标签选择算符的必需字段;
+  // .spec.selector 必须匹配 .spec.template.metadata.labels，否则请求会被 API 拒绝。
+  LabelSelector  selector = 3;
+  PodTemplateSpec  template = 2;
+  // 指定用于用新 Pod 替换旧 Pod 的策略, “Recreate” 或 “RollingUpdate”。 默认值: RollingUpdate
+  DeploymentStrategy strategy = 4;
+  // 用于指定新创建的 Pod 在没有任意容器崩溃情况下的最小就绪时间， 只有超出这个时间 Pod 才被视为可用。默认值为 0
+  int32 minReadySeconds = 5;
+  // 用来设定出于回滚目的所要保留的旧 ReplicaSet 数量
+  int32 revisionHistoryLimit = 6;
+  // 用于指定系统在报告 Deployment 进展失败 之前等待 Deployment 取得进展的秒数
+  int32 progressDeadlineSeconds = 7;
+}
+message PodTemplateSpec {
+  ObjectMeta objectMeta = 1;
+  PodSpec spec = 2;
+}
+message LabelSelector {
+  map <string, string> matchLabels = 1;
+}
+// strategy
+message DeploymentStrategy {
+  string type = 1;
+}
+enum StrategyType {
+  RollingUpdate = 0;
+  Recreate = 1;
+}
+// Spec
+message PodSpec {
+  repeated Volume volumes = 1;
+  repeated Container initContainers = 2;
+  repeated Container containers = 3;
+  repeated EphemeralContainer ephemeralContainers = 4;
+  // 容器重启策略, 取值包括 Always、OnFailure 和 Never。默认值是 Always。
+  string restartPolicy = 11;
+  int64 terminationGracePeriodSeconds = 10;
+  int64 activeDeadlineSeconds = 9;
+  // dnsPolicy 字段设置: Default, ClusterFirst, ClusterFirstWithHostNet, None; 如果未明确指定 dnsPolicy，则使用 "ClusterFirst"
+  string dnsPolicy = 8;
+  map <string, string> nodeSelector = 7;
+  string serviceAccountName = 12;
+  bool automountServiceAccountToken = 13;
+  PodSecurityContext securityContext = 14;
+  repeated ImagePullSecret imagePullSecrets = 15;
+  repeated  Toleration tolerations = 16;
+  repeated HostAlias hostAliases = 17;
+  PodDNSConfig dnsConfig = 18;
+}
+// Volume
+message Volume {
+
+}
+// EphemeralContainer
+message EphemeralContainer {
+
+}
+// Selector
+message Selector {
+  //MatchLabels matchLabels = 1;
+  map <string, string> matchLabels = 1;
+}
+
+// pod container
+message Container {
+  string name = 1;
+  string command = 6;
+  repeated string args = 2;
+  repeated Env envs = 3;
+  repeated EnvFromSource EnvFroms = 12;
+  string image = 4;
+  // Always , Never , IfNotPresent
+  string imagePullPolicy = 5;
+  Probe livenessProbe = 9;
+  Probe readinessProbe = 7;
+  Probe startupProbe = 8;
+  Lifecycle lifecycle = 10;
+  Resource resource = 11;
+}
+// container env
+message Env {
+  string name = 1;
+  string value = 2;
+}
+// PodSecurityContext - pod 级别
+message PodSecurityContext {
+  repeated PodSecurityContextSysctl Sysctls = 1;
+}
+message PodSecurityContextSysctl {
+  string name = 1;
+  string value = 2;
+}
+// ImagePullSecrets - pod 级别
+message ImagePullSecret {
+  string name = 1;
+}
+// Toleration - pod 级别
+message Toleration {
+  string key = 1;
+  string operator = 2;
+  string effect = 3;
+  string value = 4;
+}
+// PodDNSConfig - pod 级别
+message PodDNSConfig {
+  repeated string nameservers = 1;
+  repeated string searches = 2;
+}
+// HostAlias - pod 级别
+message HostAlias {
+  string ip = 1 [(validate.rules).string.ip = true];
+  repeated string hostnames = 2;
+}
+// Probe
+message Probe {
+  ProbeHandler probeHandler = 1;
+  // 容器启动后要等待多少秒后才启动 启动、存活和就绪探针， 默认是 0 秒，最小值是 0。
+  int32 initialDelaySeconds = 2;
+  // 探测的超时后等待多少秒。默认值是 1 秒。最小值是 1。
+  int32 timeoutSeconds = 3;
+  // 执行探测的时间间隔（单位是秒）。默认是 10 秒。最小值是 1。
+  int32 periodSeconds = 4;
+  // 探针在失败后，被视为成功的最小连续成功数。默认值是 1。 存活和启动探测的这个值必须是 1。最小值是 1。
+  int32 successThreshold = 5;
+  // 当探测失败时，Kubernetes 的重试次数。 对存活探测而言，放弃就意味着重新启动容器。
+  // 对就绪探测而言，放弃意味着 Pod 会被打上未就绪的标签。默认值是 3。最小值是 1。
+  int32 failureThreshold = 6;
+}
+message ProbeHandler {
+  ExecAction exec = 1;
+  HTTPGetAction httpGet = 2;
+  TCPSocketAction tcpSocket = 3;
+  GRPCAction grpc = 4;
+}
+message ExecAction {
+  repeated string command = 1;
+}
+message HTTPGetAction {
+  string host = 1;
+  int32 port = 2;
+  string path = 3;
+  map <string, string> headers = 4;
+}
+message TCPSocketAction {
+  string host = 1;
+  int32 port = 2;
+}
+message GRPCAction {
+  int32 port = 1;
+  string service = 2;
+}
+//
+message Lifecycle {
+  LifecycleHandler postStart = 1;
+  LifecycleHandler preStop = 2;
+}
+message LifecycleHandler {
+  ExecAction exec = 1;
+  HTTPGetAction httpGet = 2;
+  TCPSocketAction tcpSocket = 3;
+}
+// EnvFromSource
+message EnvFromSource {
+  string  configMapRef = 1;
+  string  secretRef = 2;
+}
+// Resource
+message Resource {
+  ResourceLimit limit = 1;
+  ResourceRequests request = 2;
+}
+message ResourceLimit {
+  int64 cpu = 1;
+  int64 memory = 2;
+  int64 storage = 3;
+  int64 storageEphemeral = 4;
+}
+message ResourceRequests {
+  int64 cpu = 1;
+  int64 memory = 2;
+  int64 storage = 3;
+  int64 storageEphemeral = 4;
+}
+//
+message DeploymentStatus {
+  int32 replicas = 1;
+  int32 updatedReplicas = 2;
+  int32 readyReplicas = 3;
+  int32 availableReplicas = 4;
+  int32 unavailableReplicas = 5;
+}
+//
+message CreateDeploymentReq {
+  Deployment deployment = 1;
+}
+message CreateDeploymentReply {
+  bool result = 1;
+}
+message ListDeploymentReq {
+  string namespace = 1 [(validate.rules).string.min_len = 1];
+  int64 limit = 2;
+  string continue = 3;
+  string labelSelector = 4;
+}
+message ListDeploymentReply {
+  repeated Deployment deployments = 1;
+  string continue = 2;
+}
+message ListDeploymentStatusReq {
+  string namespace = 1 [(validate.rules).string.min_len = 1];
+  int64 limit = 2;
+  string continue = 3;
+  string labelSelector = 4;
+}
+message ListDeploymentStatusReply {
+  repeated Deployment deployments = 1;
+  string continue = 2;
+}
+message GetDeploymentReq {
+  string namespace = 1 [(validate.rules).string.min_len = 1];
+  string name = 2 [(validate.rules).string.min_len = 1];
+}
+message GetDeploymentReply {
+  Deployment deployment = 1;
+}
+message DelDeploymentReq {
+  string namespace = 1 [(validate.rules).string.min_len = 1];
+  string name = 2 [(validate.rules).string.min_len = 1];
+}
+message DelDeploymentReply {
+  bool result = 1;
+}
+message UpdateDeploymentReq {
+  Deployment deployment = 1;
+}
+message UpdateDeploymentReply {
+  bool result = 1;
+}
+message ListRolloutHisReq {
+
+}
+message ListRolloutHisReply {
+
+}
+message UpdateDeploymentReplaceSetReq {
+  string namespace = 1 [(validate.rules).string.min_len = 1];
+  string name = 2 [(validate.rules).string.min_len = 1];
+  int32 replicas = 3 [(validate.rules).int32.gt = 0];
+}
+message UpdateDeploymentReplaceSetReply {
+  bool result = 1;
+}
+message FilterDeploymentReq {
+  int32 minCpu = 1;
+  int32 maxCpu = 2;
+  int32 minMemory = 3;
+  int32 maxMemory = 4;
+  int32 minReplicas = 5;  // 最少 replicas
+  int32 unAvailableReplicas = 6; // 无效的 Replicas 个数
+  string imageKeyword = 7; // 镜像关键字
+  string nameKeyword = 8; // 名字关键字
+  map<string, string> envs = 9; // 命中环境变量
+  map<string, string> labels = 10; // labels命中
+  string namespace = 11;
+}
+message FilterDeploymentReply {
+  repeated deployment deployments = 1;
+  message deployment {
+    string namespace = 1;
+    string name = 2;
+  }
+}
+
+// Secret
+message ListSecretReq {
+  string namespace = 1 [(validate.rules).string.min_len = 1];
+}
+message ListSecretReply {
+  repeated Secret secrets = 1;
+  message Secret {
+    string namespace = 1;
+    string name = 2;
+    map<string, string> annotations = 3;
+    map<string, string> labels = 4;
+    bool immutable = 5;
+    string type = 6;
+    int64 creationTimestamp = 7;
+    map<string, string> stringData = 8;
+    map<string, bytes> data = 9;
+  }
+}
+message GetSecretReq {
+  string namespace = 1 [(validate.rules).string.min_len = 1];
+  string name = 2 [(validate.rules).string.min_len = 1];
+}
+message GetSecretReply {
+  string namespace = 1;
+  string name = 2;
+  map<string, string> annotations = 3;
+  map<string, string> labels = 4;
+  bool immutable = 5;
+  string type = 6;
+  int64 creationTimestamp = 7;
+  map<string, string> stringData = 8;
+  map<string, bytes> data = 9;
+}
+message DelSecretReq {
+  string namespace = 1 [(validate.rules).string.min_len = 1];
+  string name = 2 [(validate.rules).string.min_len = 1];
+}
+message DelSecretReply {
+  bool result = 1;
+}
+message CreateTlsSecretReq {
+  string namespace = 1 [(validate.rules).string.min_len = 1];
+  string name = 2 [(validate.rules).string.min_len = 1];
+  map<string, string> annotations = 3;
+  map<string, string> labels = 4;
+  string tlsCrt = 5 [(validate.rules).string.min_len = 1];
+  string tlsKey = 6 [(validate.rules).string.min_len = 1];
+}
+message CreateTlsSecretReply {
+  bool result = 1;
+}
+message UpdateTlsSecretReq {
+  string namespace = 1 [(validate.rules).string.min_len = 1];
+  string name = 2 [(validate.rules).string.min_len = 1];
+  map<string, string> annotations = 3;
+  map<string, string> labels = 4;
+  string tlsCrt = 5 [(validate.rules).string.min_len = 1];
+  string tlsKey = 6 [(validate.rules).string.min_len = 1];
+}
+message UpdateTlsSecretReply {
+  bool result = 1;
+}
+message CreateOpaqueSecretReq {
+  string namespace = 1 [(validate.rules).string.min_len = 1];
+  string name = 2 [(validate.rules).string.min_len = 1];
+  map<string, string> annotations = 3;
+  map<string, string> labels = 4;
+  map<string, string> data = 5;
+}
+message CreateOpaqueSecretReply {
+  bool result = 1;
+}
+message UpdateOpaqueSecretReq {
+  string namespace = 1 [(validate.rules).string.min_len = 1];
+  string name = 2 [(validate.rules).string.min_len = 1];
+  map<string, string> annotations = 3;
+  map<string, string> labels = 4;
+  map<string, string> data = 5;
+}
+message UpdateOpaqueSecretReply {
+  bool result = 1;
+}
+message CreateDockerConfigJsonSecretReq {
+  string namespace = 1 [(validate.rules).string.min_len = 1];
+  string name = 2 [(validate.rules).string.min_len = 1];
+  string username = 3 [(validate.rules).string.min_len = 1];
+  string password = 4 [(validate.rules).string.min_len = 1];
+  string email = 5 [(validate.rules).string.email = true];
+  string url = 6 [(validate.rules).string.min_len = 1];
+  map<string, string> annotations = 7;
+  map<string, string> labels = 8;
+}
+message CreateDockerConfigJsonSecretReply {
+  bool result = 1;
+}
+message UpdateDockerConfigJsonSecretReq {
+  string namespace = 1 [(validate.rules).string.min_len = 1];
+  string name = 2 [(validate.rules).string.min_len = 1];
+  string username = 3 [(validate.rules).string.min_len = 1];
+  string password = 4 [(validate.rules).string.min_len = 1];
+  string email = 5 [(validate.rules).string.email = true];
+  string url = 6 [(validate.rules).string.min_len = 1];
+  map<string, string> annotations = 7;
+  map<string, string> labels = 8;
+}
+message UpdateDockerConfigJsonSecretReply {
+  bool result = 1;
+}
+message CreateBasicAuthSecretReq {
+  string namespace = 1 [(validate.rules).string.min_len = 1];
+  string name = 2 [(validate.rules).string.min_len = 1];
+  string username = 3 [(validate.rules).string.min_len = 1];
+  string password = 4 [(validate.rules).string.min_len = 1];
+  bool immutable = 5;
+  map<string, string> annotations = 6;
+  map<string, string> labels = 7;
+}
+message CreateBasicAuthSecretReply {
+  bool result = 1;
+}
+message UpdateBasicAuthSecretReq {
+  string namespace = 1 [(validate.rules).string.min_len = 1];
+  string name = 2 [(validate.rules).string.min_len = 1];
+  string username = 3 [(validate.rules).string.min_len = 1];
+  string password = 4 [(validate.rules).string.min_len = 1];
+  bool immutable = 5;
+  map<string, string> annotations = 6;
+  map<string, string> labels = 7;
+}
+message UpdateBasicAuthSecretReply {
+  bool result = 1;
+}
+message CreateSshAuthSecretReq {
+  string namespace = 1 [(validate.rules).string.min_len = 1];
+  string name = 2 [(validate.rules).string.min_len = 1];
+  string privateKey = 3 [(validate.rules).string.min_len = 1];
+  bool immutable = 4;
+  map<string, string> annotations = 5;
+  map<string, string> labels = 6;
+}
+message CreateSshAuthSecretReply {
+  bool result = 1;
+}
+message UpdateSshAuthSecretReq {
+  string namespace = 1 [(validate.rules).string.min_len = 1];
+  string name = 2 [(validate.rules).string.min_len = 1];
+  string privateKey = 3 [(validate.rules).string.min_len = 1];
+  bool immutable = 4;
+  map<string, string> annotations = 5;
+  map<string, string> labels = 6;
+}
+message UpdateSshAuthSecretReply {
+  bool result = 1;
+}
+// Job
+message CreateJobReq {
+  string namespace = 1 [(validate.rules).string.min_len = 1];
+}
+message CreateJobReply {
+
+}
+message ListJobReq {
+  string namespace = 1 [(validate.rules).string.min_len = 1];
+}
+message ListJobReply {
+
+}
+message GetJobReq {
+  string namespace = 1 [(validate.rules).string.min_len = 1];
+}
+message GetJobReply {
+
+}
+message DelJobReq {
+  string namespace = 1 [(validate.rules).string.min_len = 1];
+}
+message DelJobReply {
+
+}
+// Node
+message ListNodeReq {
+}
+message ListNodeReply {
+  repeated Node node = 1;
+  message Node {
+    string name = 1;
+    int64  creationTimestamp = 2;
+    string containerRuntimeVersion = 3;
+    string kernelVersion = 4;
+    string kubeProxyVersion = 5;
+    string kubeletVersion = 6;
+    string kubeletEndpoint = 7;
+    string osImage = 8;
+    map <string, string> labels = 9;
+    map <string, string> annotations = 10;
+    Capacity capacity = 11;
+    Allocatable allocatable = 12;
+    AllocatablePercent allocatablePercent = 13;
+
+    message Capacity {
+      int64 cpu = 1;
+      int64 memory = 2;
+      int64 storage = 3;
+      int64 storageEphemeral = 4;
+    }
+    message Allocatable {
+      int64 cpu = 1;
+      int64 memory = 2;
+      int64 storage = 3;
+      int64 storageEphemeral = 4;
+    }
+    message AllocatablePercent {
+      float cpu = 1;
+      float memory = 2;
+      float storage = 3;
+      float storageEphemeral = 4;
+    }
+  }
+}
+message GetNodeReq {
+  string node = 1 [(validate.rules).string.min_len = 1];
+}
+message GetNodeReply {
+  string name = 1;
+  int64  creationTimestamp = 2;
+  string containerRuntimeVersion = 3;
+  string kernelVersion = 4;
+  string kubeProxyVersion = 5;
+  string kubeletVersion = 6;
+  string kubeletEndpoint = 7;
+  string osImage = 8;
+  map <string, string> labels = 9;
+  map <string, string> annotations = 10;
+  Capacity capacity = 11;
+  Allocatable allocatable = 12;
+  AllocatablePercent allocatablePercent = 13;
+  message Capacity {
+    int64 cpu = 1;
+    int64 memory = 2;
+    int64 storage = 3;
+    int64 storageEphemeral = 4;
+  }
+  message Allocatable {
+    int64 cpu = 1;
+    int64 memory = 2;
+    int64 storage = 3;
+    int64 storageEphemeral = 4;
+  }
+  message AllocatablePercent {
+    float cpu = 1;
+    float memory = 2;
+    float storage = 3;
+    float storageEphemeral = 4;
+  }
+}
+// Pod
+message GetPodReq {
+  string namespace = 1 [(validate.rules).string.min_len = 1];
+  string name = 2 [(validate.rules).string.min_len = 1];
+}
+message GetPodReply {
+  string namespace = 1;
+  string name = 2;
+  int64 creationTimestamp = 3;
+  string reason = 4;
+  string phase = 5;
+  string hostIP = 6;
+  string podIP = 7;
+  map <string, string> labels = 8;
+  map <string, string> envs = 9;
+  repeated Container container = 10;
+  message Container {
+    string name = 1;
+    string image = 2;
+    string workingDir = 3;
+    string command = 4;
+    string securityContext = 5;
+    int64 requestsCpu = 6;
+    int64 requestsMemory = 7;
+    int64 requestsStorage = 8;
+    int64 requestsStorageEphemeral = 9;
+    int64 limitCpu = 10;
+    int64 limitMemory = 11;
+    int64 limitStorage = 12;
+    int64 limitStorageEphemeral = 13;
+    string startupProbe = 14;
+    string livenessProbe = 15;
+    string readinessProbe = 16;
+    int32 restartCount = 17;
+    bool ready = 18;
+  }
+}
+message ListPodReq {
+  string namespace = 1 [(validate.rules).string.min_len = 1];
+  int64 limit = 2;
+  string continue = 3;
+  string labelSelector = 4;
+}
+message ListPodReply {
+  string continue = 1;
+  repeated Pod pod = 2;
+  message Pod {
+    string namespace = 1;
+    string name = 2;
+    int64 creationTimestamp = 3;
+    string reason = 4;
+    string phase = 5;
+    string hostIP = 6;
+    string podIP = 7;
+    map <string, string> labels = 8;
+    map <string, string> envs = 9;
+    repeated Container container = 10;
+    message Container {
+      string name = 1;
+      string image = 2;
+      string workingDir = 3;
+      string command = 4;
+      string securityContext = 5;
+      int64 requestsCpu = 6;
+      int64 requestsMemory = 7;
+      int64 requestsStorage = 8;
+      int64 requestsStorageEphemeral = 9;
+      int64 limitCpu = 10;
+      int64 limitMemory = 11;
+      int64 limitStorage = 12;
+      int64 limitStorageEphemeral = 13;
+      string startupProbe = 14;
+      string livenessProbe = 15;
+      string readinessProbe = 16;
+      int32 restartCount = 17;
+      bool ready = 18;
+    }
+  }
+}
+message SearchPodReq {
+  string namespace = 1 [(validate.rules).string.min_len = 1];
+  string keyword = 2;
+}
+message SearchPodReply {
+  repeated Pod pod = 1;
+  message Pod {
+    string namespace = 1;
+    string name = 2;
+    int64 creationTimestamp = 3;
+    string reason = 4;
+    string phase = 5;
+    string hostIP = 6;
+    string podIP = 7;
+    map <string, string> labels = 8;
+    map <string, string> envs = 9;
+    repeated Container container = 10;
+    message Container {
+      string name = 1;
+      string image = 2;
+      string workingDir = 3;
+      string command = 4;
+      string securityContext = 5;
+      int64 requestsCpu = 6;
+      int64 requestsMemory = 7;
+      int64 requestsStorage = 8;
+      int64 requestsStorageEphemeral = 9;
+      int64 limitCpu = 10;
+      int64 limitMemory = 11;
+      int64 limitStorage = 12;
+      int64 limitStorageEphemeral = 13;
+      string startupProbe = 14;
+      string livenessProbe = 15;
+      string readinessProbe = 16;
+      int32 restartCount = 17;
+      bool ready = 18;
+    }
+  }
+}
+message DelPodReq {
+  string namespace = 1 [(validate.rules).string.min_len = 1];
+  string name = 2 [(validate.rules).string.min_len = 1];
+}
+message DelPodReply {
+  bool result = 1;
+}
+message EvictPodReq {
+  string namespace = 1 [(validate.rules).string.min_len = 1];
+  string name = 2 [(validate.rules).string.min_len = 1];
+}
+message EvictPodReply {
+  bool result = 1;
+}
+message DelEvictPodReq {
+  string namespace = 1 [(validate.rules).string.min_len = 1];
+}
+message DelEvictPodReply {
+  bool result = 1;
+}
+// Service
+message ServicePort {
+  string name = 1;
+  string protocol = 2;
+  int32 port = 3;
+  int32 targetPort = 4;
+}
+message CreateServiceReq {
+  string namespace = 1 [(validate.rules).string.min_len = 1];
+  string name = 2 [(validate.rules).string.min_len = 1];
+  string serviceType = 3 [(validate.rules).string.min_len = 1];
+  map <string, string> selector = 4;
+  repeated ServicePort ports = 5;
+  map <string, string> annotations = 6;
+}
+message CreateServiceReply {
+  bool result = 1;
+}
+message ListServiceReq {
+  string namespace = 1 [(validate.rules).string.min_len = 1];
+}
+message ListServiceReply {
+  repeated Service service = 1;
+  message Service {
+    string name = 1;
+    string namespace = 2;
+    string resourceVersion = 3;
+    map <string, string> annotations = 4;
+    string clusterIP = 5;
+    string sessionAffinity = 6;
+    string type = 7;
+    map <string, string> labels = 8;
+    repeated ServicePort ports = 9;
+    repeated string ExternalIPs = 10;
+  }
+}
+message GetServiceReq {
+  string namespace = 1 [(validate.rules).string.min_len = 1];
+  string name = 2 [(validate.rules).string.min_len = 1];
+}
+message GetServiceReply {
+  string name = 1;
+  string namespace = 2;
+  string resourceVersion = 3;
+  string clusterIP = 4;
+  string sessionAffinity = 5;
+  string type = 6;
+  map <string, string> labels = 7;
+  map <string, string> annotations = 8;
+  repeated ServicePort ports = 9;
+  repeated string ExternalIPs = 10;
+}
+message DelServiceReq {
+  string namespace = 1 [(validate.rules).string.min_len = 1];
+  string name = 2 [(validate.rules).string.min_len = 1];
+}
+message DelServiceReply {
+  bool result = 1;
+}
+// Ingress
+message CreateIngressReq {
+  string namespace = 1 [(validate.rules).string.min_len = 1];
+  string name = 2 [(validate.rules).string.min_len = 1];
+  //string ingressClassName = 3 [(validate.rules).string.min_len = 1];
+  map <string, string> annotations = 4;
+  map <string, string> labels = 5;
+  // map[hostname]Service
+  map <string, Service> service = 6;
+  message Service {
+    string tlsSecret = 1;
+    map <string, Path> path = 5;
+    message Path {
+      string pathType = 1 [(validate.rules).string.min_len = 1];
+      string serviceName = 2 [(validate.rules).string.min_len = 1];
+      int32 servicePort = 3 [(validate.rules).int32.gt = 1];
+    }
+  }
+}
+message CreateIngressReply {
+  bool result = 1;
+}
+message UpdateIngressReq {
+  string namespace = 1 [(validate.rules).string.min_len = 1];
+  string name = 2 [(validate.rules).string.min_len = 1];
+  //string ingressClassName = 3 [(validate.rules).string.min_len = 1];
+  map <string, string> annotations = 4;
+  map <string, string> labels = 5;
+  // map[hostname]Service
+  map <string, Service> service = 6;
+  message Service {
+    string tlsSecret = 1;
+    map <string, Path> path = 5;
+    message Path {
+      string pathType = 1 [(validate.rules).string.min_len = 1];
+      string serviceName = 2 [(validate.rules).string.min_len = 1];
+      int32 servicePort = 3 [(validate.rules).int32.gt = 1];
+    }
+  }
+}
+message UpdateIngressReply {
+  bool result = 1;
+}
+message ListIngressReq {
+  string namespace = 1 [(validate.rules).string.min_len = 1];
+}
+message ListIngressReply {
+  repeated Ingress ingress = 1;
+  message Ingress {
+    string namespace = 1 [(validate.rules).string.min_len = 1];
+    string name = 2 [(validate.rules).string.min_len = 1];
+    map <string, string> annotations = 3;
+    map <string, string> labels = 4;
+    // map[hostname]Service
+    map <string, Service> service = 5;
+    message Service {
+      string tlsSecret = 1;
+      map <string, Path> path = 5;
+      message Path {
+        string pathType = 1 [(validate.rules).string.min_len = 1];
+        string serviceName = 2 [(validate.rules).string.min_len = 1];
+        int32 servicePort = 3 [(validate.rules).int32.gt = 1];
+      }
+    }
+  }
+}
+message GetIngressReq {
+  string namespace = 1 [(validate.rules).string.min_len = 1];
+  string name = 2 [(validate.rules).string.min_len = 1];
+}
+message GetIngressReply {
+  string namespace = 1 [(validate.rules).string.min_len = 1];
+  string name = 2 [(validate.rules).string.min_len = 1];
+  map <string, string> annotations = 3;
+  map <string, string> labels = 4;
+  // map[hostname]Service
+  map <string, Service> service = 5;
+  message Service {
+    string tlsSecret = 1;
+    map <string, Path> path = 5;
+    message Path {
+      string pathType = 1 [(validate.rules).string.min_len = 1];
+      string serviceName = 2 [(validate.rules).string.min_len = 1];
+      int32 servicePort = 3 [(validate.rules).int32.gt = 1];
+    }
+  }
+}
+message DelIngressReq {
+  string namespace = 1 [(validate.rules).string.min_len = 1];
+  string name = 2 [(validate.rules).string.min_len = 1];
+}
+message DelIngressReply {
+  bool result = 1;
+}
+// LoadBalancer
+message CreateLoadBalancerReq {
+  string namespace = 1 [(validate.rules).string.min_len = 1];
+}
+message CreateLoadBalancerReply {
+
+}
+message ListLoadBalancerReq {
+  string namespace = 1 [(validate.rules).string.min_len = 1];
+}
+message ListLoadBalancerReply {
+}
+message GetLoadBalancerReq {
+  string namespace = 1 [(validate.rules).string.min_len = 1];
+}
+message GetLoadBalancerReply {
+}
+message DelLoadBalancerReq {
+  string namespace = 1 [(validate.rules).string.min_len = 1];
+}
+message DelLoadBalancerReply {
+}
+
+// StatefulSet
+message CreateStatefulSetReq {
+  string namespace = 1 [(validate.rules).string.min_len = 1];
+}
+message CreateStatefulSetReply {
+
+}
+message ListStatefulSetReq {
+  string namespace = 1 [(validate.rules).string.min_len = 1];
+}
+message ListStatefulSetReply {
+
+}
+message GetStatefulSetReq {
+  string namespace = 1 [(validate.rules).string.min_len = 1];
+}
+message GetStatefulSetReply {
+
+}
+message DelStatefulSetReq {
+  string namespace = 1 [(validate.rules).string.min_len = 1];
+}
+message DelStatefulSetReply {
+
+}
+//
+message ListPersistentVolumeReq {
+}
+message ListPersistentVolumeReply {
+  repeated PersistentVolume persistentVolume = 1;
+  message PersistentVolume {
+    string name = 1;
+    int64 creationTimestamp = 2;
+    map <string, string> labels = 3;
+    map <string, string> annotations = 4;
+    string phase = 5;
+    string reason = 6;
+  }
+}
+message ListPersistentVolumeClaimReq {
+  string namespace = 1 [(validate.rules).string.min_len = 1];
+}
+message ListPersistentVolumeClaimReply {
+  repeated PersistentVolumeClaim persistentVolumeClaim = 1;
+  message PersistentVolumeClaim {
+    string namespace = 1;
+    string name = 2;
+    int64 creationTimestamp = 3;
+    map <string, string> labels = 4;
+    map <string, string> annotations = 5;
+    string volumeName = 6;
+    string storageClassName = 7;
+  }
+}
+
+
+message GetExpiringSoonKubernetesTlsReq {
+  string nameSpace = 1;
+}
+
+message GetExpiringSoonKubernetesTlsReply {
+  repeated ExpiringSoonKubernetesTls expiringSoonKubernetesTls = 1;
+  repeated FailedExpiringSoonKubernetesTls failedExpiringSoonKubernetesTls = 2;
+
+  message FailedExpiringSoonKubernetesTls {
+    string name = 1;
+    string nameSpace = 2;
+  }
+
+  message  ExpiringSoonKubernetesTls {
+    string name = 1;
+    string nameSpace = 2;
+    repeated string dnsNames = 3;
+    string subject = 4;
+    string serialNumber = 5;
+    int64 notAfter = 6;
+    string notAfterString = 7;
+  }
+}

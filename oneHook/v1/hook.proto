@@ -1,0 +1,349 @@
+syntax = "proto3";
+
+package oneHook.v1;
+
+option go_package = "github.com/startopsz/oneHook/api/oneHook/v1;v1";
+
+//import "google/api/annotations.proto";
+//import "google/protobuf/timestamp.proto";
+import "validate/validate.proto";
+
+
+service OneHook {
+  // prometheus
+  rpc PrometheusAlert (PrometheusAlertReq) returns (PrometheusAlertReply) {};
+  rpc PrometheusAlertHis (PrometheusAlertHisReq) returns (PrometheusAlertHisReply) {};
+  rpc PrometheusAlertAck (PrometheusAlertAckReq) returns (PrometheusAlertAckReply) {};
+  rpc PrometheusAlertFingerprint (PrometheusAlertFingerprintReq) returns (PrometheusAlertFingerprintReply) {};
+
+  // Kubernetes Event
+  rpc KubernetesEvent (KubernetesEventReq) returns (KubernetesEventReply) {};
+  rpc GetKubernetesEvent (GetKubernetesEventReq) returns (GetKubernetesEventReply) {};
+
+  //
+  rpc CreateMonitorReceiver (CreateMonitorReceiverReq) returns (CreateMonitorReceiverReply) {};
+  rpc ListMonitorReceiver (ListMonitorReceiverReq) returns (ListMonitorReceiverReply) {};
+  rpc DelMonitorReceiver (DelMonitorReceiverReq) returns (DelMonitorReceiverReply) {};
+
+  rpc CreateKubernetesEventReceiver (CreateKubernetesEventReceiverReq) returns (CreateKubernetesEventReceiverReply) {};
+  rpc GetKubernetesEventReceiver (GetKubernetesEventReceiverReq) returns (GetKubernetesEventReceiverReply) {};
+  rpc DelKubernetesEventReceiver (DelKubernetesEventReceiverReq) returns (DelKubernetesEventReceiverReply) {};
+
+  //
+  rpc SkywalkingAlert (SkywalkingAlertReq) returns (SkywalkingAlertReply) {};
+  rpc SystemAudit (SystemAuditReq) returns (SystemAuditReply) {};
+  rpc CloudSubScribe (CloudSubScribeReq) returns (CloudSubScribeReply) {};
+}
+
+// 一定要传入 orgUuid， 不然无法区分产品，无法查询，也无法进行权限验证
+// prometheus alert - orgUuid,            receiver: productUuid
+message PrometheusAlertReq {
+  string orgUuid = 1 [(validate.rules).string.min_len = 1];
+  string productUuid = 2 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 3 [(validate.rules).string.min_len = 1];
+  string monitorToken = 4 [(validate.rules).string.min_len = 1];
+  string receiver = 5 [(validate.rules).string.min_len = 1];
+
+  repeated PrometheusAlert alerts = 6;
+
+  message PrometheusAlert {
+    string status = 1;
+    string labels = 2;
+    string annotations = 3;
+    int64 startsAt = 4;
+    int64 endsAt = 5;
+    string generatorURL = 6;
+    string fingerprint = 7; // 可能为空，目前不直接使用，采用自己计算方式
+  }
+}
+
+message PrometheusAlertReply {
+  bool result = 1;
+}
+
+// Prometheus 告警历史
+message PrometheusAlertHisReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4; // options
+  string monitorToken = 5; // options
+  string receiver = 6; // 查询过程中可能不知道receiver，可以选填
+  string status = 7;
+  string fingerprint = 8;
+  int64 startSearchTime = 9;
+  int64 endSearchTime = 10;
+}
+
+message PrometheusAlertHisReply {
+  repeated PrometheusAlertHis alert = 1;
+  message PrometheusAlertHis {
+    string alertName = 1;
+    string instance = 2;
+    string job = 3;
+    string product = 4;
+    int64 level = 5;
+    string receiver = 6;
+    string status = 7;
+    string lables = 8;
+
+    string annotations = 9;
+    int64 startAt = 10;
+    int64 endAt = 11;
+    string generatorUrl = 12;
+    string fingerprint = 13;
+
+    int64 ack = 14;
+    string ackMessage = 15;
+    string ackUserUuid = 16;
+  }
+}
+// Prometheus 告警指纹 Fingerprint
+message PrometheusAlertFingerprintReq {
+  string orgUuid = 1 [(validate.rules).string.min_len = 1];
+  string userUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string fingerprint = 4 [(validate.rules).string.min_len = 1];
+}
+
+message PrometheusAlertFingerprintReply {
+  string alertName = 1;
+  string instance = 2;
+  string job = 3;
+  string product = 4;
+  int64 level = 5;
+  string receiver = 6;
+  string status = 7;
+  string lables = 8;
+  string annotations = 9;
+  int64 startAt = 10;
+  int64 endAt = 11;
+  string generatorUrl = 12;
+  string fingerprint = 13;
+  int64 ack = 14;
+  string ackMessage = 15;
+  string ackUserUuid = 16;
+}
+
+// Prometheus 确认告警 - Ack
+message PrometheusAlertAckReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string fingerprint = 4 [(validate.rules).string.min_len = 1];
+  string ackMessage = 5 [(validate.rules).string.min_len = 1];
+  string ackUserUuid = 6 [(validate.rules).string.min_len = 1];
+}
+
+message PrometheusAlertAckReply {
+  bool result = 1;
+}
+
+// kubernetes event
+message KubernetesEventReq {
+  string orgUuid = 1 [(validate.rules).string.min_len = 1];
+  string productUuid = 2 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 3 [(validate.rules).string.min_len = 1];
+  string k8sClusterUuid = 4 [(validate.rules).string.min_len = 1];
+  string token = 5 [(validate.rules).string.min_len = 1];
+  string apiVersion = 6 [(validate.rules).string.min_len = 1];
+  string kind = 7 [(validate.rules).string.min_len = 1];
+  string name = 8 [(validate.rules).string.min_len = 1];
+  string namespace = 9 [(validate.rules).string.min_len = 1];
+  string type = 10;
+  string action = 11;
+  string reason = 12;
+  string note = 13;
+  int64 eventTime = 14;
+  int64 createTime = 15;
+  map<string, string> annotations = 16;
+  string resourceVersion = 17;
+  string regardingKind = 18;
+  string regardingNamespace = 19;
+  string regardingName = 20;
+  string regardingUid = 21;
+  string regardingAPIVersion = 22;
+  string regardingResourceVersion = 23;
+  string regardingFieldPath = 24;
+}
+
+message KubernetesEventReply {
+  bool result = 1;
+}
+//
+message GetKubernetesEventReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4;
+  string k8sClusterUuid = 5 [(validate.rules).string.min_len = 1];
+  string namespace = 6;
+  string type = 7;
+  int64 createTime = 8;
+  string regardingKind = 9;
+  string regardingName = 10;
+  string regardingUid = 11;
+}
+message GetKubernetesEventReply {
+  repeated KubernetesEvent events = 1;
+  message KubernetesEvent {
+    string k8sClusterUuid = 1;
+    string apiVersion = 2;
+    string kind = 3;
+    string name = 4;
+    string namespace = 5;
+    string type = 6;
+    string action = 7;
+    string reason = 8;
+    string note = 9;
+    int64 eventTime = 10;
+    int64 createTime = 11;
+    string annotations = 12;
+    string resourceVersion = 13;
+    string regardingKind = 14;
+    string regardingNamespace = 15;
+    string regardingName = 16;
+    string regardingUid = 17;
+    string regardingAPIVersion = 18;
+    string regardingResourceVersion = 19;
+    string regardingFieldPath = 20;
+  }
+}
+
+//
+
+message CreateMonitorReceiverReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string receiver = 4 [(validate.rules).string.min_len = 1];
+  string messageGroupUuid = 5 [(validate.rules).string.min_len = 1];
+}
+message CreateMonitorReceiverReply {
+  bool result = 1;
+}
+
+message ListMonitorReceiverReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+}
+
+message ListMonitorReceiverReply {
+  repeated MonitorReceiver monitorReceiver = 1;
+  message MonitorReceiver {
+    string uuid = 1;
+    string orgUuid = 2;
+    string productUuid = 3;
+    string receiver = 4;
+    string messageGroupUuid = 5;
+    int64 createTime = 6;
+  }
+}
+
+message DelMonitorReceiverReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string receiverUuid = 4 [(validate.rules).string.min_len = 1];
+}
+
+message DelMonitorReceiverReply {
+  bool result = 1;
+}
+
+message CreateKubernetesEventReceiverReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string k8sClusterUuid = 4 [(validate.rules).string.min_len = 1];
+  string messageGroupUuid = 5 [(validate.rules).string.min_len = 1];
+}
+
+message CreateKubernetesEventReceiverReply {
+  bool result = 1;
+}
+
+message GetKubernetesEventReceiverReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string k8sClusterUuid = 4  [(validate.rules).string.min_len = 1];
+}
+
+message GetKubernetesEventReceiverReply {
+  repeated KubernetesEventReceiver kubernetesEventReceiver = 1;
+  message KubernetesEventReceiver {
+    string uuid = 1;
+    string k8sClusterUuid = 2;
+    string messageGroupUuid = 3;
+    int64 createTime = 4;
+  }
+}
+
+message DelKubernetesEventReceiverReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string k8sClusterUuid = 4 [(validate.rules).string.min_len = 1];
+  string receiverUuid = 5 [(validate.rules).string.min_len = 1];
+}
+
+message DelKubernetesEventReceiverReply {
+  bool result = 1;
+}
+
+// skywalking 告警
+message SkywalkingAlertReq {
+  string orgUuid = 1 [(validate.rules).string.min_len = 1];
+}
+
+message SkywalkingAlertReply {
+
+}
+
+// 系统审计
+message SystemAuditReq {
+  string orgUuid = 1 [(validate.rules).string.min_len = 1];
+}
+
+message SystemAuditReply {
+
+}
+
+
+/*
+数据库审计
+
+CREATE
+ALTER
+DROP
+TRUNCATE
+COMMENT
+RENAME
+*/
+
+message DatabaseDDLSQLAuditReq {
+  string orgUuid = 1 [(validate.rules).string.min_len = 1];
+  string sql = 2;
+  string user = 3;
+  string jdbc = 4;
+}
+
+message DatabaseDDLSQLAuditReply {
+
+}
+
+/*
+云订阅
+*/
+
+message CloudSubScribeReq {
+  string orgUuid = 1 [(validate.rules).string.min_len = 1];
+}
+
+message CloudSubScribeReply {
+
+}
+
+

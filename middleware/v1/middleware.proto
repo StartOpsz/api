@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package oneMiddleware.v1;
+
+option go_package = "github.com/startopsz/oneMiddleware/api/middleware/v1;v1";
+
+//import "google/api/annotations.proto";
+//import "google/protobuf/timestamp.proto";
+//import "validate/validate.proto";
+
+
+service oneMiddleware {
+  rpc ParseIP (ParseIPReq) returns (ParseIPReply);
+}
+
+message ParseIPReq {
+  string ipAddr = 1;
+}
+message ParseIPReply {
+
+}

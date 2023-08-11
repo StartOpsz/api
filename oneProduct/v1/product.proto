@@ -1,0 +1,2338 @@
+syntax = "proto3";
+
+package product.v1;
+
+option go_package = "github.com/startopsz/program/api/program/v1;v1";
+
+//import "google/api/annotations.proto";
+//import "google/protobuf/timestamp.proto";
+import "validate/validate.proto";
+//import "api/service/oneKubeEdge/v1/oneKubeEdge.proto";
+//import "github.com/startopsz/oneKubeEdge/api/oneKubeEdge/v1";
+
+service Product {
+  // 产品
+  // 创建产品
+  rpc CreateOrgProduct (CreateOrgProductReq) returns (CreateOrgProductReply) {};
+  // 获取产品
+  rpc ListOrgProduct (ListOrgProductReq) returns (ListOrgProductReply) {};
+  // 删除产品 - 暂时不支持删除，需要做资源清理
+  rpc DelOrgProduct (DelOrgProductReq) returns (DelOrgProductReply) {};
+  // 验证产品是否在组织内
+  rpc VerifyProductInOrg (VerifyProductInOrgReq) returns (VerifyProductInOrgReply) {};
+
+  // 获取产品信息 - inside
+  rpc GetOrgProduct (GetOrgProductReq) returns (GetOrgProductReply) {};
+
+  // 产品组
+  // 创建组织产品组
+  rpc CreateOrgProductGroup (CreateOrgProductGroupReq) returns (CreateOrgProductGroupReply) {};
+  // 列出组织产品组
+  rpc ListOrgProductGroup (ListOrgProductGroupReq) returns (ListOrgProductGroupReply) {};
+  // 删除组织产品组
+  rpc DelOrgProductGroup (DelOrgProductGroupReq) returns (DelOrgProductGroupReply) {};
+
+  // 产品组成员
+  // 添加组织产品组成员
+  rpc AddOrgProductGroupMember (AddOrgProductGroupMemberReq) returns (AddOrgProductGroupMemberReply) {};
+  // 列出组织产品组成员
+  rpc ListOrgProductGroupMember (ListOrgProductGroupMemberReq) returns (ListOrgProductGroupMemberReply) {};
+  // 驱逐组织产品组成员
+  rpc EvictOrgProductGroupMember (EvictOrgProductGroupMemberReq) returns (EvictOrgProductGroupMemberReply) {};
+  // 组织产品组成员离开组织产品组
+  rpc LeaveOrgProductGroupMember (LeaveOrgProductGroupMemberReq) returns (LeaveOrgProductGroupMemberReply) {};
+
+  // 产品环境
+  // 添加产品环境
+  rpc AddOrgProductEnv (AddOrgProductEnvReq) returns (AddOrgProductEnvReply) {};
+  // 获取产品环境
+  rpc ListOrgProductEnv (ListOrgProductEnvReq) returns (ListOrgProductEnvReply) {};
+  // 删除产品环境
+  rpc DelOrgProductEnv(DelOrgProductEnvReq) returns (DelOrgProductEnvReply) {};
+
+  // 获取产品环境信息 - inside
+  rpc GetOrgProductEnv (GetOrgProductEnvReq) returns (GetOrgProductEnvReply) {};
+
+
+  // K8S集群
+  // 添加K8S集群
+  rpc AddK8SCluster (AddK8SClusterReq) returns (AddK8SClusterReply) {};
+  // 列出K8S集群
+  rpc ListK8SCluster (ListK8SClusterReq) returns (ListK8SClusterReply) {};
+  // 验证K8S集群是否存在
+  rpc ExistK8SCluster (ExistK8SClusterReq) returns (ExistK8SClusterReply) {};
+  // 获取K8S集群
+  //rpc GetK8SCluster (GetK8SClusterReq) returns (GetK8SClusterReply) {};
+  // 删除K8S集群
+  rpc DelK8SCluster (DelK8SClusterReq) returns (DelK8SClusterReply) {};
+  // 添加K8S集群KubeEdge
+  rpc AddK8SClusterEdge (AddK8SClusterEdgeReq) returns (AddK8SClusterEdgeReply) {};
+  // 获取K8S集群KubeEdge
+  rpc GetK8SClusterEdge (GetK8SClusterEdgeReq) returns (GetK8SClusterEdgeReply) {};
+  // 删除K8S集群KubeEdge
+  rpc DelK8SClusterEdge (DelK8SClusterEdgeReq) returns (DelK8SClusterEdgeReply) {};
+
+
+  // 列出K8S集群NameSpace
+  rpc ListK8SClusterNameSpace (ListK8SClusterNameSpaceReq) returns (ListK8SClusterNameSpaceReply) {};
+  // 删除K8S集群NameSpace
+  rpc DelK8SClusterNameSpace (DelK8SClusterNameSpaceReq) returns (DelK8SClusterNameSpaceReply) {};
+  // 创建K8S集群NameSpace
+  rpc CreateK8SClusterNameSpace (CreateK8SClusterNameSpaceReq) returns (CreateK8SClusterNameSpaceReply) {};
+
+  // 获取K8S集群节点
+  rpc GetK8SClusterNode (GetK8SClusterNodeReq) returns (GetK8SClusterNodeReply) {};
+  // 列出K8S集群节点
+  rpc ListK8SClusterNode (ListK8SClusterNodeReq) returns (ListK8SClusterNodeReply) {};
+
+  // 列出K8S集群Pod
+  rpc ListK8SPod(ListK8SPodReq) returns (ListK8SPodReply) {};
+  // 获取K8S集群Pod
+  rpc GetK8SPod(GetK8SPodReq) returns (GetK8SPodReply) {};
+  // 搜索K8S集群Pod
+  rpc SearchK8SPod(SearchK8SPodReq) returns (SearchK8SPodReply) {};
+  // 驱逐K8S集群Pod
+  rpc EvictK8SPod(EvictK8SPodReq) returns (EvictK8SPodReply) {};
+  // 删除K8S集群Pod
+  rpc DelK8SPod(DelK8SPodReq) returns (DelK8SPodReply) {};
+  // 清理被驱逐的Pod
+  rpc CleanEvictK8SPod(CleanEvictK8SPodReq) returns (CleanEvictK8SPodReply) {};
+
+
+  // 创建K8S集群ConfigMap
+  rpc CreateK8SClusterConfigMap(CreateK8SClusterConfigMapReq) returns (CreateK8SClusterConfigMapReply) {};
+  // 列出K8S集群ConfigMap
+  rpc ListK8SClusterConfigMap(ListK8SClusterConfigMapReq) returns (ListK8SClusterConfigMapReply) {};
+  // 获取K8S集群ConfigMap
+  rpc GetK8SClusterConfigMap(GetK8SClusterConfigMapReq) returns (GetK8SClusterConfigMapReply) {};
+  // 更新K8S集群ConfigMap
+  rpc UpdateK8SClusterConfigMap(UpdateK8SClusterConfigMapReq) returns (UpdateK8SClusterConfigMapReply) {};
+  // 删除K8S集群ConfigMap
+  rpc DelK8SClusterConfigMap(DelK8SClusterConfigMapReq) returns (DelK8SClusterConfigMapReply) {};
+
+  // 列出K8S集群Secret
+  rpc ListSecret(ListSecretReq) returns (ListSecretReply) {};
+  // 获取K8S集群Secret
+  rpc GetSecret(GetSecretReq) returns (GetSecretReply) {};
+  // 删除K8S集群Secret
+  rpc DelSecret(DelSecretReq) returns (DelSecretReply) {};
+  // 创建K8S集群Docker Secret
+  rpc CreateDockerSecret(CreateDockerSecretReq) returns (CreateDockerSecretReply) {};
+  // 更新K8S集群Docker Secret
+  rpc UpdateDockerSecret(UpdateDockerSecretReq) returns (UpdateDockerSecretReply) {};
+  // 创建K8S集群Tls Secret
+  rpc CreateTlsSecret(CreateTlsSecretReq) returns (CreateTlsSecretReply) {};
+  // 更新K8S集群Tls Secret
+  rpc UpdateTlsSecret(UpdateTlsSecretReq) returns (UpdateTlsSecretReply) {};
+  // 创建K8S集群Opaque Secret
+  rpc CreateOpaqueSecret(CreateOpaqueSecretReq) returns (CreateOpaqueSecretReply) {};
+  // 更新K8S集群Opaque Secret
+  rpc UpdateOpaqueSecret(UpdateOpaqueSecretReq) returns (UpdateOpaqueSecretReply) {};
+  // 创建K8S集群SSHAuth Secret
+  rpc CreateSSHAuthSecret(CreateSSHAuthSecretReq) returns (CreateSSHAuthSecretReply) {};
+  // 更新K8S集群SSHAuth Secret
+  rpc UpdateSSHAuthSecret(UpdateSSHAuthSecretReq) returns (UpdateSSHAuthSecretReply) {};
+
+  // 创建K8S集群 Basic Auth Secret
+  rpc CreateBasicAuthSecret(CreateBasicAuthSecretReq) returns (CreateBasicAuthSecretReply) {};
+  // 更新K8S集群 Basic Auth Secret
+  rpc UpdateBasicAuthSecret(UpdateBasicAuthSecretReq) returns (UpdateBasicAuthSecretReply) {};
+
+  // 列出K8S集群Deployment
+  rpc ListK8SClusterDeployment (ListK8SClusterDeploymentReq) returns (ListK8SClusterDeploymentReply) {};
+  // 获取K8S集群Deployment
+  rpc GetK8SClusterDeployment (GetK8SClusterDeploymentReq) returns (GetK8SClusterDeploymentReply) {};
+  // 删除K8S集群Deployment
+  rpc DelK8SClusterDeployment (DelK8SClusterDeploymentReq) returns (DelK8SClusterDeploymentReply) {};
+  // 更新K8S集群Deployment
+  rpc UpdateK8SClusterDeployment (UpdateK8SClusterDeploymentReq) returns (UpdateK8SClusterDeploymentReply) {};
+  // 更新K8S集群Deployment ReplicaSet
+  rpc UpdateK8SClusterDeploymentReplicaSet (UpdateK8SClusterDeploymentReplicaSetReq) returns (UpdateK8SClusterDeploymentReplicaSetReply) {};
+
+  // 创建K8S集群Service
+  rpc CreateK8SService (CreateK8SServiceReq) returns (CreateK8SServiceReply) {};
+  // 列出K8S集群Service
+  rpc ListK8SService (ListK8SServiceReq) returns (ListK8SServiceReply) {};
+  // 获取K8S集群Service
+  rpc GetK8SService (GetK8SServiceReq) returns (GetK8SServiceReply) {};
+  // 删除K8S集群Service
+  rpc DelK8SService (DelK8SServiceReq) returns (DelK8SServiceReply) {};
+
+
+  // 创建K8S集群Ingress
+  rpc CreateK8SIngress (CreateK8SIngressReq) returns (CreateK8SIngressReply) {};
+  rpc ListK8SIngress (ListK8SIngressReq) returns (ListK8SIngressReply) {};
+  rpc GetK8SIngress (GetK8SIngressReq) returns (GetK8SIngressReply) {};
+  rpc DelK8SIngress (DelK8SIngressReq) returns (DelK8SIngressReply) {};
+  rpc UpdateK8SIngress (UpdateK8SIngressReq) returns (UpdateK8SIngressReply) {};
+
+
+  // serviceUrl
+  // serviceUrl - 添加服务Url
+  rpc CreateServiceUrl (CreateServiceUrlReq) returns (CreateServiceUrlReply) {};
+  // serviceUrl - 列出服务Url
+  rpc ListServiceUrl (ListServiceUrlReq) returns (ListServiceUrlReply) {};
+  // serviceUrl - 删除服务Url
+  rpc DelServiceUrl (DelServiceUrlReq) returns (DelServiceUrlReply) {};
+
+
+  // container_registry - 容器仓库
+  // 添加容器仓库账号
+  rpc AddContainerRegistry (AddContainerRegistryReq) returns (AddContainerRegistryReply) {};
+  // 列出容器仓库账号
+  rpc ListContainerRegistry (ListContainerRegistryReq) returns (ListContainerRegistryReply) {};
+  // 删除容器仓库账户
+  rpc DelContainerRegistry (DelContainerRegistryReq) returns (DelContainerRegistryReply) {};
+  // 提供内部使用
+  rpc GetContainerRegistry (GetContainerRegistryReq) returns (GetContainerRegistryReply) {};
+
+
+  // 容器镜像
+  // 添加容器镜像
+  rpc AddPublicContainerImage (AddPublicContainerImageReq) returns (AddPublicContainerImageReply) {};
+  // 列出容器镜像
+  rpc ListPublicContainerImage (ListPublicContainerImageReq) returns (ListPublicContainerImageReply) {};
+  // 删除容器镜像
+  rpc DelPublicContainerImage (DelPublicContainerImageReq) returns (DelPublicContainerImageReply) {};
+
+
+  // gitlab
+  // 添加gitlab平台
+  rpc CreateSelfGitlabPlatform (CreateSelfGitlabPlatformReq) returns (CreateSelfGitlabPlatformReply) {};
+  // 列出gitlab平台
+  rpc ListSelfGitlabPlatform (ListSelfGitlabPlatformReq) returns (ListSelfGitlabPlatformReply) {};
+  // 删除gitlab平台
+  rpc DelSelfGitlabPlatform (DelSelfGitlabPlatformReq) returns (DelSelfGitlabPlatformReply) {};
+
+  // 添加gitlab token
+  rpc CreateSelfGitlabToken (CreateSelfGitlabTokenReq) returns (CreateSelfGitlabTokenReply) {};
+  // 列出gitlab token
+  rpc ListSelfGitlabToken (ListSelfGitlabTokenReq) returns (ListSelfGitlabTokenReply) {};
+  // 删除gitlab token
+  rpc DelSelfGitlabToken (DelSelfGitlabTokenReq) returns (DelSelfGitlabTokenReply) {};
+
+  // 添加gitlab仓库
+  rpc CreateSelfGitlabRepo (CreateSelfGitlabRepoReq) returns (CreateSelfGitlabRepoReply) {};
+  // 倒入gitlab仓库
+  rpc ImportSelfGitlabRepo (ImportSelfGitlabRepoReq) returns (ImportSelfGitlabRepoReply) {};
+  // 列出gitlab仓库
+  rpc ListSelfGitlabRepo (ListSelfGitlabRepoReq) returns (ListSelfGitlabRepoReply) {};
+  // 删除gitlab仓库
+  rpc DelSelfGitlabRepo (DelSelfGitlabRepoReq) returns (DelSelfGitlabRepoReply) {};
+  // 归档gitlab仓库
+  rpc ArchiveSelfGitlabRepo (ArchiveSelfGitlabRepoReq) returns (ArchiveSelfGitlabRepoReply) {};
+  // 合并gitlab仓库
+  rpc MergeSelfGitlabRepo (MergeSelfGitlabRepoReq) returns (MergeSelfGitlabRepoReply) {};
+  rpc SelfGitlabRepoMergeHis (SelfGitlabRepoMergeHisReq) returns (SelfGitlabRepoMergeHisReply) {};
+  // 列出gitlab仓库分支
+  rpc ListSelfGitlabRepoBranch (ListSelfGitlabRepoBranchReq) returns (ListSelfGitlabRepoBranchReply) {};
+  // 创建gitlab仓库分支
+  rpc CreateSelfGitlabRepoBranch (CreateSelfGitlabRepoBranchReq) returns (CreateSelfGitlabRepoBranchReply) {};
+  // 删除gitlab仓库分支
+  rpc DelSelfGitlabRepoBranch (DelSelfGitlabRepoBranchReq) returns (DelSelfGitlabRepoBranchReply) {};
+  // 保护gitlab仓库分支
+  rpc ProtectSelfGitlabRepoBranch (ProtectSelfGitlabRepoBranchReq) returns (ProtectSelfGitlabRepoBranchReply) {};
+  // 无保护gitlab仓库分支
+  rpc UnprotectSelfGitlabRepoBranch (UnprotectSelfGitlabRepoBranchReq) returns (UnprotectSelfGitlabRepoBranchReply) {};
+  // 列出gitlab仓库分支Commits
+  rpc ListSelfGitlabRepoBranchCommits (ListSelfGitlabRepoBranchCommitsReq) returns (ListSelfGitlabRepoBranchCommitsReply) {};
+  // 创建gitlab组
+  rpc CreateSelfGitlabGroup (CreateSelfGitlabGroupReq) returns (CreateSelfGitlabGroupReply) {};
+  // 列出gitlab组
+  rpc ListSelfGitlabGroup (ListSelfGitlabGroupReq) returns (ListSelfGitlabGroupReply) {};
+
+
+  // Github
+  // 添加Github token
+  rpc CreateGitHubToken (CreateGitHubTokenReq) returns (CreateGitHubTokenReply) {};
+  // 列出Github token
+  rpc ListGitHubToken (ListGitHubTokenReq) returns (ListGitHubTokenReply) {};
+  // 删除Github token
+  rpc DelGitHubToken (DelGitHubTokenReq) returns (DelGitHubTokenReply) {};
+
+  // 导入Github仓库
+  rpc ImportGithubRepo (ImportGithubRepoReq) returns (ImportGithubRepoReply) {};
+  // 创建Github仓库
+  rpc CreateGithubRepo (CreateGithubRepoReq) returns (CreateGithubRepoReply) {};
+  // 列出Github仓库
+  rpc ListGithubRepo (ListGithubRepoReq) returns (ListGithubRepoReply) {};
+  // 删除github仓库
+  rpc DelGithubRepo (DelGithubRepoReq) returns (DelGithubRepoReply) {};
+  // 归档gitHub仓库
+  rpc ArchiveGithubRepo (ArchiveGithubRepoReq) returns (ArchiveGithubRepoReply) {};
+  // 合并github仓库
+  rpc MergeGithubRepo (MergeGithubRepoReq) returns (MergeGithubRepoReply) {};
+  // 保护github仓库分支
+  rpc ProtectGithubRepoBranch (ProtectGithubRepoBranchReq) returns (ProtectGithubRepoBranchReply) {};
+  // 无保护github仓库分支
+  rpc UnprotectGithubRepoBranch (UnprotectGithubRepoBranchReq) returns (UnprotectGithubRepoBranchReply) {};
+
+  // 列出Github组织
+  rpc ListGithubOrg (ListGithubOrgReq) returns (ListGithubOrgReply) {};
+  // 列出Github仓库 (By Org)
+  rpc ListGithubRepoByOrg (ListGithubRepoByOrgReq) returns (ListGithubRepoByOrgReply) {};
+  // 列出Github仓库分支
+  rpc ListGithubRepoBranch (ListGithubRepoBranchReq) returns (ListGithubRepoBranchReply) {};
+  // 获取Github用户信息
+  rpc GetGithubUser (GetGithubUserReq) returns (GetGithubUserReply) {};
+
+  rpc ListGithubRepoBranchCommits (ListGithubRepoBranchCommitsReq) returns (ListGithubRepoBranchCommitsReply) {};
+
+
+  // CI - 构建容器镜像
+  rpc SelfGitlabRepoBuildContainerImage (SelfGitlabRepoBuildContainerImageReq) returns (SelfGitlabRepoBuildContainerImageReply) {};
+  rpc GithubRepoBuildContainerImage (GithubRepoBuildContainerImageReq) returns (GithubRepoBuildContainerImageReply) {};
+
+
+  // 程序
+  rpc CreateProgram (CreateProgramReq) returns (CreateProgramReply) {};
+  rpc GetProgramByUuid (GetProgramByUuidReq) returns (GetProgramByUuidReply) {};
+  rpc GetSelfProgram (GetSelfProgramReq) returns (GetSelfProgramReply) {};
+  rpc SearchProgram (SearchProgramReq) returns (SearchProgramReply) {};
+
+
+  // 市场程序
+  rpc CreateProgramMarket (CreateProgramMarketReq) returns (CreateProgramMarketReply) {};
+  rpc GetProgramMarketByUuid (GetProgramMarketByUuidReq) returns (GetProgramMarketByUuidReply) {};
+  rpc GetSelfProgramMarket (GetSelfProgramMarketReq) returns (GetSelfProgramMarketReply) {};
+  rpc SearchProgramMarket (SearchProgramMarketReq) returns (SearchProgramMarketReply) {};
+
+  //rpc AddRelease (AddReleaseReq) returns (AddReleaseReply);
+  //rpc GetRelease (GetReleaseReq) returns (GetReleaseReply);
+
+  // 可用性
+  rpc CreateReliability (CreateReliabilityReq) returns (CreateReliabilityReply);
+  rpc GetReliability (GetReliabilityReq) returns (GetReliabilityReply);
+
+  // WebServiceResource
+  rpc CreateWebServiceResource (CreateWebServiceResourceReq) returns (CreateWebServiceResourceReply);
+  rpc ListWebServiceResource (ListWebServiceResourceReq) returns (ListWebServiceResourceReply);
+  rpc DelWebServiceResource (DelWebServiceResourceReq) returns (DelWebServiceResourceReply);
+  rpc UpdateWebServiceResource (UpdateWebServiceResourceReq) returns (UpdateWebServiceResourceReply);
+  rpc GetWebServiceResourcePromSD (GetWebServiceResourcePromSDReq) returns (GetWebServiceResourcePromSDReply);
+}
+// 创建组织产品
+message CreateOrgProductReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productName = 3 [(validate.rules).string.min_len = 1];
+  string logo = 4;
+  string describe = 5;
+}
+message CreateOrgProductReply {
+  bool result = 1;
+}
+// 列出组织产品产品
+message ListOrgProductReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+}
+message ListOrgProductReply {
+  repeated Product product = 1;
+  message Product {
+    string uuid = 1;
+    string org_uuid = 2;
+    string product_name = 3;
+    string logo = 4;
+    string describe = 5;
+    int64 createTime = 6;
+  }
+}
+// 删除产品
+message DelOrgProductReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+}
+message DelOrgProductReply {
+  bool result = 1;
+}
+//
+message GetOrgProductReq {
+  string orgUuid = 1 [(validate.rules).string.min_len = 1];
+  string productUuid = 2 [(validate.rules).string.min_len = 1];
+}
+message GetOrgProductReply {
+  string uuid = 1;
+  string orgUuid = 2;
+  string productName = 3;
+  string logo = 4;
+  int64 createTime = 5;
+  string describe = 6;
+}
+//
+message CreateOrgProductGroupReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string groupName = 4 [(validate.rules).string.min_len = 1];
+}
+message CreateOrgProductGroupReply {
+  bool result = 1;
+}
+message ListOrgProductGroupReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+}
+message ListOrgProductGroupReply {
+  repeated string name = 1;
+}
+message DelOrgProductGroupReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string groupUuid = 4 [(validate.rules).string.min_len = 1];
+}
+message DelOrgProductGroupReply {
+  bool result = 1;
+}
+message AddOrgProductGroupMemberReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string groupUuid = 4 [(validate.rules).string.min_len = 1];
+  string joinUserUuid = 5 [(validate.rules).string.min_len = 1];
+}
+message AddOrgProductGroupMemberReply {
+  bool result = 1;
+}
+message ListOrgProductGroupMemberReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string groupUuid = 4 [(validate.rules).string.min_len = 1];
+}
+message ListOrgProductGroupMemberReply {
+  repeated ProductGroupMember productGroupMember = 1;
+  message ProductGroupMember {
+    string uuid = 1;
+    string userUuid = 2;
+    string userName = 3;
+  }
+}
+message EvictOrgProductGroupMemberReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string groupUuid = 4 [(validate.rules).string.min_len = 1];
+  string evictUserUuid = 5 [(validate.rules).string.min_len = 1];
+}
+message EvictOrgProductGroupMemberReply {
+  bool result = 1;
+}
+message LeaveOrgProductGroupMemberReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string groupUuid = 4 [(validate.rules).string.min_len = 1];
+}
+message LeaveOrgProductGroupMemberReply {
+  bool result = 1;
+}
+// 添加产品环境
+message AddOrgProductEnvReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string envName = 4 [(validate.rules).string.min_len = 1];
+  int32 priority = 5 [(validate.rules).int32.lte = 10];
+  string describe = 6;
+}
+message AddOrgProductEnvReply {
+  bool result = 1;
+}
+// 获取产品环境
+message ListOrgProductEnvReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+}
+message ListOrgProductEnvReply {
+  repeated Env env = 1;
+  message Env {
+    string uuid = 1;
+    string productUuid = 2;
+    string envName = 3;
+    int32 priority = 4;
+    string describe = 5;
+    int64 createTime = 6;
+  }
+}
+// 删除产品环境
+message DelOrgProductEnvReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+}
+message DelOrgProductEnvReply {
+  bool result = 1;
+}
+// 获取组织产品环境
+message GetOrgProductEnvReq {
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+}
+message GetOrgProductEnvReply {
+  string uuid = 1;
+  string productUuid = 2;
+  string envName = 3;
+  int32 priority = 4;
+  string describe = 5;
+  int64 createTime = 6;
+}
+// 验证产品是否属于组织
+message VerifyProductInOrgReq {
+  string orgUuid = 1 [(validate.rules).string.min_len = 1];
+  string productUuid = 2 [(validate.rules).string.min_len = 1];
+}
+message VerifyProductInOrgReply {
+  bool result = 1;
+}
+//
+message K8SCluster {
+  string uuid = 1;
+  string name = 2;
+  string orgUuid = 3;
+  string productUuid = 4;
+  string productEnvUuid = 5;
+  string upToken = 6;
+  string apiService = 7;
+  string describe = 8;
+  string kubeEdgeGrpc = 9;
+  string token = 10;
+  int64 createTime = 11;
+}
+message AddK8SClusterReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string name = 3 [(validate.rules).string.min_len = 1];
+  string productUuid = 4 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 5 [(validate.rules).string.min_len = 1];
+  string apiService = 7 [(validate.rules).string.min_len = 1];
+  string describe = 8;
+}
+message AddK8SClusterReply {
+  bool result = 1;
+}
+// 验证 K8S 集群是否存在 - 内部 (返回集群信息)
+message ExistK8SClusterReq {
+  string orgUuid = 1 [(validate.rules).string.min_len = 1];
+  string productUuid = 2 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 3 [(validate.rules).string.min_len = 1];
+  string clusterUuid = 4 [(validate.rules).string.min_len = 1];
+  string upToken = 5 [(validate.rules).string.min_len = 1];
+}
+message ExistK8SClusterReply {
+  string uuid = 1;
+  string name = 2;
+  string orgUuid = 3;
+  string productUuid = 4;
+  string productEnvUuid = 5;
+  string upToken = 6;
+  string apiService = 7;
+  string describe = 8;
+  int64 createTime = 9;
+}
+
+message ListK8SClusterReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+}
+message ListK8SClusterReply {
+  repeated K8SCluster k8sCluster = 1;
+}
+message DelK8SClusterReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+  string clusterUuid = 5 [(validate.rules).string.min_len = 1];
+}
+message DelK8SClusterReply {
+  bool result = 1;
+}
+//
+message AddK8SClusterEdgeReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+  string k8sClusterUuid = 5 [(validate.rules).string.min_len = 1];
+  string kubeEdgeGrpc = 6 [(validate.rules).string.min_len = 1];
+  string token = 7 [(validate.rules).string.min_len = 1];
+}
+message AddK8SClusterEdgeReply {
+  bool result = 1;
+}
+message GetK8SClusterEdgeReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+  string k8sClusterUuid = 5 [(validate.rules).string.min_len = 1];
+}
+message GetK8SClusterEdgeReply {
+  string kubeEdgeGrpc = 1;
+  string token = 2;
+  int64 createTime = 3;
+}
+message DelK8SClusterEdgeReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+  string k8sClusterUuid = 5 [(validate.rules).string.min_len = 1];
+}
+message DelK8SClusterEdgeReply {
+  bool result = 1;
+}
+// K8S Object
+message GetK8SClusterNodeReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+  string k8sClusterUuid = 5 [(validate.rules).string.min_len = 1];
+  string nodeName = 6 [(validate.rules).string.min_len = 1];
+}
+message GetK8SClusterNodeReply {
+  string name = 1;
+  int64  creationTimestamp = 2;
+  string containerRuntimeVersion = 3;
+  string kernelVersion = 4;
+  string kubeProxyVersion = 5;
+  string kubeletVersion = 6;
+  string kubeletEndpoint = 7;
+  string osImage = 8;
+  map <string, string> labels = 9;
+  map <string, string> annotations = 10;
+  Capacity capacity = 11;
+  Allocatable allocatable = 12;
+  message Capacity {
+    string cpu = 1;
+    string memory = 2;
+    string storage = 3;
+    string storageEphemeral = 4;
+  }
+  message Allocatable {
+    string cpu = 1;
+    string memory = 2;
+    string storage = 3;
+    string storageEphemeral = 4;
+  }
+}
+message ListK8SClusterNodeReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+  string k8sClusterUuid = 5 [(validate.rules).string.min_len = 1];
+}
+message ListK8SClusterNodeReply {
+  repeated Node node = 1;
+  message Node {
+    string name = 1;
+    int64  creationTimestamp = 2;
+    string containerRuntimeVersion = 3;
+    string kernelVersion = 4;
+    string kubeProxyVersion = 5;
+    string kubeletVersion = 6;
+    string kubeletEndpoint = 7;
+    string osImage = 8;
+    map <string, string> labels = 9;
+    map <string, string> annotations = 10;
+    Capacity capacity = 11;
+    Allocatable allocatable = 12;
+    message Capacity {
+      int64 cpu = 1;
+      int64 memory = 2;
+      int64 storage = 3;
+      int64 storageEphemeral = 4;
+    }
+    message Allocatable {
+      int64 cpu = 1;
+      int64 memory = 2;
+      int64 storage = 3;
+      int64 storageEphemeral = 4;
+    }
+  }
+}
+message ListK8SPodReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+  string k8sClusterUuid = 5 [(validate.rules).string.min_len = 1];
+  string namespace = 6 [(validate.rules).string.min_len = 1];
+  int64 limit = 7;
+  string continue = 8;
+  string labelSelector = 9;
+}
+message ListK8SPodReply {
+  string continue = 1;
+  repeated Pod pod = 2;
+  message Pod {
+    string namespace = 1;
+    string name = 2;
+    int64 creationTimestamp = 3;
+    string reason = 4;
+    string phase = 5;
+    string hostIP = 6;
+    string podIP = 7;
+    map <string, string> labels = 8;
+    map <string, string> envs = 9;
+    repeated Container container = 10;
+    message Container {
+      string name = 1;
+      string image = 2;
+      string workingDir = 3;
+      string command = 4;
+      string securityContext = 5;
+      string requestsCpu = 6;
+      string requestsMemory = 7;
+      string requestsStorage = 8;
+      string requestsStorageEphemeral = 9;
+      string limitCpu = 10;
+      string limitMemory = 11;
+      string limitStorage = 12;
+      string limitStorageEphemeral = 13;
+      string startupProbe = 14;
+      string livenessProbe = 15;
+      string readinessProbe = 16;
+      int32 restartCount = 17;
+      bool ready = 18;
+    }
+  }
+}
+message EvictK8SPodReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+  string k8sClusterUuid = 5 [(validate.rules).string.min_len = 1];
+  string namespace = 6 [(validate.rules).string.min_len = 1];
+  string name = 7 [(validate.rules).string.min_len = 1];
+}
+message EvictK8SPodReply {
+  bool result = 1;
+}
+
+message GetK8SPodReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+  string k8sClusterUuid = 5 [(validate.rules).string.min_len = 1];
+  string namespace = 6 [(validate.rules).string.min_len = 1];
+  string name = 7 [(validate.rules).string.min_len = 1];
+}
+message GetK8SPodReply {
+  string namespace = 1;
+  string name = 2;
+  int64 creationTimestamp = 3;
+  string reason = 4;
+  string phase = 5;
+  string hostIP = 6;
+  string podIP = 7;
+  map <string, string> labels = 8;
+  map <string, string> envs = 9;
+  repeated Container container = 10;
+  message Container {
+    string name = 1;
+    string image = 2;
+    string workingDir = 3;
+    string command = 4;
+    string securityContext = 5;
+    string requestsCpu = 6;
+    string requestsMemory = 7;
+    string requestsStorage = 8;
+    string requestsStorageEphemeral = 9;
+    string limitCpu = 10;
+    string limitMemory = 11;
+    string limitStorage = 12;
+    string limitStorageEphemeral = 13;
+    string startupProbe = 14;
+    string livenessProbe = 15;
+    string readinessProbe = 16;
+    int32 restartCount = 17;
+    bool ready = 18;
+  }
+}
+message DelK8SPodReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+  string k8sClusterUuid = 5 [(validate.rules).string.min_len = 1];
+  string namespace = 6 [(validate.rules).string.min_len = 1];
+  string name = 7 [(validate.rules).string.min_len = 1];
+}
+message DelK8SPodReply {
+  bool result = 1;
+}
+message CleanEvictK8SPodReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+  string k8sClusterUuid = 5 [(validate.rules).string.min_len = 1];
+  string namespace = 6 [(validate.rules).string.min_len = 1];
+}
+message CleanEvictK8SPodReply {
+  string taskId = 1;
+}
+message SearchK8SPodReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+  string k8sClusterUuid = 5 [(validate.rules).string.min_len = 1];
+  string namespace = 6 [(validate.rules).string.min_len = 1];
+  string keyword = 7;
+}
+message SearchK8SPodReply {
+  repeated Pod pod = 1;
+  message Pod {
+    string namespace = 1;
+    string name = 2;
+    int64 creationTimestamp = 3;
+    string reason = 4;
+    string phase = 5;
+    string hostIP = 6;
+    string podIP = 7;
+    map <string, string> labels = 8;
+    map <string, string> envs = 9;
+    repeated Container container = 10;
+    message Container {
+      string name = 1;
+      string image = 2;
+      string workingDir = 3;
+      string command = 4;
+      string securityContext = 5;
+      string requestsCpu = 6;
+      string requestsMemory = 7;
+      string requestsStorage = 8;
+      string requestsStorageEphemeral = 9;
+      string limitCpu = 10;
+      string limitMemory = 11;
+      string limitStorage = 12;
+      string limitStorageEphemeral = 13;
+      string startupProbe = 14;
+      string livenessProbe = 15;
+      string readinessProbe = 16;
+      int32 restartCount = 17;
+      bool ready = 18;
+    }
+  }
+}
+//
+message ConfigMap {
+  string namespace = 1;
+  string name = 2;
+  map<string, string> data = 3;
+  bool immutable = 4;
+}
+message CreateK8SClusterConfigMapReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+  string k8sClusterUuid = 5 [(validate.rules).string.min_len = 1];
+  string namespace = 6 [(validate.rules).string.min_len = 1];
+  string name = 7 [(validate.rules).string.min_len = 1];
+  map<string, string> data = 8 [(validate.rules).map.min_pairs = 1];
+  bool immutable = 9;
+}
+message CreateK8SClusterConfigMapReply {
+  bool result = 1;
+}
+message ListK8SClusterConfigMapReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+  string k8sClusterUuid = 5 [(validate.rules).string.min_len = 1];
+  string namespace = 6 [(validate.rules).string.min_len = 1];
+}
+message ListK8SClusterConfigMapReply {
+  repeated ConfigMap configMap = 1;
+}
+message GetK8SClusterConfigMapReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+  string k8sClusterUuid = 5 [(validate.rules).string.min_len = 1];
+  string namespace = 6 [(validate.rules).string.min_len = 1];
+  string name = 7 [(validate.rules).string.min_len = 1];
+}
+message GetK8SClusterConfigMapReply {
+  string namespace = 1;
+  string name = 2;
+  map<string, string> data = 3;
+  bool immutable = 4;
+}
+message UpdateK8SClusterConfigMapReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+  string k8sClusterUuid = 5 [(validate.rules).string.min_len = 1];
+  string namespace = 6 [(validate.rules).string.min_len = 1];
+  string name = 7 [(validate.rules).string.min_len = 1];
+  map<string, string> data = 8 [(validate.rules).map.min_pairs = 1];
+  bool immutable = 9;
+}
+message UpdateK8SClusterConfigMapReply {
+  bool result = 1;
+}
+message DelK8SClusterConfigMapReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+  string k8sClusterUuid = 5 [(validate.rules).string.min_len = 1];
+  string namespace = 6 [(validate.rules).string.min_len = 1];
+  string name = 7 [(validate.rules).string.min_len = 1];
+}
+message DelK8SClusterConfigMapReply {
+  bool result = 1;
+}
+//
+message ListSecretReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+  string k8sClusterUuid = 5 [(validate.rules).string.min_len = 1];
+  string namespace = 6 [(validate.rules).string.min_len = 1];
+}
+message ListSecretReply {
+  repeated Secret secrets = 1;
+  message Secret {
+    string namespace = 1;
+    string name = 2;
+    map<string, string> annotations = 3;
+    map<string, string> labels = 4;
+    bool immutable = 5;
+    string type = 6;
+    int64 creationTimestamp = 7;
+    map<string, string> stringData = 8;
+    map<string, bytes> data = 9;
+  }
+}
+message GetSecretReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+  string k8sClusterUuid = 5 [(validate.rules).string.min_len = 1];
+  string namespace = 6 [(validate.rules).string.min_len = 1];
+  string name = 7 [(validate.rules).string.min_len = 1];
+}
+message GetSecretReply {
+  string namespace = 1;
+  string name = 2;
+  map<string, string> annotations = 3;
+  map<string, string> labels = 4;
+  bool immutable = 5;
+  string type = 6;
+  int64 creationTimestamp = 7;
+  map<string, string> stringData = 8;
+  map<string, bytes> data = 9;
+}
+message DelSecretReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+  string k8sClusterUuid = 5 [(validate.rules).string.min_len = 1];
+  string namespace = 6 [(validate.rules).string.min_len = 1];
+  string name = 7 [(validate.rules).string.min_len = 1];
+}
+message DelSecretReply {
+  bool result = 1;
+}
+message CreateDockerSecretReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+  string k8sClusterUuid = 5 [(validate.rules).string.min_len = 1];
+  string namespace = 6 [(validate.rules).string.min_len = 1];
+  string name = 7 [(validate.rules).string.min_len = 1];
+  string username = 8 [(validate.rules).string.min_len = 1];
+  string password = 9 [(validate.rules).string.min_len = 1];
+  string email = 10 [(validate.rules).string.email = true];
+  string url = 11 [(validate.rules).string.min_len = 1];
+  map<string, string> annotations = 12;
+  map<string, string> labels = 13;
+}
+message CreateDockerSecretReply {
+  bool result = 1;
+}
+message UpdateDockerSecretReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+  string k8sClusterUuid = 5 [(validate.rules).string.min_len = 1];
+  string namespace = 6 [(validate.rules).string.min_len = 1];
+  string name = 7 [(validate.rules).string.min_len = 1];
+  string username = 8 [(validate.rules).string.min_len = 1];
+  string password = 9 [(validate.rules).string.min_len = 1];
+  string email = 10 [(validate.rules).string.email = true];
+  string url = 11 [(validate.rules).string.min_len = 1];
+  map<string, string> annotations = 12;
+  map<string, string> labels = 13;
+}
+message UpdateDockerSecretReply {
+  bool result = 1;
+}
+message CreateTlsSecretReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+  string k8sClusterUuid = 5 [(validate.rules).string.min_len = 1];
+  string namespace = 6 [(validate.rules).string.min_len = 1];
+  string name = 7 [(validate.rules).string.min_len = 1];
+  string tlsCrt = 8 [(validate.rules).string.min_len = 1];
+  string tlsKey = 9 [(validate.rules).string.min_len = 1];
+  map<string, string> annotations = 10;
+  map<string, string> labels = 11;
+}
+message CreateTlsSecretReply {
+  bool result = 1;
+}
+message UpdateTlsSecretReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+  string k8sClusterUuid = 5 [(validate.rules).string.min_len = 1];
+  string namespace = 6 [(validate.rules).string.min_len = 1];
+  string name = 7 [(validate.rules).string.min_len = 1];
+  string tlsCrt = 8 [(validate.rules).string.min_len = 1];
+  string tlsKey = 9 [(validate.rules).string.min_len = 1];
+  map<string, string> annotations = 10;
+  map<string, string> labels = 11;
+}
+message UpdateTlsSecretReply {
+  bool result = 1;
+}
+message CreateOpaqueSecretReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+  string k8sClusterUuid = 5 [(validate.rules).string.min_len = 1];
+  string namespace = 6 [(validate.rules).string.min_len = 1];
+  string name = 7 [(validate.rules).string.min_len = 1];
+  map<string, string> data = 8;
+  map<string, string> annotations = 9;
+  map<string, string> labels = 10;
+}
+message CreateOpaqueSecretReply {
+  bool result = 1;
+}
+message UpdateOpaqueSecretReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+  string k8sClusterUuid = 5 [(validate.rules).string.min_len = 1];
+  string namespace = 6 [(validate.rules).string.min_len = 1];
+  string name = 7 [(validate.rules).string.min_len = 1];
+  map<string, string> data = 8;
+  map<string, string> annotations = 9;
+  map<string, string> labels = 10;
+}
+message UpdateOpaqueSecretReply {
+  bool result = 1;
+}
+message CreateSSHAuthSecretReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+  string k8sClusterUuid = 5 [(validate.rules).string.min_len = 1];
+  string namespace = 6 [(validate.rules).string.min_len = 1];
+  string name = 7 [(validate.rules).string.min_len = 1];
+  string privateKey = 8 [(validate.rules).string.min_len = 1];
+  bool immutable = 9;
+  map<string, string> annotations = 10;
+  map<string, string> labels = 11;
+}
+message CreateSSHAuthSecretReply {
+  bool result = 1;
+}
+message UpdateSSHAuthSecretReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+  string k8sClusterUuid = 5 [(validate.rules).string.min_len = 1];
+  string namespace = 6 [(validate.rules).string.min_len = 1];
+  string name = 7 [(validate.rules).string.min_len = 1];
+  string privateKey = 8 [(validate.rules).string.min_len = 1];
+  bool immutable = 9;
+  map<string, string> annotations = 10;
+  map<string, string> labels = 11;
+}
+message UpdateSSHAuthSecretReply {
+  bool result = 1;
+}
+//
+message CreateBasicAuthSecretReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+  string k8sClusterUuid = 5 [(validate.rules).string.min_len = 1];
+  string namespace = 6 [(validate.rules).string.min_len = 1];
+  string name = 7 [(validate.rules).string.min_len = 1];
+  string username = 8 [(validate.rules).string.min_len = 1];
+  string password = 9 [(validate.rules).string.min_len = 1];
+  bool immutable = 10;
+  map<string, string> annotations = 11;
+  map<string, string> labels = 12;
+}
+message CreateBasicAuthSecretReply {
+  bool result = 1;
+}
+//
+message UpdateBasicAuthSecretReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+  string k8sClusterUuid = 5 [(validate.rules).string.min_len = 1];
+  string namespace = 6 [(validate.rules).string.min_len = 1];
+  string name = 7 [(validate.rules).string.min_len = 1];
+  string username = 8 [(validate.rules).string.min_len = 1];
+  string password = 9 [(validate.rules).string.min_len = 1];
+  bool immutable = 10;
+  map<string, string> annotations = 11;
+  map<string, string> labels = 12;
+}
+message UpdateBasicAuthSecretReply {
+  bool result = 1;
+}
+//
+message ListK8SClusterNameSpaceReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+  string k8sClusterUuid = 5 [(validate.rules).string.min_len = 1];
+}
+message ListK8SClusterNameSpaceReply {
+  repeated NameSpace nameSpace = 1;
+  message NameSpace {
+    string name = 1;
+    string status = 2;
+    int64 createTime = 3;
+  }
+}
+message DelK8SClusterNameSpaceReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+  string k8sClusterUuid = 5 [(validate.rules).string.min_len = 1];
+  string namespace = 6 [(validate.rules).string.min_len = 1];
+}
+message DelK8SClusterNameSpaceReply {
+  bool result = 1;
+}
+message CreateK8SClusterNameSpaceReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+  string k8sClusterUuid = 5 [(validate.rules).string.min_len = 1];
+  string namespace = 6 [(validate.rules).string.min_len = 1];
+}
+message CreateK8SClusterNameSpaceReply {
+  bool result = 1;
+}
+message ListK8SClusterDeploymentReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+  string k8sClusterUuid = 5 [(validate.rules).string.min_len = 1];
+  string namespace = 6 [(validate.rules).string.min_len = 1];
+  int64 limit = 7;
+  string continue = 8;
+  string labelSelector = 9;
+}
+message ListK8SClusterDeploymentReply {
+  string continue = 1;
+  repeated DeploymentStatus deployment = 2;
+  message DeploymentStatus {
+    string name = 1;
+    string namespace = 2;
+    int32 replicas = 3;
+    int32 availableReplicas = 4;
+    int32 unavailableReplicas = 5;
+    int32 updatedReplicas = 6;
+    int32 readyReplicas = 7;
+  }
+}
+message GetK8SClusterDeploymentReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+  string k8sClusterUuid = 5 [(validate.rules).string.min_len = 1];
+  string namespace = 6 [(validate.rules).string.min_len = 1];
+  string deployment = 7 [(validate.rules).string.min_len = 1];
+}
+message GetK8SClusterDeploymentReply {
+  string deployments = 1;
+}
+message UpdateK8SClusterDeploymentReq {
+
+}
+message UpdateK8SClusterDeploymentReply {
+
+}
+message DelK8SClusterDeploymentReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+  string k8sClusterUuid = 5 [(validate.rules).string.min_len = 1];
+  string namespace = 6 [(validate.rules).string.min_len = 1];
+  string deployment = 7 [(validate.rules).string.min_len = 1];
+}
+message DelK8SClusterDeploymentReply {
+  bool result = 1;
+}
+message UpdateK8SClusterDeploymentReplicaSetReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+  string k8sClusterUuid = 5 [(validate.rules).string.min_len = 1];
+  string namespace = 6 [(validate.rules).string.min_len = 1];
+  string name = 7 [(validate.rules).string.min_len = 1];
+  int32 replicas = 8 [(validate.rules).int32.gt = 0];
+}
+message UpdateK8SClusterDeploymentReplicaSetReply {
+  bool result = 1;
+}
+//
+message ServicePort {
+  string name = 1;
+  string protocol = 2;
+  int32 port = 3;
+  int32 targetPort = 4;
+}
+message CreateK8SServiceReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+  string k8sClusterUuid = 5 [(validate.rules).string.min_len = 1];
+  string namespace = 6 [(validate.rules).string.min_len = 1];
+  string name = 7 [(validate.rules).string.min_len = 1];
+  string serviceType = 8 [(validate.rules).string.min_len = 1];
+  map <string, string> selector = 9;
+  repeated ServicePort ports = 10;
+  map <string, string> annotations = 11;
+}
+message CreateK8SServiceReply {
+  bool result = 1;
+}
+message ListK8SServiceReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+  string k8sClusterUuid = 5 [(validate.rules).string.min_len = 1];
+  string namespace = 6 [(validate.rules).string.min_len = 1];
+}
+message ListK8SServiceReply {
+  repeated Service service = 1;
+  message Service {
+    string name = 1;
+    string namespace = 2;
+    string resourceVersion = 3;
+    map <string, string> annotations = 4;
+    string clusterIP = 5;
+    string sessionAffinity = 6;
+    string type = 7;
+    map <string, string> labels = 8;
+    repeated ServicePort ports = 9;
+    repeated string ExternalIPs = 10;
+  }
+}
+message GetK8SServiceReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+  string k8sClusterUuid = 5 [(validate.rules).string.min_len = 1];
+  string namespace = 6 [(validate.rules).string.min_len = 1];
+  string name = 7 [(validate.rules).string.min_len = 1];
+}
+message GetK8SServiceReply {
+  string name = 1;
+  string namespace = 2;
+  string resourceVersion = 3;
+  string clusterIP = 4;
+  string sessionAffinity = 5;
+  string type = 6;
+  map <string, string> labels = 7;
+  map <string, string> annotations = 8;
+  repeated ServicePort ports = 9;
+  repeated string ExternalIPs = 10;
+}
+message DelK8SServiceReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+  string k8sClusterUuid = 5 [(validate.rules).string.min_len = 1];
+  string namespace = 6 [(validate.rules).string.min_len = 1];
+  string name = 7 [(validate.rules).string.min_len = 1];
+}
+message DelK8SServiceReply {
+  bool result = 1;
+}
+
+// Ingress
+message CreateK8SIngressReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+  string k8sClusterUuid = 5 [(validate.rules).string.min_len = 1];
+  string namespace = 6 [(validate.rules).string.min_len = 1];
+  string name = 7 [(validate.rules).string.min_len = 1];
+  map <string, string> annotations = 8;
+  map <string, string> labels = 9;
+  map <string, Service> service = 10;
+  message Service {
+    string tlsSecret = 1;
+    map <string, Path> path = 2;
+    message Path {
+      string pathType = 1;
+      string serviceName = 2;
+      int32 servicePort = 3;
+    }
+  }
+}
+message CreateK8SIngressReply {
+  bool result = 1;
+}
+message ListK8SIngressReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+  string k8sClusterUuid = 5 [(validate.rules).string.min_len = 1];
+  string namespace = 6 [(validate.rules).string.min_len = 1];
+}
+message ListK8SIngressReply {
+  repeated Ingress ingress = 1;
+  message Ingress {
+    string name = 1;
+    string namespace = 2;
+    map<string, string> labels = 3;
+    map<string, IngressService> service = 4;
+    message IngressService {
+      string tlsSecret = 1;
+      map<string, IngressServicePath> path = 2;
+      message IngressServicePath {
+        string pathType = 1;
+        string serviceName = 2;
+        int32 servicePort = 3;
+      }
+    }
+  }
+}
+message GetK8SIngressReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+  string k8sClusterUuid = 5 [(validate.rules).string.min_len = 1];
+  string namespace = 6 [(validate.rules).string.min_len = 1];
+  string name = 7 [(validate.rules).string.min_len = 1];
+}
+message GetK8SIngressReply {
+  string name = 1;
+  string namespace = 2;
+  map<string, string> labels = 3;
+  map<string, IngressService> service = 4;
+  message IngressService {
+    string tlsSecret = 1;
+    map<string, IngressServicePath> path = 2;
+    message IngressServicePath {
+      string pathType = 1;
+      string serviceName = 2;
+      int32 servicePort = 3;
+    }
+  }
+}
+message DelK8SIngressReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+  string k8sClusterUuid = 5 [(validate.rules).string.min_len = 1];
+  string namespace = 6 [(validate.rules).string.min_len = 1];
+  string name = 7 [(validate.rules).string.min_len = 1];
+}
+message DelK8SIngressReply {
+  bool result = 1;
+}
+message UpdateK8SIngressReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+  string k8sClusterUuid = 5 [(validate.rules).string.min_len = 1];
+  string namespace = 6 [(validate.rules).string.min_len = 1];
+  string name = 7 [(validate.rules).string.min_len = 1];
+  map <string, string> annotations = 8;
+  map <string, string> labels = 9;
+  map <string, Service> service = 10;
+  message Service {
+    string tlsSecret = 1;
+    map <string, Path> path = 2;
+    message Path {
+      string pathType = 1;
+      string serviceName = 2;
+      int32 servicePort = 3;
+    }
+  }
+}
+message UpdateK8SIngressReply {
+  bool result = 1;
+}
+
+// Program
+message Program {
+  string uuid = 1;
+  string name = 2;
+  int32 repoType = 3;
+  string repoUuid = 4;
+  string branch = 5;
+  string commitId = 6;
+  string productUuid = 7;
+  string ciUuid = 8;
+  string publisher = 9;
+  repeated Release release = 10;
+}
+message CreateProgramReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string name = 2  [(validate.rules).string.min_len = 1];
+  int32 repoType = 3;
+  string repoUuid = 4;
+  string branch = 5;
+  string commitId = 6;
+  string productUuid = 7;
+  string ciUuid = 8;
+}
+message CreateProgramReply {
+  bool result = 1;
+}
+message GetProgramByUuidReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string productUuid = 2  [(validate.rules).string.min_len = 1];
+  string uuid = 3 [(validate.rules).string.min_len = 1];
+}
+message GetProgramByUuidReply {
+  Program program = 1;
+}
+message GetSelfProgramReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string productUuid = 2  [(validate.rules).string.min_len = 1];
+}
+message GetSelfProgramReply {
+  repeated Program program = 1;
+}
+message SearchProgramReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string productUuid = 2  [(validate.rules).string.min_len = 1];
+  string likeName = 3;
+}
+message SearchProgramReply {
+  repeated Program program = 1;
+}
+
+//
+message ProgramMarket {
+  string uuid = 1;
+  string name = 2;
+  int32 repoType = 3;
+  string repoUuid = 4;
+  string branch = 5;
+  string commitId = 6;
+  string productUuid = 7;
+  string ciUuid = 8;
+  string publisher = 9;
+  repeated Release release = 10;
+}
+message CreateProgramMarketReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string name = 2  [(validate.rules).string.min_len = 1];
+  int32 repoType = 3;
+  string repoUuid = 4;
+  string branch = 5;
+  string commitId = 6;
+  string ciUuid = 8;
+}
+message CreateProgramMarketReply {
+  bool result = 1;
+}
+message GetProgramMarketByUuidReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string uuid = 2 [(validate.rules).string.min_len = 1];
+}
+message GetProgramMarketByUuidReply {
+  repeated ProgramMarket programMarket = 1;
+}
+message GetSelfProgramMarketReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+}
+message GetSelfProgramMarketReply {
+  repeated ProgramMarket programMarket = 1;
+}
+message SearchProgramMarketReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string likeName = 2;
+}
+message SearchProgramMarketReply {
+  repeated ProgramMarket programMarket = 1;
+}
+
+
+//
+
+
+message Release {
+  string uuid = 1;
+  string programUuid = 2;
+  string url = 3;
+  string sha = 4;
+  string arch = 5;
+  int64  createTime = 6;
+}
+
+/*
+当查询其他用户下的仓库信息时，username 为该用户名；查询自身下，设置为空即可；
+自建 Gitlab platform
+*/
+
+message CreateSelfGitlabPlatformReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  int32 protocol = 4;
+  string hostname = 5 [(validate.rules).string.min_len = 1];
+  string describe = 6;
+}
+message CreateSelfGitlabPlatformReply {
+  bool result = 1;
+}
+message ListSelfGitlabPlatformReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+}
+message ListSelfGitlabPlatformReply {
+  repeated GitlabPlatform gitlabPlatform = 1;
+  message GitlabPlatform {
+    string uuid = 1;
+    string protocol = 2;
+    string hostname = 3;
+    string describe = 4;
+    int64 createTime = 5;
+  }
+}
+message DelSelfGitlabPlatformReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string uuid = 4 [(validate.rules).string.min_len = 1];
+}
+message DelSelfGitlabPlatformReply {
+  bool result = 1;
+}
+// token
+message CreateSelfGitlabTokenReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string platformUuid = 4 [(validate.rules).string.min_len = 1];
+  string name = 5 [(validate.rules).string.min_len = 1];
+  string privateToken = 6 [(validate.rules).string.min_len = 1];
+  string describe = 7;
+}
+message CreateSelfGitlabTokenReply {
+  bool result = 1;
+}
+message ListSelfGitlabTokenReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string platformUuid = 4;
+}
+message ListSelfGitlabTokenReply {
+  repeated GitlabToken gitlabToken = 1;
+  message GitlabToken {
+    string uuid = 1;
+    string platformUuid = 2;
+    string name = 3;
+    string privateToken = 4;
+    string describe = 5;
+    int64 createTime = 6;
+  }
+}
+message DelSelfGitlabTokenReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string platformUuid = 4 [(validate.rules).string.min_len = 1];
+  string tokenUuid = 5 [(validate.rules).string.min_len = 1];
+}
+message DelSelfGitlabTokenReply {
+  bool result = 1;
+}
+// gitlab group
+message CreateSelfGitlabGroupReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string platformUuid = 4 [(validate.rules).string.min_len = 1];
+  string platformTokenUuid = 5 [(validate.rules).string.min_len = 1];
+  string name = 6 [(validate.rules).string.min_len = 1];
+  string describe = 7;
+}
+message CreateSelfGitlabGroupReply {
+  bool result = 1;
+}
+message ListSelfGitlabGroupReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string platformUuid = 4 [(validate.rules).string.min_len = 1];
+  string platformTokenUuid = 5 [(validate.rules).string.min_len = 1];
+}
+message ListSelfGitlabGroupReply {
+  repeated Group groups = 1;
+  message Group {
+    string name = 1;
+    int32 groupId = 2;
+    string describe = 3;
+    int64 createTime = 4;
+  }
+}
+// gitlab repo
+message ImportSelfGitlabRepoReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string platformUuid = 4 [(validate.rules).string.min_len = 1];
+  string platformTokenUuid = 5 [(validate.rules).string.min_len = 1];
+  int32 projectId = 6 [(validate.rules).int32.gt = 0];
+}
+message ImportSelfGitlabRepoReply {
+  bool result = 1;
+}
+message CreateSelfGitlabRepoReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string platformUuid = 4 [(validate.rules).string.min_len = 1];
+  string platformTokenUuid = 5 [(validate.rules).string.min_len = 1];
+  string projectName = 6 [(validate.rules).string.min_len = 1];
+  int32 groupId = 7;
+  string describe = 8;
+}
+message CreateSelfGitlabRepoReply {
+  bool result = 1;
+}
+message ListSelfGitlabRepoReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string platformUuid = 4;
+  string platformTokenUuid = 5;
+}
+message ListSelfGitlabRepoReply {
+  repeated GitlabRepo gitlabRepo = 1;
+  message GitlabRepo {
+    string uuid = 1;
+    string platformUuid = 2;
+    string name = 3;
+    int32 projectId = 4;
+    string webUrl = 5;
+    string httpCloneUrl = 6;
+    string sshCloneUrl = 7;
+    string defaultBranch = 8;
+    string namespace = 9;
+    bool archived = 10;
+    string describe = 11;
+    int64 createTime = 12;
+  }
+}
+message DelSelfGitlabRepoReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string uuid = 5 [(validate.rules).string.min_len = 1];
+}
+message DelSelfGitlabRepoReply {
+  bool result = 1;
+}
+message ArchiveSelfGitlabRepoReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string repoUuid = 5 [(validate.rules).string.min_len = 1];
+}
+message ArchiveSelfGitlabRepoReply {
+  bool result = 1;
+}
+message MergeSelfGitlabRepoReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string repoUuid = 5 [(validate.rules).string.min_len = 1];
+  string sourceBranch = 6 [(validate.rules).string.min_len = 1];
+  string targetBranch = 7 [(validate.rules).string.min_len = 1];
+  string message = 8 [(validate.rules).string.min_len = 1];
+}
+message MergeSelfGitlabRepoReply {
+  bool result = 1;
+}
+
+message SelfGitlabRepoMergeHisReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string repoUuid = 5 [(validate.rules).string.min_len = 1];
+  string sourceBranch = 6;
+  string targetBranch = 7;
+}
+
+message SelfGitlabRepoMergeHisReply {
+  repeated Merge merges = 1;
+  message Merge {
+    string title = 1;
+    string author = 2;
+    string mergedBy = 3;
+    string closedBy = 4;
+    string mergeCommitSHA = 5;
+    string message = 6;
+    string sourceBranch = 7;
+    string targetBranch = 8;
+    int64  mergedAt = 9;
+    int64  closedAt = 10;
+    string mergeStatus = 11;
+  }
+}
+
+message CreateSelfGitlabRepoBranchReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string repoUuid = 5 [(validate.rules).string.min_len = 1];
+  string branchName = 6 [(validate.rules).string.min_len = 1];
+  string ref = 7 [(validate.rules).string.min_len = 1];
+}
+message CreateSelfGitlabRepoBranchReply {
+  bool result = 1;
+}
+message ListSelfGitlabRepoBranchReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string repoUuid = 5 [(validate.rules).string.min_len = 1];
+}
+message ListSelfGitlabRepoBranchReply {
+  repeated Branch branch = 1;
+  message Branch {
+    string  name = 1;
+    bool protected = 2;
+    string commitSha = 3;
+    string commitMessage = 4;
+    bool merged = 5;
+    bool isDefault = 6;
+    bool canPush = 7;
+    bool developersCanPush = 8;
+    bool developersCanMerge = 9;
+    string webURL = 10;
+  }
+}
+
+message DelSelfGitlabRepoBranchReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string repoUuid = 4 [(validate.rules).string.min_len = 1];
+  string branchName = 5 [(validate.rules).string.min_len = 1];
+}
+message DelSelfGitlabRepoBranchReply {
+  bool result = 1;
+}
+
+message ProtectSelfGitlabRepoBranchReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string repoUuid = 5 [(validate.rules).string.min_len = 1];
+  string branchName = 6 [(validate.rules).string.min_len = 1];
+}
+message ProtectSelfGitlabRepoBranchReply {
+  bool result = 1;
+}
+message UnprotectSelfGitlabRepoBranchReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string repoUuid = 5 [(validate.rules).string.min_len = 1];
+  string branchName = 6 [(validate.rules).string.min_len = 1];
+}
+message UnprotectSelfGitlabRepoBranchReply {
+  bool result = 1;
+}
+message ListSelfGitlabRepoBranchCommitsReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string repoUuid = 5 [(validate.rules).string.min_len = 1];
+  string branchName = 6 [(validate.rules).string.min_len = 1];
+}
+message ListSelfGitlabRepoBranchCommitsReply {
+  repeated Commit commits = 1;
+  message Commit {
+    string sha = 1;
+    string author = 2;
+    string message = 3;
+    string committer = 4;
+    int64 createTime = 5;
+  }
+}
+// Github
+// Github Token
+message CreateGitHubTokenReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string name = 4 [(validate.rules).string.min_len = 1];
+  string token = 5 [(validate.rules).string.min_len = 1];
+  string describe = 6;
+}
+message CreateGitHubTokenReply {
+  bool result = 1;
+}
+message ListGitHubTokenReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+}
+message ListGitHubTokenReply {
+  repeated GithubToken githubToken = 1;
+  message GithubToken {
+    string uuid = 1;
+    string name = 2;
+    string privateToken = 3;
+    string describe = 4;
+    int64 createTime = 5;
+  }
+}
+message DelGitHubTokenReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string uuid = 4 [(validate.rules).string.min_len = 1];
+}
+message DelGitHubTokenReply {
+  bool result = 1;
+}
+// Github Repo
+message ImportGithubRepoReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string tokenUuid = 4 [(validate.rules).string.min_len = 1];
+  string githubOrgName = 5;
+  string repoName = 6 [(validate.rules).string.min_len = 1];
+}
+message ImportGithubRepoReply {
+  bool result = 1;
+}
+message CreateGithubRepoReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string tokenUuid = 4 [(validate.rules).string.min_len = 1];
+  string name = 5 [(validate.rules).string.min_len = 1];
+  string orgName = 6;
+  bool private = 7;
+  string describe = 8;
+}
+message CreateGithubRepoReply {
+  bool result = 1;
+}
+message ListGithubRepoReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string token = 4;
+}
+message ListGithubRepoReply {
+  repeated Repo repo = 1;
+  message Repo {
+    string uuid = 1;
+    string orgUuid = 2;
+    string productUuid = 3;
+    string name = 4;
+    string fullName = 5;
+    string defaultBranch = 6;
+    string httpCloneUrl = 7;
+    string sshCloneUrl = 8;
+    string webUrl = 9;
+    string describe = 10;
+    int32 star = 11;
+    int64 createTime = 12;
+  }
+}
+message GetGithubRepoReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string uuid = 4 [(validate.rules).string.min_len = 1];
+}
+message GetGithubRepoReply {
+  string name = 1;
+  string fullName = 2;
+  string htmlUrl = 3;
+  string cloneUrl = 4;
+  string description = 5;
+  int32  star = 6;
+  string owner = 7;
+  int64 createTime = 8;
+}
+message DelGithubRepoReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string uuid = 4 [(validate.rules).string.min_len = 1];
+}
+message DelGithubRepoReply {
+  bool result = 1;
+}
+message ArchiveGithubRepoReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string uuid = 4 [(validate.rules).string.min_len = 1];
+}
+message ArchiveGithubRepoReply {
+  bool result = 1;
+}
+message MergeGithubRepoReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string repoUuid = 4 [(validate.rules).string.min_len = 1];
+  string sourceBranch = 5 [(validate.rules).string.min_len = 1];
+  string targetBranch = 6 [(validate.rules).string.min_len = 1];
+  string message = 7 [(validate.rules).string.min_len = 1];
+}
+message MergeGithubRepoReply {
+  bool result = 1;
+}
+message ListGithubRepoBranchReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string repoUuid = 4 [(validate.rules).string.min_len = 1];
+}
+message ListGithubRepoBranchReply {
+  repeated Branch branch = 1;
+  message Branch {
+    string  name = 1;
+    bool protected = 2;
+    string commitSha = 3;
+    string commitMessage = 4;
+  }
+}
+
+message ListGithubRepoBranchCommitsReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string repoUuid = 5 [(validate.rules).string.min_len = 1];
+  string branchName = 6 [(validate.rules).string.min_len = 1];
+}
+message ListGithubRepoBranchCommitsReply {
+  repeated Commit commits = 1;
+  message Commit {
+    string sha = 1;
+    string author = 2;
+    string message = 3;
+    string committer = 4;
+    int64 createTime = 5;
+  }
+}
+
+message ProtectGithubRepoBranchReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string repoUuid = 4 [(validate.rules).string.min_len = 1];
+  string branchName = 5 [(validate.rules).string.min_len = 1];
+}
+message ProtectGithubRepoBranchReply {
+  bool result = 1;
+}
+message UnprotectGithubRepoBranchReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string repoUuid = 4 [(validate.rules).string.min_len = 1];
+  string branchName = 5 [(validate.rules).string.min_len = 1];
+}
+message UnprotectGithubRepoBranchReply {
+  bool result = 1;
+}
+//
+message ListGithubOrgReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string tokenUuid = 4 [(validate.rules).string.min_len = 1];
+}
+message ListGithubOrgReply {
+  repeated Org orgs = 1;
+  message Org {
+    int64 id = 1;
+    string name = 2;
+  }
+}
+message ListGithubRepoByOrgReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string tokenUuid = 4 [(validate.rules).string.min_len = 1];
+  string orgName = 5 [(validate.rules).string.min_len = 1];
+  // rType: 1: public, 2: private, 3: forks, 4: sources, 5: member, other: all
+  int32 rType = 6;
+}
+message ListGithubRepoByOrgReply {
+  string org = 1;
+  repeated RepoOrg repoOrg = 2;
+  message RepoOrg {
+    string name = 1;
+    string fullName = 2;
+    string htmlUrl = 3;
+    string cloneUrl = 4;
+    string description = 5;
+    int32 star = 6;
+    string owner = 7;
+    int64 createTime = 8;
+  }
+}
+message GetGithubUserReq {
+  string token = 3 [(validate.rules).string.min_len = 1];
+  // empty is token self
+  //string username = 2;
+}
+message GetGithubUserReply {
+  string username = 1;
+  string email = 2;
+  int32 PublicRepos = 3;
+  int32 PrivateRepos = 4;
+  int32 Followers = 5;
+  int32 Following = 6;
+  int64 CreateTime = 7;
+}
+
+// 创建ServiceUrl
+message CreateServiceUrlReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+  string name = 5 [(validate.rules).string.min_len = 1];
+  string url = 6 [(validate.rules).string.min_len = 1];
+  string describe = 7;
+}
+message CreateServiceUrlReply {
+  bool result = 1;
+}
+// 列出ServiceUrl
+message ListServiceUrlReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+}
+message ListServiceUrlReply {
+  repeated ServiceUrl serviceUrls = 1;
+  message ServiceUrl {
+    string uuid = 1;
+    string orgUuid = 2;
+    string productUuid = 3;
+    string productEnvUuid = 4;
+    //string ownerUuid = 4;
+    string name = 5;
+    string url = 6;
+    string describe = 7;
+    int64 createTime = 8;
+  }
+}
+// 删除 ServiceUrl
+message DelServiceUrlReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+  string serviceUrlUuid = 5 [(validate.rules).string.min_len = 1];
+}
+message DelServiceUrlReply {
+  bool result = 1;
+}
+// 容器仓库账户
+message AddContainerRegistryReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string url = 4 [(validate.rules).string.min_len = 1];
+  string username = 5 [(validate.rules).string.min_len = 1];
+  string password = 6 [(validate.rules).string.min_len = 1];
+  string email = 7 [(validate.rules).string.email = true];;
+}
+message AddContainerRegistryReply {
+  bool result = 1;
+}
+message ListContainerRegistryReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+}
+message ListContainerRegistryReply {
+  repeated ContainerRegistry containerRegistry = 1;
+  message ContainerRegistry {
+    string uuid = 1;
+    string username = 2;
+    string url = 3;
+    string email = 4;
+    int64 createTime = 5;
+  }
+}
+message DelContainerRegistryReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string uuid = 4 [(validate.rules).string.min_len = 1];
+}
+message DelContainerRegistryReply {
+  bool result = 1;
+}
+
+message GetContainerRegistryReq {
+  //string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string uuid = 4 [(validate.rules).string.min_len = 1];
+}
+message GetContainerRegistryReply {
+  string username = 1;
+  string password = 2;
+  string url = 3;
+  string email = 4;
+  int64 createTime = 5;
+}
+
+// 添加ContainerImage
+message AddPublicContainerImageReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string name = 4 [(validate.rules).string.min_len = 1];
+  string imageUrl = 5 [(validate.rules).string.min_len = 1];
+  string describe = 6;
+}
+message AddPublicContainerImageReply {
+  bool result = 1;
+}
+// 列出ContainerImage
+message ListPublicContainerImageReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string keyword = 4;
+}
+message ListPublicContainerImageReply {
+  repeated ContainerImage containerImage = 1;
+  message ContainerImage {
+    string uuid = 1;
+    string orgUuid = 2;
+    string productUuid = 3;
+    string name = 4;
+    string imageUrl = 5;
+    string author_uuid = 6;
+    string describe = 7;
+    int64 createTime = 8;
+  }
+}
+// 删除ContainerImage
+message DelPublicContainerImageReq{
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string containerImageUuid = 4 [(validate.rules).string.min_len = 1];
+}
+message DelPublicContainerImageReply {
+  bool result = 1;
+}
+
+// reliability
+// 内部请求
+message CreateReliabilityReq {
+  string productUuid = 1 [(validate.rules).string.min_len = 1];
+  int64 dailyTime = 2;
+  float reliabilityPercent = 3;
+}
+message CreateReliabilityReply {
+  bool result = 1;
+}
+message GetReliabilityReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string productUuid = 2 [(validate.rules).string.min_len = 1];
+  int32 days = 3;
+
+}
+message GetReliabilityReply {
+  repeated Reliability reliability = 1;
+  message Reliability {
+    string uuid = 1;
+    string productUuid = 2;
+    int64  dailyTime = 3;
+    float reliabilityPercent = 4;
+    int64 createTime = 5;
+  }
+}
+// WebServiceResource
+message CreateWebServiceResourceReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+  int32 protocol = 5;
+  string serverName = 6 [(validate.rules).string.min_len = 1];
+  repeated string ipPool = 7;
+  string healthCheckUri = 8;
+  string describe = 9;
+}
+
+message CreateWebServiceResourceReply {
+  bool result = 1;
+}
+
+message ListWebServiceResourceReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+}
+message ListWebServiceResourceReply {
+  repeated WebServiceResource webServiceResource = 1;
+  message WebServiceResource {
+    string uuid = 1;
+    int32 protocol = 2;
+    string serverName = 3;
+    repeated string ipPool = 4;
+    string healthCheckUri = 5;
+    string describe = 6;
+    int64 createTime = 7;
+  }
+}
+message DelWebServiceResourceReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string uuid = 4 [(validate.rules).string.min_len = 1];
+}
+message DelWebServiceResourceReply {
+  bool result = 1;
+}
+message UpdateWebServiceResourceReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string uuid = 4 [(validate.rules).string.min_len = 1];
+  int32 protocol = 5;
+  string serverName = 6;
+  repeated string ipPool = 7;
+  string healthCheckUri = 8;
+  string describe = 9;
+}
+message UpdateWebServiceResourceReply {
+  bool result = 1;
+}
+
+// 仅提供内部使用
+message GetWebServiceResourcePromSDReq {
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+}
+message GetWebServiceResourcePromSDReply {
+  repeated WebServiceResource webServiceResource = 1;
+  message WebServiceResource {
+    string uuid = 1;
+    string protocol = 2;
+    string serverName = 3;
+    repeated string ipPool = 4;
+    string healthCheckUri = 5;
+    string describe = 6;
+    int64 createTime = 7;
+  }
+}
+
+// CI
+
+message SelfGitlabRepoBuildContainerImageReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string platformUuid = 4 [(validate.rules).string.min_len = 1];
+  string repoUuid = 5 [(validate.rules).string.min_len = 1];
+  string branchName = 6 [(validate.rules).string.min_len = 1];
+  string registryUuid = 7 [(validate.rules).string.min_len = 1];
+  string dockerfile = 8 [(validate.rules).string.min_len = 1];
+}
+
+message SelfGitlabRepoBuildContainerImageReply {
+  bool result = 1;
+}
+
+message GithubRepoBuildContainerImageReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string repoUuid = 4 [(validate.rules).string.min_len = 1];
+  string branchName = 5 [(validate.rules).string.min_len = 1];
+  string registryUuid = 6 [(validate.rules).string.min_len = 1];
+  string dockerfile = 7 [(validate.rules).string.min_len = 1];
+}
+
+message GithubRepoBuildContainerImageReply {
+  bool result = 1;
+}

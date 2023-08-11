@@ -1,0 +1,450 @@
+syntax = "proto3";
+
+package workSpace.v1;
+
+option go_package = "github.com/startopsz/workSpace/api/workSpace/v1;v1";
+
+//import "google/api/annotations.proto";
+//import "google/protobuf/timestamp.proto";
+import "validate/validate.proto";
+
+
+service WorkSpace {
+  // Fault
+  // 创建故障报告
+  rpc CreateFault (CreateFaultReq) returns (CreateFaultReply) {};
+  // 列出故障报告
+  rpc ListFault (ListFaultReq) returns (ListFaultReply) {};
+  // 删除故障报告
+  rpc DelFault (DelFaultReq) returns (DelFaultReply) {};
+  // 创建故障报告流
+  rpc CreateFaultStream (CreateFaultStreamReq) returns (CreateFaultStreamReply) {};
+  // 列出故障报告流
+  rpc ListFaultStream (ListFaultStreamReq) returns (ListFaultStreamReply) {};
+  // 删除故障报告流
+  rpc DelFaultStream (DelFaultStreamReq) returns (DelFaultStreamReply) {};
+
+
+  // WorkOrder
+  // 创建工单类型
+  rpc CreateWorkOrderType (CreateWorkOrderTypeReq) returns (CreateWorkOrderTypeReply) {};
+  // 列出工单类型
+  rpc ListWorkOrderType (ListWorkOrderTypeReq) returns (ListWorkOrderTypeReply) {};
+  // 删除工单类型
+  rpc DelWorkOrderType (DelWorkOrderTypeReq) returns (DelWorkOrderTypeReply) {};
+  // 创建工单
+  rpc CreateWorkOrder (CreateWorkOrderReq) returns (CreateWorkOrderReply) {};
+  // 列出工单
+  rpc ListWorkOrder (ListWorkOrderReq) returns (ListWorkOrderReply) {};
+  // 关闭工单
+  rpc CloseWorkOrder (CloseWorkOrderReq) returns (CloseWorkOrderReply) {};
+  // 创建工单步骤
+  rpc AddWorkOrderStep (AddWorkOrderStepReq) returns (AddWorkOrderStepReply) {};
+  // 列出工单步骤
+  rpc ListWorkOrderStep (ListWorkOrderStepReq) returns (ListWorkOrderStepReply) {};
+
+
+  // OnDuty
+  rpc CreateOnDuty (CreateOnDutyReq) returns (CreateOnDutyReply) {};
+  rpc ListOnDuty (ListOnDutyReq) returns (ListOnDutyReply) {};
+  rpc DelOnDuty (DelOnDutyReq) returns (DelOnDutyReply) {};
+
+
+  // Todo
+  rpc CreateTodo (CreateTodoReq) returns (CreateTodoReply) {};
+  rpc ListTodo (ListTodoReq) returns (ListTodoReply) {};
+  rpc CloseTodo (CloseTodoReq) returns (CloseTodoReply) {};
+  rpc DelTodo (DelTodoReq) returns (DelTodoReply) {};
+
+
+  // Task
+  rpc CreateTask (CreateTaskReq) returns (CreateTaskReply) {};
+  rpc ListSelfDistTask (ListTaskReq) returns (ListTaskReply) {};
+  rpc ListSelfTask (ListTaskReq) returns (ListTaskReply) {};
+  rpc CloseSelfDistTask (CloseTaskReq) returns (CloseTaskReply) {};
+  rpc CloseSelfTask (CloseTaskReq) returns (CloseTaskReply) {};
+
+
+  // Knowledge
+  rpc CreateKnowledgePublicLabel (CreateKnowledgePublicLabelReq) returns (CreateKnowledgePublicLabelReply) {};
+  rpc CreateKnowledgePublicResource (CreateKnowledgePublicResourceReq) returns (CreateKnowledgePublicResourceReply) {};
+  rpc CreateKnowledgePrivateLabel (CreateKnowledgePrivateLabelReq) returns (CreateKnowledgePrivateLabelReply) {};
+  rpc CreateKnowledgePrivateResource (CreateKnowledgePrivateResourceReq) returns (CreateKnowledgePrivateResourceReply) {};
+
+}
+
+
+// 创建故障报告
+message CreateFaultReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string title = 4 [(validate.rules).string.min_len = 1];
+  int32  level = 5 [(validate.rules).int32 = {in: [1, 2, 3, 4, 5]}];
+  int64 start_time = 6;
+  int64 end_time = 7;
+  string summary = 8 [(validate.rules).string.min_len = 1];
+  string reason = 9 [(validate.rules).string.min_len = 1];
+  string optimize = 10;
+}
+
+message CreateFaultReply {
+  bool result = 1;
+}
+// 列出故障报告
+message ListFaultReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string titleKeyword = 4;
+  int64 searchStartTime = 5;
+  int64 searchEndTime = 6;
+}
+
+message ListFaultReply {
+  repeated Fault faults = 1;
+  message Fault {
+    string orgUuid = 1;
+    string productUuid = 2;
+    string uuid = 3 ;
+    string title = 4;
+    int32  level = 5;
+    int64 startTime = 6;
+    int64 endTime = 7;
+    string summary = 8;
+    string reason = 9;
+    string optimize = 10;
+  }
+}
+//删除故障报告
+message DelFaultReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string faultUuid = 4 [(validate.rules).string.min_len = 1];
+}
+message DelFaultReply {
+  bool result = 1;
+}
+// 创建故障报告流
+message CreateFaultStreamReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string faultUuid = 4 [(validate.rules).string.min_len = 1];
+  int64 startTime = 5;
+  int64 endTime = 6;
+  string do = 7 [(validate.rules).string.min_len = 1];
+}
+message CreateFaultStreamReply {
+  bool result = 1;
+}
+// 获取故障报告流
+message ListFaultStreamReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string faultUuid = 4 [(validate.rules).string.min_len = 1];
+}
+message ListFaultStreamReply {
+  string faultUuid = 1;
+  repeated FaultStream faultStream = 2;
+  message FaultStream {
+    string uuid = 1;
+    int64 startTime = 2;
+    int64 endTime = 3;
+    string do = 4;
+  }
+}
+// 删除故障报告流
+message DelFaultStreamReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string faultUuid = 4 [(validate.rules).string.min_len = 1];
+  string faultStreamUuid = 5 [(validate.rules).string.min_len = 1];
+}
+message DelFaultStreamReply {
+  bool result = 1;
+}
+
+// WorkOrder
+// 创建工单类型
+message CreateWorkOrderTypeReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string name = 4 [(validate.rules).string.min_len = 1];
+  string describe = 5 [(validate.rules).string.min_len = 1];
+}
+message CreateWorkOrderTypeReply {
+  bool result = 1;
+}
+// 列出工单类型
+message ListWorkOrderTypeReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+}
+message ListWorkOrderTypeReply {
+  repeated WorkOrderType workOrderTypeList = 1;
+  message WorkOrderType {
+    string uuid = 1;
+    string name = 2;
+    string describe = 3;
+    int64 createTime = 4;
+  }
+}
+// 删除工单类型
+message DelWorkOrderTypeReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string workOrderTypeUuid = 4 [(validate.rules).string.min_len = 1];
+}
+message DelWorkOrderTypeReply {
+  bool result = 1;
+}
+// 创建工单
+message CreateWorkOrderReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string workOrderTypeUuid = 4 [(validate.rules).string.min_len = 1];
+  string content = 5 [(validate.rules).string.min_len = 1];
+}
+message CreateWorkOrderReply {
+  bool result = 1;
+}
+// 列出工单
+message ListWorkOrderReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  int32 status = 4;
+}
+message ListWorkOrderReply {
+  repeated WorkOrder workOrders = 1;
+  message WorkOrder {
+    string uuid = 1;
+    string content = 2;
+    int32 status = 3;
+    string author = 4;
+    int64 createTime = 5;
+  }
+}
+// 关闭工单
+message CloseWorkOrderReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string workOrderUuid = 4 [(validate.rules).string.min_len = 1];
+}
+message CloseWorkOrderReply {
+  bool result = 1;
+}
+// 创建工单步骤
+message AddWorkOrderStepReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string workOrderUuid = 4 [(validate.rules).string.min_len = 1];
+  string content = 5 [(validate.rules).string.min_len = 1];
+}
+message AddWorkOrderStepReply {
+  bool result = 1;
+}
+// 列出工单步骤
+message ListWorkOrderStepReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string workOrderUuid = 4 [(validate.rules).string.min_len = 1];
+}
+message ListWorkOrderStepReply {
+  repeated WorkOrderStep workOrderStep = 1;
+  message WorkOrderStep {
+    string uuid = 1;
+    string content = 2;
+    string author = 3;
+    int64 createTime = 4;
+  }
+}
+
+// 值班表
+// 创建值班信息
+message CreateOnDutyReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string onDutyUserUuid = 4 [(validate.rules).string.min_len = 1];
+  int64 onDutyTime = 5 [(validate.rules).int64.gt = 1];
+}
+message CreateOnDutyReply {
+  bool result = 1;
+}
+// 列出值班信息
+message ListOnDutyReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string onDutyUserUuid = 4;
+  int64 onDutyTime = 5;
+}
+message ListOnDutyReply {
+  repeated OnDuty onDuty = 1;
+  message OnDuty {
+    string uuid = 1;
+    string onDutyUserUuid = 2;
+    int64 time = 3;
+    string authorUuid = 4;
+    int64 createTime = 5;
+  }
+}
+// 删除值班信息
+message DelOnDutyReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string onDutyUuid = 4 [(validate.rules).string.min_len = 1];
+}
+message DelOnDutyReply {
+  bool result = 1;
+}
+
+// Todo
+// 创建Todo
+message CreateTodoReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  int32  priority = 4 [(validate.rules).int32 = {in: [1, 2, 3, 4, 5]}];
+  int64 overTime = 5;
+  string content = 6;
+}
+message CreateTodoReply {
+  bool result = 1;
+}
+// 列出Todo
+message ListTodoReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  int32 status = 4;
+}
+message ListTodoReply {
+  repeated Todo todo = 1;
+  message Todo {
+    string uuid = 1;
+    //string userUuid = 2;
+    //string orgUuid = 3;
+    //string productUuid = 4;
+    int32 priority = 5 [(validate.rules).int32 = {in: [1, 2, 3, 4, 5]}];
+    int64 overTime = 6;
+    string content = 7;
+    int32 status = 8;
+    int64 createTime = 9;
+    string describe = 10;
+  }
+}
+// 关闭Todo
+message CloseTodoReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string todoUuid = 4 [(validate.rules).string.min_len = 1];
+  string describe = 5;
+}
+message CloseTodoReply {
+  bool result = 1;
+}
+// 删除Todo
+message DelTodoReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string todoUuid = 4 [(validate.rules).string.min_len = 1];
+}
+message DelTodoReply {
+  bool result = 1;
+}
+// Task
+// 创建Task
+message CreateTaskReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string executorUuid = 4 [(validate.rules).string.min_len = 1];
+  int32 priority = 5 [(validate.rules).int32 = {in: [1, 2, 3, 4, 5]}];
+  int64 over_time = 6;
+  string content = 7;
+}
+message CreateTaskReply {
+  bool result = 1;
+}
+// 列出Task
+message ListTaskReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  int32 status = 5;
+}
+message ListTaskReply {
+  repeated Task task = 1;
+  message Task {
+    string uuid =1;
+    string orgUuid = 2;
+    string productUuid = 3;
+    string executorUuid = 4;
+    int32 priority = 5;
+    int64 overTime = 6;
+    string content = 7;
+    int32 status = 8;
+    string result = 9;
+    int64 createTime = 10;
+  }
+}
+// 关闭Task
+message CloseTaskReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string taskUuid = 4 [(validate.rules).string.min_len = 1];
+  string result = 5 [(validate.rules).string.min_len = 1];
+}
+message CloseTaskReply {
+  bool result = 1;
+}
+
+// 知识库
+//
+message CreateKnowledgePublicLabelReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+}
+message CreateKnowledgePublicLabelReply {
+  bool result = 1;
+}
+
+message CreateKnowledgePublicResourceReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+}
+message CreateKnowledgePublicResourceReply {
+
+}
+
+message CreateKnowledgePrivateLabelReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+}
+
+message CreateKnowledgePrivateLabelReply {
+
+}
+
+message CreateKnowledgePrivateResourceReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+}
+
+message CreateKnowledgePrivateResourceReply {
+
+}
+

@@ -1,0 +1,398 @@
+syntax = "proto3";
+
+package message.v1;
+option go_package = "message/api/message/v1;v1";
+
+//import "google/api/annotations.proto";
+//import "google/protobuf/timestamp.proto";
+import "validate/validate.proto";
+
+// message: 移动短信消息， msg: 消息
+service Message {
+  // Email
+  rpc SendMailMsg (SendMailMsgReq) returns (SendMailMsgReply) {};
+
+  // 发送短信验证码消息 - 登录验证码
+  rpc SendLoginVerifyCodeMessage (SendLoginVerifyCodeMessageReq) returns (SendLoginVerifyCodeMessageReply) {};
+  rpc GetLoginVerifyCodeMessage (GetLoginVerifyCodeMessageReq) returns (GetLoginVerifyCodeMessageReply) {};
+  // 发送短信验证码消息 - 修改密码验证码
+  rpc SendModifyPasswdVerifyCodeMessage (SendModifyPasswdVerifyCodeMessageReq) returns (SendModifyPasswdVerifyCodeMessageReply) {};
+  rpc GetModifyPasswdVerifyCodeMessage (GetModifyPasswdVerifyCodeMessageReq) returns (GetModifyPasswdVerifyCodeMessageReply) {};
+  // 发送短信验证码消息 - 注册用户验证码
+  rpc SendRegisterVerifyCodeMessage (SendRegisterVerifyCodeMessageReq) returns (SendRegisterVerifyCodeMessageReply) {};
+  rpc GetRegisterVerifyCodeMessage (GetRegisterVerifyCodeMessageReq) returns (GetRegisterVerifyCodeMessageReply) {};
+
+  // 发送通知消息 - 已放弃
+  rpc SendAlertNotifyMessage (SendAlertNotifyMessageReq) returns (SendAlertNotifyMessageReply) {};
+  rpc SendKubernetesEventNotifyMessage (SendKubernetesEventNotifyMessageReq) returns (SendKubernetesEventNotifyMessageReply) {};
+
+  // 发送钉钉个人消息
+  rpc SendOrgDingTalkWorkMsg (SendOrgDingTalkWorkMsgReq) returns  (SendOrgDingTalkWorkMsgReply) {};
+
+  // 消息组
+  rpc CreateMessageGroup (CreateMessageGroupReq) returns (CreateMessageGroupReply) {};
+  rpc ListMessageGroup (ListMessageGroupReq) returns (ListMessageGroupReply) {};
+  rpc DelMessageGroup (DelMessageGroupReq) returns (DelMessageGroupReply) {};
+
+  rpc AddMessageGroupMember (AddMessageGroupMemberReq) returns (AddMessageGroupMemberReply) {};
+  rpc GetMessageGroupMember (GetMessageGroupMemberReq) returns (GetMessageGroupMemberReply) {};
+  rpc DelMessageGroupMember (DelMessageGroupMemberReq) returns (DelMessageGroupMemberReply) {};
+
+  // 发送 “内容” 到消息组内
+  rpc SendMessageGroupContent (SendMessageGroupContentReq) returns (SendMessageGroupContentReply) {};
+
+
+
+  // DingTalk - 放弃
+  //rpc CreateDingTalkHookOrgGroup (AddDingTalkHookOrgGroupReq) returns (AddDingTalkHookOrgGroupReply) {};
+  //rpc ListDingTalkHookOrgGroup (ListDingTalkHookOrgGroupReq) returns (ListDingTalkHookOrgGroupReply) {};
+  //rpc DelDingTalkHookOrgGroup (DelDingTalkHookOrgGroupReq) returns (DelDingTalkHookOrgGroupReply) {};
+
+  //rpc AddDingTalkHookOrgGroupMember (AddDingTalkHookOrgGroupMemberReq) returns (AddDingTalkHookOrgGroupMemberReply) {};
+  //rpc GetDingTalkHookOrgGroupMember (GetDingTalkHookOrgGroupMemberReq) returns (GetDingTalkHookOrgGroupMemberReply) {};
+  //rpc DelDingTalkHookOrgGroupMember (DelDingTalkHookOrgGroupMemberReq) returns (DelDingTalkHookOrgGroupMemberReply) {};
+  //rpc SendDingTalkHookOrgGroupMsg (SendDingTalkHookOrgGroupMsgReq) returns (SendDingTalkHookOrgGroupMsgReply) {};
+
+  // 翻译
+  rpc Translate (TranslateReq) returns (TranslateReply) {};
+
+  // 飞书
+
+  // Slack
+}
+
+
+
+// 发送登录验证码
+message SendLoginVerifyCodeMessageReq {
+  //int32 state = 1; // 国家
+  string phoneNumber = 2; // 手机号码
+}
+message SendLoginVerifyCodeMessageReply {
+  bool result = 1;
+}
+// 验证登录验证码
+message GetLoginVerifyCodeMessageReq {
+  //int32 state = 1; // 国家
+  string phoneNumber = 2; // 手机号码
+  string verifyCode = 4; // 验证码
+}
+message GetLoginVerifyCodeMessageReply {
+  bool result = 1;
+}
+// 发送注册验证码
+message SendRegisterVerifyCodeMessageReq {
+  string phoneNumber = 2; // 手机号码
+}
+message SendRegisterVerifyCodeMessageReply {
+  bool result = 1;
+}
+// 验证注册验证码
+message GetRegisterVerifyCodeMessageReq {
+  string phoneNumber = 2; // 手机号码
+  string verifyCode = 4; // 验证码
+}
+message GetRegisterVerifyCodeMessageReply {
+  bool result = 1;
+}
+// 获取修改密码验证码
+message SendModifyPasswdVerifyCodeMessageReq {
+  //int32 state = 1; // 国家
+  string phoneNumber = 2; // 手机号码
+}
+message SendModifyPasswdVerifyCodeMessageReply {
+  bool result = 1;
+}
+// 验证修改密码验证码
+message GetModifyPasswdVerifyCodeMessageReq {
+  //int32 state = 1; // 国家
+  string phoneNumber = 2; // 手机号码
+  string verifyCode = 4; // 验证码
+}
+message GetModifyPasswdVerifyCodeMessageReply {
+  bool result = 1;
+}
+
+// 发送告警通知消息
+message SendAlertNotifyMessageReq {
+  string orgName = 1;
+  string orgProduct = 2;
+  string  orgProductEnv = 3;
+  string status = 4;
+  string messageContent = 5;
+  string phoneNumbers = 6;
+}
+message SendAlertNotifyMessageReply {
+  bool result = 1;
+}
+
+// 发送 Kubernetes Event 通知消息
+message SendKubernetesEventNotifyMessageReq {
+  string orgName = 1;
+  string orgProduct = 2;
+  string orgProductEnv = 3;
+  string clusterName = 4;
+  string event = 5;
+  string phoneNumbers = 6;
+}
+message SendKubernetesEventNotifyMessageReply {
+  bool result = 1;
+}
+
+// 发送邮件消息
+message SendMailMsgReq {
+  string subject = 1 [(validate.rules).string.min_len = 1];
+  repeated string to = 2 [(validate.rules).repeated.items.string.email = true];
+  repeated string cc = 3 [(validate.rules).repeated.items.string.email = true];
+  //repeated string bcc = 4 [(validate.rules).string.email = true];
+  repeated string bcc = 4 [(validate.rules).repeated.items.string.email = true];
+  string content = 5 [(validate.rules).string.min_len = 1];
+}
+message SendMailMsgReply {
+  string requestId = 1;
+}
+
+// 创建消息组
+message CreateMessageGroupReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string groupName = 4 [(validate.rules).string.min_len = 1];
+}
+message CreateMessageGroupReply {
+  bool result = 1;
+}
+
+// 列出消息组
+message ListMessageGroupReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+}
+message ListMessageGroupReply {
+  repeated MessageGroup messageGroups = 1;
+  message MessageGroup {
+    string uuid = 1;
+    string orgUuid = 2;
+    string productUuid = 3;
+    string groupName = 4;
+    int64 createTime = 5;
+  }
+}
+
+// 删除消息组
+message DelMessageGroupReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string groupUuid = 4 [(validate.rules).string.min_len = 1];
+}
+message DelMessageGroupReply {
+  bool result = 1;
+}
+
+// 添加消息组成员
+message AddMessageGroupMemberReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string groupUuid = 4 [(validate.rules).string.min_len = 1];
+  int32 channel = 5;
+  string url = 6 [(validate.rules).string.min_len = 1];
+  string keyword = 7;
+}
+message AddMessageGroupMemberReply {
+  bool result = 1;
+}
+
+// 获取消息组成员列表
+message GetMessageGroupMemberReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string groupUuid = 4 [(validate.rules).string.min_len = 1];
+}
+message GetMessageGroupMemberReply {
+  repeated Member members = 1;
+  message Member {
+    string uuid = 1;
+    string groupUuid = 2;
+    int32 channel = 3;
+    string url = 4;
+    string keyword = 5;
+    int64 createTime = 6;
+  }
+}
+
+// 删除消息组成员
+message DelMessageGroupMemberReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string groupUuid = 4 [(validate.rules).string.min_len = 1];
+  string memberUuid = 5 [(validate.rules).string.min_len = 1];
+}
+message DelMessageGroupMemberReply {
+  bool result = 1;
+}
+
+// 发送消息组内容
+message SendMessageGroupContentReq {
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string groupUuid = 4 [(validate.rules).string.min_len = 1];
+  string content = 5 [(validate.rules).string.min_len = 1];
+}
+message SendMessageGroupContentReply {
+  bool result = 1;
+}
+
+
+
+// 发送钉钉工作通知
+message SendOrgDingTalkWorkMsgReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string msg = 3 [(validate.rules).string.min_len = 1];
+}
+message SendOrgDingTalkWorkMsgReply {
+  int64 taskId = 1;
+}
+
+
+// 3.1. 添加组织DingTalkHook组
+
+/*
+message AddDingTalkHookOrgGroupReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string groupName = 3 [(validate.rules).string.min_len = 1];
+}
+message AddDingTalkHookOrgGroupReply {
+  bool result = 1;
+}
+
+ */
+
+// 3.2. 查看(列出)组织DingTalkHook组 - 必须传入 orgUuid
+
+/*
+message ListDingTalkHookOrgGroupReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+}
+message ListDingTalkHookOrgGroupReply {
+  repeated dingTalkHookOrgGroup DingTalkHookOrgGroup = 1;
+  message dingTalkHookOrgGroup {
+    string groupUuid = 1;
+    string orgUuid = 2;
+    string groupName = 3;
+    string ownerUserUuid = 4;
+    string ownerUserName = 5;
+    int64 createTime = 6;
+  }
+}
+
+ */
+
+
+// 3.3. 删除组织DingTalkHook组
+/*
+message DelDingTalkHookOrgGroupReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string groupUuid = 3 [(validate.rules).string.min_len = 1];
+}
+message DelDingTalkHookOrgGroupReply {
+  bool result = 1;
+}
+
+ */
+
+// 3.4. 添加DingTalkHook组织组成员
+/*
+message AddDingTalkHookOrgGroupMemberReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string groupUuid = 3 [(validate.rules).string.min_len = 1];
+  repeated DingTalkHookMember dingTalkHookMember = 4;
+
+  message DingTalkHookMember {
+    string url = 3 [(validate.rules).string.uri = true];
+    string keyword = 4;
+    string accessToken = 5; // 暂时无意义
+    string signature = 6; // 暂时无意义
+  }
+}
+message AddDingTalkHookOrgGroupMemberReply {
+  bool result = 1;
+}
+
+ */
+
+// 3.5. 获取DingTalkHook组织组成员
+/*
+message GetDingTalkHookOrgGroupMemberReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string groupUuid = 3 [(validate.rules).string.min_len = 1];
+}
+message GetDingTalkHookOrgGroupMemberReply {
+  string groupUuid = 1 [(validate.rules).string.min_len = 1];
+  repeated DingTalkHookMember dingTalkHookMember = 2;
+  message DingTalkHookMember {
+    string uuid = 1;
+    string url = 3;
+    string keyword = 4;
+    string accessToken = 5; // 暂时无意义
+    string signature = 6; // 暂时无意义
+    int64 createTime = 7; // 暂时不使用
+  }
+}
+
+ */
+
+// 3.6. 删除DingTalkHook组织组成员
+/*
+message DelDingTalkHookOrgGroupMemberReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string groupUuid = 3 [(validate.rules).string.min_len = 1];
+  string memberUuid = 4 [(validate.rules).string.min_len = 1];
+}
+message DelDingTalkHookOrgGroupMemberReply {
+  bool result = 1;
+}
+
+ */
+
+
+// 3.7. 发送钉钉Hook消息
+/*
+message SendDingTalkHookOrgGroupMsgReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string groupUuid = 3 [(validate.rules).string.min_len = 1];
+  string content = 4 [(validate.rules).string.min_len = 1];
+  bool atAll = 5;
+  repeated string atMobiles = 6;
+}
+message SendDingTalkHookOrgGroupMsgReply {
+  bool result = 1;
+}
+ */
+
+
+// 翻译
+message TranslateReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string query = 3 [(validate.rules).string.min_len = 1];
+  string sourceLanguage = 4 [(validate.rules).string.min_len = 1];
+  string targetLanguage = 5 [(validate.rules).string.min_len = 1];
+}
+message TranslateReply {
+  string result = 1;
+}
+
+

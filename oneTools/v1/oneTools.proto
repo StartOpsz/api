@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+package oneTools.v1;
+option go_package = "oneTools/api/oneTools/v1;v1";
+
+//import "google/api/annotations.proto";
+//import "google/protobuf/timestamp.proto";
+import "validate/validate.proto";
+
+service oneTools {
+  rpc ResolveDomain (ResolveDomainReq) returns (ResolveDomainReply);
+  rpc GenerateShortUrl (GenerateShortUrlReq) returns (GenerateShortUrlReply);
+  rpc TimestampConvert (TimestampConvertReq) returns (TimestampConvertReply);
+  rpc HttpRequest (HttpRequestReq) returns (HttpRequestReply);
+}
+
+// 域名解析
+message ResolveDomainReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string domain = 2;
+}
+
+message ResolveDomainReply {
+
+}
+
+// 生成短链接
+message GenerateShortUrlReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+}
+
+message GenerateShortUrlReply {
+
+}
+
+// 时间戳
+message TimestampConvertReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  int64 timestamp = 2;
+}
+
+message TimestampConvertReply {
+  string datetime = 1;
+}
+
+// http 探测
+
+message HttpRequestReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string url = 2;
+}
+
+message HttpRequestReply {
+
+}

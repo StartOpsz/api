@@ -1,0 +1,101 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "api/hook/v1/hook.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "OneHook"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {},
+  "definitions": {
+    "PrometheusAlertReqPrometheusAlert": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "labels": {
+          "type": "string"
+        },
+        "annotations": {
+          "type": "string"
+        },
+        "startsAt": {
+          "type": "string",
+          "format": "int64"
+        },
+        "endsAt": {
+          "type": "string",
+          "format": "int64"
+        },
+        "generatorURL": {
+          "type": "string"
+        },
+        "fingerprint": {
+          "type": "string"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "type_url": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1KubernetesEventReply": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1PrometheusAlertReply": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1SkywalkingAlertReply": {
+      "type": "object"
+    },
+    "v1SystemAuditReply": {
+      "type": "object"
+    }
+  }
+}

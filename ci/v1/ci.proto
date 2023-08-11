@@ -1,0 +1,571 @@
+syntax = "proto3";
+
+package ci.v1;
+
+option go_package = "github.com/StartOpsz/ci/api/ci/v1;v1";
+
+import "validate/validate.proto";
+
+service ci {
+  // 容器镜像
+  // 验证容器镜像仓库账户 - tool
+  rpc VerifyContainerRegistry (VerifyContainerRegistryReq) returns (VerifyContainerRegistryReply) {};
+
+  // 使用 Dockerfile 内容构建镜像并上传 - 光构建不上传认为属于没意义的动作
+  // 由于一般构建镜像都依赖很多本地文件，所以建议使用CI流程完成镜像构建
+  // rpc BuildImageFromDockerfile (BuildImageFromDockerfileReq) returns (BuildImageFromDockerfileReply) {};
+
+  // 同步容器镜像仓库中的镜像到其他仓库 (源可以匿名，目标不允许匿名)
+  rpc CopyContainerRegistryImage (CopyContainerRegistryImageReq) returns (CopyContainerRegistryImageReply) {};
+
+
+  // 列出容器镜像仓库镜像同步任务
+  rpc ListCopyContainerRegistryImageTask (ListCopyContainerRegistryImageTaskReq) returns (ListCopyContainerRegistryImageTaskReply) {};
+  // 获取容器镜像仓库镜像同步任务
+  rpc GetCopyContainerRegistryImageTask (GetCopyContainerRegistryImageTaskReq) returns (GetCopyContainerRegistryImageTaskReply) {};
+
+  // 查看容器镜像信息
+  rpc InspectContainerImage (InspectContainerImageReq) returns (InspectContainerImageReply) {};
+  // 列出容器镜像仓库 tags
+  rpc ListContainerImageTags (ListContainerImageTagsReq) returns (ListContainerImageTagsReply) {};
+
+  // 构建容器镜像
+  rpc BuildContainerImage (BuildContainerImageReq) returns (BuildContainerImageReply) {};
+  // 获取构建容器镜像任务
+  rpc GetBuildContainerImage (GetBuildContainerImageReq) returns (GetBuildContainerImageReply) {};
+  // 列出构建容器镜像任务
+  rpc ListBuildContainerImage (ListBuildContainerImageReq) returns (ListBuildContainerImageReply) {};
+
+  // 代码仓库
+  // 列出程序语言
+  rpc ListProgramLanguage (ListProgramLanguageReq) returns (ListProgramLanguageReply) {};
+
+  // 代码仓库代码扫描
+  rpc ScanCodeRepository (ScanCodeRepositoryReq) returns (ScanCodeRepositoryReply) {};
+  rpc GetScanCodeRepository (GetScanCodeRepositoryReq) returns (GetScanCodeRepositoryReply) {};
+  rpc ListScanCodeRepository (ListScanCodeRepositoryReq) returns (ListScanCodeRepositoryReply) {};
+
+  // 代码仓库单元测试
+  rpc UnitTestCodeRepository (UnitTestCodeRepositoryReq) returns (UnitTestCodeRepositoryReply) {};
+  rpc GetUnitTestCodeRepository (GetUnitTestCodeRepositoryReq) returns (GetUnitTestCodeRepositoryReply) {};
+  rpc ListUnitTestCodeRepository (ListUnitTestCodeRepositoryReq) returns (ListUnitTestCodeRepositoryReply) {};
+
+  // 同步代码仓库 - 不再支持代码仓库同步功能
+  //rpc SyncCodeRepository (SyncCodeRepositoryReq) returns (SyncCodeRepositoryReply) {};
+  //rpc GetSyncCodeRepository (SyncCodeRepositoryReq) returns (SyncCodeRepositoryReply) {};
+  //rpc ListSyncCodeRepository (SyncCodeRepositoryReq) returns (SyncCodeRepositoryReply) {};
+
+
+  // 上传本地文件到SFTP服务器
+  rpc UploadLocalFileToSFTP (UploadLocalFileToSFTPReq) returns (UploadLocalFileToSFTPReply) {};
+  // 下载SFTP服务器文件到本地文件
+  rpc DownloadSFTPFileToLocal (DownloadSFTPFileToLocalReq) returns (DownloadSFTPFileToLocalReply) {};
+  // 上传本地文件到云对象存储
+  rpc UploadLocalFileToCloudObjectStorage (UploadLocalFileToCloudObjectStorageReq) returns (UploadLocalFileToCloudObjectStorageReply) {};
+  // 下载云对象存储对象到本地文件
+  rpc DownloadCloudObjectStorageObjectToLocal (DownloadCloudObjectStorageObjectToLocalReq) returns (DownloadCloudObjectStorageObjectToLocalReply) {};
+  // 获取SFTP文件操作历史
+  rpc GetCopySFTPFileHis (GetCopySFTPFileHisReq) returns (GetCopySFTPFileHisReply) {};
+  // 获取云对象存储操作历史
+  rpc GetCopyCloudObjectStorageHis (GetCopyCloudObjectStorageHisReq) returns (GetCopyCloudObjectStorageHisReply) {};
+
+
+  //
+  rpc CreateCiTemplate (CreateCiTemplateReq) returns (CreateCiTemplateReply) {};
+  rpc ListCiTemplate (ListCiTemplateReq) returns (ListCiTemplateReply) {};
+  rpc DelCiTemplate (DelCiTemplateReq) returns (DelCiTemplateReply) {};
+
+  rpc AddCiTemplateStep (AddCiTemplateStepReq) returns (AddCiTemplateStepReply) {};
+  rpc ListCiTemplateStep (ListCiTemplateStepReq) returns (ListCiTemplateStepReply) {};
+  rpc DelCiTemplateStep (DelCiTemplateStepReq) returns (DelCiTemplateStepReply) {};
+
+
+  // 执行 CI 任务
+  rpc RunCi (RunCiReq) returns (RunCiReply){};
+  // 查询执行 CI 任务结果
+  rpc GetCiTasks (GetCiTasksReq) returns (GetCiTasksReply){};
+  // 查询执行 CI 任务详情
+  rpc GetCiTaskDetails (GetCiTaskDetailsReq) returns (GetCiTaskDetailsReply){};
+}
+
+
+// Container
+// 认证容器镜像仓库登录 - tool
+message VerifyContainerRegistryReq {
+  string server = 1  [(validate.rules).string.min_len = 1];
+  string username = 2 [(validate.rules).string.min_len = 1];
+  string password = 3 [(validate.rules).string.min_len = 1];
+}
+message VerifyContainerRegistryReply {
+  bool result = 1;
+}
+// 同步容器镜像仓库间的镜像
+message CopyContainerRegistryImageReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string srcImageRegistryUuid = 4;
+  //string srcImageRegistryUuid = 4 [(validate.rules).string.min_len = 1];
+  //string srcUsername = 4 [(validate.rules).string.min_len = 1];
+  //string srcPassword = 5 [(validate.rules).string.min_len = 1];
+  string srcImage = 6 [(validate.rules).string.min_len = 1];
+  string destImageRegistryUuid = 7 [(validate.rules).string.min_len = 1];
+  //string destUsername = 7 [(validate.rules).string.min_len = 1];
+  //string destPassword = 8 [(validate.rules).string.min_len = 1];
+  string destImage = 9 [(validate.rules).string.min_len = 1];
+  int32 timeout = 10;
+}
+message CopyContainerRegistryImageReply {
+  string taskId = 1;
+}
+// 列出容器镜像仓库镜像同步任务
+message ListCopyContainerRegistryImageTaskReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+}
+message ListCopyContainerRegistryImageTaskReply {
+  repeated Task tasks = 1;
+  message Task {
+    string taskId = 1;
+    string userUuid = 2;
+    string orgUuid = 3;
+    string productUuid = 4;
+    string runId = 5;
+    string srcImage = 6;
+    string destImage = 7;
+    int32 result = 8;
+    string describe = 9;
+    int64 startExecTime = 10;
+    int64 endExecTime = 11;
+    int64 createTime = 12;
+  }
+}
+// 获取容器镜像仓库镜像同步任务
+message GetCopyContainerRegistryImageTaskReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string taskId = 4 [(validate.rules).string.min_len = 1];
+}
+message GetCopyContainerRegistryImageTaskReply {
+  string taskId = 1;
+  string userUuid = 2;
+  string orgUuid = 3;
+  string productUuid = 4;
+  string runId = 5;
+  string srcImage = 6;
+  string destImage = 7;
+  int32 result = 8;
+  string describe = 9;
+  int64 startExecTime = 10;
+  int64 endExecTime = 11;
+  int64 createTime = 12;
+}
+
+// 查看容器镜像信息 - tool
+message InspectContainerImageReq {
+  string username = 1 [(validate.rules).string.min_len = 1];
+  string password = 2 [(validate.rules).string.min_len = 1];
+  string image = 3 [(validate.rules).string.min_len = 1];
+}
+message InspectContainerImageReply {
+  string content = 1;
+}
+// 列出容器仓库镜像 Tags
+message ListContainerImageTagsReq {
+  string username = 1 [(validate.rules).string.min_len = 1];
+  string password = 2 [(validate.rules).string.min_len = 1];
+  string repository = 3 [(validate.rules).string.min_len = 1];
+}
+message ListContainerImageTagsReply {
+  string repository = 1;
+  repeated string tags = 2;
+}
+
+// 列出程序语言
+message ListProgramLanguageReq {
+
+}
+message ListProgramLanguageReply {
+  repeated ProgramLanguage programLanguage = 1;
+  message ProgramLanguage {
+    int32 id = 1;
+    string name = 2;
+  }
+}
+
+// 仓库代码扫描
+message ScanCodeRepositoryReq {
+  int32 programLanguage = 1;
+  string repoUuid = 2 [(validate.rules).string.min_len = 1];
+  string repoUrl = 3 [(validate.rules).string.min_len = 1];
+  string token = 4;
+  string branch = 5 [(validate.rules).string.min_len = 1];
+}
+message ScanCodeRepositoryReply {
+  string taskId = 1;
+}
+message GetScanCodeRepositoryReq {
+  string repoUuid = 1 [(validate.rules).string.min_len = 1];
+  string taskId = 2 [(validate.rules).string.min_len = 1];
+}
+message GetScanCodeRepositoryReply {
+  string taskId = 1;
+  string runId = 2;
+  string repoUuid = 3;
+  int32 result = 4;
+  string describe = 5;
+  int64 startExecTime = 6;
+  int64 endExecTime = 7;
+  int64 createTime = 8;
+}
+message ListScanCodeRepositoryReq {
+  string repoUuid = 1 [(validate.rules).string.min_len = 1];
+  repeated string taskIds = 2;
+}
+message ListScanCodeRepositoryReply {
+  repeated ScanCodeRepo scanCodeRepos = 1;
+  message ScanCodeRepo {
+    string taskId = 1;
+    string runId = 2;
+    string repoUuid = 3;
+    int32 result = 4;
+    string describe = 5;
+    int64 startExecTime = 6;
+    int64 endExecTime = 7;
+    int64 createTime = 8;
+  }
+}
+
+
+// 仓库单元测试 - tool
+message UnitTestCodeRepositoryReq {
+  int32 programLanguage = 1;
+  string repoUuid = 2 [(validate.rules).string.min_len = 1];
+  string repoUrl = 3 [(validate.rules).string.min_len = 1];
+  string token = 4;
+  string branch = 5 [(validate.rules).string.min_len = 1];
+}
+message UnitTestCodeRepositoryReply {
+  string taskId = 1;
+}
+message GetUnitTestCodeRepositoryReq {
+  string repoUuid = 1 [(validate.rules).string.min_len = 1];
+  string taskId = 2 [(validate.rules).string.min_len = 1];
+}
+message GetUnitTestCodeRepositoryReply {
+  string taskId = 1;
+  string runId = 2;
+  string repoUuid = 3;
+  int32 result = 4;
+  string describe = 5;
+  int64 startExecTime = 6;
+  int64 endExecTime = 7;
+  int64 createTime = 8;
+}
+message ListUnitTestCodeRepositoryReq {
+  string repoUuid = 1 [(validate.rules).string.min_len = 1];
+  repeated string taskIds = 2;
+}
+message ListUnitTestCodeRepositoryReply {
+  repeated UnitTestCodeRepo unitTestCodeRepos = 1;
+  message UnitTestCodeRepo {
+    string taskId = 1;
+    string runId = 2;
+    string repoUuid = 3;
+    int32 result = 4;
+    string describe = 5;
+    int64 startExecTime = 6;
+    int64 endExecTime = 7;
+    int64 createTime = 8;
+  }
+}
+
+// 构建容器镜像 - 不支持匿名上传
+message BuildContainerImageReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2  [(validate.rules).string.min_len = 1];
+  string productUuid = 3  [(validate.rules).string.min_len = 1];
+  string repoUuid = 4 [(validate.rules).string.min_len = 1];
+  string repoName = 5 [(validate.rules).string.min_len = 1];
+  string repoUrl = 6 [(validate.rules).string.min_len = 1];
+  string token = 7;
+  string branch = 8 [(validate.rules).string.min_len = 1];
+  string registryUrl = 9 [(validate.rules).string.min_len = 1];
+  string registryUsername = 10 [(validate.rules).string.min_len = 1];
+  string registryPassword = 11 [(validate.rules).string.min_len = 1];
+  string registryNameSpace = 12 [(validate.rules).string.min_len = 1];
+  string dockerfilePath = 13;
+}
+message BuildContainerImageReply {
+  string taskId = 1;
+}
+
+message GetBuildContainerImageReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2  [(validate.rules).string.min_len = 1];
+  string productUuid = 3  [(validate.rules).string.min_len = 1];
+  string repoUuid = 4 [(validate.rules).string.min_len = 1];
+  string taskId = 5 [(validate.rules).string.min_len = 1];
+}
+message GetBuildContainerImageReply {
+  string taskId = 1;
+  string runId = 2;
+  string userUuid = 3;
+  string userName = 4;
+  string repoUuid = 5;
+  string repoUrl = 6;
+  string branch = 7;
+  string commitId = 8;
+  string dockerfilePath = 9;
+  string imageUrl = 10;
+  string imageId = 11;
+  int32 result = 12;
+  string describe = 13;
+  string dockerfile = 14;
+  int64 startExecTime = 15;
+  int64 endExecTime = 16;
+  int64 createTime = 17;
+  int64 costTime = 18;
+}
+message ListBuildContainerImageReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string repoUuid = 4 [(validate.rules).string.min_len = 1];
+}
+message ListBuildContainerImageReply {
+  repeated BuildContainerImage buildContainerImages = 1;
+  message BuildContainerImage {
+    string taskId = 1;
+    string runId = 2;
+    string userUuid = 3;
+    string userName = 4;
+    string repoUuid = 5;
+    string repoUrl = 6;
+    string branch = 7;
+    string commitId = 8;
+    string dockerfilePath = 9;
+    string imageUrl = 10;
+    string imageId = 11;
+    int32 result = 12;
+    string describe = 13;
+    string dockerfile = 14;
+    int64 startExecTime = 15;
+    int64 endExecTime = 16;
+    int64 createTime = 17;
+    int64 costTime = 18;
+  }
+}
+//
+message UploadLocalFileToCloudObjectStorageReq {
+  string endpoint = 1 [(validate.rules).string.min_len = 1];
+  string accessKeyId = 2 [(validate.rules).string.min_len = 1];
+  string accessKeySecret = 3 [(validate.rules).string.min_len = 1];
+  string securityToken = 4 [(validate.rules).string.min_len = 1];
+  string bucketName = 5 [(validate.rules).string.min_len = 1];
+  string objectPath = 6 [(validate.rules).string.min_len = 1];
+  string localFilePath = 7 [(validate.rules).string.min_len = 1];
+  int32 platformId = 8;
+}
+message UploadLocalFileToCloudObjectStorageReply {
+  string taskId = 1;
+}
+//
+message DownloadCloudObjectStorageObjectToLocalReq {
+  string endpoint = 1 [(validate.rules).string.min_len = 1];
+  string accessKeyId = 2 [(validate.rules).string.min_len = 1];
+  string accessKeySecret = 3 [(validate.rules).string.min_len = 1];
+  string securityToken = 4 [(validate.rules).string.min_len = 1];
+  string bucketName = 5 [(validate.rules).string.min_len = 1];
+  string objectPath = 6 [(validate.rules).string.min_len = 1];
+  string localFilePath = 7 [(validate.rules).string.min_len = 1];
+  int32 platformId = 8;
+}
+message DownloadCloudObjectStorageObjectToLocalReply {
+  string taskId = 1;
+}
+//
+message UploadLocalFileToSFTPReq {
+  string remoteHost = 1 [(validate.rules).string.min_len = 1];
+  int32 remotePort = 2;
+  string remoteUser = 3 [(validate.rules).string.min_len = 1];
+  string privateKey = 4;
+  string password = 5;
+  string localFilePath = 6 [(validate.rules).string.min_len = 1];
+  string remoteFilePath = 7 [(validate.rules).string.min_len = 1];
+}
+message UploadLocalFileToSFTPReply {
+  string taskId = 1;
+}
+//
+message DownloadSFTPFileToLocalReq {
+  string remoteHost = 1 [(validate.rules).string.min_len = 1];
+  int32 remotePort = 2;
+  string remoteUser = 3 [(validate.rules).string.min_len = 1];
+  string privateKey = 4;
+  string password = 5;
+  string localFilePath = 6 [(validate.rules).string.min_len = 1];
+  string remoteFilePath = 7 [(validate.rules).string.min_len = 1];
+}
+message DownloadSFTPFileToLocalReply {
+  string taskId = 1;
+}
+//
+message GetCopySFTPFileHisReq {
+  string taskId = 1;
+}
+message GetCopySFTPFileHisReply {
+  string taskId = 1;
+  string runId = 2;
+  int32 copyType = 3;
+  string sftpAddr = 4;
+  string sftpUser = 5;
+  string localFilePath = 6;
+  string sftpFilePath = 7;
+  int32 result = 8;
+  string describe = 9;
+  int64 startExecTime = 10;
+  int64  endExecTime = 11;
+  int64 createTime = 12;
+}
+//
+message GetCopyCloudObjectStorageHisReq {
+  string taskId = 1;
+}
+message GetCopyCloudObjectStorageHisReply {
+  string taskId = 1;
+  string runId = 2;
+  int32 platformId = 3;
+  int32 copyType = 4;
+  string endpoint = 5;
+  string bucket = 6;
+  string localFilePath = 7;
+  string objectStoragePath = 8;
+  int32 result = 9;
+  string describe = 10;
+  int64 startExecTime = 11;
+  int64 endExecTime = 12;
+  int64 createTime = 13;
+}
+// 执行CI任务
+message RunCiReq {
+  string gitHttpUrl = 1 [(validate.rules).string.min_len = 1];
+  string gitToken = 2 [(validate.rules).string.min_len = 1];
+  string branch = 3 [(validate.rules).string.min_len = 1];
+}
+message RunCiReply {
+  string taskId = 1;
+}
+// 批量查询Ci任务信息
+message GetCiTasksReq {
+  repeated string taskIds = 1;
+}
+message GetCiTasksReply {
+  map<string, CiTask> tasks = 4;
+  message CiTask {
+    int32 result = 1;
+    int64 createTime = 3;
+    int64 updateTime = 4;
+    string containerImg = 5;
+    string objectStorageTo = 6;
+    string objectStorageBucket = 7;
+    string objectStoragePath = 8;
+  }
+}
+// 获取Ci任务执行详情
+message GetCiTaskDetailsReq {
+  string taskId = 1 [(validate.rules).string.min_len = 1];
+}
+message GetCiTaskDetailsReply {
+  repeated CiDetail details = 4;
+  message CiDetail {
+    int32 result = 1;
+    string content = 2;
+    int64 createTime = 3;
+    string stageName = 4;
+    string stageStepName = 5;
+  }
+}
+
+
+//
+
+message CreateCiTemplateReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string name = 4  [(validate.rules).string.min_len = 1];
+}
+
+message CreateCiTemplateReply {
+  bool result = 1;
+}
+
+message ListCiTemplateReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+}
+
+message ListCiTemplateReply {
+  repeated CiTemplate ciTemplate = 1;
+  message CiTemplate {
+    string uuid = 1;
+    string orgUuid = 2;
+    string productUuid = 3;
+    string name = 4;
+    int64 createTime = 5;
+  }
+}
+
+message DelCiTemplateReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string uuid = 4 [(validate.rules).string.min_len = 1];
+}
+
+message DelCiTemplateReply {
+  bool result = 1;
+}
+
+message AddCiTemplateStepReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+
+}
+
+message AddCiTemplateStepReply {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string templateUuid = 4;
+  string stepUuid = 5;
+  int32 priority = 6;
+
+}
+
+message ListCiTemplateStepReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+
+}
+
+message ListCiTemplateStepReply {
+
+}
+
+message DelCiTemplateStepReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+
+}
+
+message DelCiTemplateStepReply {
+
+}

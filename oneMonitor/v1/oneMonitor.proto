@@ -1,0 +1,91 @@
+syntax = "proto3";
+
+package oneMonitor.v1;
+
+option go_package = "github.com/startopsz/oneMonitor/api/oneMonitor/v1;v1";
+
+//import "google/api/annotations.proto";
+//import "google/protobuf/timestamp.proto";
+import "validate/validate.proto";
+
+
+service OneMonitor {
+  // 创建监控访问Token
+  rpc CreateMonitorAccessToken (CreateMonitorAccessTokenReq) returns (CreateMonitorAccessTokenReply);
+  rpc ListMonitorAccessToken (ListMonitorAccessTokenReq) returns (ListMonitorAccessTokenReply);
+  rpc DelMonitorAccessToken (DelMonitorAccessTokenReq) returns (DelMonitorAccessTokenReply);
+  // 内部使用
+  rpc ExistMonitorAccessToken (ExistMonitorAccessTokenReq) returns (ExistMonitorAccessTokenReply);
+
+  // Prometheus WebService Resource Discovery
+  rpc PrometheusWebResourceDiscovery (PrometheusWebResourceDiscoveryReq) returns (PrometheusWebResourceDiscoveryReply);
+}
+
+//
+message PrometheusServiceDiscoveryInstance {
+  repeated string targets = 1;
+  map <string, string>  labels = 2;
+}
+
+// 创建组织内产品Token
+message CreateMonitorAccessTokenReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+  string describe = 5;
+}
+message CreateMonitorAccessTokenReply {
+  bool result = 1;
+}
+
+message ListMonitorAccessTokenReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+}
+message ListMonitorAccessTokenReply {
+  repeated MonitorAccessToken monitorAccessTokens = 1;
+  message MonitorAccessToken {
+    string uuid = 1;
+    string token = 2;
+    string describe = 3;
+    int64 createTime = 4;
+  }
+}
+
+message DelMonitorAccessTokenReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+  string uuid = 5 [(validate.rules).string.min_len = 1];
+}
+message DelMonitorAccessTokenReply {
+  bool result = 1;
+}
+
+// 验证 MonitorAccessToken 是否存在
+message ExistMonitorAccessTokenReq {
+  string orgUuid = 1 [(validate.rules).string.min_len = 1];
+  string productUuid = 2 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 3 [(validate.rules).string.min_len = 1];
+  string monitorToken = 4 [(validate.rules).string.min_len = 1];
+}
+message ExistMonitorAccessTokenReply {
+  bool result = 1;
+}
+
+// WebService Resource Prometheus Service Discovery
+message PrometheusWebResourceDiscoveryReq {
+  string orgUuid = 1 [(validate.rules).string.min_len = 1];
+  string productUuid = 2 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 3 [(validate.rules).string.min_len = 1];
+  string token = 4 [(validate.rules).string.min_len = 1];
+}
+message PrometheusWebResourceDiscoveryReply {
+  repeated PrometheusServiceDiscoveryInstance Instances = 1;
+}
+
+//
