@@ -11,14 +11,8 @@ service ci {
   // 验证容器镜像仓库账户 - tool
   rpc VerifyContainerRegistry (VerifyContainerRegistryReq) returns (VerifyContainerRegistryReply) {};
 
-  // 使用 Dockerfile 内容构建镜像并上传 - 光构建不上传认为属于没意义的动作
-  // 由于一般构建镜像都依赖很多本地文件，所以建议使用CI流程完成镜像构建
-  // rpc BuildImageFromDockerfile (BuildImageFromDockerfileReq) returns (BuildImageFromDockerfileReply) {};
-
   // 同步容器镜像仓库中的镜像到其他仓库 (源可以匿名，目标不允许匿名)
   rpc CopyContainerRegistryImage (CopyContainerRegistryImageReq) returns (CopyContainerRegistryImageReply) {};
-
-
   // 列出容器镜像仓库镜像同步任务
   rpc ListCopyContainerRegistryImageTask (ListCopyContainerRegistryImageTaskReq) returns (ListCopyContainerRegistryImageTaskReply) {};
   // 获取容器镜像仓库镜像同步任务
@@ -29,33 +23,55 @@ service ci {
   // 列出容器镜像仓库 tags
   rpc ListContainerImageTags (ListContainerImageTagsReq) returns (ListContainerImageTagsReply) {};
 
-  // 构建容器镜像
+
+  // 1. 代码仓库代码扫描 - CI
+  rpc ListCodeScanTemplate (ListCodeScanTemplateReq) returns (ListCodeScanTemplateReply) {};
+  rpc GetCodeScanTemplate (GetCodeScanTemplateReq) returns (GetCodeScanTemplateReply) {};
+  rpc DelCodeScanTemplate (DelCodeScanTemplateReq) returns (DelCodeScanTemplateReply) {};
+
+  rpc ExecCodeScanTask (ExecCodeScanTaskReq) returns (ExecCodeScanTaskReply) {};
+  rpc GetCodeScanTask (GetCodeScanTaskReq) returns (GetCodeScanTaskReply) {};
+  rpc ListCodeScanTask (ListCodeScanTaskReq) returns (ListCodeScanTaskReply) {};
+
+
+  // 2. 代码仓库单元测试 - CI
+  rpc ListUnitTestTemplate (ListUnitTestTemplateReq) returns (ListUnitTestTemplateReply) {};
+  rpc GetUnitTestTemplate (GetUnitTestTemplateReq) returns (GetUnitTestTemplateReply) {};
+  rpc DelUnitTestTemplate (DelUnitTestTemplateReq) returns (DelUnitTestTemplateReply) {};
+
+  rpc ExecUnitTestTask (ExecUnitTestTaskReq) returns (ExecUnitTestTaskReply) {};
+  rpc GetUnitTestTask (GetUnitTestTaskReq) returns (GetUnitTestTaskReply) {};
+  rpc ListUnitTestTask (ListUnitTestTaskReq) returns (ListUnitTestTaskReply) {};
+
+
+  // 3. 构建程序 - CI
+  rpc ListBuildProgramTemplate (ListBuildProgramTemplateReq) returns (ListBuildProgramTemplateReply) {};
+  rpc GetBuildProgramTemplate (GetBuildProgramTemplateReq) returns (GetBuildProgramTemplateReply) {};
+  rpc DelBuildProgramTemplate (DelBuildProgramTemplateReq) returns (DelBuildProgramTemplateReply) {};
+
+  rpc ExecBuildProgramTask (ExecBuildProgramTaskReq) returns (ExecBuildProgramTaskReply) {};
+  rpc GetBuildProgramTask (GetBuildProgramTaskReq) returns (GetBuildProgramTaskReply) {};
+  rpc ListBuildProgramTask (ListBuildProgramTaskReq) returns (ListBuildProgramTaskReply) {};
+
+  // 4. 构建容器镜像 - CI - 暂未完成
+  rpc ListBuildContainerImageTemplate (ListBuildContainerImageTemplateReq) returns (ListBuildContainerImageTemplateReply) {};
+  rpc GetBuildContainerImageTemplate (GetBuildContainerImageTemplateReq) returns (GetBuildContainerImageTemplateReply) {};
+  rpc DelBuildContainerImageTemplate (DelBuildContainerImageTemplateReq) returns (DelBuildContainerImageTemplateReply) {};
+
+  rpc ExecBuildContainerImageTask (ExecBuildContainerImageTaskReq) returns (ExecBuildContainerImageTaskReply) {};
+  rpc GetBuildContainerImageTask (GetBuildContainerImageTaskReq) returns (GetBuildContainerImageTaskReply) {};
+  rpc ListBuildContainerImageTask (ListBuildContainerImageTaskReq) returns (ListBuildContainerImageTaskReply) {};
+
+
+  // 4. 构建容器镜像 - CI
   rpc BuildContainerImage (BuildContainerImageReq) returns (BuildContainerImageReply) {};
   // 获取构建容器镜像任务
   rpc GetBuildContainerImage (GetBuildContainerImageReq) returns (GetBuildContainerImageReply) {};
   // 列出构建容器镜像任务
   rpc ListBuildContainerImage (ListBuildContainerImageReq) returns (ListBuildContainerImageReply) {};
 
-  // 代码仓库
-  // 列出程序语言
-  rpc ListProgramLanguage (ListProgramLanguageReq) returns (ListProgramLanguageReply) {};
 
-  // 代码仓库代码扫描
-  rpc ScanCodeRepository (ScanCodeRepositoryReq) returns (ScanCodeRepositoryReply) {};
-  rpc GetScanCodeRepository (GetScanCodeRepositoryReq) returns (GetScanCodeRepositoryReply) {};
-  rpc ListScanCodeRepository (ListScanCodeRepositoryReq) returns (ListScanCodeRepositoryReply) {};
-
-  // 代码仓库单元测试
-  rpc UnitTestCodeRepository (UnitTestCodeRepositoryReq) returns (UnitTestCodeRepositoryReply) {};
-  rpc GetUnitTestCodeRepository (GetUnitTestCodeRepositoryReq) returns (GetUnitTestCodeRepositoryReply) {};
-  rpc ListUnitTestCodeRepository (ListUnitTestCodeRepositoryReq) returns (ListUnitTestCodeRepositoryReply) {};
-
-  // 同步代码仓库 - 不再支持代码仓库同步功能
-  //rpc SyncCodeRepository (SyncCodeRepositoryReq) returns (SyncCodeRepositoryReply) {};
-  //rpc GetSyncCodeRepository (SyncCodeRepositoryReq) returns (SyncCodeRepositoryReply) {};
-  //rpc ListSyncCodeRepository (SyncCodeRepositoryReq) returns (SyncCodeRepositoryReply) {};
-
-
+  // 5. 程序上传 - CI
   // 上传本地文件到SFTP服务器
   rpc UploadLocalFileToSFTP (UploadLocalFileToSFTPReq) returns (UploadLocalFileToSFTPReply) {};
   // 下载SFTP服务器文件到本地文件
@@ -70,7 +86,7 @@ service ci {
   rpc GetCopyCloudObjectStorageHis (GetCopyCloudObjectStorageHisReq) returns (GetCopyCloudObjectStorageHisReply) {};
 
 
-  //
+  // 6. CI 模版
   rpc CreateCiTemplate (CreateCiTemplateReq) returns (CreateCiTemplateReply) {};
   rpc ListCiTemplate (ListCiTemplateReq) returns (ListCiTemplateReply) {};
   rpc DelCiTemplate (DelCiTemplateReq) returns (DelCiTemplateReply) {};
@@ -80,6 +96,7 @@ service ci {
   rpc DelCiTemplateStep (DelCiTemplateStepReq) returns (DelCiTemplateStepReply) {};
 
 
+  // 7. CI 任务
   // 执行 CI 任务
   rpc RunCi (RunCiReq) returns (RunCiReply){};
   // 查询执行 CI 任务结果
@@ -183,105 +200,445 @@ message ListContainerImageTagsReply {
   repeated string tags = 2;
 }
 
-// 列出程序语言
-message ListProgramLanguageReq {
 
+// 1. *************** 代码扫描 ******************
+// 列出代码扫描模版
+message ListCodeScanTemplateReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  int32 templateType = 4; // 模版类型
 }
-message ListProgramLanguageReply {
-  repeated ProgramLanguage programLanguage = 1;
-  message ProgramLanguage {
-    int32 id = 1;
-    string name = 2;
+message ListCodeScanTemplateReply {
+  repeated Template templates = 1;
+  message Template {
+    bool public = 1;
+    string uuid = 2;
+    string describe = 3;
+    string command = 4;
+    int64 createTime = 5;
   }
 }
-
-// 仓库代码扫描
-message ScanCodeRepositoryReq {
-  int32 programLanguage = 1;
-  string repoUuid = 2 [(validate.rules).string.min_len = 1];
-  string repoUrl = 3 [(validate.rules).string.min_len = 1];
-  string token = 4;
-  string branch = 5 [(validate.rules).string.min_len = 1];
+// 获取代码扫描模版
+message GetCodeScanTemplateReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string templateUuid = 4 [(validate.rules).string.min_len = 1];
+  bool isPublic = 5;
 }
-message ScanCodeRepositoryReply {
+message GetCodeScanTemplateReply {
+  bool public = 1;
+  string uuid = 2;
+  string describe = 3;
+  string command = 4;
+  int64 createTime = 5;
+}
+// 删除代码扫描模版
+message DelCodeScanTemplateReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string templateUuid = 4 [(validate.rules).string.min_len = 1];
+}
+message DelCodeScanTemplateReply {
+  bool result = 1;
+}
+// 执行代码扫描任务
+message ExecCodeScanTaskReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string templateUuid = 4 [(validate.rules).string.min_len = 1];
+  bool publicTemplate = 5;
+  string repoUuid = 6 [(validate.rules).string.min_len = 1];
+  string repoUrl = 7 [(validate.rules).string.min_len = 1];
+  string token = 8;
+  string branch = 9 [(validate.rules).string.min_len = 1];
+}
+message ExecCodeScanTaskReply {
   string taskId = 1;
 }
-message GetScanCodeRepositoryReq {
-  string repoUuid = 1 [(validate.rules).string.min_len = 1];
-  string taskId = 2 [(validate.rules).string.min_len = 1];
+// 获取代码扫描任务
+message GetCodeScanTaskReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string repoUuid = 4 [(validate.rules).string.min_len = 1];
+  string taskId = 5 [(validate.rules).string.min_len = 1];
 }
-message GetScanCodeRepositoryReply {
+message GetCodeScanTaskReply {
   string taskId = 1;
   string runId = 2;
-  string repoUuid = 3;
-  int32 result = 4;
-  string describe = 5;
-  int64 startExecTime = 6;
-  int64 endExecTime = 7;
-  int64 createTime = 8;
+  string userUuid = 3;
+  string orgUuid = 4;
+  string productUuid = 5;
+  string repoUuid = 6;
+  string repoUrl = 7;
+  string repoBranch = 8;
+  string repoCommitId = 9;
+  string repoCommitMsg = 10;
+
+  int32 result = 11; // 0: 执行中， 1: 成功，-1: 失败
+  string describe = 12; // 执行过程内容
+
+  string templateUuid = 13;
+  bool isPublicTemplate = 14;
+  string command = 15;
+
+  int64 createTime = 16;
+  int64 startExecTime = 17;
+  int64 endExecTime = 18;
 }
-message ListScanCodeRepositoryReq {
-  string repoUuid = 1 [(validate.rules).string.min_len = 1];
-  repeated string taskIds = 2;
+// 列出代码扫描任务
+message ListCodeScanTaskReq {
+  string orgUuid = 1 [(validate.rules).string.min_len = 1];
+  string productUuid = 2 [(validate.rules).string.min_len = 1];
+  string userUuid = 3 [(validate.rules).string.min_len = 1];
+  string repoUuid = 4 [(validate.rules).string.min_len = 1];
 }
-message ListScanCodeRepositoryReply {
-  repeated ScanCodeRepo scanCodeRepos = 1;
-  message ScanCodeRepo {
+message ListCodeScanTaskReply {
+  repeated CodeScan CodeScans = 1;
+  message CodeScan {
     string taskId = 1;
     string runId = 2;
-    string repoUuid = 3;
-    int32 result = 4;
-    string describe = 5;
-    int64 startExecTime = 6;
-    int64 endExecTime = 7;
-    int64 createTime = 8;
+    string userUuid = 3;
+    string orgUuid = 4;
+    string productUuid = 5;
+    string repoUuid = 6;
+    string repoUrl = 7;
+    string repoBranch = 8;
+    string repoCommitId = 9;
+    string repoCommitMsg = 10;
+
+    int32 result = 11; // 0: 执行中， 1: 成功，-1: 失败
+    string describe = 12; // 执行过程内容
+
+    string templateUuid = 13;
+    bool isPublicTemplate = 14;
+    string command = 15;
+
+    int64 createTime = 16;
+    int64 startExecTime = 17;
+    int64 endExecTime = 18;
   }
 }
 
-
-// 仓库单元测试 - tool
-message UnitTestCodeRepositoryReq {
-  int32 programLanguage = 1;
-  string repoUuid = 2 [(validate.rules).string.min_len = 1];
-  string repoUrl = 3 [(validate.rules).string.min_len = 1];
-  string token = 4;
-  string branch = 5 [(validate.rules).string.min_len = 1];
+// 2. ******************* 单元测试 *******************
+// 列出单元测试模版
+message ListUnitTestTemplateReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  int32 templateType = 4; // 模版类型
 }
-message UnitTestCodeRepositoryReply {
+message ListUnitTestTemplateReply {
+  repeated Template templates = 1;
+  message Template {
+    bool public = 1;
+    string uuid = 2;
+    string describe = 3;
+    string command = 4;
+    int64 createTime = 5;
+  }
+}
+// 获取单元测试模版
+message GetUnitTestTemplateReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string templateUuid = 4 [(validate.rules).string.min_len = 1];
+  bool isPublic = 5;
+}
+message GetUnitTestTemplateReply {
+  bool public = 1;
+  string uuid = 2;
+  string describe = 3;
+  string command = 4;
+  int64 createTime = 5;
+}
+// 删除单元测试模版
+message DelUnitTestTemplateReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string templateUuid = 4 [(validate.rules).string.min_len = 1];
+}
+message DelUnitTestTemplateReply {
+  bool result = 1;
+}
+// 执行单元测试任务
+message ExecUnitTestTaskReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string templateUuid = 4 [(validate.rules).string.min_len = 1];
+  bool publicTemplate = 5;
+  string repoUuid = 6 [(validate.rules).string.min_len = 1];
+  string repoUrl = 7 [(validate.rules).string.min_len = 1];
+  string token = 8;
+  string branch = 9 [(validate.rules).string.min_len = 1];
+}
+message ExecUnitTestTaskReply {
   string taskId = 1;
 }
-message GetUnitTestCodeRepositoryReq {
-  string repoUuid = 1 [(validate.rules).string.min_len = 1];
-  string taskId = 2 [(validate.rules).string.min_len = 1];
+// 获取单元测试任务
+message GetUnitTestTaskReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string repoUuid = 4 [(validate.rules).string.min_len = 1];
+  string taskId = 5 [(validate.rules).string.min_len = 1];
 }
-message GetUnitTestCodeRepositoryReply {
+message GetUnitTestTaskReply {
   string taskId = 1;
   string runId = 2;
-  string repoUuid = 3;
-  int32 result = 4;
-  string describe = 5;
-  int64 startExecTime = 6;
-  int64 endExecTime = 7;
-  int64 createTime = 8;
+  string userUuid = 3;
+  string orgUuid = 4;
+  string productUuid = 5;
+  string repoUuid = 6;
+  string repoUrl = 7;
+  string repoBranch = 8;
+  string repoCommitId = 9;
+  string repoCommitMsg = 10;
+
+  int32 result = 11; // 0: 执行中， 1: 成功，-1: 失败
+  string describe = 12; // 执行过程内容
+
+  string templateUuid = 13;
+  bool isPublicTemplate = 14;
+  string command = 15;
+
+  int64 createTime = 16;
+  int64 startExecTime = 17;
+  int64 endExecTime = 18;
 }
-message ListUnitTestCodeRepositoryReq {
-  string repoUuid = 1 [(validate.rules).string.min_len = 1];
-  repeated string taskIds = 2;
+// 列出单元测试任务
+message ListUnitTestTaskReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string repoUuid = 4 [(validate.rules).string.min_len = 1];
 }
-message ListUnitTestCodeRepositoryReply {
-  repeated UnitTestCodeRepo unitTestCodeRepos = 1;
-  message UnitTestCodeRepo {
+message ListUnitTestTaskReply {
+  repeated UnitTest unitTests = 1;
+  message UnitTest {
     string taskId = 1;
     string runId = 2;
-    string repoUuid = 3;
-    int32 result = 4;
-    string describe = 5;
-    int64 startExecTime = 6;
-    int64 endExecTime = 7;
-    int64 createTime = 8;
+    string userUuid = 3;
+    string orgUuid = 4;
+    string productUuid = 5;
+    string repoUuid = 6;
+    string repoUrl = 7;
+    string repoBranch = 8;
+    string repoCommitId = 9;
+    string repoCommitMsg = 10;
+
+    int32 result = 11; // 0: 执行中， 1: 成功，-1: 失败
+    string describe = 12; // 执行过程内容
+
+    string templateUuid = 13;
+    bool isPublicTemplate = 14;
+    string command = 15;
+
+    int64 createTime = 16;
+    int64 startExecTime = 17;
+    int64 endExecTime = 18;
   }
 }
 
+
+// 3. *********************** 构建程序 **************************
+// 列出构建程序模版
+message ListBuildProgramTemplateReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  int32 templateType = 4; // 模版类型
+}
+message ListBuildProgramTemplateReply {
+  repeated Template templates = 1;
+  message Template {
+    bool public = 1;
+    string uuid = 2;
+    string describe = 3;
+    string command = 4;
+    int64 createTime = 5;
+  }
+}
+// 获取构建程序模版
+message GetBuildProgramTemplateReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string templateUuid = 4 [(validate.rules).string.min_len = 1];
+  bool isPublic = 5;
+}
+message GetBuildProgramTemplateReply {
+  bool public = 1;
+  string uuid = 2;
+  string describe = 3;
+  string command = 4;
+  int64 createTime = 5;
+}
+// 删除构建程序模版
+message DelBuildProgramTemplateReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string templateUuid = 4 [(validate.rules).string.min_len = 1];
+}
+message DelBuildProgramTemplateReply {
+  bool result = 1;
+}
+// 执行构建程序任务
+message ExecBuildProgramTaskReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string templateUuid = 4 [(validate.rules).string.min_len = 1];
+  bool publicTemplate = 5;
+  string repoUuid = 6 [(validate.rules).string.min_len = 1];
+  string repoUrl = 7 [(validate.rules).string.min_len = 1];
+  string token = 8;
+  string branch = 9 [(validate.rules).string.min_len = 1];
+}
+message ExecBuildProgramTaskReply {
+  string taskId = 1;
+}
+// 获取构建程序任务
+message GetBuildProgramTaskReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string repoUuid = 4 [(validate.rules).string.min_len = 1];
+  string taskId = 5 [(validate.rules).string.min_len = 1];
+}
+message GetBuildProgramTaskReply {
+  string taskId = 1;
+  string runId = 2;
+  string userUuid = 3;
+  string orgUuid = 4;
+  string productUuid = 5;
+  string repoUuid = 6;
+  string repoUrl = 7;
+  string repoBranch = 8;
+  string repoCommitId = 9;
+  string repoCommitMsg = 10;
+
+  int32 result = 11; // 0: 执行中， 1: 成功，-1: 失败
+  string describe = 12; // 执行过程内容
+
+  string templateUuid = 13;
+  bool isPublicTemplate = 14;
+  string command = 15;
+
+  int64 createTime = 16;
+  int64 startExecTime = 17;
+  int64 endExecTime = 18;
+}
+// 列出构建程序任务
+message ListBuildProgramTaskReq {
+  string orgUuid = 1 [(validate.rules).string.min_len = 1];
+  string productUuid = 2 [(validate.rules).string.min_len = 1];
+  string userUuid = 3 [(validate.rules).string.min_len = 1];
+  string repoUuid = 4 [(validate.rules).string.min_len = 1];
+}
+message ListBuildProgramTaskReply {
+  repeated BuildProgram buildPrograms = 1;
+  message BuildProgram {
+    string taskId = 1;
+    string runId = 2;
+    string userUuid = 3;
+    string orgUuid = 4;
+    string productUuid = 5;
+    string repoUuid = 6;
+    string repoUrl = 7;
+    string repoBranch = 8;
+    string repoCommitId = 9;
+    string repoCommitMsg = 10;
+
+    int32 result = 11; // 0: 执行中， 1: 成功，-1: 失败
+    string describe = 12; // 执行过程内容
+
+    string templateUuid = 13;
+    bool isPublicTemplate = 14;
+    string command = 15;
+
+    int64 createTime = 16;
+    int64 startExecTime = 17;
+    int64 endExecTime = 18;
+  }
+}
+
+// 4. ************************** 构建容器镜像 ******************************
+// 列出构建容器镜像模版 - 无公共模版
+message ListBuildContainerImageTemplateReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+}
+message ListBuildContainerImageTemplateReply {
+
+}
+// 获取构建容器镜像模版
+message GetBuildContainerImageTemplateReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string templateUuid = 4 [(validate.rules).string.min_len = 1];
+}
+
+message GetBuildContainerImageTemplateReply {
+
+}
+// 删除构建容器镜像模版
+message DelBuildContainerImageTemplateReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string templateUuid = 4 [(validate.rules).string.min_len = 1];
+}
+message DelBuildContainerImageTemplateReply {
+
+}
+// 执行构建容器镜像任务
+message ExecBuildContainerImageTaskReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string templateUuid = 4 [(validate.rules).string.min_len = 1];
+  string repoUuid = 6 [(validate.rules).string.min_len = 1];
+  string repoUrl = 7 [(validate.rules).string.min_len = 1];
+  string token = 8;
+  string branch = 9 [(validate.rules).string.min_len = 1];
+}
+message ExecBuildContainerImageTaskReply {
+
+}
+// 获取构建容器镜像任务
+message GetBuildContainerImageTaskReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string repoUuid = 4 [(validate.rules).string.min_len = 1];
+  string taskId = 5 [(validate.rules).string.min_len = 1];
+}
+message GetBuildContainerImageTaskReply {
+
+}
+// 列出构建容器镜像任务
+message ListBuildContainerImageTaskReq {
+  string orgUuid = 1 [(validate.rules).string.min_len = 1];
+  string productUuid = 2 [(validate.rules).string.min_len = 1];
+  string userUuid = 3 [(validate.rules).string.min_len = 1];
+  string repoUuid = 4 [(validate.rules).string.min_len = 1];
+}
+message ListBuildContainerImageTaskReply {
+
+}
+
+// ************************************************************************************************
 // 构建容器镜像 - 不支持匿名上传
 message BuildContainerImageReq {
   string userUuid = 1  [(validate.rules).string.min_len = 1];
@@ -358,6 +715,10 @@ message ListBuildContainerImageReply {
     int64 costTime = 18;
   }
 }
+
+
+
+
 //
 message UploadLocalFileToCloudObjectStorageReq {
   string endpoint = 1 [(validate.rules).string.min_len = 1];

@@ -25,16 +25,33 @@ const (
 	Ci_GetCopyContainerRegistryImageTask_FullMethodName       = "/ci.v1.ci/GetCopyContainerRegistryImageTask"
 	Ci_InspectContainerImage_FullMethodName                   = "/ci.v1.ci/InspectContainerImage"
 	Ci_ListContainerImageTags_FullMethodName                  = "/ci.v1.ci/ListContainerImageTags"
+	Ci_ListCodeScanTemplate_FullMethodName                    = "/ci.v1.ci/ListCodeScanTemplate"
+	Ci_GetCodeScanTemplate_FullMethodName                     = "/ci.v1.ci/GetCodeScanTemplate"
+	Ci_DelCodeScanTemplate_FullMethodName                     = "/ci.v1.ci/DelCodeScanTemplate"
+	Ci_ExecCodeScanTask_FullMethodName                        = "/ci.v1.ci/ExecCodeScanTask"
+	Ci_GetCodeScanTask_FullMethodName                         = "/ci.v1.ci/GetCodeScanTask"
+	Ci_ListCodeScanTask_FullMethodName                        = "/ci.v1.ci/ListCodeScanTask"
+	Ci_ListUnitTestTemplate_FullMethodName                    = "/ci.v1.ci/ListUnitTestTemplate"
+	Ci_GetUnitTestTemplate_FullMethodName                     = "/ci.v1.ci/GetUnitTestTemplate"
+	Ci_DelUnitTestTemplate_FullMethodName                     = "/ci.v1.ci/DelUnitTestTemplate"
+	Ci_ExecUnitTestTask_FullMethodName                        = "/ci.v1.ci/ExecUnitTestTask"
+	Ci_GetUnitTestTask_FullMethodName                         = "/ci.v1.ci/GetUnitTestTask"
+	Ci_ListUnitTestTask_FullMethodName                        = "/ci.v1.ci/ListUnitTestTask"
+	Ci_ListBuildProgramTemplate_FullMethodName                = "/ci.v1.ci/ListBuildProgramTemplate"
+	Ci_GetBuildProgramTemplate_FullMethodName                 = "/ci.v1.ci/GetBuildProgramTemplate"
+	Ci_DelBuildProgramTemplate_FullMethodName                 = "/ci.v1.ci/DelBuildProgramTemplate"
+	Ci_ExecBuildProgramTask_FullMethodName                    = "/ci.v1.ci/ExecBuildProgramTask"
+	Ci_GetBuildProgramTask_FullMethodName                     = "/ci.v1.ci/GetBuildProgramTask"
+	Ci_ListBuildProgramTask_FullMethodName                    = "/ci.v1.ci/ListBuildProgramTask"
+	Ci_ListBuildContainerImageTemplate_FullMethodName         = "/ci.v1.ci/ListBuildContainerImageTemplate"
+	Ci_GetBuildContainerImageTemplate_FullMethodName          = "/ci.v1.ci/GetBuildContainerImageTemplate"
+	Ci_DelBuildContainerImageTemplate_FullMethodName          = "/ci.v1.ci/DelBuildContainerImageTemplate"
+	Ci_ExecBuildContainerImageTask_FullMethodName             = "/ci.v1.ci/ExecBuildContainerImageTask"
+	Ci_GetBuildContainerImageTask_FullMethodName              = "/ci.v1.ci/GetBuildContainerImageTask"
+	Ci_ListBuildContainerImageTask_FullMethodName             = "/ci.v1.ci/ListBuildContainerImageTask"
 	Ci_BuildContainerImage_FullMethodName                     = "/ci.v1.ci/BuildContainerImage"
 	Ci_GetBuildContainerImage_FullMethodName                  = "/ci.v1.ci/GetBuildContainerImage"
 	Ci_ListBuildContainerImage_FullMethodName                 = "/ci.v1.ci/ListBuildContainerImage"
-	Ci_ListProgramLanguage_FullMethodName                     = "/ci.v1.ci/ListProgramLanguage"
-	Ci_ScanCodeRepository_FullMethodName                      = "/ci.v1.ci/ScanCodeRepository"
-	Ci_GetScanCodeRepository_FullMethodName                   = "/ci.v1.ci/GetScanCodeRepository"
-	Ci_ListScanCodeRepository_FullMethodName                  = "/ci.v1.ci/ListScanCodeRepository"
-	Ci_UnitTestCodeRepository_FullMethodName                  = "/ci.v1.ci/UnitTestCodeRepository"
-	Ci_GetUnitTestCodeRepository_FullMethodName               = "/ci.v1.ci/GetUnitTestCodeRepository"
-	Ci_ListUnitTestCodeRepository_FullMethodName              = "/ci.v1.ci/ListUnitTestCodeRepository"
 	Ci_UploadLocalFileToSFTP_FullMethodName                   = "/ci.v1.ci/UploadLocalFileToSFTP"
 	Ci_DownloadSFTPFileToLocal_FullMethodName                 = "/ci.v1.ci/DownloadSFTPFileToLocal"
 	Ci_UploadLocalFileToCloudObjectStorage_FullMethodName     = "/ci.v1.ci/UploadLocalFileToCloudObjectStorage"
@@ -69,23 +86,41 @@ type CiClient interface {
 	InspectContainerImage(ctx context.Context, in *InspectContainerImageReq, opts ...grpc.CallOption) (*InspectContainerImageReply, error)
 	// 列出容器镜像仓库 tags
 	ListContainerImageTags(ctx context.Context, in *ListContainerImageTagsReq, opts ...grpc.CallOption) (*ListContainerImageTagsReply, error)
-	// 构建容器镜像
+	// 1. 代码仓库代码扫描 - CI
+	ListCodeScanTemplate(ctx context.Context, in *ListCodeScanTemplateReq, opts ...grpc.CallOption) (*ListCodeScanTemplateReply, error)
+	GetCodeScanTemplate(ctx context.Context, in *GetCodeScanTemplateReq, opts ...grpc.CallOption) (*GetCodeScanTemplateReply, error)
+	DelCodeScanTemplate(ctx context.Context, in *DelCodeScanTemplateReq, opts ...grpc.CallOption) (*DelCodeScanTemplateReply, error)
+	ExecCodeScanTask(ctx context.Context, in *ExecCodeScanTaskReq, opts ...grpc.CallOption) (*ExecCodeScanTaskReply, error)
+	GetCodeScanTask(ctx context.Context, in *GetCodeScanTaskReq, opts ...grpc.CallOption) (*GetCodeScanTaskReply, error)
+	ListCodeScanTask(ctx context.Context, in *ListCodeScanTaskReq, opts ...grpc.CallOption) (*ListCodeScanTaskReply, error)
+	// 2. 代码仓库单元测试 - CI
+	ListUnitTestTemplate(ctx context.Context, in *ListUnitTestTemplateReq, opts ...grpc.CallOption) (*ListUnitTestTemplateReply, error)
+	GetUnitTestTemplate(ctx context.Context, in *GetUnitTestTemplateReq, opts ...grpc.CallOption) (*GetUnitTestTemplateReply, error)
+	DelUnitTestTemplate(ctx context.Context, in *DelUnitTestTemplateReq, opts ...grpc.CallOption) (*DelUnitTestTemplateReply, error)
+	ExecUnitTestTask(ctx context.Context, in *ExecUnitTestTaskReq, opts ...grpc.CallOption) (*ExecUnitTestTaskReply, error)
+	GetUnitTestTask(ctx context.Context, in *GetUnitTestTaskReq, opts ...grpc.CallOption) (*GetUnitTestTaskReply, error)
+	ListUnitTestTask(ctx context.Context, in *ListUnitTestTaskReq, opts ...grpc.CallOption) (*ListUnitTestTaskReply, error)
+	// 3. 构建程序 - CI
+	ListBuildProgramTemplate(ctx context.Context, in *ListBuildProgramTemplateReq, opts ...grpc.CallOption) (*ListBuildProgramTemplateReply, error)
+	GetBuildProgramTemplate(ctx context.Context, in *GetBuildProgramTemplateReq, opts ...grpc.CallOption) (*GetBuildProgramTemplateReply, error)
+	DelBuildProgramTemplate(ctx context.Context, in *DelBuildProgramTemplateReq, opts ...grpc.CallOption) (*DelBuildProgramTemplateReply, error)
+	ExecBuildProgramTask(ctx context.Context, in *ExecBuildProgramTaskReq, opts ...grpc.CallOption) (*ExecBuildProgramTaskReply, error)
+	GetBuildProgramTask(ctx context.Context, in *GetBuildProgramTaskReq, opts ...grpc.CallOption) (*GetBuildProgramTaskReply, error)
+	ListBuildProgramTask(ctx context.Context, in *ListBuildProgramTaskReq, opts ...grpc.CallOption) (*ListBuildProgramTaskReply, error)
+	// 4. 构建容器镜像 - CI - 暂未完成
+	ListBuildContainerImageTemplate(ctx context.Context, in *ListBuildContainerImageTemplateReq, opts ...grpc.CallOption) (*ListBuildContainerImageTemplateReply, error)
+	GetBuildContainerImageTemplate(ctx context.Context, in *GetBuildContainerImageTemplateReq, opts ...grpc.CallOption) (*GetBuildContainerImageTemplateReply, error)
+	DelBuildContainerImageTemplate(ctx context.Context, in *DelBuildContainerImageTemplateReq, opts ...grpc.CallOption) (*DelBuildContainerImageTemplateReply, error)
+	ExecBuildContainerImageTask(ctx context.Context, in *ExecBuildContainerImageTaskReq, opts ...grpc.CallOption) (*ExecBuildContainerImageTaskReply, error)
+	GetBuildContainerImageTask(ctx context.Context, in *GetBuildContainerImageTaskReq, opts ...grpc.CallOption) (*GetBuildContainerImageTaskReply, error)
+	ListBuildContainerImageTask(ctx context.Context, in *ListBuildContainerImageTaskReq, opts ...grpc.CallOption) (*ListBuildContainerImageTaskReply, error)
+	// 4. 构建容器镜像 - CI
 	BuildContainerImage(ctx context.Context, in *BuildContainerImageReq, opts ...grpc.CallOption) (*BuildContainerImageReply, error)
 	// 获取构建容器镜像任务
 	GetBuildContainerImage(ctx context.Context, in *GetBuildContainerImageReq, opts ...grpc.CallOption) (*GetBuildContainerImageReply, error)
 	// 列出构建容器镜像任务
 	ListBuildContainerImage(ctx context.Context, in *ListBuildContainerImageReq, opts ...grpc.CallOption) (*ListBuildContainerImageReply, error)
-	// 代码仓库
-	// 列出程序语言
-	ListProgramLanguage(ctx context.Context, in *ListProgramLanguageReq, opts ...grpc.CallOption) (*ListProgramLanguageReply, error)
-	// 代码仓库代码扫描
-	ScanCodeRepository(ctx context.Context, in *ScanCodeRepositoryReq, opts ...grpc.CallOption) (*ScanCodeRepositoryReply, error)
-	GetScanCodeRepository(ctx context.Context, in *GetScanCodeRepositoryReq, opts ...grpc.CallOption) (*GetScanCodeRepositoryReply, error)
-	ListScanCodeRepository(ctx context.Context, in *ListScanCodeRepositoryReq, opts ...grpc.CallOption) (*ListScanCodeRepositoryReply, error)
-	// 代码仓库单元测试
-	UnitTestCodeRepository(ctx context.Context, in *UnitTestCodeRepositoryReq, opts ...grpc.CallOption) (*UnitTestCodeRepositoryReply, error)
-	GetUnitTestCodeRepository(ctx context.Context, in *GetUnitTestCodeRepositoryReq, opts ...grpc.CallOption) (*GetUnitTestCodeRepositoryReply, error)
-	ListUnitTestCodeRepository(ctx context.Context, in *ListUnitTestCodeRepositoryReq, opts ...grpc.CallOption) (*ListUnitTestCodeRepositoryReply, error)
+	// 5. 程序上传 - CI
 	// 上传本地文件到SFTP服务器
 	UploadLocalFileToSFTP(ctx context.Context, in *UploadLocalFileToSFTPReq, opts ...grpc.CallOption) (*UploadLocalFileToSFTPReply, error)
 	// 下载SFTP服务器文件到本地文件
@@ -98,13 +133,14 @@ type CiClient interface {
 	GetCopySFTPFileHis(ctx context.Context, in *GetCopySFTPFileHisReq, opts ...grpc.CallOption) (*GetCopySFTPFileHisReply, error)
 	// 获取云对象存储操作历史
 	GetCopyCloudObjectStorageHis(ctx context.Context, in *GetCopyCloudObjectStorageHisReq, opts ...grpc.CallOption) (*GetCopyCloudObjectStorageHisReply, error)
-	//
+	// 6. CI 模版
 	CreateCiTemplate(ctx context.Context, in *CreateCiTemplateReq, opts ...grpc.CallOption) (*CreateCiTemplateReply, error)
 	ListCiTemplate(ctx context.Context, in *ListCiTemplateReq, opts ...grpc.CallOption) (*ListCiTemplateReply, error)
 	DelCiTemplate(ctx context.Context, in *DelCiTemplateReq, opts ...grpc.CallOption) (*DelCiTemplateReply, error)
 	AddCiTemplateStep(ctx context.Context, in *AddCiTemplateStepReq, opts ...grpc.CallOption) (*AddCiTemplateStepReply, error)
 	ListCiTemplateStep(ctx context.Context, in *ListCiTemplateStepReq, opts ...grpc.CallOption) (*ListCiTemplateStepReply, error)
 	DelCiTemplateStep(ctx context.Context, in *DelCiTemplateStepReq, opts ...grpc.CallOption) (*DelCiTemplateStepReply, error)
+	// 7. CI 任务
 	// 执行 CI 任务
 	RunCi(ctx context.Context, in *RunCiReq, opts ...grpc.CallOption) (*RunCiReply, error)
 	// 查询执行 CI 任务结果
@@ -175,6 +211,222 @@ func (c *ciClient) ListContainerImageTags(ctx context.Context, in *ListContainer
 	return out, nil
 }
 
+func (c *ciClient) ListCodeScanTemplate(ctx context.Context, in *ListCodeScanTemplateReq, opts ...grpc.CallOption) (*ListCodeScanTemplateReply, error) {
+	out := new(ListCodeScanTemplateReply)
+	err := c.cc.Invoke(ctx, Ci_ListCodeScanTemplate_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *ciClient) GetCodeScanTemplate(ctx context.Context, in *GetCodeScanTemplateReq, opts ...grpc.CallOption) (*GetCodeScanTemplateReply, error) {
+	out := new(GetCodeScanTemplateReply)
+	err := c.cc.Invoke(ctx, Ci_GetCodeScanTemplate_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *ciClient) DelCodeScanTemplate(ctx context.Context, in *DelCodeScanTemplateReq, opts ...grpc.CallOption) (*DelCodeScanTemplateReply, error) {
+	out := new(DelCodeScanTemplateReply)
+	err := c.cc.Invoke(ctx, Ci_DelCodeScanTemplate_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *ciClient) ExecCodeScanTask(ctx context.Context, in *ExecCodeScanTaskReq, opts ...grpc.CallOption) (*ExecCodeScanTaskReply, error) {
+	out := new(ExecCodeScanTaskReply)
+	err := c.cc.Invoke(ctx, Ci_ExecCodeScanTask_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *ciClient) GetCodeScanTask(ctx context.Context, in *GetCodeScanTaskReq, opts ...grpc.CallOption) (*GetCodeScanTaskReply, error) {
+	out := new(GetCodeScanTaskReply)
+	err := c.cc.Invoke(ctx, Ci_GetCodeScanTask_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *ciClient) ListCodeScanTask(ctx context.Context, in *ListCodeScanTaskReq, opts ...grpc.CallOption) (*ListCodeScanTaskReply, error) {
+	out := new(ListCodeScanTaskReply)
+	err := c.cc.Invoke(ctx, Ci_ListCodeScanTask_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *ciClient) ListUnitTestTemplate(ctx context.Context, in *ListUnitTestTemplateReq, opts ...grpc.CallOption) (*ListUnitTestTemplateReply, error) {
+	out := new(ListUnitTestTemplateReply)
+	err := c.cc.Invoke(ctx, Ci_ListUnitTestTemplate_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *ciClient) GetUnitTestTemplate(ctx context.Context, in *GetUnitTestTemplateReq, opts ...grpc.CallOption) (*GetUnitTestTemplateReply, error) {
+	out := new(GetUnitTestTemplateReply)
+	err := c.cc.Invoke(ctx, Ci_GetUnitTestTemplate_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *ciClient) DelUnitTestTemplate(ctx context.Context, in *DelUnitTestTemplateReq, opts ...grpc.CallOption) (*DelUnitTestTemplateReply, error) {
+	out := new(DelUnitTestTemplateReply)
+	err := c.cc.Invoke(ctx, Ci_DelUnitTestTemplate_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *ciClient) ExecUnitTestTask(ctx context.Context, in *ExecUnitTestTaskReq, opts ...grpc.CallOption) (*ExecUnitTestTaskReply, error) {
+	out := new(ExecUnitTestTaskReply)
+	err := c.cc.Invoke(ctx, Ci_ExecUnitTestTask_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *ciClient) GetUnitTestTask(ctx context.Context, in *GetUnitTestTaskReq, opts ...grpc.CallOption) (*GetUnitTestTaskReply, error) {
+	out := new(GetUnitTestTaskReply)
+	err := c.cc.Invoke(ctx, Ci_GetUnitTestTask_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *ciClient) ListUnitTestTask(ctx context.Context, in *ListUnitTestTaskReq, opts ...grpc.CallOption) (*ListUnitTestTaskReply, error) {
+	out := new(ListUnitTestTaskReply)
+	err := c.cc.Invoke(ctx, Ci_ListUnitTestTask_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *ciClient) ListBuildProgramTemplate(ctx context.Context, in *ListBuildProgramTemplateReq, opts ...grpc.CallOption) (*ListBuildProgramTemplateReply, error) {
+	out := new(ListBuildProgramTemplateReply)
+	err := c.cc.Invoke(ctx, Ci_ListBuildProgramTemplate_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *ciClient) GetBuildProgramTemplate(ctx context.Context, in *GetBuildProgramTemplateReq, opts ...grpc.CallOption) (*GetBuildProgramTemplateReply, error) {
+	out := new(GetBuildProgramTemplateReply)
+	err := c.cc.Invoke(ctx, Ci_GetBuildProgramTemplate_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *ciClient) DelBuildProgramTemplate(ctx context.Context, in *DelBuildProgramTemplateReq, opts ...grpc.CallOption) (*DelBuildProgramTemplateReply, error) {
+	out := new(DelBuildProgramTemplateReply)
+	err := c.cc.Invoke(ctx, Ci_DelBuildProgramTemplate_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *ciClient) ExecBuildProgramTask(ctx context.Context, in *ExecBuildProgramTaskReq, opts ...grpc.CallOption) (*ExecBuildProgramTaskReply, error) {
+	out := new(ExecBuildProgramTaskReply)
+	err := c.cc.Invoke(ctx, Ci_ExecBuildProgramTask_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *ciClient) GetBuildProgramTask(ctx context.Context, in *GetBuildProgramTaskReq, opts ...grpc.CallOption) (*GetBuildProgramTaskReply, error) {
+	out := new(GetBuildProgramTaskReply)
+	err := c.cc.Invoke(ctx, Ci_GetBuildProgramTask_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *ciClient) ListBuildProgramTask(ctx context.Context, in *ListBuildProgramTaskReq, opts ...grpc.CallOption) (*ListBuildProgramTaskReply, error) {
+	out := new(ListBuildProgramTaskReply)
+	err := c.cc.Invoke(ctx, Ci_ListBuildProgramTask_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *ciClient) ListBuildContainerImageTemplate(ctx context.Context, in *ListBuildContainerImageTemplateReq, opts ...grpc.CallOption) (*ListBuildContainerImageTemplateReply, error) {
+	out := new(ListBuildContainerImageTemplateReply)
+	err := c.cc.Invoke(ctx, Ci_ListBuildContainerImageTemplate_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *ciClient) GetBuildContainerImageTemplate(ctx context.Context, in *GetBuildContainerImageTemplateReq, opts ...grpc.CallOption) (*GetBuildContainerImageTemplateReply, error) {
+	out := new(GetBuildContainerImageTemplateReply)
+	err := c.cc.Invoke(ctx, Ci_GetBuildContainerImageTemplate_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *ciClient) DelBuildContainerImageTemplate(ctx context.Context, in *DelBuildContainerImageTemplateReq, opts ...grpc.CallOption) (*DelBuildContainerImageTemplateReply, error) {
+	out := new(DelBuildContainerImageTemplateReply)
+	err := c.cc.Invoke(ctx, Ci_DelBuildContainerImageTemplate_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *ciClient) ExecBuildContainerImageTask(ctx context.Context, in *ExecBuildContainerImageTaskReq, opts ...grpc.CallOption) (*ExecBuildContainerImageTaskReply, error) {
+	out := new(ExecBuildContainerImageTaskReply)
+	err := c.cc.Invoke(ctx, Ci_ExecBuildContainerImageTask_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *ciClient) GetBuildContainerImageTask(ctx context.Context, in *GetBuildContainerImageTaskReq, opts ...grpc.CallOption) (*GetBuildContainerImageTaskReply, error) {
+	out := new(GetBuildContainerImageTaskReply)
+	err := c.cc.Invoke(ctx, Ci_GetBuildContainerImageTask_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *ciClient) ListBuildContainerImageTask(ctx context.Context, in *ListBuildContainerImageTaskReq, opts ...grpc.CallOption) (*ListBuildContainerImageTaskReply, error) {
+	out := new(ListBuildContainerImageTaskReply)
+	err := c.cc.Invoke(ctx, Ci_ListBuildContainerImageTask_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *ciClient) BuildContainerImage(ctx context.Context, in *BuildContainerImageReq, opts ...grpc.CallOption) (*BuildContainerImageReply, error) {
 	out := new(BuildContainerImageReply)
 	err := c.cc.Invoke(ctx, Ci_BuildContainerImage_FullMethodName, in, out, opts...)
@@ -196,69 +448,6 @@ func (c *ciClient) GetBuildContainerImage(ctx context.Context, in *GetBuildConta
 func (c *ciClient) ListBuildContainerImage(ctx context.Context, in *ListBuildContainerImageReq, opts ...grpc.CallOption) (*ListBuildContainerImageReply, error) {
 	out := new(ListBuildContainerImageReply)
 	err := c.cc.Invoke(ctx, Ci_ListBuildContainerImage_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *ciClient) ListProgramLanguage(ctx context.Context, in *ListProgramLanguageReq, opts ...grpc.CallOption) (*ListProgramLanguageReply, error) {
-	out := new(ListProgramLanguageReply)
-	err := c.cc.Invoke(ctx, Ci_ListProgramLanguage_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *ciClient) ScanCodeRepository(ctx context.Context, in *ScanCodeRepositoryReq, opts ...grpc.CallOption) (*ScanCodeRepositoryReply, error) {
-	out := new(ScanCodeRepositoryReply)
-	err := c.cc.Invoke(ctx, Ci_ScanCodeRepository_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *ciClient) GetScanCodeRepository(ctx context.Context, in *GetScanCodeRepositoryReq, opts ...grpc.CallOption) (*GetScanCodeRepositoryReply, error) {
-	out := new(GetScanCodeRepositoryReply)
-	err := c.cc.Invoke(ctx, Ci_GetScanCodeRepository_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *ciClient) ListScanCodeRepository(ctx context.Context, in *ListScanCodeRepositoryReq, opts ...grpc.CallOption) (*ListScanCodeRepositoryReply, error) {
-	out := new(ListScanCodeRepositoryReply)
-	err := c.cc.Invoke(ctx, Ci_ListScanCodeRepository_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *ciClient) UnitTestCodeRepository(ctx context.Context, in *UnitTestCodeRepositoryReq, opts ...grpc.CallOption) (*UnitTestCodeRepositoryReply, error) {
-	out := new(UnitTestCodeRepositoryReply)
-	err := c.cc.Invoke(ctx, Ci_UnitTestCodeRepository_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *ciClient) GetUnitTestCodeRepository(ctx context.Context, in *GetUnitTestCodeRepositoryReq, opts ...grpc.CallOption) (*GetUnitTestCodeRepositoryReply, error) {
-	out := new(GetUnitTestCodeRepositoryReply)
-	err := c.cc.Invoke(ctx, Ci_GetUnitTestCodeRepository_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *ciClient) ListUnitTestCodeRepository(ctx context.Context, in *ListUnitTestCodeRepositoryReq, opts ...grpc.CallOption) (*ListUnitTestCodeRepositoryReply, error) {
-	out := new(ListUnitTestCodeRepositoryReply)
-	err := c.cc.Invoke(ctx, Ci_ListUnitTestCodeRepository_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -417,23 +606,41 @@ type CiServer interface {
 	InspectContainerImage(context.Context, *InspectContainerImageReq) (*InspectContainerImageReply, error)
 	// 列出容器镜像仓库 tags
 	ListContainerImageTags(context.Context, *ListContainerImageTagsReq) (*ListContainerImageTagsReply, error)
-	// 构建容器镜像
+	// 1. 代码仓库代码扫描 - CI
+	ListCodeScanTemplate(context.Context, *ListCodeScanTemplateReq) (*ListCodeScanTemplateReply, error)
+	GetCodeScanTemplate(context.Context, *GetCodeScanTemplateReq) (*GetCodeScanTemplateReply, error)
+	DelCodeScanTemplate(context.Context, *DelCodeScanTemplateReq) (*DelCodeScanTemplateReply, error)
+	ExecCodeScanTask(context.Context, *ExecCodeScanTaskReq) (*ExecCodeScanTaskReply, error)
+	GetCodeScanTask(context.Context, *GetCodeScanTaskReq) (*GetCodeScanTaskReply, error)
+	ListCodeScanTask(context.Context, *ListCodeScanTaskReq) (*ListCodeScanTaskReply, error)
+	// 2. 代码仓库单元测试 - CI
+	ListUnitTestTemplate(context.Context, *ListUnitTestTemplateReq) (*ListUnitTestTemplateReply, error)
+	GetUnitTestTemplate(context.Context, *GetUnitTestTemplateReq) (*GetUnitTestTemplateReply, error)
+	DelUnitTestTemplate(context.Context, *DelUnitTestTemplateReq) (*DelUnitTestTemplateReply, error)
+	ExecUnitTestTask(context.Context, *ExecUnitTestTaskReq) (*ExecUnitTestTaskReply, error)
+	GetUnitTestTask(context.Context, *GetUnitTestTaskReq) (*GetUnitTestTaskReply, error)
+	ListUnitTestTask(context.Context, *ListUnitTestTaskReq) (*ListUnitTestTaskReply, error)
+	// 3. 构建程序 - CI
+	ListBuildProgramTemplate(context.Context, *ListBuildProgramTemplateReq) (*ListBuildProgramTemplateReply, error)
+	GetBuildProgramTemplate(context.Context, *GetBuildProgramTemplateReq) (*GetBuildProgramTemplateReply, error)
+	DelBuildProgramTemplate(context.Context, *DelBuildProgramTemplateReq) (*DelBuildProgramTemplateReply, error)
+	ExecBuildProgramTask(context.Context, *ExecBuildProgramTaskReq) (*ExecBuildProgramTaskReply, error)
+	GetBuildProgramTask(context.Context, *GetBuildProgramTaskReq) (*GetBuildProgramTaskReply, error)
+	ListBuildProgramTask(context.Context, *ListBuildProgramTaskReq) (*ListBuildProgramTaskReply, error)
+	// 4. 构建容器镜像 - CI - 暂未完成
+	ListBuildContainerImageTemplate(context.Context, *ListBuildContainerImageTemplateReq) (*ListBuildContainerImageTemplateReply, error)
+	GetBuildContainerImageTemplate(context.Context, *GetBuildContainerImageTemplateReq) (*GetBuildContainerImageTemplateReply, error)
+	DelBuildContainerImageTemplate(context.Context, *DelBuildContainerImageTemplateReq) (*DelBuildContainerImageTemplateReply, error)
+	ExecBuildContainerImageTask(context.Context, *ExecBuildContainerImageTaskReq) (*ExecBuildContainerImageTaskReply, error)
+	GetBuildContainerImageTask(context.Context, *GetBuildContainerImageTaskReq) (*GetBuildContainerImageTaskReply, error)
+	ListBuildContainerImageTask(context.Context, *ListBuildContainerImageTaskReq) (*ListBuildContainerImageTaskReply, error)
+	// 4. 构建容器镜像 - CI
 	BuildContainerImage(context.Context, *BuildContainerImageReq) (*BuildContainerImageReply, error)
 	// 获取构建容器镜像任务
 	GetBuildContainerImage(context.Context, *GetBuildContainerImageReq) (*GetBuildContainerImageReply, error)
 	// 列出构建容器镜像任务
 	ListBuildContainerImage(context.Context, *ListBuildContainerImageReq) (*ListBuildContainerImageReply, error)
-	// 代码仓库
-	// 列出程序语言
-	ListProgramLanguage(context.Context, *ListProgramLanguageReq) (*ListProgramLanguageReply, error)
-	// 代码仓库代码扫描
-	ScanCodeRepository(context.Context, *ScanCodeRepositoryReq) (*ScanCodeRepositoryReply, error)
-	GetScanCodeRepository(context.Context, *GetScanCodeRepositoryReq) (*GetScanCodeRepositoryReply, error)
-	ListScanCodeRepository(context.Context, *ListScanCodeRepositoryReq) (*ListScanCodeRepositoryReply, error)
-	// 代码仓库单元测试
-	UnitTestCodeRepository(context.Context, *UnitTestCodeRepositoryReq) (*UnitTestCodeRepositoryReply, error)
-	GetUnitTestCodeRepository(context.Context, *GetUnitTestCodeRepositoryReq) (*GetUnitTestCodeRepositoryReply, error)
-	ListUnitTestCodeRepository(context.Context, *ListUnitTestCodeRepositoryReq) (*ListUnitTestCodeRepositoryReply, error)
+	// 5. 程序上传 - CI
 	// 上传本地文件到SFTP服务器
 	UploadLocalFileToSFTP(context.Context, *UploadLocalFileToSFTPReq) (*UploadLocalFileToSFTPReply, error)
 	// 下载SFTP服务器文件到本地文件
@@ -446,13 +653,14 @@ type CiServer interface {
 	GetCopySFTPFileHis(context.Context, *GetCopySFTPFileHisReq) (*GetCopySFTPFileHisReply, error)
 	// 获取云对象存储操作历史
 	GetCopyCloudObjectStorageHis(context.Context, *GetCopyCloudObjectStorageHisReq) (*GetCopyCloudObjectStorageHisReply, error)
-	//
+	// 6. CI 模版
 	CreateCiTemplate(context.Context, *CreateCiTemplateReq) (*CreateCiTemplateReply, error)
 	ListCiTemplate(context.Context, *ListCiTemplateReq) (*ListCiTemplateReply, error)
 	DelCiTemplate(context.Context, *DelCiTemplateReq) (*DelCiTemplateReply, error)
 	AddCiTemplateStep(context.Context, *AddCiTemplateStepReq) (*AddCiTemplateStepReply, error)
 	ListCiTemplateStep(context.Context, *ListCiTemplateStepReq) (*ListCiTemplateStepReply, error)
 	DelCiTemplateStep(context.Context, *DelCiTemplateStepReq) (*DelCiTemplateStepReply, error)
+	// 7. CI 任务
 	// 执行 CI 任务
 	RunCi(context.Context, *RunCiReq) (*RunCiReply, error)
 	// 查询执行 CI 任务结果
@@ -484,6 +692,78 @@ func (UnimplementedCiServer) InspectContainerImage(context.Context, *InspectCont
 func (UnimplementedCiServer) ListContainerImageTags(context.Context, *ListContainerImageTagsReq) (*ListContainerImageTagsReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListContainerImageTags not implemented")
 }
+func (UnimplementedCiServer) ListCodeScanTemplate(context.Context, *ListCodeScanTemplateReq) (*ListCodeScanTemplateReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListCodeScanTemplate not implemented")
+}
+func (UnimplementedCiServer) GetCodeScanTemplate(context.Context, *GetCodeScanTemplateReq) (*GetCodeScanTemplateReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCodeScanTemplate not implemented")
+}
+func (UnimplementedCiServer) DelCodeScanTemplate(context.Context, *DelCodeScanTemplateReq) (*DelCodeScanTemplateReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DelCodeScanTemplate not implemented")
+}
+func (UnimplementedCiServer) ExecCodeScanTask(context.Context, *ExecCodeScanTaskReq) (*ExecCodeScanTaskReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ExecCodeScanTask not implemented")
+}
+func (UnimplementedCiServer) GetCodeScanTask(context.Context, *GetCodeScanTaskReq) (*GetCodeScanTaskReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCodeScanTask not implemented")
+}
+func (UnimplementedCiServer) ListCodeScanTask(context.Context, *ListCodeScanTaskReq) (*ListCodeScanTaskReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListCodeScanTask not implemented")
+}
+func (UnimplementedCiServer) ListUnitTestTemplate(context.Context, *ListUnitTestTemplateReq) (*ListUnitTestTemplateReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListUnitTestTemplate not implemented")
+}
+func (UnimplementedCiServer) GetUnitTestTemplate(context.Context, *GetUnitTestTemplateReq) (*GetUnitTestTemplateReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUnitTestTemplate not implemented")
+}
+func (UnimplementedCiServer) DelUnitTestTemplate(context.Context, *DelUnitTestTemplateReq) (*DelUnitTestTemplateReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DelUnitTestTemplate not implemented")
+}
+func (UnimplementedCiServer) ExecUnitTestTask(context.Context, *ExecUnitTestTaskReq) (*ExecUnitTestTaskReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ExecUnitTestTask not implemented")
+}
+func (UnimplementedCiServer) GetUnitTestTask(context.Context, *GetUnitTestTaskReq) (*GetUnitTestTaskReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUnitTestTask not implemented")
+}
+func (UnimplementedCiServer) ListUnitTestTask(context.Context, *ListUnitTestTaskReq) (*ListUnitTestTaskReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListUnitTestTask not implemented")
+}
+func (UnimplementedCiServer) ListBuildProgramTemplate(context.Context, *ListBuildProgramTemplateReq) (*ListBuildProgramTemplateReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListBuildProgramTemplate not implemented")
+}
+func (UnimplementedCiServer) GetBuildProgramTemplate(context.Context, *GetBuildProgramTemplateReq) (*GetBuildProgramTemplateReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetBuildProgramTemplate not implemented")
+}
+func (UnimplementedCiServer) DelBuildProgramTemplate(context.Context, *DelBuildProgramTemplateReq) (*DelBuildProgramTemplateReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DelBuildProgramTemplate not implemented")
+}
+func (UnimplementedCiServer) ExecBuildProgramTask(context.Context, *ExecBuildProgramTaskReq) (*ExecBuildProgramTaskReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ExecBuildProgramTask not implemented")
+}
+func (UnimplementedCiServer) GetBuildProgramTask(context.Context, *GetBuildProgramTaskReq) (*GetBuildProgramTaskReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetBuildProgramTask not implemented")
+}
+func (UnimplementedCiServer) ListBuildProgramTask(context.Context, *ListBuildProgramTaskReq) (*ListBuildProgramTaskReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListBuildProgramTask not implemented")
+}
+func (UnimplementedCiServer) ListBuildContainerImageTemplate(context.Context, *ListBuildContainerImageTemplateReq) (*ListBuildContainerImageTemplateReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListBuildContainerImageTemplate not implemented")
+}
+func (UnimplementedCiServer) GetBuildContainerImageTemplate(context.Context, *GetBuildContainerImageTemplateReq) (*GetBuildContainerImageTemplateReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetBuildContainerImageTemplate not implemented")
+}
+func (UnimplementedCiServer) DelBuildContainerImageTemplate(context.Context, *DelBuildContainerImageTemplateReq) (*DelBuildContainerImageTemplateReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DelBuildContainerImageTemplate not implemented")
+}
+func (UnimplementedCiServer) ExecBuildContainerImageTask(context.Context, *ExecBuildContainerImageTaskReq) (*ExecBuildContainerImageTaskReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ExecBuildContainerImageTask not implemented")
+}
+func (UnimplementedCiServer) GetBuildContainerImageTask(context.Context, *GetBuildContainerImageTaskReq) (*GetBuildContainerImageTaskReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetBuildContainerImageTask not implemented")
+}
+func (UnimplementedCiServer) ListBuildContainerImageTask(context.Context, *ListBuildContainerImageTaskReq) (*ListBuildContainerImageTaskReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListBuildContainerImageTask not implemented")
+}
 func (UnimplementedCiServer) BuildContainerImage(context.Context, *BuildContainerImageReq) (*BuildContainerImageReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BuildContainerImage not implemented")
 }
@@ -492,27 +772,6 @@ func (UnimplementedCiServer) GetBuildContainerImage(context.Context, *GetBuildCo
 }
 func (UnimplementedCiServer) ListBuildContainerImage(context.Context, *ListBuildContainerImageReq) (*ListBuildContainerImageReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListBuildContainerImage not implemented")
-}
-func (UnimplementedCiServer) ListProgramLanguage(context.Context, *ListProgramLanguageReq) (*ListProgramLanguageReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListProgramLanguage not implemented")
-}
-func (UnimplementedCiServer) ScanCodeRepository(context.Context, *ScanCodeRepositoryReq) (*ScanCodeRepositoryReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ScanCodeRepository not implemented")
-}
-func (UnimplementedCiServer) GetScanCodeRepository(context.Context, *GetScanCodeRepositoryReq) (*GetScanCodeRepositoryReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetScanCodeRepository not implemented")
-}
-func (UnimplementedCiServer) ListScanCodeRepository(context.Context, *ListScanCodeRepositoryReq) (*ListScanCodeRepositoryReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListScanCodeRepository not implemented")
-}
-func (UnimplementedCiServer) UnitTestCodeRepository(context.Context, *UnitTestCodeRepositoryReq) (*UnitTestCodeRepositoryReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UnitTestCodeRepository not implemented")
-}
-func (UnimplementedCiServer) GetUnitTestCodeRepository(context.Context, *GetUnitTestCodeRepositoryReq) (*GetUnitTestCodeRepositoryReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetUnitTestCodeRepository not implemented")
-}
-func (UnimplementedCiServer) ListUnitTestCodeRepository(context.Context, *ListUnitTestCodeRepositoryReq) (*ListUnitTestCodeRepositoryReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListUnitTestCodeRepository not implemented")
 }
 func (UnimplementedCiServer) UploadLocalFileToSFTP(context.Context, *UploadLocalFileToSFTPReq) (*UploadLocalFileToSFTPReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UploadLocalFileToSFTP not implemented")
@@ -680,6 +939,438 @@ func _Ci_ListContainerImageTags_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Ci_ListCodeScanTemplate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListCodeScanTemplateReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CiServer).ListCodeScanTemplate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Ci_ListCodeScanTemplate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CiServer).ListCodeScanTemplate(ctx, req.(*ListCodeScanTemplateReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Ci_GetCodeScanTemplate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCodeScanTemplateReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CiServer).GetCodeScanTemplate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Ci_GetCodeScanTemplate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CiServer).GetCodeScanTemplate(ctx, req.(*GetCodeScanTemplateReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Ci_DelCodeScanTemplate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DelCodeScanTemplateReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CiServer).DelCodeScanTemplate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Ci_DelCodeScanTemplate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CiServer).DelCodeScanTemplate(ctx, req.(*DelCodeScanTemplateReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Ci_ExecCodeScanTask_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ExecCodeScanTaskReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CiServer).ExecCodeScanTask(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Ci_ExecCodeScanTask_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CiServer).ExecCodeScanTask(ctx, req.(*ExecCodeScanTaskReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Ci_GetCodeScanTask_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCodeScanTaskReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CiServer).GetCodeScanTask(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Ci_GetCodeScanTask_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CiServer).GetCodeScanTask(ctx, req.(*GetCodeScanTaskReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Ci_ListCodeScanTask_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListCodeScanTaskReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CiServer).ListCodeScanTask(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Ci_ListCodeScanTask_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CiServer).ListCodeScanTask(ctx, req.(*ListCodeScanTaskReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Ci_ListUnitTestTemplate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListUnitTestTemplateReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CiServer).ListUnitTestTemplate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Ci_ListUnitTestTemplate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CiServer).ListUnitTestTemplate(ctx, req.(*ListUnitTestTemplateReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Ci_GetUnitTestTemplate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUnitTestTemplateReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CiServer).GetUnitTestTemplate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Ci_GetUnitTestTemplate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CiServer).GetUnitTestTemplate(ctx, req.(*GetUnitTestTemplateReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Ci_DelUnitTestTemplate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DelUnitTestTemplateReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CiServer).DelUnitTestTemplate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Ci_DelUnitTestTemplate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CiServer).DelUnitTestTemplate(ctx, req.(*DelUnitTestTemplateReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Ci_ExecUnitTestTask_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ExecUnitTestTaskReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CiServer).ExecUnitTestTask(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Ci_ExecUnitTestTask_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CiServer).ExecUnitTestTask(ctx, req.(*ExecUnitTestTaskReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Ci_GetUnitTestTask_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUnitTestTaskReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CiServer).GetUnitTestTask(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Ci_GetUnitTestTask_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CiServer).GetUnitTestTask(ctx, req.(*GetUnitTestTaskReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Ci_ListUnitTestTask_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListUnitTestTaskReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CiServer).ListUnitTestTask(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Ci_ListUnitTestTask_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CiServer).ListUnitTestTask(ctx, req.(*ListUnitTestTaskReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Ci_ListBuildProgramTemplate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListBuildProgramTemplateReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CiServer).ListBuildProgramTemplate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Ci_ListBuildProgramTemplate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CiServer).ListBuildProgramTemplate(ctx, req.(*ListBuildProgramTemplateReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Ci_GetBuildProgramTemplate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetBuildProgramTemplateReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CiServer).GetBuildProgramTemplate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Ci_GetBuildProgramTemplate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CiServer).GetBuildProgramTemplate(ctx, req.(*GetBuildProgramTemplateReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Ci_DelBuildProgramTemplate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DelBuildProgramTemplateReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CiServer).DelBuildProgramTemplate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Ci_DelBuildProgramTemplate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CiServer).DelBuildProgramTemplate(ctx, req.(*DelBuildProgramTemplateReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Ci_ExecBuildProgramTask_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ExecBuildProgramTaskReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CiServer).ExecBuildProgramTask(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Ci_ExecBuildProgramTask_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CiServer).ExecBuildProgramTask(ctx, req.(*ExecBuildProgramTaskReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Ci_GetBuildProgramTask_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetBuildProgramTaskReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CiServer).GetBuildProgramTask(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Ci_GetBuildProgramTask_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CiServer).GetBuildProgramTask(ctx, req.(*GetBuildProgramTaskReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Ci_ListBuildProgramTask_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListBuildProgramTaskReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CiServer).ListBuildProgramTask(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Ci_ListBuildProgramTask_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CiServer).ListBuildProgramTask(ctx, req.(*ListBuildProgramTaskReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Ci_ListBuildContainerImageTemplate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListBuildContainerImageTemplateReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CiServer).ListBuildContainerImageTemplate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Ci_ListBuildContainerImageTemplate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CiServer).ListBuildContainerImageTemplate(ctx, req.(*ListBuildContainerImageTemplateReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Ci_GetBuildContainerImageTemplate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetBuildContainerImageTemplateReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CiServer).GetBuildContainerImageTemplate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Ci_GetBuildContainerImageTemplate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CiServer).GetBuildContainerImageTemplate(ctx, req.(*GetBuildContainerImageTemplateReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Ci_DelBuildContainerImageTemplate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DelBuildContainerImageTemplateReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CiServer).DelBuildContainerImageTemplate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Ci_DelBuildContainerImageTemplate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CiServer).DelBuildContainerImageTemplate(ctx, req.(*DelBuildContainerImageTemplateReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Ci_ExecBuildContainerImageTask_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ExecBuildContainerImageTaskReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CiServer).ExecBuildContainerImageTask(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Ci_ExecBuildContainerImageTask_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CiServer).ExecBuildContainerImageTask(ctx, req.(*ExecBuildContainerImageTaskReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Ci_GetBuildContainerImageTask_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetBuildContainerImageTaskReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CiServer).GetBuildContainerImageTask(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Ci_GetBuildContainerImageTask_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CiServer).GetBuildContainerImageTask(ctx, req.(*GetBuildContainerImageTaskReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Ci_ListBuildContainerImageTask_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListBuildContainerImageTaskReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CiServer).ListBuildContainerImageTask(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Ci_ListBuildContainerImageTask_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CiServer).ListBuildContainerImageTask(ctx, req.(*ListBuildContainerImageTaskReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Ci_BuildContainerImage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(BuildContainerImageReq)
 	if err := dec(in); err != nil {
@@ -730,132 +1421,6 @@ func _Ci_ListBuildContainerImage_Handler(srv interface{}, ctx context.Context, d
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(CiServer).ListBuildContainerImage(ctx, req.(*ListBuildContainerImageReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Ci_ListProgramLanguage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListProgramLanguageReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CiServer).ListProgramLanguage(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Ci_ListProgramLanguage_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CiServer).ListProgramLanguage(ctx, req.(*ListProgramLanguageReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Ci_ScanCodeRepository_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ScanCodeRepositoryReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CiServer).ScanCodeRepository(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Ci_ScanCodeRepository_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CiServer).ScanCodeRepository(ctx, req.(*ScanCodeRepositoryReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Ci_GetScanCodeRepository_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetScanCodeRepositoryReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CiServer).GetScanCodeRepository(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Ci_GetScanCodeRepository_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CiServer).GetScanCodeRepository(ctx, req.(*GetScanCodeRepositoryReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Ci_ListScanCodeRepository_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListScanCodeRepositoryReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CiServer).ListScanCodeRepository(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Ci_ListScanCodeRepository_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CiServer).ListScanCodeRepository(ctx, req.(*ListScanCodeRepositoryReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Ci_UnitTestCodeRepository_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UnitTestCodeRepositoryReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CiServer).UnitTestCodeRepository(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Ci_UnitTestCodeRepository_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CiServer).UnitTestCodeRepository(ctx, req.(*UnitTestCodeRepositoryReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Ci_GetUnitTestCodeRepository_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetUnitTestCodeRepositoryReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CiServer).GetUnitTestCodeRepository(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Ci_GetUnitTestCodeRepository_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CiServer).GetUnitTestCodeRepository(ctx, req.(*GetUnitTestCodeRepositoryReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Ci_ListUnitTestCodeRepository_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListUnitTestCodeRepositoryReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CiServer).ListUnitTestCodeRepository(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Ci_ListUnitTestCodeRepository_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CiServer).ListUnitTestCodeRepository(ctx, req.(*ListUnitTestCodeRepositoryReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1162,6 +1727,102 @@ var Ci_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Ci_ListContainerImageTags_Handler,
 		},
 		{
+			MethodName: "ListCodeScanTemplate",
+			Handler:    _Ci_ListCodeScanTemplate_Handler,
+		},
+		{
+			MethodName: "GetCodeScanTemplate",
+			Handler:    _Ci_GetCodeScanTemplate_Handler,
+		},
+		{
+			MethodName: "DelCodeScanTemplate",
+			Handler:    _Ci_DelCodeScanTemplate_Handler,
+		},
+		{
+			MethodName: "ExecCodeScanTask",
+			Handler:    _Ci_ExecCodeScanTask_Handler,
+		},
+		{
+			MethodName: "GetCodeScanTask",
+			Handler:    _Ci_GetCodeScanTask_Handler,
+		},
+		{
+			MethodName: "ListCodeScanTask",
+			Handler:    _Ci_ListCodeScanTask_Handler,
+		},
+		{
+			MethodName: "ListUnitTestTemplate",
+			Handler:    _Ci_ListUnitTestTemplate_Handler,
+		},
+		{
+			MethodName: "GetUnitTestTemplate",
+			Handler:    _Ci_GetUnitTestTemplate_Handler,
+		},
+		{
+			MethodName: "DelUnitTestTemplate",
+			Handler:    _Ci_DelUnitTestTemplate_Handler,
+		},
+		{
+			MethodName: "ExecUnitTestTask",
+			Handler:    _Ci_ExecUnitTestTask_Handler,
+		},
+		{
+			MethodName: "GetUnitTestTask",
+			Handler:    _Ci_GetUnitTestTask_Handler,
+		},
+		{
+			MethodName: "ListUnitTestTask",
+			Handler:    _Ci_ListUnitTestTask_Handler,
+		},
+		{
+			MethodName: "ListBuildProgramTemplate",
+			Handler:    _Ci_ListBuildProgramTemplate_Handler,
+		},
+		{
+			MethodName: "GetBuildProgramTemplate",
+			Handler:    _Ci_GetBuildProgramTemplate_Handler,
+		},
+		{
+			MethodName: "DelBuildProgramTemplate",
+			Handler:    _Ci_DelBuildProgramTemplate_Handler,
+		},
+		{
+			MethodName: "ExecBuildProgramTask",
+			Handler:    _Ci_ExecBuildProgramTask_Handler,
+		},
+		{
+			MethodName: "GetBuildProgramTask",
+			Handler:    _Ci_GetBuildProgramTask_Handler,
+		},
+		{
+			MethodName: "ListBuildProgramTask",
+			Handler:    _Ci_ListBuildProgramTask_Handler,
+		},
+		{
+			MethodName: "ListBuildContainerImageTemplate",
+			Handler:    _Ci_ListBuildContainerImageTemplate_Handler,
+		},
+		{
+			MethodName: "GetBuildContainerImageTemplate",
+			Handler:    _Ci_GetBuildContainerImageTemplate_Handler,
+		},
+		{
+			MethodName: "DelBuildContainerImageTemplate",
+			Handler:    _Ci_DelBuildContainerImageTemplate_Handler,
+		},
+		{
+			MethodName: "ExecBuildContainerImageTask",
+			Handler:    _Ci_ExecBuildContainerImageTask_Handler,
+		},
+		{
+			MethodName: "GetBuildContainerImageTask",
+			Handler:    _Ci_GetBuildContainerImageTask_Handler,
+		},
+		{
+			MethodName: "ListBuildContainerImageTask",
+			Handler:    _Ci_ListBuildContainerImageTask_Handler,
+		},
+		{
 			MethodName: "BuildContainerImage",
 			Handler:    _Ci_BuildContainerImage_Handler,
 		},
@@ -1172,34 +1833,6 @@ var Ci_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListBuildContainerImage",
 			Handler:    _Ci_ListBuildContainerImage_Handler,
-		},
-		{
-			MethodName: "ListProgramLanguage",
-			Handler:    _Ci_ListProgramLanguage_Handler,
-		},
-		{
-			MethodName: "ScanCodeRepository",
-			Handler:    _Ci_ScanCodeRepository_Handler,
-		},
-		{
-			MethodName: "GetScanCodeRepository",
-			Handler:    _Ci_GetScanCodeRepository_Handler,
-		},
-		{
-			MethodName: "ListScanCodeRepository",
-			Handler:    _Ci_ListScanCodeRepository_Handler,
-		},
-		{
-			MethodName: "UnitTestCodeRepository",
-			Handler:    _Ci_UnitTestCodeRepository_Handler,
-		},
-		{
-			MethodName: "GetUnitTestCodeRepository",
-			Handler:    _Ci_GetUnitTestCodeRepository_Handler,
-		},
-		{
-			MethodName: "ListUnitTestCodeRepository",
-			Handler:    _Ci_ListUnitTestCodeRepository_Handler,
 		},
 		{
 			MethodName: "UploadLocalFileToSFTP",
