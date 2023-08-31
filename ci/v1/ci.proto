@@ -29,6 +29,8 @@ service ci {
   rpc GetCodeScanTemplate (GetCodeScanTemplateReq) returns (GetCodeScanTemplateReply) {};
   rpc DelCodeScanTemplate (DelCodeScanTemplateReq) returns (DelCodeScanTemplateReply) {};
 
+  rpc CreateCodeScanPrivateTemplate (CreateCodeScanPrivateTemplateReq) returns (CreateCodeScanPrivateTemplateReply) {};
+
   rpc ExecCodeScanTask (ExecCodeScanTaskReq) returns (ExecCodeScanTaskReply) {};
   rpc GetCodeScanTask (GetCodeScanTaskReq) returns (GetCodeScanTaskReply) {};
   rpc ListCodeScanTask (ListCodeScanTaskReq) returns (ListCodeScanTaskReply) {};
@@ -38,6 +40,8 @@ service ci {
   rpc ListUnitTestTemplate (ListUnitTestTemplateReq) returns (ListUnitTestTemplateReply) {};
   rpc GetUnitTestTemplate (GetUnitTestTemplateReq) returns (GetUnitTestTemplateReply) {};
   rpc DelUnitTestTemplate (DelUnitTestTemplateReq) returns (DelUnitTestTemplateReply) {};
+
+  rpc CreateUnitTestPrivateTemplate (CreateUnitTestPrivateTemplateReq) returns (CreateUnitTestPrivateTemplateReply) {};
 
   rpc ExecUnitTestTask (ExecUnitTestTaskReq) returns (ExecUnitTestTaskReply) {};
   rpc GetUnitTestTask (GetUnitTestTaskReq) returns (GetUnitTestTaskReply) {};
@@ -49,6 +53,8 @@ service ci {
   rpc GetBuildProgramTemplate (GetBuildProgramTemplateReq) returns (GetBuildProgramTemplateReply) {};
   rpc DelBuildProgramTemplate (DelBuildProgramTemplateReq) returns (DelBuildProgramTemplateReply) {};
 
+  rpc CreateBuildProgramPrivateTemplate (CreateBuildProgramPrivateTemplateReq) returns (CreateBuildProgramPrivateTemplateReply) {};
+
   rpc ExecBuildProgramTask (ExecBuildProgramTaskReq) returns (ExecBuildProgramTaskReply) {};
   rpc GetBuildProgramTask (GetBuildProgramTaskReq) returns (GetBuildProgramTaskReply) {};
   rpc ListBuildProgramTask (ListBuildProgramTaskReq) returns (ListBuildProgramTaskReply) {};
@@ -57,6 +63,8 @@ service ci {
   rpc ListBuildContainerImageTemplate (ListBuildContainerImageTemplateReq) returns (ListBuildContainerImageTemplateReply) {};
   rpc GetBuildContainerImageTemplate (GetBuildContainerImageTemplateReq) returns (GetBuildContainerImageTemplateReply) {};
   rpc DelBuildContainerImageTemplate (DelBuildContainerImageTemplateReq) returns (DelBuildContainerImageTemplateReply) {};
+
+  rpc CreateBuildContainerImageTemplate (CreateBuildContainerImageTemplateReq) returns (CreateBuildContainerImageTemplateReply) {};
 
   rpc ExecBuildContainerImageTask (ExecBuildContainerImageTaskReq) returns (ExecBuildContainerImageTaskReply) {};
   rpc GetBuildContainerImageTask (GetBuildContainerImageTaskReq) returns (GetBuildContainerImageTaskReply) {};
@@ -202,6 +210,14 @@ message ListContainerImageTagsReply {
 
 
 // 1. *************** 代码扫描 ******************
+// 创建代码扫描私有模版
+message CreateCodeScanPrivateTemplateReq {
+  string command = 1 [(validate.rules).string.min_len = 1];
+  string describe = 2 [(validate.rules).string.min_len = 1];
+}
+message CreateCodeScanPrivateTemplateReply {
+  bool result = 1;
+}
 // 列出代码扫描模版
 message ListCodeScanTemplateReq {
   string userUuid = 1 [(validate.rules).string.min_len = 1];
@@ -325,6 +341,14 @@ message ListCodeScanTaskReply {
 }
 
 // 2. ******************* 单元测试 *******************
+// 创建单元测试模版
+message CreateUnitTestPrivateTemplateReq {
+  string command = 1 [(validate.rules).string.min_len = 1];
+  string describe = 2 [(validate.rules).string.min_len = 1];
+}
+message CreateUnitTestPrivateTemplateReply {
+  bool result = 1;
+}
 // 列出单元测试模版
 message ListUnitTestTemplateReq {
   string userUuid = 1 [(validate.rules).string.min_len = 1];
@@ -449,6 +473,14 @@ message ListUnitTestTaskReply {
 
 
 // 3. *********************** 构建程序 **************************
+// 创建构建程序模版
+message CreateBuildProgramPrivateTemplateReq {
+  string command = 1 [(validate.rules).string.min_len = 1];
+  string describe = 2 [(validate.rules).string.min_len = 1];
+}
+message CreateBuildProgramPrivateTemplateReply {
+  bool result = 1;
+}
 // 列出构建程序模版
 message ListBuildProgramTemplateReq {
   string userUuid = 1 [(validate.rules).string.min_len = 1];
@@ -572,6 +604,16 @@ message ListBuildProgramTaskReply {
 }
 
 // 4. ************************** 构建容器镜像 ******************************
+//
+message CreateBuildContainerImageTemplateReq {
+    string containerImageRegisterUuid = 1;
+    string namespace = 2;
+    string dockerFilePath = 3;
+    string describe = 4;
+}
+message CreateBuildContainerImageTemplateReply {
+  bool result = 1;
+}
 // 列出构建容器镜像模版 - 无公共模版
 message ListBuildContainerImageTemplateReq {
   string userUuid = 1 [(validate.rules).string.min_len = 1];
@@ -579,7 +621,17 @@ message ListBuildContainerImageTemplateReq {
   string productUuid = 3 [(validate.rules).string.min_len = 1];
 }
 message ListBuildContainerImageTemplateReply {
-
+  repeated Template templates = 1;
+  message Template {
+    string uuid = 1;
+    string orgUuid = 2;
+    string productUuid = 3;
+    string containerImageRegisterUuid = 4;
+    string namespace = 5;
+    string dockerFilePath = 6;
+    string describe = 7;
+    int64 createTime = 8;
+  }
 }
 // 获取构建容器镜像模版
 message GetBuildContainerImageTemplateReq {
@@ -588,9 +640,15 @@ message GetBuildContainerImageTemplateReq {
   string productUuid = 3 [(validate.rules).string.min_len = 1];
   string templateUuid = 4 [(validate.rules).string.min_len = 1];
 }
-
 message GetBuildContainerImageTemplateReply {
-
+  string uuid = 1;
+  string orgUuid = 2;
+  string productUuid = 3;
+  string containerImageRegisterUuid = 4;
+  string namespace = 5;
+  string dockerFilePath = 6;
+  string describe = 7;
+  int64 createTime = 8;
 }
 // 删除构建容器镜像模版
 message DelBuildContainerImageTemplateReq {
@@ -600,7 +658,7 @@ message DelBuildContainerImageTemplateReq {
   string templateUuid = 4 [(validate.rules).string.min_len = 1];
 }
 message DelBuildContainerImageTemplateReply {
-
+  bool result = 1;
 }
 // 执行构建容器镜像任务
 message ExecBuildContainerImageTaskReq {
@@ -614,7 +672,7 @@ message ExecBuildContainerImageTaskReq {
   string branch = 9 [(validate.rules).string.min_len = 1];
 }
 message ExecBuildContainerImageTaskReply {
-
+  string taskId = 1;
 }
 // 获取构建容器镜像任务
 message GetBuildContainerImageTaskReq {

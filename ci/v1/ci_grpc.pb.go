@@ -28,24 +28,28 @@ const (
 	Ci_ListCodeScanTemplate_FullMethodName                    = "/ci.v1.ci/ListCodeScanTemplate"
 	Ci_GetCodeScanTemplate_FullMethodName                     = "/ci.v1.ci/GetCodeScanTemplate"
 	Ci_DelCodeScanTemplate_FullMethodName                     = "/ci.v1.ci/DelCodeScanTemplate"
+	Ci_CreateCodeScanPrivateTemplate_FullMethodName           = "/ci.v1.ci/CreateCodeScanPrivateTemplate"
 	Ci_ExecCodeScanTask_FullMethodName                        = "/ci.v1.ci/ExecCodeScanTask"
 	Ci_GetCodeScanTask_FullMethodName                         = "/ci.v1.ci/GetCodeScanTask"
 	Ci_ListCodeScanTask_FullMethodName                        = "/ci.v1.ci/ListCodeScanTask"
 	Ci_ListUnitTestTemplate_FullMethodName                    = "/ci.v1.ci/ListUnitTestTemplate"
 	Ci_GetUnitTestTemplate_FullMethodName                     = "/ci.v1.ci/GetUnitTestTemplate"
 	Ci_DelUnitTestTemplate_FullMethodName                     = "/ci.v1.ci/DelUnitTestTemplate"
+	Ci_CreateUnitTestPrivateTemplate_FullMethodName           = "/ci.v1.ci/CreateUnitTestPrivateTemplate"
 	Ci_ExecUnitTestTask_FullMethodName                        = "/ci.v1.ci/ExecUnitTestTask"
 	Ci_GetUnitTestTask_FullMethodName                         = "/ci.v1.ci/GetUnitTestTask"
 	Ci_ListUnitTestTask_FullMethodName                        = "/ci.v1.ci/ListUnitTestTask"
 	Ci_ListBuildProgramTemplate_FullMethodName                = "/ci.v1.ci/ListBuildProgramTemplate"
 	Ci_GetBuildProgramTemplate_FullMethodName                 = "/ci.v1.ci/GetBuildProgramTemplate"
 	Ci_DelBuildProgramTemplate_FullMethodName                 = "/ci.v1.ci/DelBuildProgramTemplate"
+	Ci_CreateBuildProgramPrivateTemplate_FullMethodName       = "/ci.v1.ci/CreateBuildProgramPrivateTemplate"
 	Ci_ExecBuildProgramTask_FullMethodName                    = "/ci.v1.ci/ExecBuildProgramTask"
 	Ci_GetBuildProgramTask_FullMethodName                     = "/ci.v1.ci/GetBuildProgramTask"
 	Ci_ListBuildProgramTask_FullMethodName                    = "/ci.v1.ci/ListBuildProgramTask"
 	Ci_ListBuildContainerImageTemplate_FullMethodName         = "/ci.v1.ci/ListBuildContainerImageTemplate"
 	Ci_GetBuildContainerImageTemplate_FullMethodName          = "/ci.v1.ci/GetBuildContainerImageTemplate"
 	Ci_DelBuildContainerImageTemplate_FullMethodName          = "/ci.v1.ci/DelBuildContainerImageTemplate"
+	Ci_CreateBuildContainerImageTemplate_FullMethodName       = "/ci.v1.ci/CreateBuildContainerImageTemplate"
 	Ci_ExecBuildContainerImageTask_FullMethodName             = "/ci.v1.ci/ExecBuildContainerImageTask"
 	Ci_GetBuildContainerImageTask_FullMethodName              = "/ci.v1.ci/GetBuildContainerImageTask"
 	Ci_ListBuildContainerImageTask_FullMethodName             = "/ci.v1.ci/ListBuildContainerImageTask"
@@ -90,6 +94,7 @@ type CiClient interface {
 	ListCodeScanTemplate(ctx context.Context, in *ListCodeScanTemplateReq, opts ...grpc.CallOption) (*ListCodeScanTemplateReply, error)
 	GetCodeScanTemplate(ctx context.Context, in *GetCodeScanTemplateReq, opts ...grpc.CallOption) (*GetCodeScanTemplateReply, error)
 	DelCodeScanTemplate(ctx context.Context, in *DelCodeScanTemplateReq, opts ...grpc.CallOption) (*DelCodeScanTemplateReply, error)
+	CreateCodeScanPrivateTemplate(ctx context.Context, in *CreateCodeScanPrivateTemplateReq, opts ...grpc.CallOption) (*CreateCodeScanPrivateTemplateReply, error)
 	ExecCodeScanTask(ctx context.Context, in *ExecCodeScanTaskReq, opts ...grpc.CallOption) (*ExecCodeScanTaskReply, error)
 	GetCodeScanTask(ctx context.Context, in *GetCodeScanTaskReq, opts ...grpc.CallOption) (*GetCodeScanTaskReply, error)
 	ListCodeScanTask(ctx context.Context, in *ListCodeScanTaskReq, opts ...grpc.CallOption) (*ListCodeScanTaskReply, error)
@@ -97,6 +102,7 @@ type CiClient interface {
 	ListUnitTestTemplate(ctx context.Context, in *ListUnitTestTemplateReq, opts ...grpc.CallOption) (*ListUnitTestTemplateReply, error)
 	GetUnitTestTemplate(ctx context.Context, in *GetUnitTestTemplateReq, opts ...grpc.CallOption) (*GetUnitTestTemplateReply, error)
 	DelUnitTestTemplate(ctx context.Context, in *DelUnitTestTemplateReq, opts ...grpc.CallOption) (*DelUnitTestTemplateReply, error)
+	CreateUnitTestPrivateTemplate(ctx context.Context, in *CreateUnitTestPrivateTemplateReq, opts ...grpc.CallOption) (*CreateUnitTestPrivateTemplateReply, error)
 	ExecUnitTestTask(ctx context.Context, in *ExecUnitTestTaskReq, opts ...grpc.CallOption) (*ExecUnitTestTaskReply, error)
 	GetUnitTestTask(ctx context.Context, in *GetUnitTestTaskReq, opts ...grpc.CallOption) (*GetUnitTestTaskReply, error)
 	ListUnitTestTask(ctx context.Context, in *ListUnitTestTaskReq, opts ...grpc.CallOption) (*ListUnitTestTaskReply, error)
@@ -104,6 +110,7 @@ type CiClient interface {
 	ListBuildProgramTemplate(ctx context.Context, in *ListBuildProgramTemplateReq, opts ...grpc.CallOption) (*ListBuildProgramTemplateReply, error)
 	GetBuildProgramTemplate(ctx context.Context, in *GetBuildProgramTemplateReq, opts ...grpc.CallOption) (*GetBuildProgramTemplateReply, error)
 	DelBuildProgramTemplate(ctx context.Context, in *DelBuildProgramTemplateReq, opts ...grpc.CallOption) (*DelBuildProgramTemplateReply, error)
+	CreateBuildProgramPrivateTemplate(ctx context.Context, in *CreateBuildProgramPrivateTemplateReq, opts ...grpc.CallOption) (*CreateBuildProgramPrivateTemplateReply, error)
 	ExecBuildProgramTask(ctx context.Context, in *ExecBuildProgramTaskReq, opts ...grpc.CallOption) (*ExecBuildProgramTaskReply, error)
 	GetBuildProgramTask(ctx context.Context, in *GetBuildProgramTaskReq, opts ...grpc.CallOption) (*GetBuildProgramTaskReply, error)
 	ListBuildProgramTask(ctx context.Context, in *ListBuildProgramTaskReq, opts ...grpc.CallOption) (*ListBuildProgramTaskReply, error)
@@ -111,6 +118,7 @@ type CiClient interface {
 	ListBuildContainerImageTemplate(ctx context.Context, in *ListBuildContainerImageTemplateReq, opts ...grpc.CallOption) (*ListBuildContainerImageTemplateReply, error)
 	GetBuildContainerImageTemplate(ctx context.Context, in *GetBuildContainerImageTemplateReq, opts ...grpc.CallOption) (*GetBuildContainerImageTemplateReply, error)
 	DelBuildContainerImageTemplate(ctx context.Context, in *DelBuildContainerImageTemplateReq, opts ...grpc.CallOption) (*DelBuildContainerImageTemplateReply, error)
+	CreateBuildContainerImageTemplate(ctx context.Context, in *CreateBuildContainerImageTemplateReq, opts ...grpc.CallOption) (*CreateBuildContainerImageTemplateReply, error)
 	ExecBuildContainerImageTask(ctx context.Context, in *ExecBuildContainerImageTaskReq, opts ...grpc.CallOption) (*ExecBuildContainerImageTaskReply, error)
 	GetBuildContainerImageTask(ctx context.Context, in *GetBuildContainerImageTaskReq, opts ...grpc.CallOption) (*GetBuildContainerImageTaskReply, error)
 	ListBuildContainerImageTask(ctx context.Context, in *ListBuildContainerImageTaskReq, opts ...grpc.CallOption) (*ListBuildContainerImageTaskReply, error)
@@ -238,6 +246,15 @@ func (c *ciClient) DelCodeScanTemplate(ctx context.Context, in *DelCodeScanTempl
 	return out, nil
 }
 
+func (c *ciClient) CreateCodeScanPrivateTemplate(ctx context.Context, in *CreateCodeScanPrivateTemplateReq, opts ...grpc.CallOption) (*CreateCodeScanPrivateTemplateReply, error) {
+	out := new(CreateCodeScanPrivateTemplateReply)
+	err := c.cc.Invoke(ctx, Ci_CreateCodeScanPrivateTemplate_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *ciClient) ExecCodeScanTask(ctx context.Context, in *ExecCodeScanTaskReq, opts ...grpc.CallOption) (*ExecCodeScanTaskReply, error) {
 	out := new(ExecCodeScanTaskReply)
 	err := c.cc.Invoke(ctx, Ci_ExecCodeScanTask_FullMethodName, in, out, opts...)
@@ -286,6 +303,15 @@ func (c *ciClient) GetUnitTestTemplate(ctx context.Context, in *GetUnitTestTempl
 func (c *ciClient) DelUnitTestTemplate(ctx context.Context, in *DelUnitTestTemplateReq, opts ...grpc.CallOption) (*DelUnitTestTemplateReply, error) {
 	out := new(DelUnitTestTemplateReply)
 	err := c.cc.Invoke(ctx, Ci_DelUnitTestTemplate_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *ciClient) CreateUnitTestPrivateTemplate(ctx context.Context, in *CreateUnitTestPrivateTemplateReq, opts ...grpc.CallOption) (*CreateUnitTestPrivateTemplateReply, error) {
+	out := new(CreateUnitTestPrivateTemplateReply)
+	err := c.cc.Invoke(ctx, Ci_CreateUnitTestPrivateTemplate_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -346,6 +372,15 @@ func (c *ciClient) DelBuildProgramTemplate(ctx context.Context, in *DelBuildProg
 	return out, nil
 }
 
+func (c *ciClient) CreateBuildProgramPrivateTemplate(ctx context.Context, in *CreateBuildProgramPrivateTemplateReq, opts ...grpc.CallOption) (*CreateBuildProgramPrivateTemplateReply, error) {
+	out := new(CreateBuildProgramPrivateTemplateReply)
+	err := c.cc.Invoke(ctx, Ci_CreateBuildProgramPrivateTemplate_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *ciClient) ExecBuildProgramTask(ctx context.Context, in *ExecBuildProgramTaskReq, opts ...grpc.CallOption) (*ExecBuildProgramTaskReply, error) {
 	out := new(ExecBuildProgramTaskReply)
 	err := c.cc.Invoke(ctx, Ci_ExecBuildProgramTask_FullMethodName, in, out, opts...)
@@ -394,6 +429,15 @@ func (c *ciClient) GetBuildContainerImageTemplate(ctx context.Context, in *GetBu
 func (c *ciClient) DelBuildContainerImageTemplate(ctx context.Context, in *DelBuildContainerImageTemplateReq, opts ...grpc.CallOption) (*DelBuildContainerImageTemplateReply, error) {
 	out := new(DelBuildContainerImageTemplateReply)
 	err := c.cc.Invoke(ctx, Ci_DelBuildContainerImageTemplate_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *ciClient) CreateBuildContainerImageTemplate(ctx context.Context, in *CreateBuildContainerImageTemplateReq, opts ...grpc.CallOption) (*CreateBuildContainerImageTemplateReply, error) {
+	out := new(CreateBuildContainerImageTemplateReply)
+	err := c.cc.Invoke(ctx, Ci_CreateBuildContainerImageTemplate_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -610,6 +654,7 @@ type CiServer interface {
 	ListCodeScanTemplate(context.Context, *ListCodeScanTemplateReq) (*ListCodeScanTemplateReply, error)
 	GetCodeScanTemplate(context.Context, *GetCodeScanTemplateReq) (*GetCodeScanTemplateReply, error)
 	DelCodeScanTemplate(context.Context, *DelCodeScanTemplateReq) (*DelCodeScanTemplateReply, error)
+	CreateCodeScanPrivateTemplate(context.Context, *CreateCodeScanPrivateTemplateReq) (*CreateCodeScanPrivateTemplateReply, error)
 	ExecCodeScanTask(context.Context, *ExecCodeScanTaskReq) (*ExecCodeScanTaskReply, error)
 	GetCodeScanTask(context.Context, *GetCodeScanTaskReq) (*GetCodeScanTaskReply, error)
 	ListCodeScanTask(context.Context, *ListCodeScanTaskReq) (*ListCodeScanTaskReply, error)
@@ -617,6 +662,7 @@ type CiServer interface {
 	ListUnitTestTemplate(context.Context, *ListUnitTestTemplateReq) (*ListUnitTestTemplateReply, error)
 	GetUnitTestTemplate(context.Context, *GetUnitTestTemplateReq) (*GetUnitTestTemplateReply, error)
 	DelUnitTestTemplate(context.Context, *DelUnitTestTemplateReq) (*DelUnitTestTemplateReply, error)
+	CreateUnitTestPrivateTemplate(context.Context, *CreateUnitTestPrivateTemplateReq) (*CreateUnitTestPrivateTemplateReply, error)
 	ExecUnitTestTask(context.Context, *ExecUnitTestTaskReq) (*ExecUnitTestTaskReply, error)
 	GetUnitTestTask(context.Context, *GetUnitTestTaskReq) (*GetUnitTestTaskReply, error)
 	ListUnitTestTask(context.Context, *ListUnitTestTaskReq) (*ListUnitTestTaskReply, error)
@@ -624,6 +670,7 @@ type CiServer interface {
 	ListBuildProgramTemplate(context.Context, *ListBuildProgramTemplateReq) (*ListBuildProgramTemplateReply, error)
 	GetBuildProgramTemplate(context.Context, *GetBuildProgramTemplateReq) (*GetBuildProgramTemplateReply, error)
 	DelBuildProgramTemplate(context.Context, *DelBuildProgramTemplateReq) (*DelBuildProgramTemplateReply, error)
+	CreateBuildProgramPrivateTemplate(context.Context, *CreateBuildProgramPrivateTemplateReq) (*CreateBuildProgramPrivateTemplateReply, error)
 	ExecBuildProgramTask(context.Context, *ExecBuildProgramTaskReq) (*ExecBuildProgramTaskReply, error)
 	GetBuildProgramTask(context.Context, *GetBuildProgramTaskReq) (*GetBuildProgramTaskReply, error)
 	ListBuildProgramTask(context.Context, *ListBuildProgramTaskReq) (*ListBuildProgramTaskReply, error)
@@ -631,6 +678,7 @@ type CiServer interface {
 	ListBuildContainerImageTemplate(context.Context, *ListBuildContainerImageTemplateReq) (*ListBuildContainerImageTemplateReply, error)
 	GetBuildContainerImageTemplate(context.Context, *GetBuildContainerImageTemplateReq) (*GetBuildContainerImageTemplateReply, error)
 	DelBuildContainerImageTemplate(context.Context, *DelBuildContainerImageTemplateReq) (*DelBuildContainerImageTemplateReply, error)
+	CreateBuildContainerImageTemplate(context.Context, *CreateBuildContainerImageTemplateReq) (*CreateBuildContainerImageTemplateReply, error)
 	ExecBuildContainerImageTask(context.Context, *ExecBuildContainerImageTaskReq) (*ExecBuildContainerImageTaskReply, error)
 	GetBuildContainerImageTask(context.Context, *GetBuildContainerImageTaskReq) (*GetBuildContainerImageTaskReply, error)
 	ListBuildContainerImageTask(context.Context, *ListBuildContainerImageTaskReq) (*ListBuildContainerImageTaskReply, error)
@@ -701,6 +749,9 @@ func (UnimplementedCiServer) GetCodeScanTemplate(context.Context, *GetCodeScanTe
 func (UnimplementedCiServer) DelCodeScanTemplate(context.Context, *DelCodeScanTemplateReq) (*DelCodeScanTemplateReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DelCodeScanTemplate not implemented")
 }
+func (UnimplementedCiServer) CreateCodeScanPrivateTemplate(context.Context, *CreateCodeScanPrivateTemplateReq) (*CreateCodeScanPrivateTemplateReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateCodeScanPrivateTemplate not implemented")
+}
 func (UnimplementedCiServer) ExecCodeScanTask(context.Context, *ExecCodeScanTaskReq) (*ExecCodeScanTaskReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ExecCodeScanTask not implemented")
 }
@@ -718,6 +769,9 @@ func (UnimplementedCiServer) GetUnitTestTemplate(context.Context, *GetUnitTestTe
 }
 func (UnimplementedCiServer) DelUnitTestTemplate(context.Context, *DelUnitTestTemplateReq) (*DelUnitTestTemplateReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DelUnitTestTemplate not implemented")
+}
+func (UnimplementedCiServer) CreateUnitTestPrivateTemplate(context.Context, *CreateUnitTestPrivateTemplateReq) (*CreateUnitTestPrivateTemplateReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateUnitTestPrivateTemplate not implemented")
 }
 func (UnimplementedCiServer) ExecUnitTestTask(context.Context, *ExecUnitTestTaskReq) (*ExecUnitTestTaskReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ExecUnitTestTask not implemented")
@@ -737,6 +791,9 @@ func (UnimplementedCiServer) GetBuildProgramTemplate(context.Context, *GetBuildP
 func (UnimplementedCiServer) DelBuildProgramTemplate(context.Context, *DelBuildProgramTemplateReq) (*DelBuildProgramTemplateReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DelBuildProgramTemplate not implemented")
 }
+func (UnimplementedCiServer) CreateBuildProgramPrivateTemplate(context.Context, *CreateBuildProgramPrivateTemplateReq) (*CreateBuildProgramPrivateTemplateReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateBuildProgramPrivateTemplate not implemented")
+}
 func (UnimplementedCiServer) ExecBuildProgramTask(context.Context, *ExecBuildProgramTaskReq) (*ExecBuildProgramTaskReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ExecBuildProgramTask not implemented")
 }
@@ -754,6 +811,9 @@ func (UnimplementedCiServer) GetBuildContainerImageTemplate(context.Context, *Ge
 }
 func (UnimplementedCiServer) DelBuildContainerImageTemplate(context.Context, *DelBuildContainerImageTemplateReq) (*DelBuildContainerImageTemplateReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DelBuildContainerImageTemplate not implemented")
+}
+func (UnimplementedCiServer) CreateBuildContainerImageTemplate(context.Context, *CreateBuildContainerImageTemplateReq) (*CreateBuildContainerImageTemplateReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateBuildContainerImageTemplate not implemented")
 }
 func (UnimplementedCiServer) ExecBuildContainerImageTask(context.Context, *ExecBuildContainerImageTaskReq) (*ExecBuildContainerImageTaskReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ExecBuildContainerImageTask not implemented")
@@ -993,6 +1053,24 @@ func _Ci_DelCodeScanTemplate_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Ci_CreateCodeScanPrivateTemplate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateCodeScanPrivateTemplateReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CiServer).CreateCodeScanPrivateTemplate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Ci_CreateCodeScanPrivateTemplate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CiServer).CreateCodeScanPrivateTemplate(ctx, req.(*CreateCodeScanPrivateTemplateReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Ci_ExecCodeScanTask_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ExecCodeScanTaskReq)
 	if err := dec(in); err != nil {
@@ -1097,6 +1175,24 @@ func _Ci_DelUnitTestTemplate_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(CiServer).DelUnitTestTemplate(ctx, req.(*DelUnitTestTemplateReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Ci_CreateUnitTestPrivateTemplate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateUnitTestPrivateTemplateReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CiServer).CreateUnitTestPrivateTemplate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Ci_CreateUnitTestPrivateTemplate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CiServer).CreateUnitTestPrivateTemplate(ctx, req.(*CreateUnitTestPrivateTemplateReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1209,6 +1305,24 @@ func _Ci_DelBuildProgramTemplate_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Ci_CreateBuildProgramPrivateTemplate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateBuildProgramPrivateTemplateReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CiServer).CreateBuildProgramPrivateTemplate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Ci_CreateBuildProgramPrivateTemplate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CiServer).CreateBuildProgramPrivateTemplate(ctx, req.(*CreateBuildProgramPrivateTemplateReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Ci_ExecBuildProgramTask_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ExecBuildProgramTaskReq)
 	if err := dec(in); err != nil {
@@ -1313,6 +1427,24 @@ func _Ci_DelBuildContainerImageTemplate_Handler(srv interface{}, ctx context.Con
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(CiServer).DelBuildContainerImageTemplate(ctx, req.(*DelBuildContainerImageTemplateReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Ci_CreateBuildContainerImageTemplate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateBuildContainerImageTemplateReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CiServer).CreateBuildContainerImageTemplate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Ci_CreateBuildContainerImageTemplate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CiServer).CreateBuildContainerImageTemplate(ctx, req.(*CreateBuildContainerImageTemplateReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1739,6 +1871,10 @@ var Ci_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Ci_DelCodeScanTemplate_Handler,
 		},
 		{
+			MethodName: "CreateCodeScanPrivateTemplate",
+			Handler:    _Ci_CreateCodeScanPrivateTemplate_Handler,
+		},
+		{
 			MethodName: "ExecCodeScanTask",
 			Handler:    _Ci_ExecCodeScanTask_Handler,
 		},
@@ -1761,6 +1897,10 @@ var Ci_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DelUnitTestTemplate",
 			Handler:    _Ci_DelUnitTestTemplate_Handler,
+		},
+		{
+			MethodName: "CreateUnitTestPrivateTemplate",
+			Handler:    _Ci_CreateUnitTestPrivateTemplate_Handler,
 		},
 		{
 			MethodName: "ExecUnitTestTask",
@@ -1787,6 +1927,10 @@ var Ci_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Ci_DelBuildProgramTemplate_Handler,
 		},
 		{
+			MethodName: "CreateBuildProgramPrivateTemplate",
+			Handler:    _Ci_CreateBuildProgramPrivateTemplate_Handler,
+		},
+		{
 			MethodName: "ExecBuildProgramTask",
 			Handler:    _Ci_ExecBuildProgramTask_Handler,
 		},
@@ -1809,6 +1953,10 @@ var Ci_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DelBuildContainerImageTemplate",
 			Handler:    _Ci_DelBuildContainerImageTemplate_Handler,
+		},
+		{
+			MethodName: "CreateBuildContainerImageTemplate",
+			Handler:    _Ci_CreateBuildContainerImageTemplate_Handler,
 		},
 		{
 			MethodName: "ExecBuildContainerImageTask",
