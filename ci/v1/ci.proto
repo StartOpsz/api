@@ -566,14 +566,11 @@ message GetBuildProgramTaskReply {
   string repoBranch = 8;
   string repoCommitId = 9;
   string repoCommitMsg = 10;
-
   int32 result = 11; // 0: 执行中， 1: 成功，-1: 失败
   string describe = 12; // 执行过程内容
-
   string templateUuid = 13;
   bool isPublicTemplate = 14;
   string command = 15;
-
   int64 createTime = 16;
   int64 startExecTime = 17;
   int64 endExecTime = 18;
@@ -598,14 +595,11 @@ message ListBuildProgramTaskReply {
     string repoBranch = 8;
     string repoCommitId = 9;
     string repoCommitMsg = 10;
-
     int32 result = 11; // 0: 执行中， 1: 成功，-1: 失败
     string describe = 12; // 执行过程内容
-
     string templateUuid = 13;
     bool isPublicTemplate = 14;
     string command = 15;
-
     int64 createTime = 16;
     int64 startExecTime = 17;
     int64 endExecTime = 18;
@@ -695,7 +689,22 @@ message GetBuildContainerImageTaskReq {
   string taskId = 5 [(validate.rules).string.min_len = 1];
 }
 message GetBuildContainerImageTaskReply {
-
+  string taskId = 1;
+  string runId = 2;
+  string userUuid = 3;
+  string orgUuid = 4;
+  string productUuid = 5;
+  string templateUuid = 6;
+  string repoUuid = 7;
+  string repoUrl = 8;
+  string repoBranch = 9;
+  string repoCommitId = 10;
+  string repoCommitMsg = 11;
+  int32 result = 12;
+  string describe = 13;
+  int64 startExecTime = 14;
+  int64 endExecTime = 15;
+  int64 createTime = 16;
 }
 // 列出构建容器镜像任务
 message ListBuildContainerImageTaskReq {
@@ -705,7 +714,25 @@ message ListBuildContainerImageTaskReq {
   string repoUuid = 4 [(validate.rules).string.min_len = 1];
 }
 message ListBuildContainerImageTaskReply {
-
+  repeated Task tasks = 1;
+  message Task {
+    string taskId = 1;
+    string runId = 2;
+    string userUuid = 3;
+    string orgUuid = 4;
+    string productUuid = 5;
+    string templateUuid = 6;
+    string repoUuid = 7;
+    string repoUrl = 8;
+    string repoBranch = 9;
+    string repoCommitId = 10;
+    string repoCommitMsg = 11;
+    int32 result = 12;
+    string describe = 13;
+    int64 startExecTime = 14;
+    int64 endExecTime = 15;
+    int64 createTime = 16;
+  }
 }
 
 // ************************************************************************************************
@@ -921,25 +948,23 @@ message GetCiTaskDetailsReply {
 }
 
 
-//
-
+// CI 模版
+// 添加 CI 模版
 message CreateCiTemplateReq {
   string userUuid = 1 [(validate.rules).string.min_len = 1];
   string orgUuid = 2 [(validate.rules).string.min_len = 1];
   string productUuid = 3 [(validate.rules).string.min_len = 1];
   string name = 4  [(validate.rules).string.min_len = 1];
 }
-
 message CreateCiTemplateReply {
   bool result = 1;
 }
-
+// 列出 CI 模版
 message ListCiTemplateReq {
   string userUuid = 1 [(validate.rules).string.min_len = 1];
   string orgUuid = 2 [(validate.rules).string.min_len = 1];
   string productUuid = 3 [(validate.rules).string.min_len = 1];
 }
-
 message ListCiTemplateReply {
   repeated CiTemplate ciTemplate = 1;
   message CiTemplate {
@@ -950,53 +975,55 @@ message ListCiTemplateReply {
     int64 createTime = 5;
   }
 }
-
+// 删除 CI 模版
 message DelCiTemplateReq {
   string userUuid = 1 [(validate.rules).string.min_len = 1];
   string orgUuid = 2 [(validate.rules).string.min_len = 1];
   string productUuid = 3 [(validate.rules).string.min_len = 1];
   string uuid = 4 [(validate.rules).string.min_len = 1];
 }
-
 message DelCiTemplateReply {
   bool result = 1;
 }
-
+// 添加 CI 模版步骤
 message AddCiTemplateStepReq {
   string userUuid = 1 [(validate.rules).string.min_len = 1];
   string orgUuid = 2 [(validate.rules).string.min_len = 1];
   string productUuid = 3 [(validate.rules).string.min_len = 1];
-
+  string templateUuid = 4 [(validate.rules).string.min_len = 1];
+  int32  stepType = 5;
+  string stepTypeTemplateUuid = 6 [(validate.rules).string.min_len = 1];
+  int32  priority = 7;
 }
-
 message AddCiTemplateStepReply {
-  string userUuid = 1 [(validate.rules).string.min_len = 1];
-  string orgUuid = 2 [(validate.rules).string.min_len = 1];
-  string productUuid = 3 [(validate.rules).string.min_len = 1];
-  string templateUuid = 4;
-  string stepUuid = 5;
-  int32 priority = 6;
-
+  bool result = 1;
 }
-
+// 列出 CI 模版步骤
 message ListCiTemplateStepReq {
   string userUuid = 1 [(validate.rules).string.min_len = 1];
   string orgUuid = 2 [(validate.rules).string.min_len = 1];
   string productUuid = 3 [(validate.rules).string.min_len = 1];
-
+  string templateUuid = 4 [(validate.rules).string.min_len = 1];
 }
-
 message ListCiTemplateStepReply {
-
+  repeated Step steps = 1;
+  message Step {
+    string uuid = 1;
+    string templateUuid = 2;
+    int32 stepType = 3;
+    string stepTypeTemplateUuid = 4;
+    int32 priority = 5;
+    int64 createTime = 6;
+  }
 }
-
+// 删除 CI 模版步骤
 message DelCiTemplateStepReq {
   string userUuid = 1 [(validate.rules).string.min_len = 1];
   string orgUuid = 2 [(validate.rules).string.min_len = 1];
   string productUuid = 3 [(validate.rules).string.min_len = 1];
-
+  string templateUuid = 4 [(validate.rules).string.min_len = 1];
+  string templateStepUuid = 5 [(validate.rules).string.min_len = 1];
 }
-
 message DelCiTemplateStepReply {
-
+  bool result = 1;
 }
