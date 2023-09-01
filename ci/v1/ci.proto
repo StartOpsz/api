@@ -992,8 +992,9 @@ message AddCiTemplateStepReq {
   string productUuid = 3 [(validate.rules).string.min_len = 1];
   string templateUuid = 4 [(validate.rules).string.min_len = 1];
   int32  stepType = 5;
-  string stepTypeTemplateUuid = 6 [(validate.rules).string.min_len = 1];
-  int32  priority = 7;
+  bool stepTypeTemplateIsPublic = 6;
+  string stepTypeTemplateUuid = 7 [(validate.rules).string.min_len = 1];
+  int32  priority = 8;
 }
 message AddCiTemplateStepReply {
   bool result = 1;
@@ -1011,9 +1012,10 @@ message ListCiTemplateStepReply {
     string uuid = 1;
     string templateUuid = 2;
     int32 stepType = 3;
-    string stepTypeTemplateUuid = 4;
-    int32 priority = 5;
-    int64 createTime = 6;
+    bool stepTypeTemplateIsPublic = 4;
+    string stepTypeTemplateUuid = 5;
+    int32 priority = 6;
+    int64 createTime = 7;
   }
 }
 // 删除 CI 模版步骤
