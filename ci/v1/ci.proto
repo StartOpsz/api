@@ -212,8 +212,11 @@ message ListContainerImageTagsReply {
 // 1. *************** 代码扫描 ******************
 // 创建代码扫描私有模版
 message CreateCodeScanPrivateTemplateReq {
-  string command = 1 [(validate.rules).string.min_len = 1];
-  string describe = 2 [(validate.rules).string.min_len = 1];
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string command = 4 [(validate.rules).string.min_len = 1];
+  string describe = 5 [(validate.rules).string.min_len = 1];
 }
 message CreateCodeScanPrivateTemplateReply {
   bool result = 1;
@@ -343,8 +346,11 @@ message ListCodeScanTaskReply {
 // 2. ******************* 单元测试 *******************
 // 创建单元测试模版
 message CreateUnitTestPrivateTemplateReq {
-  string command = 1 [(validate.rules).string.min_len = 1];
-  string describe = 2 [(validate.rules).string.min_len = 1];
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string command = 4 [(validate.rules).string.min_len = 1];
+  string describe = 5 [(validate.rules).string.min_len = 1];
 }
 message CreateUnitTestPrivateTemplateReply {
   bool result = 1;
@@ -475,8 +481,11 @@ message ListUnitTestTaskReply {
 // 3. *********************** 构建程序 **************************
 // 创建构建程序模版
 message CreateBuildProgramPrivateTemplateReq {
-  string command = 1 [(validate.rules).string.min_len = 1];
-  string describe = 2 [(validate.rules).string.min_len = 1];
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string command = 4 [(validate.rules).string.min_len = 1];
+  string describe = 5 [(validate.rules).string.min_len = 1];
 }
 message CreateBuildProgramPrivateTemplateReply {
   bool result = 1;
@@ -606,10 +615,13 @@ message ListBuildProgramTaskReply {
 // 4. ************************** 构建容器镜像 ******************************
 //
 message CreateBuildContainerImageTemplateReq {
-    string containerImageRegisterUuid = 1;
-    string namespace = 2;
-    string dockerFilePath = 3;
-    string describe = 4;
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string containerImageRegisterUuid = 4;
+  string namespace = 5;
+  string dockerFilePath = 6;
+  string describe = 7 [(validate.rules).string.min_len = 1];
 }
 message CreateBuildContainerImageTemplateReply {
   bool result = 1;
