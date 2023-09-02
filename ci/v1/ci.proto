@@ -843,7 +843,8 @@ message GetUploadProgramPrivateTemplateReq {
   string productUuid = 3 [(validate.rules).string.min_len = 1];
 }
 message GetUploadProgramPrivateTemplateReply {
-
+  string uuid = 1;
+  string createTime = 2;
 }
 // 列出上传程序模版
 message ListUploadProgramPrivateTemplateReq {
@@ -852,7 +853,11 @@ message ListUploadProgramPrivateTemplateReq {
   string productUuid = 3 [(validate.rules).string.min_len = 1];
 }
 message ListUploadProgramPrivateTemplateReply {
-
+  repeated Template templates = 1;
+  message Template {
+    string uuid = 1;
+    string createTime = 2;
+  }
 }
 //
 message DelUploadProgramPrivateTemplateReq {
