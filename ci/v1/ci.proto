@@ -80,6 +80,14 @@ service ci {
 
 
   // 5. 程序上传 - CI
+  // 创建上传程序模版
+  rpc CreateUploadProgramPrivateTemplate (CreateUploadProgramPrivateTemplateReq) returns (CreateUploadProgramPrivateTemplateReply) {};
+  // 获取上传程序模版
+  rpc GetUploadProgramPrivateTemplate (GetUploadProgramPrivateTemplateReq) returns (GetUploadProgramPrivateTemplateReply) {};
+  // 列出上传程序模版
+  rpc ListUploadProgramPrivateTemplate (ListUploadProgramPrivateTemplateReq) returns (ListUploadProgramPrivateTemplateReply) {};
+
+
   // 上传本地文件到SFTP服务器
   rpc UploadLocalFileToSFTP (UploadLocalFileToSFTPReq) returns (UploadLocalFileToSFTPReply) {};
   // 下载SFTP服务器文件到本地文件
@@ -735,7 +743,7 @@ message ListBuildContainerImageTaskReply {
   }
 }
 
-// ************************************************************************************************
+// 5. ********************************** 构建容器镜像 ******************************************
 // 构建容器镜像 - 不支持匿名上传
 message BuildContainerImageReq {
   string userUuid = 1  [(validate.rules).string.min_len = 1];
@@ -815,7 +823,35 @@ message ListBuildContainerImageReply {
 
 
 
+// 6. ********************************** 上传程序 ******************************************
+// 创建上传程序私有模版
+message CreateUploadProgramPrivateTemplateReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
 
+}
+message CreateUploadProgramPrivateTemplateReply {
+  bool result = 1;
+}
+// 获取上传程序模版
+message GetUploadProgramPrivateTemplateReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+}
+message GetUploadProgramPrivateTemplateReply {
+
+}
+// 列出上传程序模版
+message ListUploadProgramPrivateTemplateReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+}
+message ListUploadProgramPrivateTemplateReply {
+
+}
 //
 message UploadLocalFileToCloudObjectStorageReq {
   string endpoint = 1 [(validate.rules).string.min_len = 1];
