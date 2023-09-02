@@ -87,6 +87,8 @@ service ci {
   // 列出上传程序模版
   rpc ListUploadProgramPrivateTemplate (ListUploadProgramPrivateTemplateReq) returns (ListUploadProgramPrivateTemplateReply) {};
 
+  rpc DelUploadProgramPrivateTemplate (DelUploadProgramPrivateTemplateReq) returns (DelUploadProgramPrivateTemplateReply) {};
+
 
   // 上传本地文件到SFTP服务器
   rpc UploadLocalFileToSFTP (UploadLocalFileToSFTPReq) returns (UploadLocalFileToSFTPReply) {};
@@ -851,6 +853,16 @@ message ListUploadProgramPrivateTemplateReq {
 }
 message ListUploadProgramPrivateTemplateReply {
 
+}
+//
+message DelUploadProgramPrivateTemplateReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string templateUuid = 4 [(validate.rules).string.min_len = 1];
+}
+message DelUploadProgramPrivateTemplateReply {
+  bool result = 1;
 }
 //
 message UploadLocalFileToCloudObjectStorageReq {

@@ -59,6 +59,7 @@ const (
 	Ci_CreateUploadProgramPrivateTemplate_FullMethodName      = "/ci.v1.ci/CreateUploadProgramPrivateTemplate"
 	Ci_GetUploadProgramPrivateTemplate_FullMethodName         = "/ci.v1.ci/GetUploadProgramPrivateTemplate"
 	Ci_ListUploadProgramPrivateTemplate_FullMethodName        = "/ci.v1.ci/ListUploadProgramPrivateTemplate"
+	Ci_DelUploadProgramPrivateTemplate_FullMethodName         = "/ci.v1.ci/DelUploadProgramPrivateTemplate"
 	Ci_UploadLocalFileToSFTP_FullMethodName                   = "/ci.v1.ci/UploadLocalFileToSFTP"
 	Ci_DownloadSFTPFileToLocal_FullMethodName                 = "/ci.v1.ci/DownloadSFTPFileToLocal"
 	Ci_UploadLocalFileToCloudObjectStorage_FullMethodName     = "/ci.v1.ci/UploadLocalFileToCloudObjectStorage"
@@ -138,6 +139,7 @@ type CiClient interface {
 	GetUploadProgramPrivateTemplate(ctx context.Context, in *GetUploadProgramPrivateTemplateReq, opts ...grpc.CallOption) (*GetUploadProgramPrivateTemplateReply, error)
 	// 列出上传程序模版
 	ListUploadProgramPrivateTemplate(ctx context.Context, in *ListUploadProgramPrivateTemplateReq, opts ...grpc.CallOption) (*ListUploadProgramPrivateTemplateReply, error)
+	DelUploadProgramPrivateTemplate(ctx context.Context, in *DelUploadProgramPrivateTemplateReq, opts ...grpc.CallOption) (*DelUploadProgramPrivateTemplateReply, error)
 	// 上传本地文件到SFTP服务器
 	UploadLocalFileToSFTP(ctx context.Context, in *UploadLocalFileToSFTPReq, opts ...grpc.CallOption) (*UploadLocalFileToSFTPReply, error)
 	// 下载SFTP服务器文件到本地文件
@@ -534,6 +536,15 @@ func (c *ciClient) ListUploadProgramPrivateTemplate(ctx context.Context, in *Lis
 	return out, nil
 }
 
+func (c *ciClient) DelUploadProgramPrivateTemplate(ctx context.Context, in *DelUploadProgramPrivateTemplateReq, opts ...grpc.CallOption) (*DelUploadProgramPrivateTemplateReply, error) {
+	out := new(DelUploadProgramPrivateTemplateReply)
+	err := c.cc.Invoke(ctx, Ci_DelUploadProgramPrivateTemplate_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *ciClient) UploadLocalFileToSFTP(ctx context.Context, in *UploadLocalFileToSFTPReq, opts ...grpc.CallOption) (*UploadLocalFileToSFTPReply, error) {
 	out := new(UploadLocalFileToSFTPReply)
 	err := c.cc.Invoke(ctx, Ci_UploadLocalFileToSFTP_FullMethodName, in, out, opts...)
@@ -731,6 +742,7 @@ type CiServer interface {
 	GetUploadProgramPrivateTemplate(context.Context, *GetUploadProgramPrivateTemplateReq) (*GetUploadProgramPrivateTemplateReply, error)
 	// 列出上传程序模版
 	ListUploadProgramPrivateTemplate(context.Context, *ListUploadProgramPrivateTemplateReq) (*ListUploadProgramPrivateTemplateReply, error)
+	DelUploadProgramPrivateTemplate(context.Context, *DelUploadProgramPrivateTemplateReq) (*DelUploadProgramPrivateTemplateReply, error)
 	// 上传本地文件到SFTP服务器
 	UploadLocalFileToSFTP(context.Context, *UploadLocalFileToSFTPReq) (*UploadLocalFileToSFTPReply, error)
 	// 下载SFTP服务器文件到本地文件
@@ -883,6 +895,9 @@ func (UnimplementedCiServer) GetUploadProgramPrivateTemplate(context.Context, *G
 }
 func (UnimplementedCiServer) ListUploadProgramPrivateTemplate(context.Context, *ListUploadProgramPrivateTemplateReq) (*ListUploadProgramPrivateTemplateReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListUploadProgramPrivateTemplate not implemented")
+}
+func (UnimplementedCiServer) DelUploadProgramPrivateTemplate(context.Context, *DelUploadProgramPrivateTemplateReq) (*DelUploadProgramPrivateTemplateReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DelUploadProgramPrivateTemplate not implemented")
 }
 func (UnimplementedCiServer) UploadLocalFileToSFTP(context.Context, *UploadLocalFileToSFTPReq) (*UploadLocalFileToSFTPReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UploadLocalFileToSFTP not implemented")
@@ -1662,6 +1677,24 @@ func _Ci_ListUploadProgramPrivateTemplate_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Ci_DelUploadProgramPrivateTemplate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DelUploadProgramPrivateTemplateReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CiServer).DelUploadProgramPrivateTemplate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Ci_DelUploadProgramPrivateTemplate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CiServer).DelUploadProgramPrivateTemplate(ctx, req.(*DelUploadProgramPrivateTemplateReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Ci_UploadLocalFileToSFTP_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UploadLocalFileToSFTPReq)
 	if err := dec(in); err != nil {
@@ -2098,6 +2131,10 @@ var Ci_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListUploadProgramPrivateTemplate",
 			Handler:    _Ci_ListUploadProgramPrivateTemplate_Handler,
+		},
+		{
+			MethodName: "DelUploadProgramPrivateTemplate",
+			Handler:    _Ci_DelUploadProgramPrivateTemplate_Handler,
 		},
 		{
 			MethodName: "UploadLocalFileToSFTP",
