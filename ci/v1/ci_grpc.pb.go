@@ -72,6 +72,9 @@ const (
 	Ci_AddCiTemplateStep_FullMethodName                       = "/ci.v1.ci/AddCiTemplateStep"
 	Ci_ListCiTemplateStep_FullMethodName                      = "/ci.v1.ci/ListCiTemplateStep"
 	Ci_DelCiTemplateStep_FullMethodName                       = "/ci.v1.ci/DelCiTemplateStep"
+	Ci_ExecCiTemplateTask_FullMethodName                      = "/ci.v1.ci/ExecCiTemplateTask"
+	Ci_GetCiTemplateTask_FullMethodName                       = "/ci.v1.ci/GetCiTemplateTask"
+	Ci_ListCiTemplateTask_FullMethodName                      = "/ci.v1.ci/ListCiTemplateTask"
 	Ci_RunCi_FullMethodName                                   = "/ci.v1.ci/RunCi"
 	Ci_GetCiTasks_FullMethodName                              = "/ci.v1.ci/GetCiTasks"
 	Ci_GetCiTaskDetails_FullMethodName                        = "/ci.v1.ci/GetCiTaskDetails"
@@ -159,6 +162,9 @@ type CiClient interface {
 	AddCiTemplateStep(ctx context.Context, in *AddCiTemplateStepReq, opts ...grpc.CallOption) (*AddCiTemplateStepReply, error)
 	ListCiTemplateStep(ctx context.Context, in *ListCiTemplateStepReq, opts ...grpc.CallOption) (*ListCiTemplateStepReply, error)
 	DelCiTemplateStep(ctx context.Context, in *DelCiTemplateStepReq, opts ...grpc.CallOption) (*DelCiTemplateStepReply, error)
+	ExecCiTemplateTask(ctx context.Context, in *ExecCiTemplateTaskReq, opts ...grpc.CallOption) (*ExecCiTemplateTaskReply, error)
+	GetCiTemplateTask(ctx context.Context, in *GetCiTemplateTaskReq, opts ...grpc.CallOption) (*GetCiTemplateTaskReply, error)
+	ListCiTemplateTask(ctx context.Context, in *ListCiTemplateTaskReq, opts ...grpc.CallOption) (*ListCiTemplateTaskReply, error)
 	// 7. CI 任务
 	// 执行 CI 任务
 	RunCi(ctx context.Context, in *RunCiReq, opts ...grpc.CallOption) (*RunCiReply, error)
@@ -653,6 +659,33 @@ func (c *ciClient) DelCiTemplateStep(ctx context.Context, in *DelCiTemplateStepR
 	return out, nil
 }
 
+func (c *ciClient) ExecCiTemplateTask(ctx context.Context, in *ExecCiTemplateTaskReq, opts ...grpc.CallOption) (*ExecCiTemplateTaskReply, error) {
+	out := new(ExecCiTemplateTaskReply)
+	err := c.cc.Invoke(ctx, Ci_ExecCiTemplateTask_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *ciClient) GetCiTemplateTask(ctx context.Context, in *GetCiTemplateTaskReq, opts ...grpc.CallOption) (*GetCiTemplateTaskReply, error) {
+	out := new(GetCiTemplateTaskReply)
+	err := c.cc.Invoke(ctx, Ci_GetCiTemplateTask_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *ciClient) ListCiTemplateTask(ctx context.Context, in *ListCiTemplateTaskReq, opts ...grpc.CallOption) (*ListCiTemplateTaskReply, error) {
+	out := new(ListCiTemplateTaskReply)
+	err := c.cc.Invoke(ctx, Ci_ListCiTemplateTask_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *ciClient) RunCi(ctx context.Context, in *RunCiReq, opts ...grpc.CallOption) (*RunCiReply, error) {
 	out := new(RunCiReply)
 	err := c.cc.Invoke(ctx, Ci_RunCi_FullMethodName, in, out, opts...)
@@ -762,6 +795,9 @@ type CiServer interface {
 	AddCiTemplateStep(context.Context, *AddCiTemplateStepReq) (*AddCiTemplateStepReply, error)
 	ListCiTemplateStep(context.Context, *ListCiTemplateStepReq) (*ListCiTemplateStepReply, error)
 	DelCiTemplateStep(context.Context, *DelCiTemplateStepReq) (*DelCiTemplateStepReply, error)
+	ExecCiTemplateTask(context.Context, *ExecCiTemplateTaskReq) (*ExecCiTemplateTaskReply, error)
+	GetCiTemplateTask(context.Context, *GetCiTemplateTaskReq) (*GetCiTemplateTaskReply, error)
+	ListCiTemplateTask(context.Context, *ListCiTemplateTaskReq) (*ListCiTemplateTaskReply, error)
 	// 7. CI 任务
 	// 执行 CI 任务
 	RunCi(context.Context, *RunCiReq) (*RunCiReply, error)
@@ -934,6 +970,15 @@ func (UnimplementedCiServer) ListCiTemplateStep(context.Context, *ListCiTemplate
 }
 func (UnimplementedCiServer) DelCiTemplateStep(context.Context, *DelCiTemplateStepReq) (*DelCiTemplateStepReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DelCiTemplateStep not implemented")
+}
+func (UnimplementedCiServer) ExecCiTemplateTask(context.Context, *ExecCiTemplateTaskReq) (*ExecCiTemplateTaskReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ExecCiTemplateTask not implemented")
+}
+func (UnimplementedCiServer) GetCiTemplateTask(context.Context, *GetCiTemplateTaskReq) (*GetCiTemplateTaskReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCiTemplateTask not implemented")
+}
+func (UnimplementedCiServer) ListCiTemplateTask(context.Context, *ListCiTemplateTaskReq) (*ListCiTemplateTaskReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListCiTemplateTask not implemented")
 }
 func (UnimplementedCiServer) RunCi(context.Context, *RunCiReq) (*RunCiReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RunCi not implemented")
@@ -1911,6 +1956,60 @@ func _Ci_DelCiTemplateStep_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Ci_ExecCiTemplateTask_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ExecCiTemplateTaskReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CiServer).ExecCiTemplateTask(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Ci_ExecCiTemplateTask_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CiServer).ExecCiTemplateTask(ctx, req.(*ExecCiTemplateTaskReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Ci_GetCiTemplateTask_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCiTemplateTaskReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CiServer).GetCiTemplateTask(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Ci_GetCiTemplateTask_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CiServer).GetCiTemplateTask(ctx, req.(*GetCiTemplateTaskReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Ci_ListCiTemplateTask_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListCiTemplateTaskReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CiServer).ListCiTemplateTask(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Ci_ListCiTemplateTask_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CiServer).ListCiTemplateTask(ctx, req.(*ListCiTemplateTaskReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Ci_RunCi_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(RunCiReq)
 	if err := dec(in); err != nil {
@@ -2183,6 +2282,18 @@ var Ci_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DelCiTemplateStep",
 			Handler:    _Ci_DelCiTemplateStep_Handler,
+		},
+		{
+			MethodName: "ExecCiTemplateTask",
+			Handler:    _Ci_ExecCiTemplateTask_Handler,
+		},
+		{
+			MethodName: "GetCiTemplateTask",
+			Handler:    _Ci_GetCiTemplateTask_Handler,
+		},
+		{
+			MethodName: "ListCiTemplateTask",
+			Handler:    _Ci_ListCiTemplateTask_Handler,
 		},
 		{
 			MethodName: "RunCi",

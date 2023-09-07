@@ -113,6 +113,9 @@ service ci {
   rpc ListCiTemplateStep (ListCiTemplateStepReq) returns (ListCiTemplateStepReply) {};
   rpc DelCiTemplateStep (DelCiTemplateStepReq) returns (DelCiTemplateStepReply) {};
 
+  rpc ExecCiTemplateTask (ExecCiTemplateTaskReq) returns (ExecCiTemplateTaskReply) {};
+  rpc GetCiTemplateTask (GetCiTemplateTaskReq) returns (GetCiTemplateTaskReply) {};
+  rpc ListCiTemplateTask (ListCiTemplateTaskReq) returns (ListCiTemplateTaskReply) {};
 
   // 7. CI 任务
   // 执行 CI 任务
@@ -1082,4 +1085,98 @@ message DelCiTemplateStepReq {
 }
 message DelCiTemplateStepReply {
   bool result = 1;
+}
+// 执行 CI 模版任务
+message ExecCiTemplateTaskReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string templateUuid = 4;
+  string repoUuid = 5;
+  string repoUrl = 6;
+  string repoBranch = 7;
+  string repoToken = 8;
+}
+message ExecCiTemplateTaskReply {
+  string taskId = 1;
+}
+// 获取 CI 模版任务
+message GetCiTemplateTaskReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string repoUuid = 4 [(validate.rules).string.min_len = 1];
+  string taskId = 5 [(validate.rules).string.min_len = 1];
+}
+message GetCiTemplateTaskReply {
+  string taskId = 1;
+  string runId = 2;
+  string userUuid = 3;
+  string orgUuid = 4;
+  string productUuid = 5;
+  string templateUuid = 6;
+  Step codeScanTask = 7;
+  Step unitTestTask = 8;
+  Step buildProgramTask = 9;
+  Step uploadProgramTask = 10;
+  Step buildContainerImageTask = 11;
+  string repoUuid = 12;
+  string repoUrl = 13;
+  string repoBranch = 14;
+  string repoCommitId = 15;
+  string repoCommitMsg = 16;
+  int32 result = 17;
+  string describe = 18;
+  int64 startExecTime = 19;
+  int64 endExecTime = 20;
+  int64 createTime = 21;
+
+  message Step {
+    string describe = 1;
+    int32 result = 2;
+    int64 startExecTime = 3;
+    int64 endExecTime = 4;
+    int64 createTime = 5;
+  }
+}
+// 列出 CI 模版任务
+message ListCiTemplateTaskReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string repoUuid = 4 [(validate.rules).string.min_len = 1];
+}
+message ListCiTemplateTaskReply {
+  repeated Task tasks = 1;
+  message Task {
+    string taskId = 1;
+    string runId = 2;
+    string userUuid = 3;
+    string orgUuid = 4;
+    string productUuid = 5;
+    string templateUuid = 6;
+    Step codeScanTask = 7;
+    Step unitTestTask = 8;
+    Step buildProgramTask = 9;
+    Step uploadProgramTask = 10;
+    Step buildContainerImageTask = 11;
+    string repoUuid = 12;
+    string repoUrl = 13;
+    string repoBranch = 14;
+    string repoCommitId = 15;
+    string repoCommitMsg = 16;
+    int32 result = 17;
+    string describe = 18;
+    int64 startExecTime = 19;
+    int64 endExecTime = 20;
+    int64 createTime = 21;
+
+    message Step {
+      string describe = 1;
+      int32 result = 2;
+      int64 startExecTime = 3;
+      int64 endExecTime = 4;
+      int64 createTime = 5;
+    }
+  }
 }
