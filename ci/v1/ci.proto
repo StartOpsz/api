@@ -1145,6 +1145,7 @@ message ListCiTemplateTaskReq {
   string orgUuid = 2 [(validate.rules).string.min_len = 1];
   string productUuid = 3 [(validate.rules).string.min_len = 1];
   string repoUuid = 4 [(validate.rules).string.min_len = 1];
+  string repoBranch = 5 [(validate.rules).string.min_len = 1];
 }
 message ListCiTemplateTaskReply {
   repeated Task tasks = 1;
