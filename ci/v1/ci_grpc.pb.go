@@ -75,9 +75,6 @@ const (
 	Ci_ExecCiTemplateTask_FullMethodName                      = "/ci.v1.ci/ExecCiTemplateTask"
 	Ci_GetCiTemplateTask_FullMethodName                       = "/ci.v1.ci/GetCiTemplateTask"
 	Ci_ListCiTemplateTask_FullMethodName                      = "/ci.v1.ci/ListCiTemplateTask"
-	Ci_RunCi_FullMethodName                                   = "/ci.v1.ci/RunCi"
-	Ci_GetCiTasks_FullMethodName                              = "/ci.v1.ci/GetCiTasks"
-	Ci_GetCiTaskDetails_FullMethodName                        = "/ci.v1.ci/GetCiTaskDetails"
 )
 
 // CiClient is the client API for Ci service.
@@ -165,13 +162,6 @@ type CiClient interface {
 	ExecCiTemplateTask(ctx context.Context, in *ExecCiTemplateTaskReq, opts ...grpc.CallOption) (*ExecCiTemplateTaskReply, error)
 	GetCiTemplateTask(ctx context.Context, in *GetCiTemplateTaskReq, opts ...grpc.CallOption) (*GetCiTemplateTaskReply, error)
 	ListCiTemplateTask(ctx context.Context, in *ListCiTemplateTaskReq, opts ...grpc.CallOption) (*ListCiTemplateTaskReply, error)
-	// 7. CI 任务
-	// 执行 CI 任务
-	RunCi(ctx context.Context, in *RunCiReq, opts ...grpc.CallOption) (*RunCiReply, error)
-	// 查询执行 CI 任务结果
-	GetCiTasks(ctx context.Context, in *GetCiTasksReq, opts ...grpc.CallOption) (*GetCiTasksReply, error)
-	// 查询执行 CI 任务详情
-	GetCiTaskDetails(ctx context.Context, in *GetCiTaskDetailsReq, opts ...grpc.CallOption) (*GetCiTaskDetailsReply, error)
 }
 
 type ciClient struct {
@@ -686,33 +676,6 @@ func (c *ciClient) ListCiTemplateTask(ctx context.Context, in *ListCiTemplateTas
 	return out, nil
 }
 
-func (c *ciClient) RunCi(ctx context.Context, in *RunCiReq, opts ...grpc.CallOption) (*RunCiReply, error) {
-	out := new(RunCiReply)
-	err := c.cc.Invoke(ctx, Ci_RunCi_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *ciClient) GetCiTasks(ctx context.Context, in *GetCiTasksReq, opts ...grpc.CallOption) (*GetCiTasksReply, error) {
-	out := new(GetCiTasksReply)
-	err := c.cc.Invoke(ctx, Ci_GetCiTasks_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *ciClient) GetCiTaskDetails(ctx context.Context, in *GetCiTaskDetailsReq, opts ...grpc.CallOption) (*GetCiTaskDetailsReply, error) {
-	out := new(GetCiTaskDetailsReply)
-	err := c.cc.Invoke(ctx, Ci_GetCiTaskDetails_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // CiServer is the server API for Ci service.
 // All implementations must embed UnimplementedCiServer
 // for forward compatibility
@@ -798,13 +761,6 @@ type CiServer interface {
 	ExecCiTemplateTask(context.Context, *ExecCiTemplateTaskReq) (*ExecCiTemplateTaskReply, error)
 	GetCiTemplateTask(context.Context, *GetCiTemplateTaskReq) (*GetCiTemplateTaskReply, error)
 	ListCiTemplateTask(context.Context, *ListCiTemplateTaskReq) (*ListCiTemplateTaskReply, error)
-	// 7. CI 任务
-	// 执行 CI 任务
-	RunCi(context.Context, *RunCiReq) (*RunCiReply, error)
-	// 查询执行 CI 任务结果
-	GetCiTasks(context.Context, *GetCiTasksReq) (*GetCiTasksReply, error)
-	// 查询执行 CI 任务详情
-	GetCiTaskDetails(context.Context, *GetCiTaskDetailsReq) (*GetCiTaskDetailsReply, error)
 	mustEmbedUnimplementedCiServer()
 }
 
@@ -979,15 +935,6 @@ func (UnimplementedCiServer) GetCiTemplateTask(context.Context, *GetCiTemplateTa
 }
 func (UnimplementedCiServer) ListCiTemplateTask(context.Context, *ListCiTemplateTaskReq) (*ListCiTemplateTaskReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListCiTemplateTask not implemented")
-}
-func (UnimplementedCiServer) RunCi(context.Context, *RunCiReq) (*RunCiReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RunCi not implemented")
-}
-func (UnimplementedCiServer) GetCiTasks(context.Context, *GetCiTasksReq) (*GetCiTasksReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetCiTasks not implemented")
-}
-func (UnimplementedCiServer) GetCiTaskDetails(context.Context, *GetCiTaskDetailsReq) (*GetCiTaskDetailsReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetCiTaskDetails not implemented")
 }
 func (UnimplementedCiServer) mustEmbedUnimplementedCiServer() {}
 
@@ -2010,60 +1957,6 @@ func _Ci_ListCiTemplateTask_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Ci_RunCi_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RunCiReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CiServer).RunCi(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Ci_RunCi_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CiServer).RunCi(ctx, req.(*RunCiReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Ci_GetCiTasks_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetCiTasksReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CiServer).GetCiTasks(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Ci_GetCiTasks_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CiServer).GetCiTasks(ctx, req.(*GetCiTasksReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Ci_GetCiTaskDetails_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetCiTaskDetailsReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CiServer).GetCiTaskDetails(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Ci_GetCiTaskDetails_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CiServer).GetCiTaskDetails(ctx, req.(*GetCiTaskDetailsReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // Ci_ServiceDesc is the grpc.ServiceDesc for Ci service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -2294,18 +2187,6 @@ var Ci_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListCiTemplateTask",
 			Handler:    _Ci_ListCiTemplateTask_Handler,
-		},
-		{
-			MethodName: "RunCi",
-			Handler:    _Ci_RunCi_Handler,
-		},
-		{
-			MethodName: "GetCiTasks",
-			Handler:    _Ci_GetCiTasks_Handler,
-		},
-		{
-			MethodName: "GetCiTaskDetails",
-			Handler:    _Ci_GetCiTaskDetails_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

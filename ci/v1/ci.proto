@@ -117,13 +117,6 @@ service ci {
   rpc GetCiTemplateTask (GetCiTemplateTaskReq) returns (GetCiTemplateTaskReply) {};
   rpc ListCiTemplateTask (ListCiTemplateTaskReq) returns (ListCiTemplateTaskReply) {};
 
-  // 7. CI 任务
-  // 执行 CI 任务
-  rpc RunCi (RunCiReq) returns (RunCiReply){};
-  // 查询执行 CI 任务结果
-  rpc GetCiTasks (GetCiTasksReq) returns (GetCiTasksReply){};
-  // 查询执行 CI 任务详情
-  rpc GetCiTaskDetails (GetCiTaskDetailsReq) returns (GetCiTaskDetailsReply){};
 }
 
 
@@ -685,6 +678,7 @@ message ExecBuildContainerImageTaskReq {
   string orgUuid = 2 [(validate.rules).string.min_len = 1];
   string productUuid = 3 [(validate.rules).string.min_len = 1];
   string templateUuid = 4 [(validate.rules).string.min_len = 1];
+  string repoName = 10;
   string repoUuid = 6 [(validate.rules).string.min_len = 1];
   string repoUrl = 7 [(validate.rules).string.min_len = 1];
   string token = 8;
@@ -963,45 +957,6 @@ message GetCopyCloudObjectStorageHisReply {
   int64 endExecTime = 12;
   int64 createTime = 13;
 }
-// 执行CI任务
-message RunCiReq {
-  string gitHttpUrl = 1 [(validate.rules).string.min_len = 1];
-  string gitToken = 2 [(validate.rules).string.min_len = 1];
-  string branch = 3 [(validate.rules).string.min_len = 1];
-}
-message RunCiReply {
-  string taskId = 1;
-}
-// 批量查询Ci任务信息
-message GetCiTasksReq {
-  repeated string taskIds = 1;
-}
-message GetCiTasksReply {
-  map<string, CiTask> tasks = 4;
-  message CiTask {
-    int32 result = 1;
-    int64 createTime = 3;
-    int64 updateTime = 4;
-    string containerImg = 5;
-    string objectStorageTo = 6;
-    string objectStorageBucket = 7;
-    string objectStoragePath = 8;
-  }
-}
-// 获取Ci任务执行详情
-message GetCiTaskDetailsReq {
-  string taskId = 1 [(validate.rules).string.min_len = 1];
-}
-message GetCiTaskDetailsReply {
-  repeated CiDetail details = 4;
-  message CiDetail {
-    int32 result = 1;
-    string content = 2;
-    int64 createTime = 3;
-    string stageName = 4;
-    string stageStepName = 5;
-  }
-}
 
 
 // CI 模版
@@ -1092,6 +1047,7 @@ message ExecCiTemplateTaskReq {
   string orgUuid = 2 [(validate.rules).string.min_len = 1];
   string productUuid = 3 [(validate.rules).string.min_len = 1];
   string templateUuid = 4;
+  string repoName = 9;
   string repoUuid = 5;
   string repoUrl = 6;
   string repoBranch = 7;
