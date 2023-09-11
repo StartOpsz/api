@@ -2341,9 +2341,10 @@ message SelfGitlabRepoExecCiTemplateReq {
   string userUuid = 1 [(validate.rules).string.min_len = 1];
   string orgUuid = 2 [(validate.rules).string.min_len = 1];
   string productUuid = 3 [(validate.rules).string.min_len = 1];
-  string repoUuid = 4 [(validate.rules).string.min_len = 1];
-  string branchName = 5 [(validate.rules).string.min_len = 1];
-  string templateUuid = 6 [(validate.rules).string.min_len = 1];
+  string platformUuid = 4 [(validate.rules).string.min_len = 1];
+  string repoUuid = 5 [(validate.rules).string.min_len = 1];
+  string branchName = 6 [(validate.rules).string.min_len = 1];
+  string templateUuid = 7 [(validate.rules).string.min_len = 1];
 }
 message SelfGitlabRepoExecCiTemplateReply {
   string taskId = 1;
@@ -2353,10 +2354,9 @@ message GithubRepoExecCiTemplateReq {
   string userUuid = 1 [(validate.rules).string.min_len = 1];
   string orgUuid = 2 [(validate.rules).string.min_len = 1];
   string productUuid = 3 [(validate.rules).string.min_len = 1];
-  string platformUuid = 4 [(validate.rules).string.min_len = 1];
-  string repoUuid = 5 [(validate.rules).string.min_len = 1];
-  string branchName = 6 [(validate.rules).string.min_len = 1];
-  string templateUuid = 7 [(validate.rules).string.min_len = 1];
+  string repoUuid = 4 [(validate.rules).string.min_len = 1];
+  string branchName = 5 [(validate.rules).string.min_len = 1];
+  string templateUuid = 6 [(validate.rules).string.min_len = 1];
 }
 message GithubRepoExecCiTemplateReply {
   string taskId = 1;
