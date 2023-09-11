@@ -283,6 +283,8 @@ service Product {
   rpc SelfGitlabRepoBuildContainerImage (SelfGitlabRepoBuildContainerImageReq) returns (SelfGitlabRepoBuildContainerImageReply) {};
   rpc GithubRepoBuildContainerImage (GithubRepoBuildContainerImageReq) returns (GithubRepoBuildContainerImageReply) {};
 
+  rpc SelfGitlabRepoExecCiTemplate (SelfGitlabRepoExecCiTemplateReq) returns (SelfGitlabRepoExecCiTemplateReply) {};
+  rpc GithubRepoExecCiTemplate (GithubRepoExecCiTemplateReq) returns (GithubRepoExecCiTemplateReply) {};
 
   // 程序
   rpc CreateProgram (CreateProgramReq) returns (CreateProgramReply) {};
@@ -2307,7 +2309,7 @@ message GetWebServiceResourcePromSDReply {
 }
 
 // CI
-
+// 自建Gitlab仓库构建容器镜像
 message SelfGitlabRepoBuildContainerImageReq {
   string userUuid = 1 [(validate.rules).string.min_len = 1];
   string orgUuid = 2 [(validate.rules).string.min_len = 1];
@@ -2318,11 +2320,10 @@ message SelfGitlabRepoBuildContainerImageReq {
   string registryUuid = 7 [(validate.rules).string.min_len = 1];
   string dockerfile = 8 [(validate.rules).string.min_len = 1];
 }
-
 message SelfGitlabRepoBuildContainerImageReply {
   bool result = 1;
 }
-
+// Github仓库构建容器镜像
 message GithubRepoBuildContainerImageReq {
   string userUuid = 1 [(validate.rules).string.min_len = 1];
   string orgUuid = 2 [(validate.rules).string.min_len = 1];
@@ -2332,7 +2333,31 @@ message GithubRepoBuildContainerImageReq {
   string registryUuid = 6 [(validate.rules).string.min_len = 1];
   string dockerfile = 7 [(validate.rules).string.min_len = 1];
 }
-
 message GithubRepoBuildContainerImageReply {
   bool result = 1;
+}
+// 自建Gitlab仓库执行CI模版任务
+message SelfGitlabRepoExecCiTemplateReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string repoUuid = 4 [(validate.rules).string.min_len = 1];
+  string branchName = 5 [(validate.rules).string.min_len = 1];
+  string templateUuid = 6 [(validate.rules).string.min_len = 1];
+}
+message SelfGitlabRepoExecCiTemplateReply {
+  string taskId = 1;
+}
+// Github仓库执行CI模版任务
+message GithubRepoExecCiTemplateReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string platformUuid = 4 [(validate.rules).string.min_len = 1];
+  string repoUuid = 5 [(validate.rules).string.min_len = 1];
+  string branchName = 6 [(validate.rules).string.min_len = 1];
+  string templateUuid = 7 [(validate.rules).string.min_len = 1];
+}
+message GithubRepoExecCiTemplateReply {
+  string taskId = 1;
 }

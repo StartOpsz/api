@@ -134,6 +134,8 @@ const (
 	Product_ListGithubRepoBranchCommits_FullMethodName          = "/product.v1.Product/ListGithubRepoBranchCommits"
 	Product_SelfGitlabRepoBuildContainerImage_FullMethodName    = "/product.v1.Product/SelfGitlabRepoBuildContainerImage"
 	Product_GithubRepoBuildContainerImage_FullMethodName        = "/product.v1.Product/GithubRepoBuildContainerImage"
+	Product_SelfGitlabRepoExecCiTemplate_FullMethodName         = "/product.v1.Product/SelfGitlabRepoExecCiTemplate"
+	Product_GithubRepoExecCiTemplate_FullMethodName             = "/product.v1.Product/GithubRepoExecCiTemplate"
 	Product_CreateProgram_FullMethodName                        = "/product.v1.Product/CreateProgram"
 	Product_GetProgramByUuid_FullMethodName                     = "/product.v1.Product/GetProgramByUuid"
 	Product_GetSelfProgram_FullMethodName                       = "/product.v1.Product/GetSelfProgram"
@@ -390,6 +392,8 @@ type ProductClient interface {
 	// CI - 构建容器镜像
 	SelfGitlabRepoBuildContainerImage(ctx context.Context, in *SelfGitlabRepoBuildContainerImageReq, opts ...grpc.CallOption) (*SelfGitlabRepoBuildContainerImageReply, error)
 	GithubRepoBuildContainerImage(ctx context.Context, in *GithubRepoBuildContainerImageReq, opts ...grpc.CallOption) (*GithubRepoBuildContainerImageReply, error)
+	SelfGitlabRepoExecCiTemplate(ctx context.Context, in *SelfGitlabRepoExecCiTemplateReq, opts ...grpc.CallOption) (*SelfGitlabRepoExecCiTemplateReply, error)
+	GithubRepoExecCiTemplate(ctx context.Context, in *GithubRepoExecCiTemplateReq, opts ...grpc.CallOption) (*GithubRepoExecCiTemplateReply, error)
 	// 程序
 	CreateProgram(ctx context.Context, in *CreateProgramReq, opts ...grpc.CallOption) (*CreateProgramReply, error)
 	GetProgramByUuid(ctx context.Context, in *GetProgramByUuidReq, opts ...grpc.CallOption) (*GetProgramByUuidReply, error)
@@ -1454,6 +1458,24 @@ func (c *productClient) GithubRepoBuildContainerImage(ctx context.Context, in *G
 	return out, nil
 }
 
+func (c *productClient) SelfGitlabRepoExecCiTemplate(ctx context.Context, in *SelfGitlabRepoExecCiTemplateReq, opts ...grpc.CallOption) (*SelfGitlabRepoExecCiTemplateReply, error) {
+	out := new(SelfGitlabRepoExecCiTemplateReply)
+	err := c.cc.Invoke(ctx, Product_SelfGitlabRepoExecCiTemplate_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productClient) GithubRepoExecCiTemplate(ctx context.Context, in *GithubRepoExecCiTemplateReq, opts ...grpc.CallOption) (*GithubRepoExecCiTemplateReply, error) {
+	out := new(GithubRepoExecCiTemplateReply)
+	err := c.cc.Invoke(ctx, Product_GithubRepoExecCiTemplate_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *productClient) CreateProgram(ctx context.Context, in *CreateProgramReq, opts ...grpc.CallOption) (*CreateProgramReply, error) {
 	out := new(CreateProgramReply)
 	err := c.cc.Invoke(ctx, Product_CreateProgram_FullMethodName, in, out, opts...)
@@ -1828,6 +1850,8 @@ type ProductServer interface {
 	// CI - 构建容器镜像
 	SelfGitlabRepoBuildContainerImage(context.Context, *SelfGitlabRepoBuildContainerImageReq) (*SelfGitlabRepoBuildContainerImageReply, error)
 	GithubRepoBuildContainerImage(context.Context, *GithubRepoBuildContainerImageReq) (*GithubRepoBuildContainerImageReply, error)
+	SelfGitlabRepoExecCiTemplate(context.Context, *SelfGitlabRepoExecCiTemplateReq) (*SelfGitlabRepoExecCiTemplateReply, error)
+	GithubRepoExecCiTemplate(context.Context, *GithubRepoExecCiTemplateReq) (*GithubRepoExecCiTemplateReply, error)
 	// 程序
 	CreateProgram(context.Context, *CreateProgramReq) (*CreateProgramReply, error)
 	GetProgramByUuid(context.Context, *GetProgramByUuidReq) (*GetProgramByUuidReply, error)
@@ -2198,6 +2222,12 @@ func (UnimplementedProductServer) SelfGitlabRepoBuildContainerImage(context.Cont
 }
 func (UnimplementedProductServer) GithubRepoBuildContainerImage(context.Context, *GithubRepoBuildContainerImageReq) (*GithubRepoBuildContainerImageReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GithubRepoBuildContainerImage not implemented")
+}
+func (UnimplementedProductServer) SelfGitlabRepoExecCiTemplate(context.Context, *SelfGitlabRepoExecCiTemplateReq) (*SelfGitlabRepoExecCiTemplateReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SelfGitlabRepoExecCiTemplate not implemented")
+}
+func (UnimplementedProductServer) GithubRepoExecCiTemplate(context.Context, *GithubRepoExecCiTemplateReq) (*GithubRepoExecCiTemplateReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GithubRepoExecCiTemplate not implemented")
 }
 func (UnimplementedProductServer) CreateProgram(context.Context, *CreateProgramReq) (*CreateProgramReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateProgram not implemented")
@@ -4327,6 +4357,42 @@ func _Product_GithubRepoBuildContainerImage_Handler(srv interface{}, ctx context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Product_SelfGitlabRepoExecCiTemplate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SelfGitlabRepoExecCiTemplateReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductServer).SelfGitlabRepoExecCiTemplate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Product_SelfGitlabRepoExecCiTemplate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductServer).SelfGitlabRepoExecCiTemplate(ctx, req.(*SelfGitlabRepoExecCiTemplateReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Product_GithubRepoExecCiTemplate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GithubRepoExecCiTemplateReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductServer).GithubRepoExecCiTemplate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Product_GithubRepoExecCiTemplate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductServer).GithubRepoExecCiTemplate(ctx, req.(*GithubRepoExecCiTemplateReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Product_CreateProgram_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateProgramReq)
 	if err := dec(in); err != nil {
@@ -5063,6 +5129,14 @@ var Product_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GithubRepoBuildContainerImage",
 			Handler:    _Product_GithubRepoBuildContainerImage_Handler,
+		},
+		{
+			MethodName: "SelfGitlabRepoExecCiTemplate",
+			Handler:    _Product_SelfGitlabRepoExecCiTemplate_Handler,
+		},
+		{
+			MethodName: "GithubRepoExecCiTemplate",
+			Handler:    _Product_GithubRepoExecCiTemplate_Handler,
 		},
 		{
 			MethodName: "CreateProgram",
