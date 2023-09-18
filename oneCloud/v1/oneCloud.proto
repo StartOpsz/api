@@ -86,22 +86,36 @@ service oneCloud {
 
 
   // EIP
+  // 创建 eip 实例
   rpc CreateEIP (CreateEIPReq) returns (CreateEIPReply) {};
+  // 获取 eip 实例
   rpc GetEIP (GetEIPReq) returns (GetEIPReply) {};
+  // 更新 eip 实例
   rpc UpdateEIP (UpdateEIPReq) returns (UpdateEIPReply) {};
+  // 释放 eip 实例
   rpc ReleaseEIP (ReleaseEIPReq) returns (ReleaseEIPReply) {};
 
 
   // RDS
+  // 创建rds实例
   rpc CreateRDS (CreateRDSReq) returns (CreateRDSReply) {};
+  // 获取rds实例
   rpc GetRDS (GetRDSReq) returns (GetRDSReply) {};
+  // 列出rds实例
   rpc ListRDS(ListRDSReq) returns (ListRDSReply) {};
+  // 列出rds实例慢查日志
   rpc ListRDSSlowLogs (ListRDSSlowLogsReq) returns (ListRDSSlowLogsReply) {};
+  // 列出rds实例错误日志
   rpc ListRDSErrLogs (ListRDSErrLogsReq) returns (ListRDSErrLogsReply) {};
   // LoadBalance
 
+
+  // LoadBalance
+  // 创建负载均衡器
   rpc CreateLB (CreateLBReq) returns (CreateLBReply) {};
+  // 获取负载均衡器
   rpc GetLB (GetLBReq) returns (GetLBReply) {};
+  // 释放负载均衡器
   rpc ReleaseLB (ReleaseLBReq) returns (ReleaseLBReply) {};
 
 
@@ -124,9 +138,10 @@ service oneCloud {
   rpc GetCDNQuota (GetCDNQuotaReq) returns (GetCDNQuotaReply) {};
   // 是否是CDN IP
   rpc IsCdnIp (IsCdnIpReq) returns (IsCdnIpReply) {};
-  // 查询CDN节点IP可用状态
+  // 查询cdn节点IP可用状态
   rpc GetCdnIpStatus (GetCdnIpStatusReq) returns (GetCdnIpStatusReply) {};
-
+  // 获取cdn服务状态 - 计费类型，服务开通状态
+  rpc GetCdnServiceStatus (GetCdnServiceStatusReq) returns (GetCdnServiceStatusReply) {};
 
   // 对象存储
   // 列出对象存储桶
@@ -878,7 +893,7 @@ message IsCdnIpReply {
   string ispName = 2;
   string region = 3;
 }
-// 获取CDN IP状态
+// 获取 cdn ip 状态
 message GetCdnIpStatusReq {
   string userUuid = 1 [(validate.rules).string.min_len = 1];
   string orgUuid = 2 [(validate.rules).string.min_len = 1];
@@ -895,6 +910,24 @@ message GetCdnIpStatusReply {
     string ip = 1;
     string status = 2;
   }
+}
+// 获取 cdn 服务状态
+message GetCdnServiceStatusReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  int32 platformId = 4;
+  string accountUuid = 5 [(validate.rules).string.min_len = 1];
+  string subAccountUuid = 6 [(validate.rules).string.min_len = 1];
+  string subAccountAccessKeyUuid = 7 [(validate.rules).string.min_len = 1];
+}
+message GetCdnServiceStatusReply {
+  string instanceId = 1;
+  string internetChargeType = 2;
+  string changingAffectTime = 3;
+  string changingChargeType = 4;
+  string openingTime = 5;
+  string locksReason = 6;
 }
 
 

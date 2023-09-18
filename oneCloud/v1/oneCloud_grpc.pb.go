@@ -74,6 +74,7 @@ const (
 	OneCloud_GetCDNQuota_FullMethodName                                 = "/oneCloud.v1.oneCloud/GetCDNQuota"
 	OneCloud_IsCdnIp_FullMethodName                                     = "/oneCloud.v1.oneCloud/IsCdnIp"
 	OneCloud_GetCdnIpStatus_FullMethodName                              = "/oneCloud.v1.oneCloud/GetCdnIpStatus"
+	OneCloud_GetCdnServiceStatus_FullMethodName                         = "/oneCloud.v1.oneCloud/GetCdnServiceStatus"
 	OneCloud_ListOSSBucket_FullMethodName                               = "/oneCloud.v1.oneCloud/ListOSSBucket"
 	OneCloud_CreateOSSBucket_FullMethodName                             = "/oneCloud.v1.oneCloud/CreateOSSBucket"
 	OneCloud_GetOSSBucket_FullMethodName                                = "/oneCloud.v1.oneCloud/GetOSSBucket"
@@ -160,18 +161,31 @@ type OneCloudClient interface {
 	ShutdownECS(ctx context.Context, in *ShutdownECSReq, opts ...grpc.CallOption) (*ShutdownECSReply, error)
 	GetECS(ctx context.Context, in *GetECSReq, opts ...grpc.CallOption) (*GetECSReply, error)
 	// EIP
+	// 创建 eip 实例
 	CreateEIP(ctx context.Context, in *CreateEIPReq, opts ...grpc.CallOption) (*CreateEIPReply, error)
+	// 获取 eip 实例
 	GetEIP(ctx context.Context, in *GetEIPReq, opts ...grpc.CallOption) (*GetEIPReply, error)
+	// 更新 eip 实例
 	UpdateEIP(ctx context.Context, in *UpdateEIPReq, opts ...grpc.CallOption) (*UpdateEIPReply, error)
+	// 释放 eip 实例
 	ReleaseEIP(ctx context.Context, in *ReleaseEIPReq, opts ...grpc.CallOption) (*ReleaseEIPReply, error)
 	// RDS
+	// 创建rds实例
 	CreateRDS(ctx context.Context, in *CreateRDSReq, opts ...grpc.CallOption) (*CreateRDSReply, error)
+	// 获取rds实例
 	GetRDS(ctx context.Context, in *GetRDSReq, opts ...grpc.CallOption) (*GetRDSReply, error)
+	// 列出rds实例
 	ListRDS(ctx context.Context, in *ListRDSReq, opts ...grpc.CallOption) (*ListRDSReply, error)
+	// 列出rds实例慢查日志
 	ListRDSSlowLogs(ctx context.Context, in *ListRDSSlowLogsReq, opts ...grpc.CallOption) (*ListRDSSlowLogsReply, error)
+	// 列出rds实例错误日志
 	ListRDSErrLogs(ctx context.Context, in *ListRDSErrLogsReq, opts ...grpc.CallOption) (*ListRDSErrLogsReply, error)
+	// LoadBalance
+	// 创建负载均衡器
 	CreateLB(ctx context.Context, in *CreateLBReq, opts ...grpc.CallOption) (*CreateLBReply, error)
+	// 获取负载均衡器
 	GetLB(ctx context.Context, in *GetLBReq, opts ...grpc.CallOption) (*GetLBReply, error)
+	// 释放负载均衡器
 	ReleaseLB(ctx context.Context, in *ReleaseLBReq, opts ...grpc.CallOption) (*ReleaseLBReply, error)
 	// CDN
 	// 列出CDN记录
@@ -192,8 +206,10 @@ type OneCloudClient interface {
 	GetCDNQuota(ctx context.Context, in *GetCDNQuotaReq, opts ...grpc.CallOption) (*GetCDNQuotaReply, error)
 	// 是否是CDN IP
 	IsCdnIp(ctx context.Context, in *IsCdnIpReq, opts ...grpc.CallOption) (*IsCdnIpReply, error)
-	// 查询CDN节点IP可用状态
+	// 查询cdn节点IP可用状态
 	GetCdnIpStatus(ctx context.Context, in *GetCdnIpStatusReq, opts ...grpc.CallOption) (*GetCdnIpStatusReply, error)
+	// 获取cdn服务状态 - 计费类型，服务开通状态
+	GetCdnServiceStatus(ctx context.Context, in *GetCdnServiceStatusReq, opts ...grpc.CallOption) (*GetCdnServiceStatusReply, error)
 	// 对象存储
 	// 列出对象存储桶
 	ListOSSBucket(ctx context.Context, in *ListOSSBucketReq, opts ...grpc.CallOption) (*ListOSSBucketReply, error)
@@ -723,6 +739,15 @@ func (c *oneCloudClient) GetCdnIpStatus(ctx context.Context, in *GetCdnIpStatusR
 	return out, nil
 }
 
+func (c *oneCloudClient) GetCdnServiceStatus(ctx context.Context, in *GetCdnServiceStatusReq, opts ...grpc.CallOption) (*GetCdnServiceStatusReply, error) {
+	out := new(GetCdnServiceStatusReply)
+	err := c.cc.Invoke(ctx, OneCloud_GetCdnServiceStatus_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *oneCloudClient) ListOSSBucket(ctx context.Context, in *ListOSSBucketReq, opts ...grpc.CallOption) (*ListOSSBucketReply, error) {
 	out := new(ListOSSBucketReply)
 	err := c.cc.Invoke(ctx, OneCloud_ListOSSBucket_FullMethodName, in, out, opts...)
@@ -935,18 +960,31 @@ type OneCloudServer interface {
 	ShutdownECS(context.Context, *ShutdownECSReq) (*ShutdownECSReply, error)
 	GetECS(context.Context, *GetECSReq) (*GetECSReply, error)
 	// EIP
+	// 创建 eip 实例
 	CreateEIP(context.Context, *CreateEIPReq) (*CreateEIPReply, error)
+	// 获取 eip 实例
 	GetEIP(context.Context, *GetEIPReq) (*GetEIPReply, error)
+	// 更新 eip 实例
 	UpdateEIP(context.Context, *UpdateEIPReq) (*UpdateEIPReply, error)
+	// 释放 eip 实例
 	ReleaseEIP(context.Context, *ReleaseEIPReq) (*ReleaseEIPReply, error)
 	// RDS
+	// 创建rds实例
 	CreateRDS(context.Context, *CreateRDSReq) (*CreateRDSReply, error)
+	// 获取rds实例
 	GetRDS(context.Context, *GetRDSReq) (*GetRDSReply, error)
+	// 列出rds实例
 	ListRDS(context.Context, *ListRDSReq) (*ListRDSReply, error)
+	// 列出rds实例慢查日志
 	ListRDSSlowLogs(context.Context, *ListRDSSlowLogsReq) (*ListRDSSlowLogsReply, error)
+	// 列出rds实例错误日志
 	ListRDSErrLogs(context.Context, *ListRDSErrLogsReq) (*ListRDSErrLogsReply, error)
+	// LoadBalance
+	// 创建负载均衡器
 	CreateLB(context.Context, *CreateLBReq) (*CreateLBReply, error)
+	// 获取负载均衡器
 	GetLB(context.Context, *GetLBReq) (*GetLBReply, error)
+	// 释放负载均衡器
 	ReleaseLB(context.Context, *ReleaseLBReq) (*ReleaseLBReply, error)
 	// CDN
 	// 列出CDN记录
@@ -967,8 +1005,10 @@ type OneCloudServer interface {
 	GetCDNQuota(context.Context, *GetCDNQuotaReq) (*GetCDNQuotaReply, error)
 	// 是否是CDN IP
 	IsCdnIp(context.Context, *IsCdnIpReq) (*IsCdnIpReply, error)
-	// 查询CDN节点IP可用状态
+	// 查询cdn节点IP可用状态
 	GetCdnIpStatus(context.Context, *GetCdnIpStatusReq) (*GetCdnIpStatusReply, error)
+	// 获取cdn服务状态 - 计费类型，服务开通状态
+	GetCdnServiceStatus(context.Context, *GetCdnServiceStatusReq) (*GetCdnServiceStatusReply, error)
 	// 对象存储
 	// 列出对象存储桶
 	ListOSSBucket(context.Context, *ListOSSBucketReq) (*ListOSSBucketReply, error)
@@ -1164,6 +1204,9 @@ func (UnimplementedOneCloudServer) IsCdnIp(context.Context, *IsCdnIpReq) (*IsCdn
 }
 func (UnimplementedOneCloudServer) GetCdnIpStatus(context.Context, *GetCdnIpStatusReq) (*GetCdnIpStatusReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCdnIpStatus not implemented")
+}
+func (UnimplementedOneCloudServer) GetCdnServiceStatus(context.Context, *GetCdnServiceStatusReq) (*GetCdnServiceStatusReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCdnServiceStatus not implemented")
 }
 func (UnimplementedOneCloudServer) ListOSSBucket(context.Context, *ListOSSBucketReq) (*ListOSSBucketReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListOSSBucket not implemented")
@@ -2216,6 +2259,24 @@ func _OneCloud_GetCdnIpStatus_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _OneCloud_GetCdnServiceStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCdnServiceStatusReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneCloudServer).GetCdnServiceStatus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneCloud_GetCdnServiceStatus_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneCloudServer).GetCdnServiceStatus(ctx, req.(*GetCdnServiceStatusReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _OneCloud_ListOSSBucket_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListOSSBucketReq)
 	if err := dec(in); err != nil {
@@ -2730,6 +2791,10 @@ var OneCloud_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetCdnIpStatus",
 			Handler:    _OneCloud_GetCdnIpStatus_Handler,
+		},
+		{
+			MethodName: "GetCdnServiceStatus",
+			Handler:    _OneCloud_GetCdnServiceStatus_Handler,
 		},
 		{
 			MethodName: "ListOSSBucket",

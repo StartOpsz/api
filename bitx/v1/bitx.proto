@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+package bitx.v1;
+
+option go_package = "github.com/StartOpsz/bitx/api/bitx/v1;v1";
+
+import "validate/validate.proto";
+
+service ci {
+  rpc ListSymbol (ListSymbolReq) returns (ListSymbolReply) {};
+  rpc ListSymbolPrice (ListSymbolPriceReq) returns (ListSymbolPriceReply) {};
+  rpc GetDailyAsset (GetDailyAssetReq) returns (GetDailyAssetReply) {};
+}
+
+// 列出 Symbol
+message ListSymbolReq {
+}
+
+message ListSymbolReply {
+  repeated string symbols = 1;
+}
+
+// 列出 Symbol 价格
+message ListSymbolPriceReq {
+  string symbol = 1;
+  int64 startTime = 2;
+  int64 endTime = 3;
+}
+message ListSymbolPriceReply {
+  repeated Price prices = 1;
+  message Price {
+    float PriceChange = 1;
+    float PriceChangePercent = 2;
+    float WeightedAvgPrice = 3;
+    float OpenPrice = 4;
+    float HighPrice = 5;
+    float LowPrice = 6;
+    float LastPrice = 7;
+    float Volume = 8;
+    float QuoteVolume = 9;
+    int64 OpenTime = 10;
+    int64 CloseTime = 11;
+    int32 Count = 12;
+  }
+}
+
+//
+
+message GetDailyAssetReq {
+  string asset = 1;
+  int64 startTime = 2;
+  int64 endTime = 3;
+}
+
+message GetDailyAssetReply {
+  repeated Asset asset = 1;
+  message Asset {
+    string asset = 1;
+    float free = 2;
+    float locked = 3;
+    int64 time = 4;
+    int64 createTime = 5;
+  }
+}
+
