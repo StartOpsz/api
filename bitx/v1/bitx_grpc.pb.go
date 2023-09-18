@@ -19,163 +19,163 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Ci_ListSymbol_FullMethodName      = "/bitx.v1.ci/ListSymbol"
-	Ci_ListSymbolPrice_FullMethodName = "/bitx.v1.ci/ListSymbolPrice"
-	Ci_GetDailyAsset_FullMethodName   = "/bitx.v1.ci/GetDailyAsset"
+	Bitx_ListSymbol_FullMethodName      = "/bitx.v1.bitx/ListSymbol"
+	Bitx_ListSymbolPrice_FullMethodName = "/bitx.v1.bitx/ListSymbolPrice"
+	Bitx_GetDailyAsset_FullMethodName   = "/bitx.v1.bitx/GetDailyAsset"
 )
 
-// CiClient is the client API for Ci service.
+// BitxClient is the client API for Bitx service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type CiClient interface {
+type BitxClient interface {
 	ListSymbol(ctx context.Context, in *ListSymbolReq, opts ...grpc.CallOption) (*ListSymbolReply, error)
 	ListSymbolPrice(ctx context.Context, in *ListSymbolPriceReq, opts ...grpc.CallOption) (*ListSymbolPriceReply, error)
 	GetDailyAsset(ctx context.Context, in *GetDailyAssetReq, opts ...grpc.CallOption) (*GetDailyAssetReply, error)
 }
 
-type ciClient struct {
+type bitxClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewCiClient(cc grpc.ClientConnInterface) CiClient {
-	return &ciClient{cc}
+func NewBitxClient(cc grpc.ClientConnInterface) BitxClient {
+	return &bitxClient{cc}
 }
 
-func (c *ciClient) ListSymbol(ctx context.Context, in *ListSymbolReq, opts ...grpc.CallOption) (*ListSymbolReply, error) {
+func (c *bitxClient) ListSymbol(ctx context.Context, in *ListSymbolReq, opts ...grpc.CallOption) (*ListSymbolReply, error) {
 	out := new(ListSymbolReply)
-	err := c.cc.Invoke(ctx, Ci_ListSymbol_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, Bitx_ListSymbol_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *ciClient) ListSymbolPrice(ctx context.Context, in *ListSymbolPriceReq, opts ...grpc.CallOption) (*ListSymbolPriceReply, error) {
+func (c *bitxClient) ListSymbolPrice(ctx context.Context, in *ListSymbolPriceReq, opts ...grpc.CallOption) (*ListSymbolPriceReply, error) {
 	out := new(ListSymbolPriceReply)
-	err := c.cc.Invoke(ctx, Ci_ListSymbolPrice_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, Bitx_ListSymbolPrice_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *ciClient) GetDailyAsset(ctx context.Context, in *GetDailyAssetReq, opts ...grpc.CallOption) (*GetDailyAssetReply, error) {
+func (c *bitxClient) GetDailyAsset(ctx context.Context, in *GetDailyAssetReq, opts ...grpc.CallOption) (*GetDailyAssetReply, error) {
 	out := new(GetDailyAssetReply)
-	err := c.cc.Invoke(ctx, Ci_GetDailyAsset_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, Bitx_GetDailyAsset_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// CiServer is the server API for Ci service.
-// All implementations must embed UnimplementedCiServer
+// BitxServer is the server API for Bitx service.
+// All implementations must embed UnimplementedBitxServer
 // for forward compatibility
-type CiServer interface {
+type BitxServer interface {
 	ListSymbol(context.Context, *ListSymbolReq) (*ListSymbolReply, error)
 	ListSymbolPrice(context.Context, *ListSymbolPriceReq) (*ListSymbolPriceReply, error)
 	GetDailyAsset(context.Context, *GetDailyAssetReq) (*GetDailyAssetReply, error)
-	mustEmbedUnimplementedCiServer()
+	mustEmbedUnimplementedBitxServer()
 }
 
-// UnimplementedCiServer must be embedded to have forward compatible implementations.
-type UnimplementedCiServer struct {
+// UnimplementedBitxServer must be embedded to have forward compatible implementations.
+type UnimplementedBitxServer struct {
 }
 
-func (UnimplementedCiServer) ListSymbol(context.Context, *ListSymbolReq) (*ListSymbolReply, error) {
+func (UnimplementedBitxServer) ListSymbol(context.Context, *ListSymbolReq) (*ListSymbolReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListSymbol not implemented")
 }
-func (UnimplementedCiServer) ListSymbolPrice(context.Context, *ListSymbolPriceReq) (*ListSymbolPriceReply, error) {
+func (UnimplementedBitxServer) ListSymbolPrice(context.Context, *ListSymbolPriceReq) (*ListSymbolPriceReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListSymbolPrice not implemented")
 }
-func (UnimplementedCiServer) GetDailyAsset(context.Context, *GetDailyAssetReq) (*GetDailyAssetReply, error) {
+func (UnimplementedBitxServer) GetDailyAsset(context.Context, *GetDailyAssetReq) (*GetDailyAssetReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDailyAsset not implemented")
 }
-func (UnimplementedCiServer) mustEmbedUnimplementedCiServer() {}
+func (UnimplementedBitxServer) mustEmbedUnimplementedBitxServer() {}
 
-// UnsafeCiServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to CiServer will
+// UnsafeBitxServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to BitxServer will
 // result in compilation errors.
-type UnsafeCiServer interface {
-	mustEmbedUnimplementedCiServer()
+type UnsafeBitxServer interface {
+	mustEmbedUnimplementedBitxServer()
 }
 
-func RegisterCiServer(s grpc.ServiceRegistrar, srv CiServer) {
-	s.RegisterService(&Ci_ServiceDesc, srv)
+func RegisterBitxServer(s grpc.ServiceRegistrar, srv BitxServer) {
+	s.RegisterService(&Bitx_ServiceDesc, srv)
 }
 
-func _Ci_ListSymbol_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Bitx_ListSymbol_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListSymbolReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(CiServer).ListSymbol(ctx, in)
+		return srv.(BitxServer).ListSymbol(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Ci_ListSymbol_FullMethodName,
+		FullMethod: Bitx_ListSymbol_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CiServer).ListSymbol(ctx, req.(*ListSymbolReq))
+		return srv.(BitxServer).ListSymbol(ctx, req.(*ListSymbolReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Ci_ListSymbolPrice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Bitx_ListSymbolPrice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListSymbolPriceReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(CiServer).ListSymbolPrice(ctx, in)
+		return srv.(BitxServer).ListSymbolPrice(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Ci_ListSymbolPrice_FullMethodName,
+		FullMethod: Bitx_ListSymbolPrice_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CiServer).ListSymbolPrice(ctx, req.(*ListSymbolPriceReq))
+		return srv.(BitxServer).ListSymbolPrice(ctx, req.(*ListSymbolPriceReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Ci_GetDailyAsset_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Bitx_GetDailyAsset_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetDailyAssetReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(CiServer).GetDailyAsset(ctx, in)
+		return srv.(BitxServer).GetDailyAsset(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Ci_GetDailyAsset_FullMethodName,
+		FullMethod: Bitx_GetDailyAsset_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CiServer).GetDailyAsset(ctx, req.(*GetDailyAssetReq))
+		return srv.(BitxServer).GetDailyAsset(ctx, req.(*GetDailyAssetReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// Ci_ServiceDesc is the grpc.ServiceDesc for Ci service.
+// Bitx_ServiceDesc is the grpc.ServiceDesc for Bitx service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var Ci_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "bitx.v1.ci",
-	HandlerType: (*CiServer)(nil),
+var Bitx_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "bitx.v1.bitx",
+	HandlerType: (*BitxServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "ListSymbol",
-			Handler:    _Ci_ListSymbol_Handler,
+			Handler:    _Bitx_ListSymbol_Handler,
 		},
 		{
 			MethodName: "ListSymbolPrice",
-			Handler:    _Ci_ListSymbolPrice_Handler,
+			Handler:    _Bitx_ListSymbolPrice_Handler,
 		},
 		{
 			MethodName: "GetDailyAsset",
-			Handler:    _Ci_GetDailyAsset_Handler,
+			Handler:    _Bitx_GetDailyAsset_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

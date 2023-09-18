@@ -6,7 +6,7 @@ option go_package = "github.com/StartOpsz/bitx/api/bitx/v1;v1";
 
 import "validate/validate.proto";
 
-service ci {
+service bitx {
   rpc ListSymbol (ListSymbolReq) returns (ListSymbolReply) {};
   rpc ListSymbolPrice (ListSymbolPriceReq) returns (ListSymbolPriceReply) {};
   rpc GetDailyAsset (GetDailyAssetReq) returns (GetDailyAssetReply) {};
