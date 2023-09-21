@@ -88,6 +88,10 @@ const (
 	Product_CreateServiceUrl_FullMethodName                     = "/product.v1.Product/CreateServiceUrl"
 	Product_ListServiceUrl_FullMethodName                       = "/product.v1.Product/ListServiceUrl"
 	Product_DelServiceUrl_FullMethodName                        = "/product.v1.Product/DelServiceUrl"
+	Product_GenerateServiceUrlAuthKey_FullMethodName            = "/product.v1.Product/GenerateServiceUrlAuthKey"
+	Product_ListServiceUrlAuthKey_FullMethodName                = "/product.v1.Product/ListServiceUrlAuthKey"
+	Product_DelServiceUrlAuthKey_FullMethodName                 = "/product.v1.Product/DelServiceUrlAuthKey"
+	Product_GenerateServiceUrlAuthUrl_FullMethodName            = "/product.v1.Product/GenerateServiceUrlAuthUrl"
 	Product_AddContainerRegistry_FullMethodName                 = "/product.v1.Product/AddContainerRegistry"
 	Product_ListContainerRegistry_FullMethodName                = "/product.v1.Product/ListContainerRegistry"
 	Product_DelContainerRegistry_FullMethodName                 = "/product.v1.Product/DelContainerRegistry"
@@ -299,6 +303,10 @@ type ProductClient interface {
 	ListServiceUrl(ctx context.Context, in *ListServiceUrlReq, opts ...grpc.CallOption) (*ListServiceUrlReply, error)
 	// serviceUrl - 删除服务Url
 	DelServiceUrl(ctx context.Context, in *DelServiceUrlReq, opts ...grpc.CallOption) (*DelServiceUrlReply, error)
+	GenerateServiceUrlAuthKey(ctx context.Context, in *GenerateServiceUrlAuthKeyReq, opts ...grpc.CallOption) (*GenerateServiceUrlAuthKeyReply, error)
+	ListServiceUrlAuthKey(ctx context.Context, in *ListServiceUrlAuthKeyReq, opts ...grpc.CallOption) (*ListServiceUrlAuthKeyReply, error)
+	DelServiceUrlAuthKey(ctx context.Context, in *DelServiceUrlAuthKeyReq, opts ...grpc.CallOption) (*DelServiceUrlAuthKeyReply, error)
+	GenerateServiceUrlAuthUrl(ctx context.Context, in *GenerateServiceUrlAuthUrlReq, opts ...grpc.CallOption) (*GenerateServiceUrlAuthUrlReply, error)
 	// container_registry - 容器仓库
 	// 添加容器仓库账号
 	AddContainerRegistry(ctx context.Context, in *AddContainerRegistryReq, opts ...grpc.CallOption) (*AddContainerRegistryReply, error)
@@ -1044,6 +1052,42 @@ func (c *productClient) DelServiceUrl(ctx context.Context, in *DelServiceUrlReq,
 	return out, nil
 }
 
+func (c *productClient) GenerateServiceUrlAuthKey(ctx context.Context, in *GenerateServiceUrlAuthKeyReq, opts ...grpc.CallOption) (*GenerateServiceUrlAuthKeyReply, error) {
+	out := new(GenerateServiceUrlAuthKeyReply)
+	err := c.cc.Invoke(ctx, Product_GenerateServiceUrlAuthKey_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productClient) ListServiceUrlAuthKey(ctx context.Context, in *ListServiceUrlAuthKeyReq, opts ...grpc.CallOption) (*ListServiceUrlAuthKeyReply, error) {
+	out := new(ListServiceUrlAuthKeyReply)
+	err := c.cc.Invoke(ctx, Product_ListServiceUrlAuthKey_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productClient) DelServiceUrlAuthKey(ctx context.Context, in *DelServiceUrlAuthKeyReq, opts ...grpc.CallOption) (*DelServiceUrlAuthKeyReply, error) {
+	out := new(DelServiceUrlAuthKeyReply)
+	err := c.cc.Invoke(ctx, Product_DelServiceUrlAuthKey_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productClient) GenerateServiceUrlAuthUrl(ctx context.Context, in *GenerateServiceUrlAuthUrlReq, opts ...grpc.CallOption) (*GenerateServiceUrlAuthUrlReply, error) {
+	out := new(GenerateServiceUrlAuthUrlReply)
+	err := c.cc.Invoke(ctx, Product_GenerateServiceUrlAuthUrl_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *productClient) AddContainerRegistry(ctx context.Context, in *AddContainerRegistryReq, opts ...grpc.CallOption) (*AddContainerRegistryReply, error) {
 	out := new(AddContainerRegistryReply)
 	err := c.cc.Invoke(ctx, Product_AddContainerRegistry_FullMethodName, in, out, opts...)
@@ -1757,6 +1801,10 @@ type ProductServer interface {
 	ListServiceUrl(context.Context, *ListServiceUrlReq) (*ListServiceUrlReply, error)
 	// serviceUrl - 删除服务Url
 	DelServiceUrl(context.Context, *DelServiceUrlReq) (*DelServiceUrlReply, error)
+	GenerateServiceUrlAuthKey(context.Context, *GenerateServiceUrlAuthKeyReq) (*GenerateServiceUrlAuthKeyReply, error)
+	ListServiceUrlAuthKey(context.Context, *ListServiceUrlAuthKeyReq) (*ListServiceUrlAuthKeyReply, error)
+	DelServiceUrlAuthKey(context.Context, *DelServiceUrlAuthKeyReq) (*DelServiceUrlAuthKeyReply, error)
+	GenerateServiceUrlAuthUrl(context.Context, *GenerateServiceUrlAuthUrlReq) (*GenerateServiceUrlAuthUrlReply, error)
 	// container_registry - 容器仓库
 	// 添加容器仓库账号
 	AddContainerRegistry(context.Context, *AddContainerRegistryReq) (*AddContainerRegistryReply, error)
@@ -2084,6 +2132,18 @@ func (UnimplementedProductServer) ListServiceUrl(context.Context, *ListServiceUr
 }
 func (UnimplementedProductServer) DelServiceUrl(context.Context, *DelServiceUrlReq) (*DelServiceUrlReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DelServiceUrl not implemented")
+}
+func (UnimplementedProductServer) GenerateServiceUrlAuthKey(context.Context, *GenerateServiceUrlAuthKeyReq) (*GenerateServiceUrlAuthKeyReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GenerateServiceUrlAuthKey not implemented")
+}
+func (UnimplementedProductServer) ListServiceUrlAuthKey(context.Context, *ListServiceUrlAuthKeyReq) (*ListServiceUrlAuthKeyReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListServiceUrlAuthKey not implemented")
+}
+func (UnimplementedProductServer) DelServiceUrlAuthKey(context.Context, *DelServiceUrlAuthKeyReq) (*DelServiceUrlAuthKeyReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DelServiceUrlAuthKey not implemented")
+}
+func (UnimplementedProductServer) GenerateServiceUrlAuthUrl(context.Context, *GenerateServiceUrlAuthUrlReq) (*GenerateServiceUrlAuthUrlReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GenerateServiceUrlAuthUrl not implemented")
 }
 func (UnimplementedProductServer) AddContainerRegistry(context.Context, *AddContainerRegistryReq) (*AddContainerRegistryReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddContainerRegistry not implemented")
@@ -3529,6 +3589,78 @@ func _Product_DelServiceUrl_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Product_GenerateServiceUrlAuthKey_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GenerateServiceUrlAuthKeyReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductServer).GenerateServiceUrlAuthKey(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Product_GenerateServiceUrlAuthKey_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductServer).GenerateServiceUrlAuthKey(ctx, req.(*GenerateServiceUrlAuthKeyReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Product_ListServiceUrlAuthKey_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListServiceUrlAuthKeyReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductServer).ListServiceUrlAuthKey(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Product_ListServiceUrlAuthKey_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductServer).ListServiceUrlAuthKey(ctx, req.(*ListServiceUrlAuthKeyReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Product_DelServiceUrlAuthKey_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DelServiceUrlAuthKeyReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductServer).DelServiceUrlAuthKey(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Product_DelServiceUrlAuthKey_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductServer).DelServiceUrlAuthKey(ctx, req.(*DelServiceUrlAuthKeyReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Product_GenerateServiceUrlAuthUrl_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GenerateServiceUrlAuthUrlReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductServer).GenerateServiceUrlAuthUrl(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Product_GenerateServiceUrlAuthUrl_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductServer).GenerateServiceUrlAuthUrl(ctx, req.(*GenerateServiceUrlAuthUrlReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Product_AddContainerRegistry_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(AddContainerRegistryReq)
 	if err := dec(in); err != nil {
@@ -4945,6 +5077,22 @@ var Product_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DelServiceUrl",
 			Handler:    _Product_DelServiceUrl_Handler,
+		},
+		{
+			MethodName: "GenerateServiceUrlAuthKey",
+			Handler:    _Product_GenerateServiceUrlAuthKey_Handler,
+		},
+		{
+			MethodName: "ListServiceUrlAuthKey",
+			Handler:    _Product_ListServiceUrlAuthKey_Handler,
+		},
+		{
+			MethodName: "DelServiceUrlAuthKey",
+			Handler:    _Product_DelServiceUrlAuthKey_Handler,
+		},
+		{
+			MethodName: "GenerateServiceUrlAuthUrl",
+			Handler:    _Product_GenerateServiceUrlAuthUrl_Handler,
 		},
 		{
 			MethodName: "AddContainerRegistry",

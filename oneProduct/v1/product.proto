@@ -159,6 +159,7 @@ service Product {
   rpc DelK8SService (DelK8SServiceReq) returns (DelK8SServiceReply) {};
 
 
+
   // 创建K8S集群Ingress
   rpc CreateK8SIngress (CreateK8SIngressReq) returns (CreateK8SIngressReply) {};
   rpc ListK8SIngress (ListK8SIngressReq) returns (ListK8SIngressReply) {};
@@ -174,6 +175,11 @@ service Product {
   rpc ListServiceUrl (ListServiceUrlReq) returns (ListServiceUrlReply) {};
   // serviceUrl - 删除服务Url
   rpc DelServiceUrl (DelServiceUrlReq) returns (DelServiceUrlReply) {};
+
+  rpc GenerateServiceUrlAuthKey (GenerateServiceUrlAuthKeyReq) returns (GenerateServiceUrlAuthKeyReply) {};
+  rpc ListServiceUrlAuthKey (ListServiceUrlAuthKeyReq) returns (ListServiceUrlAuthKeyReply) {};
+  rpc DelServiceUrlAuthKey (DelServiceUrlAuthKeyReq) returns (DelServiceUrlAuthKeyReply) {};
+  rpc GenerateServiceUrlAuthUrl (GenerateServiceUrlAuthUrlReq) returns (GenerateServiceUrlAuthUrlReply) {};
 
 
   // container_registry - 容器仓库
@@ -2109,6 +2115,60 @@ message DelServiceUrlReq {
 message DelServiceUrlReply {
   bool result = 1;
 }
+// 生成/创建 ServiceUrl 认证key
+message GenerateServiceUrlAuthKeyReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+}
+message GenerateServiceUrlAuthKeyReply {
+  string key = 1;
+}
+// 列出 ServiceUrl 认证key
+message ListServiceUrlAuthKeyReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+}
+message ListServiceUrlAuthKeyReply {
+  repeated ServiceUrlAuthKey serviceUrlAuthKey = 1;
+  message ServiceUrlAuthKey {
+    string uuid = 1;
+    string orgUuid = 2;
+    string productUuid = 3;
+    string productEnvUuid = 4;
+    string key = 5;
+    string userUuid = 6;
+    int64 createTime = 7;
+  }
+}
+// 删除 ServiceUrl 认证key
+message DelServiceUrlAuthKeyReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+  string uuid = 5 [(validate.rules).string.min_len = 1];
+}
+message DelServiceUrlAuthKeyReply {
+  bool result = 1;
+}
+// 生成 ServiceUrl 认证链接
+message GenerateServiceUrlAuthUrlReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+  string serviceUrlUuid = 5 [(validate.rules).string.min_len = 1];
+  string authKeyUuid = 6 [(validate.rules).string.min_len = 1];
+}
+message GenerateServiceUrlAuthUrlReply {
+  string url = 1;
+}
+
+
 // 容器仓库账户
 message AddContainerRegistryReq {
   string userUuid = 1 [(validate.rules).string.min_len = 1];
