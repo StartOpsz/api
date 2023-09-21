@@ -2121,6 +2121,7 @@ message GenerateServiceUrlAuthKeyReq {
   string orgUuid = 2 [(validate.rules).string.min_len = 1];
   string productUuid = 3 [(validate.rules).string.min_len = 1];
   string productEnvUuid = 4 [(validate.rules).string.min_len = 1];
+  string name = 5 [(validate.rules).string.min_len = 1];
 }
 message GenerateServiceUrlAuthKeyReply {
   string key = 1;
