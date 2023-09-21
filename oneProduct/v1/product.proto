@@ -2140,9 +2140,10 @@ message ListServiceUrlAuthKeyReply {
     string orgUuid = 2;
     string productUuid = 3;
     string productEnvUuid = 4;
-    string key = 5;
-    string userUuid = 6;
-    int64 createTime = 7;
+    string name = 5;
+    string key = 6;
+    string userUuid = 7;
+    int64 createTime = 8;
   }
 }
 // 删除 ServiceUrl 认证key
