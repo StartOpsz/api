@@ -1445,7 +1445,6 @@ message UpdateK8SIngressReply {
 
 // 列出 k8s 对象公共模版
 message ListK8SObjectPublicTemplateReq {
-  string userUuid = 1  [(validate.rules).string.min_len = 1];
 }
 message ListK8SObjectPublicTemplateReply {
   repeated Template templates = 1;
@@ -1458,8 +1457,7 @@ message ListK8SObjectPublicTemplateReply {
 }
 // 获取 k8s 对象公共模版
 message GetK8SObjectPublicTemplateReq {
-  string userUuid = 1  [(validate.rules).string.min_len = 1];
-  string name = 2 [(validate.rules).string.min_len = 1];
+  string uuid = 1 [(validate.rules).string.min_len = 1];
 }
 message GetK8SObjectPublicTemplateReply {
   string uuid = 1;
