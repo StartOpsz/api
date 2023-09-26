@@ -168,6 +168,21 @@ service Product {
   rpc UpdateK8SIngress (UpdateK8SIngressReq) returns (UpdateK8SIngressReply) {};
 
 
+  // k8s 对象模版
+  // 列出 k8s 对象公共模版
+  rpc ListK8SObjectPublicTemplate (ListK8SObjectPublicTemplateReq) returns (ListK8SObjectPublicTemplateReply) {};
+  // 获取 k8s 对象公共模版
+  rpc GetK8SObjectPublicTemplate (GetK8SObjectPublicTemplateReq) returns (GetK8SObjectPublicTemplateReply) {};
+  // 创建 k8s 对象私有模版
+  rpc CreateK8SObjectPrivateTemplate (CreateK8SObjectPrivateTemplateReq) returns (CreateK8SObjectPrivateTemplateReply) {};
+  // 列出 k8s 对象私有模版
+  rpc ListK8SObjectPrivateTemplate (ListK8SObjectPrivateTemplateReq) returns (ListK8SObjectPrivateTemplateReply) {};
+  // 获取 k8s 对象私有模版
+  rpc GetK8SObjectPrivateTemplate (GetK8SObjectPrivateTemplateReq) returns (GetK8SObjectPrivateTemplateReply) {};
+  // 删除 k8s 对象私有模版
+  rpc DelK8SObjectPrivateTemplate (DelK8SObjectPrivateTemplateReq) returns (DelK8SObjectPrivateTemplateReply) {};
+
+
   // serviceUrl
   // serviceUrl - 添加服务Url
   rpc CreateServiceUrl (CreateServiceUrlReq) returns (CreateServiceUrlReply) {};
@@ -1425,6 +1440,80 @@ message UpdateK8SIngressReq {
   }
 }
 message UpdateK8SIngressReply {
+  bool result = 1;
+}
+
+// 列出 k8s 对象公共模版
+message ListK8SObjectPublicTemplateReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+}
+message ListK8SObjectPublicTemplateReply {
+  repeated Template templates = 1;
+  message Template {
+    string uuid = 1;
+    string name = 2;
+    string describe = 3;
+    string createTime = 4;
+  }
+}
+// 获取 k8s 对象公共模版
+message GetK8SObjectPublicTemplateReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string name = 2 [(validate.rules).string.min_len = 1];
+}
+message GetK8SObjectPublicTemplateReply {
+  string uuid = 1;
+  string name = 2;
+  string template = 3;
+  string describe = 4;
+  string createTime = 5;
+}
+// 创建 k8s 对象私有模版
+message CreateK8SObjectPrivateTemplateReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2  [(validate.rules).string.min_len = 1];
+  string name = 3  [(validate.rules).string.min_len = 1];
+  string template = 4  [(validate.rules).string.min_len = 1];
+}
+message CreateK8SObjectPrivateTemplateReply {
+  bool result = 1;
+}
+// 列出 k8s 对象私有模版
+message ListK8SObjectPrivateTemplateReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2  [(validate.rules).string.min_len = 1];
+}
+message ListK8SObjectPrivateTemplateReply {
+  repeated Template templates = 1;
+  message Template {
+    string uuid = 1;
+    string orgUuid = 2;
+    string name = 3;
+    string describe = 4;
+    string createTime = 5;
+  }
+}
+// 获取 k8s 对象私有模版
+message GetK8SObjectPrivateTemplateReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2  [(validate.rules).string.min_len = 1];
+  string uuid = 3 [(validate.rules).string.min_len = 1];
+}
+message GetK8SObjectPrivateTemplateReply {
+  string uuid = 1;
+  string orgUuid = 2;
+  string name = 3;
+  string template = 4;
+  string describe = 5;
+  string createTime = 6;
+}
+// 删除 k8s 对象私有模版
+message DelK8SObjectPrivateTemplateReq {
+  string userUuid = 1  [(validate.rules).string.min_len = 1];
+  string orgUuid = 2  [(validate.rules).string.min_len = 1];
+  string uuid = 3 [(validate.rules).string.min_len = 1];
+}
+message DelK8SObjectPrivateTemplateReply {
   bool result = 1;
 }
 

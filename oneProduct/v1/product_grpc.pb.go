@@ -85,6 +85,12 @@ const (
 	Product_GetK8SIngress_FullMethodName                        = "/product.v1.Product/GetK8SIngress"
 	Product_DelK8SIngress_FullMethodName                        = "/product.v1.Product/DelK8SIngress"
 	Product_UpdateK8SIngress_FullMethodName                     = "/product.v1.Product/UpdateK8SIngress"
+	Product_ListK8SObjectPublicTemplate_FullMethodName          = "/product.v1.Product/ListK8SObjectPublicTemplate"
+	Product_GetK8SObjectPublicTemplate_FullMethodName           = "/product.v1.Product/GetK8SObjectPublicTemplate"
+	Product_CreateK8SObjectPrivateTemplate_FullMethodName       = "/product.v1.Product/CreateK8SObjectPrivateTemplate"
+	Product_ListK8SObjectPrivateTemplate_FullMethodName         = "/product.v1.Product/ListK8SObjectPrivateTemplate"
+	Product_GetK8SObjectPrivateTemplate_FullMethodName          = "/product.v1.Product/GetK8SObjectPrivateTemplate"
+	Product_DelK8SObjectPrivateTemplate_FullMethodName          = "/product.v1.Product/DelK8SObjectPrivateTemplate"
 	Product_CreateServiceUrl_FullMethodName                     = "/product.v1.Product/CreateServiceUrl"
 	Product_ListServiceUrl_FullMethodName                       = "/product.v1.Product/ListServiceUrl"
 	Product_DelServiceUrl_FullMethodName                        = "/product.v1.Product/DelServiceUrl"
@@ -296,6 +302,19 @@ type ProductClient interface {
 	GetK8SIngress(ctx context.Context, in *GetK8SIngressReq, opts ...grpc.CallOption) (*GetK8SIngressReply, error)
 	DelK8SIngress(ctx context.Context, in *DelK8SIngressReq, opts ...grpc.CallOption) (*DelK8SIngressReply, error)
 	UpdateK8SIngress(ctx context.Context, in *UpdateK8SIngressReq, opts ...grpc.CallOption) (*UpdateK8SIngressReply, error)
+	// k8s 对象模版
+	// 列出 k8s 对象公共模版
+	ListK8SObjectPublicTemplate(ctx context.Context, in *ListK8SObjectPublicTemplateReq, opts ...grpc.CallOption) (*ListK8SObjectPublicTemplateReply, error)
+	// 获取 k8s 对象公共模版
+	GetK8SObjectPublicTemplate(ctx context.Context, in *GetK8SObjectPublicTemplateReq, opts ...grpc.CallOption) (*GetK8SObjectPublicTemplateReply, error)
+	// 创建 k8s 对象私有模版
+	CreateK8SObjectPrivateTemplate(ctx context.Context, in *CreateK8SObjectPrivateTemplateReq, opts ...grpc.CallOption) (*CreateK8SObjectPrivateTemplateReply, error)
+	// 列出 k8s 对象私有模版
+	ListK8SObjectPrivateTemplate(ctx context.Context, in *ListK8SObjectPrivateTemplateReq, opts ...grpc.CallOption) (*ListK8SObjectPrivateTemplateReply, error)
+	// 获取 k8s 对象私有模版
+	GetK8SObjectPrivateTemplate(ctx context.Context, in *GetK8SObjectPrivateTemplateReq, opts ...grpc.CallOption) (*GetK8SObjectPrivateTemplateReply, error)
+	// 删除 k8s 对象私有模版
+	DelK8SObjectPrivateTemplate(ctx context.Context, in *DelK8SObjectPrivateTemplateReq, opts ...grpc.CallOption) (*DelK8SObjectPrivateTemplateReply, error)
 	// serviceUrl
 	// serviceUrl - 添加服务Url
 	CreateServiceUrl(ctx context.Context, in *CreateServiceUrlReq, opts ...grpc.CallOption) (*CreateServiceUrlReply, error)
@@ -1019,6 +1038,60 @@ func (c *productClient) DelK8SIngress(ctx context.Context, in *DelK8SIngressReq,
 func (c *productClient) UpdateK8SIngress(ctx context.Context, in *UpdateK8SIngressReq, opts ...grpc.CallOption) (*UpdateK8SIngressReply, error) {
 	out := new(UpdateK8SIngressReply)
 	err := c.cc.Invoke(ctx, Product_UpdateK8SIngress_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productClient) ListK8SObjectPublicTemplate(ctx context.Context, in *ListK8SObjectPublicTemplateReq, opts ...grpc.CallOption) (*ListK8SObjectPublicTemplateReply, error) {
+	out := new(ListK8SObjectPublicTemplateReply)
+	err := c.cc.Invoke(ctx, Product_ListK8SObjectPublicTemplate_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productClient) GetK8SObjectPublicTemplate(ctx context.Context, in *GetK8SObjectPublicTemplateReq, opts ...grpc.CallOption) (*GetK8SObjectPublicTemplateReply, error) {
+	out := new(GetK8SObjectPublicTemplateReply)
+	err := c.cc.Invoke(ctx, Product_GetK8SObjectPublicTemplate_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productClient) CreateK8SObjectPrivateTemplate(ctx context.Context, in *CreateK8SObjectPrivateTemplateReq, opts ...grpc.CallOption) (*CreateK8SObjectPrivateTemplateReply, error) {
+	out := new(CreateK8SObjectPrivateTemplateReply)
+	err := c.cc.Invoke(ctx, Product_CreateK8SObjectPrivateTemplate_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productClient) ListK8SObjectPrivateTemplate(ctx context.Context, in *ListK8SObjectPrivateTemplateReq, opts ...grpc.CallOption) (*ListK8SObjectPrivateTemplateReply, error) {
+	out := new(ListK8SObjectPrivateTemplateReply)
+	err := c.cc.Invoke(ctx, Product_ListK8SObjectPrivateTemplate_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productClient) GetK8SObjectPrivateTemplate(ctx context.Context, in *GetK8SObjectPrivateTemplateReq, opts ...grpc.CallOption) (*GetK8SObjectPrivateTemplateReply, error) {
+	out := new(GetK8SObjectPrivateTemplateReply)
+	err := c.cc.Invoke(ctx, Product_GetK8SObjectPrivateTemplate_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productClient) DelK8SObjectPrivateTemplate(ctx context.Context, in *DelK8SObjectPrivateTemplateReq, opts ...grpc.CallOption) (*DelK8SObjectPrivateTemplateReply, error) {
+	out := new(DelK8SObjectPrivateTemplateReply)
+	err := c.cc.Invoke(ctx, Product_DelK8SObjectPrivateTemplate_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1794,6 +1867,19 @@ type ProductServer interface {
 	GetK8SIngress(context.Context, *GetK8SIngressReq) (*GetK8SIngressReply, error)
 	DelK8SIngress(context.Context, *DelK8SIngressReq) (*DelK8SIngressReply, error)
 	UpdateK8SIngress(context.Context, *UpdateK8SIngressReq) (*UpdateK8SIngressReply, error)
+	// k8s 对象模版
+	// 列出 k8s 对象公共模版
+	ListK8SObjectPublicTemplate(context.Context, *ListK8SObjectPublicTemplateReq) (*ListK8SObjectPublicTemplateReply, error)
+	// 获取 k8s 对象公共模版
+	GetK8SObjectPublicTemplate(context.Context, *GetK8SObjectPublicTemplateReq) (*GetK8SObjectPublicTemplateReply, error)
+	// 创建 k8s 对象私有模版
+	CreateK8SObjectPrivateTemplate(context.Context, *CreateK8SObjectPrivateTemplateReq) (*CreateK8SObjectPrivateTemplateReply, error)
+	// 列出 k8s 对象私有模版
+	ListK8SObjectPrivateTemplate(context.Context, *ListK8SObjectPrivateTemplateReq) (*ListK8SObjectPrivateTemplateReply, error)
+	// 获取 k8s 对象私有模版
+	GetK8SObjectPrivateTemplate(context.Context, *GetK8SObjectPrivateTemplateReq) (*GetK8SObjectPrivateTemplateReply, error)
+	// 删除 k8s 对象私有模版
+	DelK8SObjectPrivateTemplate(context.Context, *DelK8SObjectPrivateTemplateReq) (*DelK8SObjectPrivateTemplateReply, error)
 	// serviceUrl
 	// serviceUrl - 添加服务Url
 	CreateServiceUrl(context.Context, *CreateServiceUrlReq) (*CreateServiceUrlReply, error)
@@ -2123,6 +2209,24 @@ func (UnimplementedProductServer) DelK8SIngress(context.Context, *DelK8SIngressR
 }
 func (UnimplementedProductServer) UpdateK8SIngress(context.Context, *UpdateK8SIngressReq) (*UpdateK8SIngressReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateK8SIngress not implemented")
+}
+func (UnimplementedProductServer) ListK8SObjectPublicTemplate(context.Context, *ListK8SObjectPublicTemplateReq) (*ListK8SObjectPublicTemplateReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListK8SObjectPublicTemplate not implemented")
+}
+func (UnimplementedProductServer) GetK8SObjectPublicTemplate(context.Context, *GetK8SObjectPublicTemplateReq) (*GetK8SObjectPublicTemplateReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetK8SObjectPublicTemplate not implemented")
+}
+func (UnimplementedProductServer) CreateK8SObjectPrivateTemplate(context.Context, *CreateK8SObjectPrivateTemplateReq) (*CreateK8SObjectPrivateTemplateReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateK8SObjectPrivateTemplate not implemented")
+}
+func (UnimplementedProductServer) ListK8SObjectPrivateTemplate(context.Context, *ListK8SObjectPrivateTemplateReq) (*ListK8SObjectPrivateTemplateReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListK8SObjectPrivateTemplate not implemented")
+}
+func (UnimplementedProductServer) GetK8SObjectPrivateTemplate(context.Context, *GetK8SObjectPrivateTemplateReq) (*GetK8SObjectPrivateTemplateReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetK8SObjectPrivateTemplate not implemented")
+}
+func (UnimplementedProductServer) DelK8SObjectPrivateTemplate(context.Context, *DelK8SObjectPrivateTemplateReq) (*DelK8SObjectPrivateTemplateReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DelK8SObjectPrivateTemplate not implemented")
 }
 func (UnimplementedProductServer) CreateServiceUrl(context.Context, *CreateServiceUrlReq) (*CreateServiceUrlReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateServiceUrl not implemented")
@@ -3531,6 +3635,114 @@ func _Product_UpdateK8SIngress_Handler(srv interface{}, ctx context.Context, dec
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ProductServer).UpdateK8SIngress(ctx, req.(*UpdateK8SIngressReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Product_ListK8SObjectPublicTemplate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListK8SObjectPublicTemplateReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductServer).ListK8SObjectPublicTemplate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Product_ListK8SObjectPublicTemplate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductServer).ListK8SObjectPublicTemplate(ctx, req.(*ListK8SObjectPublicTemplateReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Product_GetK8SObjectPublicTemplate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetK8SObjectPublicTemplateReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductServer).GetK8SObjectPublicTemplate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Product_GetK8SObjectPublicTemplate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductServer).GetK8SObjectPublicTemplate(ctx, req.(*GetK8SObjectPublicTemplateReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Product_CreateK8SObjectPrivateTemplate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateK8SObjectPrivateTemplateReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductServer).CreateK8SObjectPrivateTemplate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Product_CreateK8SObjectPrivateTemplate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductServer).CreateK8SObjectPrivateTemplate(ctx, req.(*CreateK8SObjectPrivateTemplateReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Product_ListK8SObjectPrivateTemplate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListK8SObjectPrivateTemplateReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductServer).ListK8SObjectPrivateTemplate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Product_ListK8SObjectPrivateTemplate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductServer).ListK8SObjectPrivateTemplate(ctx, req.(*ListK8SObjectPrivateTemplateReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Product_GetK8SObjectPrivateTemplate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetK8SObjectPrivateTemplateReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductServer).GetK8SObjectPrivateTemplate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Product_GetK8SObjectPrivateTemplate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductServer).GetK8SObjectPrivateTemplate(ctx, req.(*GetK8SObjectPrivateTemplateReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Product_DelK8SObjectPrivateTemplate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DelK8SObjectPrivateTemplateReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductServer).DelK8SObjectPrivateTemplate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Product_DelK8SObjectPrivateTemplate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductServer).DelK8SObjectPrivateTemplate(ctx, req.(*DelK8SObjectPrivateTemplateReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -5065,6 +5277,30 @@ var Product_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateK8SIngress",
 			Handler:    _Product_UpdateK8SIngress_Handler,
+		},
+		{
+			MethodName: "ListK8SObjectPublicTemplate",
+			Handler:    _Product_ListK8SObjectPublicTemplate_Handler,
+		},
+		{
+			MethodName: "GetK8SObjectPublicTemplate",
+			Handler:    _Product_GetK8SObjectPublicTemplate_Handler,
+		},
+		{
+			MethodName: "CreateK8SObjectPrivateTemplate",
+			Handler:    _Product_CreateK8SObjectPrivateTemplate_Handler,
+		},
+		{
+			MethodName: "ListK8SObjectPrivateTemplate",
+			Handler:    _Product_ListK8SObjectPrivateTemplate_Handler,
+		},
+		{
+			MethodName: "GetK8SObjectPrivateTemplate",
+			Handler:    _Product_GetK8SObjectPrivateTemplate_Handler,
+		},
+		{
+			MethodName: "DelK8SObjectPrivateTemplate",
+			Handler:    _Product_DelK8SObjectPrivateTemplate_Handler,
 		},
 		{
 			MethodName: "CreateServiceUrl",
