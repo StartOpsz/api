@@ -1452,7 +1452,7 @@ message ListK8SObjectPublicTemplateReply {
     string uuid = 1;
     string name = 2;
     string describe = 3;
-    string createTime = 4;
+    int64 createTime = 4;
   }
 }
 // 获取 k8s 对象公共模版
@@ -1464,7 +1464,7 @@ message GetK8SObjectPublicTemplateReply {
   string name = 2;
   string template = 3;
   string describe = 4;
-  string createTime = 5;
+  int64 createTime = 5;
 }
 // 创建 k8s 对象私有模版
 message CreateK8SObjectPrivateTemplateReq {
@@ -1488,7 +1488,7 @@ message ListK8SObjectPrivateTemplateReply {
     string orgUuid = 2;
     string name = 3;
     string describe = 4;
-    string createTime = 5;
+    int64 createTime = 5;
   }
 }
 // 获取 k8s 对象私有模版
@@ -1503,7 +1503,7 @@ message GetK8SObjectPrivateTemplateReply {
   string name = 3;
   string template = 4;
   string describe = 5;
-  string createTime = 6;
+  int64 createTime = 6;
 }
 // 删除 k8s 对象私有模版
 message DelK8SObjectPrivateTemplateReq {
