@@ -1472,6 +1472,7 @@ message CreateK8SObjectPrivateTemplateReq {
   string orgUuid = 2  [(validate.rules).string.min_len = 1];
   string name = 3  [(validate.rules).string.min_len = 1];
   string template = 4  [(validate.rules).string.min_len = 1];
+  string describe = 5 [(validate.rules).string.min_len = 1];
 }
 message CreateK8SObjectPrivateTemplateReply {
   bool result = 1;
