@@ -1,0 +1,108 @@
+syntax = "proto3";
+
+package jumpServer.v1;
+
+option go_package = "github.com/StartOpsz/jumpServer/api/jumpServer/v1;v1";
+
+import "validate/validate.proto";
+
+service jumpServer {
+  //
+  rpc AddUserPublicKey (AddUserPublicKeyReq) returns (AddUserPublicKeyReply) {};
+  rpc UpdateUserPublicKey (UpdateUserPublicKeyReq) returns (UpdateUserPublicKeyReply) {};
+  rpc DelUserPublicKey (DelUserPublicKeyReq) returns (DelUserPublicKeyReply) {};
+  //
+  rpc GeneratePrivateKey (GeneratePrivateKeyReq) returns (GeneratePrivateKeyReply) {};
+  rpc ListPrivateKey (ListPrivateKeyReq) returns (ListPrivateKeyReply) {};
+  rpc GetPrivateKey (GetPrivateKeyReq) returns (GetPrivateKeyReply) {};
+  rpc DelPrivateKey (DelPrivateKeyReq) returns (DelPrivateKeyReply) {};
+  //
+  rpc AddDomain (AddDomainReq) returns (AddDomainReply) {};
+  //
+  rpc AddHost (AddHostReq) returns (AddHostReply) {};
+}
+//
+message AddUserPublicKeyReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string username = 2 [(validate.rules).string.min_len = 1];
+  string publicKey = 3 [(validate.rules).string.min_len = 1];
+}
+message AddUserPublicKeyReply {
+  bool result = 1;
+}
+//
+message UpdateUserPublicKeyReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string uuid = 2 [(validate.rules).string.min_len = 1];
+  string publicKey = 3 [(validate.rules).string.min_len = 1];
+}
+message UpdateUserPublicKeyReply {
+  bool result = 1;
+}
+//
+message DelUserPublicKeyReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string uuid = 2 [(validate.rules).string.min_len = 1];
+}
+message DelUserPublicKeyReply {
+  bool result = 1;
+}
+//
+message GeneratePrivateKeyReq {
+  string name = 1 [(validate.rules).string.min_len = 1];
+  string passphrase = 2;
+}
+message GeneratePrivateKeyReply {
+  bool result = 1;
+}
+//
+message ListPrivateKeyReq {
+}
+message ListPrivateKeyReply {
+  repeated PrivateKey privateKey = 1;
+  message PrivateKey {
+    string uuid = 1;
+    string name = 2;
+    string privateKey = 3;
+    string publicKey = 4;
+    bool hasPassphrase = 5;
+    int64 createTime = 6;
+  }
+}
+//
+message GetPrivateKeyReq {
+  string uuid = 1 [(validate.rules).string.min_len = 1];
+}
+message GetPrivateKeyReply {
+  string uuid = 1;
+  string name = 2;
+  string privateKey = 3;
+  string publicKey = 4;
+  bool hasPassphrase = 5;
+  int64 createTime = 6;
+}
+//
+message DelPrivateKeyReq {
+  string uuid = 1 [(validate.rules).string.min_len = 1];
+}
+message DelPrivateKeyReply {
+  bool result = 1;
+}
+//
+message AddDomainReq {
+  string name = 1 [(validate.rules).string.min_len = 1];
+  string privateKeyUuid = 2 [(validate.rules).string.min_len = 1];
+}
+message AddDomainReply {
+  bool result = 1;
+}
+//
+message AddHostReq {
+  string name = 1 [(validate.rules).string.min_len = 1];
+  string ipAddr = 3 [(validate.rules).string.min_len = 1];
+  int32 port = 4;
+  string domainUuid = 2 [(validate.rules).string.min_len = 1];
+}
+message AddHostReply {
+  bool result = 1;
+}
