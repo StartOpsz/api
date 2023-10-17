@@ -10,6 +10,7 @@ service jumpServer {
   //
   rpc AddUserPublicKey (AddUserPublicKeyReq) returns (AddUserPublicKeyReply) {};
   rpc UpdateUserPublicKey (UpdateUserPublicKeyReq) returns (UpdateUserPublicKeyReply) {};
+  rpc GetUserPublicKey (GetUserPublicKeyReq) returns (GetUserPublicKeyReply) {};
   rpc DelUserPublicKey (DelUserPublicKeyReq) returns (DelUserPublicKeyReply) {};
   //
   rpc GeneratePrivateKey (GeneratePrivateKeyReq) returns (GeneratePrivateKeyReply) {};
@@ -41,6 +42,14 @@ message UpdateUserPublicKeyReq {
 }
 message UpdateUserPublicKeyReply {
   bool result = 1;
+}
+//
+message GetUserPublicKeyReq {
+  string userUuid = 1;
+}
+message GetUserPublicKeyReply {
+  string uuid = 1;
+  string publicKey = 2;
 }
 //
 message DelUserPublicKeyReq {

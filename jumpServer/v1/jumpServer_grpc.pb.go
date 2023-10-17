@@ -21,6 +21,7 @@ const _ = grpc.SupportPackageIsVersion7
 const (
 	JumpServer_AddUserPublicKey_FullMethodName    = "/jumpServer.v1.jumpServer/AddUserPublicKey"
 	JumpServer_UpdateUserPublicKey_FullMethodName = "/jumpServer.v1.jumpServer/UpdateUserPublicKey"
+	JumpServer_GetUserPublicKey_FullMethodName    = "/jumpServer.v1.jumpServer/GetUserPublicKey"
 	JumpServer_DelUserPublicKey_FullMethodName    = "/jumpServer.v1.jumpServer/DelUserPublicKey"
 	JumpServer_GeneratePrivateKey_FullMethodName  = "/jumpServer.v1.jumpServer/GeneratePrivateKey"
 	JumpServer_ListPrivateKey_FullMethodName      = "/jumpServer.v1.jumpServer/ListPrivateKey"
@@ -40,6 +41,7 @@ type JumpServerClient interface {
 	//
 	AddUserPublicKey(ctx context.Context, in *AddUserPublicKeyReq, opts ...grpc.CallOption) (*AddUserPublicKeyReply, error)
 	UpdateUserPublicKey(ctx context.Context, in *UpdateUserPublicKeyReq, opts ...grpc.CallOption) (*UpdateUserPublicKeyReply, error)
+	GetUserPublicKey(ctx context.Context, in *GetUserPublicKeyReq, opts ...grpc.CallOption) (*GetUserPublicKeyReply, error)
 	DelUserPublicKey(ctx context.Context, in *DelUserPublicKeyReq, opts ...grpc.CallOption) (*DelUserPublicKeyReply, error)
 	//
 	GeneratePrivateKey(ctx context.Context, in *GeneratePrivateKeyReq, opts ...grpc.CallOption) (*GeneratePrivateKeyReply, error)
@@ -75,6 +77,15 @@ func (c *jumpServerClient) AddUserPublicKey(ctx context.Context, in *AddUserPubl
 func (c *jumpServerClient) UpdateUserPublicKey(ctx context.Context, in *UpdateUserPublicKeyReq, opts ...grpc.CallOption) (*UpdateUserPublicKeyReply, error) {
 	out := new(UpdateUserPublicKeyReply)
 	err := c.cc.Invoke(ctx, JumpServer_UpdateUserPublicKey_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *jumpServerClient) GetUserPublicKey(ctx context.Context, in *GetUserPublicKeyReq, opts ...grpc.CallOption) (*GetUserPublicKeyReply, error) {
+	out := new(GetUserPublicKeyReply)
+	err := c.cc.Invoke(ctx, JumpServer_GetUserPublicKey_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -178,6 +189,7 @@ type JumpServerServer interface {
 	//
 	AddUserPublicKey(context.Context, *AddUserPublicKeyReq) (*AddUserPublicKeyReply, error)
 	UpdateUserPublicKey(context.Context, *UpdateUserPublicKeyReq) (*UpdateUserPublicKeyReply, error)
+	GetUserPublicKey(context.Context, *GetUserPublicKeyReq) (*GetUserPublicKeyReply, error)
 	DelUserPublicKey(context.Context, *DelUserPublicKeyReq) (*DelUserPublicKeyReply, error)
 	//
 	GeneratePrivateKey(context.Context, *GeneratePrivateKeyReq) (*GeneratePrivateKeyReply, error)
@@ -203,6 +215,9 @@ func (UnimplementedJumpServerServer) AddUserPublicKey(context.Context, *AddUserP
 }
 func (UnimplementedJumpServerServer) UpdateUserPublicKey(context.Context, *UpdateUserPublicKeyReq) (*UpdateUserPublicKeyReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateUserPublicKey not implemented")
+}
+func (UnimplementedJumpServerServer) GetUserPublicKey(context.Context, *GetUserPublicKeyReq) (*GetUserPublicKeyReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUserPublicKey not implemented")
 }
 func (UnimplementedJumpServerServer) DelUserPublicKey(context.Context, *DelUserPublicKeyReq) (*DelUserPublicKeyReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DelUserPublicKey not implemented")
@@ -279,6 +294,24 @@ func _JumpServer_UpdateUserPublicKey_Handler(srv interface{}, ctx context.Contex
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(JumpServerServer).UpdateUserPublicKey(ctx, req.(*UpdateUserPublicKeyReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _JumpServer_GetUserPublicKey_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserPublicKeyReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(JumpServerServer).GetUserPublicKey(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: JumpServer_GetUserPublicKey_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(JumpServerServer).GetUserPublicKey(ctx, req.(*GetUserPublicKeyReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -477,6 +510,10 @@ var JumpServer_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateUserPublicKey",
 			Handler:    _JumpServer_UpdateUserPublicKey_Handler,
+		},
+		{
+			MethodName: "GetUserPublicKey",
+			Handler:    _JumpServer_GetUserPublicKey_Handler,
 		},
 		{
 			MethodName: "DelUserPublicKey",
