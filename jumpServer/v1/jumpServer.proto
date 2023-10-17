@@ -121,6 +121,7 @@ message AddHostReply {
   bool result = 1;
 }
 message ListHostReq {
+  string domainUuid = 1;
 }
 message ListHostReply {
   repeated Host hosts  = 1;
