@@ -37,7 +37,6 @@ message AddUserPublicKeyReply {
 //
 message UpdateUserPublicKeyReq {
   string userUuid = 1 [(validate.rules).string.min_len = 1];
-  string uuid = 2 [(validate.rules).string.min_len = 1];
   string publicKey = 3 [(validate.rules).string.min_len = 1];
 }
 message UpdateUserPublicKeyReply {
@@ -48,13 +47,12 @@ message GetUserPublicKeyReq {
   string userUuid = 1;
 }
 message GetUserPublicKeyReply {
-  string uuid = 1;
   string publicKey = 2;
+  int64 createTime = 3;
 }
 //
 message DelUserPublicKeyReq {
   string userUuid = 1 [(validate.rules).string.min_len = 1];
-  string uuid = 2 [(validate.rules).string.min_len = 1];
 }
 message DelUserPublicKeyReply {
   bool result = 1;
