@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.3.0
 // - protoc             v3.14.0
-// source: jumpServer/jumpServer.proto
+// source: jumpServer/v1/jumpServer.proto
 
 package v1
 
@@ -27,7 +27,10 @@ const (
 	JumpServer_GetPrivateKey_FullMethodName       = "/jumpServer.v1.jumpServer/GetPrivateKey"
 	JumpServer_DelPrivateKey_FullMethodName       = "/jumpServer.v1.jumpServer/DelPrivateKey"
 	JumpServer_AddDomain_FullMethodName           = "/jumpServer.v1.jumpServer/AddDomain"
+	JumpServer_ListDomain_FullMethodName          = "/jumpServer.v1.jumpServer/ListDomain"
 	JumpServer_AddHost_FullMethodName             = "/jumpServer.v1.jumpServer/AddHost"
+	JumpServer_ListHost_FullMethodName            = "/jumpServer.v1.jumpServer/ListHost"
+	JumpServer_DelHost_FullMethodName             = "/jumpServer.v1.jumpServer/DelHost"
 )
 
 // JumpServerClient is the client API for JumpServer service.
@@ -45,8 +48,11 @@ type JumpServerClient interface {
 	DelPrivateKey(ctx context.Context, in *DelPrivateKeyReq, opts ...grpc.CallOption) (*DelPrivateKeyReply, error)
 	//
 	AddDomain(ctx context.Context, in *AddDomainReq, opts ...grpc.CallOption) (*AddDomainReply, error)
+	ListDomain(ctx context.Context, in *ListDomainReq, opts ...grpc.CallOption) (*ListDomainReply, error)
 	//
 	AddHost(ctx context.Context, in *AddHostReq, opts ...grpc.CallOption) (*AddHostReply, error)
+	ListHost(ctx context.Context, in *ListHostReq, opts ...grpc.CallOption) (*ListHostReply, error)
+	DelHost(ctx context.Context, in *DelHostReq, opts ...grpc.CallOption) (*DelHostReply, error)
 }
 
 type jumpServerClient struct {
@@ -129,9 +135,36 @@ func (c *jumpServerClient) AddDomain(ctx context.Context, in *AddDomainReq, opts
 	return out, nil
 }
 
+func (c *jumpServerClient) ListDomain(ctx context.Context, in *ListDomainReq, opts ...grpc.CallOption) (*ListDomainReply, error) {
+	out := new(ListDomainReply)
+	err := c.cc.Invoke(ctx, JumpServer_ListDomain_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *jumpServerClient) AddHost(ctx context.Context, in *AddHostReq, opts ...grpc.CallOption) (*AddHostReply, error) {
 	out := new(AddHostReply)
 	err := c.cc.Invoke(ctx, JumpServer_AddHost_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *jumpServerClient) ListHost(ctx context.Context, in *ListHostReq, opts ...grpc.CallOption) (*ListHostReply, error) {
+	out := new(ListHostReply)
+	err := c.cc.Invoke(ctx, JumpServer_ListHost_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *jumpServerClient) DelHost(ctx context.Context, in *DelHostReq, opts ...grpc.CallOption) (*DelHostReply, error) {
+	out := new(DelHostReply)
+	err := c.cc.Invoke(ctx, JumpServer_DelHost_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -153,8 +186,11 @@ type JumpServerServer interface {
 	DelPrivateKey(context.Context, *DelPrivateKeyReq) (*DelPrivateKeyReply, error)
 	//
 	AddDomain(context.Context, *AddDomainReq) (*AddDomainReply, error)
+	ListDomain(context.Context, *ListDomainReq) (*ListDomainReply, error)
 	//
 	AddHost(context.Context, *AddHostReq) (*AddHostReply, error)
+	ListHost(context.Context, *ListHostReq) (*ListHostReply, error)
+	DelHost(context.Context, *DelHostReq) (*DelHostReply, error)
 	mustEmbedUnimplementedJumpServerServer()
 }
 
@@ -186,8 +222,17 @@ func (UnimplementedJumpServerServer) DelPrivateKey(context.Context, *DelPrivateK
 func (UnimplementedJumpServerServer) AddDomain(context.Context, *AddDomainReq) (*AddDomainReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddDomain not implemented")
 }
+func (UnimplementedJumpServerServer) ListDomain(context.Context, *ListDomainReq) (*ListDomainReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListDomain not implemented")
+}
 func (UnimplementedJumpServerServer) AddHost(context.Context, *AddHostReq) (*AddHostReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddHost not implemented")
+}
+func (UnimplementedJumpServerServer) ListHost(context.Context, *ListHostReq) (*ListHostReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListHost not implemented")
+}
+func (UnimplementedJumpServerServer) DelHost(context.Context, *DelHostReq) (*DelHostReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DelHost not implemented")
 }
 func (UnimplementedJumpServerServer) mustEmbedUnimplementedJumpServerServer() {}
 
@@ -346,6 +391,24 @@ func _JumpServer_AddDomain_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
+func _JumpServer_ListDomain_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListDomainReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(JumpServerServer).ListDomain(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: JumpServer_ListDomain_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(JumpServerServer).ListDomain(ctx, req.(*ListDomainReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _JumpServer_AddHost_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(AddHostReq)
 	if err := dec(in); err != nil {
@@ -360,6 +423,42 @@ func _JumpServer_AddHost_Handler(srv interface{}, ctx context.Context, dec func(
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(JumpServerServer).AddHost(ctx, req.(*AddHostReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _JumpServer_ListHost_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListHostReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(JumpServerServer).ListHost(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: JumpServer_ListHost_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(JumpServerServer).ListHost(ctx, req.(*ListHostReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _JumpServer_DelHost_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DelHostReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(JumpServerServer).DelHost(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: JumpServer_DelHost_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(JumpServerServer).DelHost(ctx, req.(*DelHostReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -404,10 +503,22 @@ var JumpServer_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _JumpServer_AddDomain_Handler,
 		},
 		{
+			MethodName: "ListDomain",
+			Handler:    _JumpServer_ListDomain_Handler,
+		},
+		{
 			MethodName: "AddHost",
 			Handler:    _JumpServer_AddHost_Handler,
 		},
+		{
+			MethodName: "ListHost",
+			Handler:    _JumpServer_ListHost_Handler,
+		},
+		{
+			MethodName: "DelHost",
+			Handler:    _JumpServer_DelHost_Handler,
+		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "jumpServer/jumpServer.proto",
+	Metadata: "jumpServer/v1/jumpServer.proto",
 }
