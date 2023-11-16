@@ -20,16 +20,15 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type ParseIPReq struct {
+//
+type AddRedisClusterReq struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
-
-	IpAddr string `protobuf:"bytes,1,opt,name=ipAddr,proto3" json:"ipAddr,omitempty"`
 }
 
-func (x *ParseIPReq) Reset() {
-	*x = ParseIPReq{}
+func (x *AddRedisClusterReq) Reset() {
+	*x = AddRedisClusterReq{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_middleware_v1_middleware_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -37,13 +36,13 @@ func (x *ParseIPReq) Reset() {
 	}
 }
 
-func (x *ParseIPReq) String() string {
+func (x *AddRedisClusterReq) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ParseIPReq) ProtoMessage() {}
+func (*AddRedisClusterReq) ProtoMessage() {}
 
-func (x *ParseIPReq) ProtoReflect() protoreflect.Message {
+func (x *AddRedisClusterReq) ProtoReflect() protoreflect.Message {
 	mi := &file_middleware_v1_middleware_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -55,26 +54,19 @@ func (x *ParseIPReq) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ParseIPReq.ProtoReflect.Descriptor instead.
-func (*ParseIPReq) Descriptor() ([]byte, []int) {
+// Deprecated: Use AddRedisClusterReq.ProtoReflect.Descriptor instead.
+func (*AddRedisClusterReq) Descriptor() ([]byte, []int) {
 	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *ParseIPReq) GetIpAddr() string {
-	if x != nil {
-		return x.IpAddr
-	}
-	return ""
-}
-
-type ParseIPReply struct {
+type AddRedisClusterReply struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 }
 
-func (x *ParseIPReply) Reset() {
-	*x = ParseIPReply{}
+func (x *AddRedisClusterReply) Reset() {
+	*x = AddRedisClusterReply{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_middleware_v1_middleware_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -82,13 +74,13 @@ func (x *ParseIPReply) Reset() {
 	}
 }
 
-func (x *ParseIPReply) String() string {
+func (x *AddRedisClusterReply) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ParseIPReply) ProtoMessage() {}
+func (*AddRedisClusterReply) ProtoMessage() {}
 
-func (x *ParseIPReply) ProtoReflect() protoreflect.Message {
+func (x *AddRedisClusterReply) ProtoReflect() protoreflect.Message {
 	mi := &file_middleware_v1_middleware_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -100,9 +92,5188 @@ func (x *ParseIPReply) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ParseIPReply.ProtoReflect.Descriptor instead.
-func (*ParseIPReply) Descriptor() ([]byte, []int) {
+// Deprecated: Use AddRedisClusterReply.ProtoReflect.Descriptor instead.
+func (*AddRedisClusterReply) Descriptor() ([]byte, []int) {
 	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{1}
+}
+
+type ListRedisClusterReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ListRedisClusterReq) Reset() {
+	*x = ListRedisClusterReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListRedisClusterReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListRedisClusterReq) ProtoMessage() {}
+
+func (x *ListRedisClusterReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListRedisClusterReq.ProtoReflect.Descriptor instead.
+func (*ListRedisClusterReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{2}
+}
+
+type ListRedisClusterReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ListRedisClusterReply) Reset() {
+	*x = ListRedisClusterReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListRedisClusterReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListRedisClusterReply) ProtoMessage() {}
+
+func (x *ListRedisClusterReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListRedisClusterReply.ProtoReflect.Descriptor instead.
+func (*ListRedisClusterReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{3}
+}
+
+type DelRedisClusterReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *DelRedisClusterReq) Reset() {
+	*x = DelRedisClusterReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DelRedisClusterReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DelRedisClusterReq) ProtoMessage() {}
+
+func (x *DelRedisClusterReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DelRedisClusterReq.ProtoReflect.Descriptor instead.
+func (*DelRedisClusterReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{4}
+}
+
+type DelRedisClusterReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *DelRedisClusterReply) Reset() {
+	*x = DelRedisClusterReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DelRedisClusterReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DelRedisClusterReply) ProtoMessage() {}
+
+func (x *DelRedisClusterReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DelRedisClusterReply.ProtoReflect.Descriptor instead.
+func (*DelRedisClusterReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{5}
+}
+
+//
+type AddRedisClusterInstanceReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *AddRedisClusterInstanceReq) Reset() {
+	*x = AddRedisClusterInstanceReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddRedisClusterInstanceReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddRedisClusterInstanceReq) ProtoMessage() {}
+
+func (x *AddRedisClusterInstanceReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddRedisClusterInstanceReq.ProtoReflect.Descriptor instead.
+func (*AddRedisClusterInstanceReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{6}
+}
+
+type AddRedisClusterInstanceReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *AddRedisClusterInstanceReply) Reset() {
+	*x = AddRedisClusterInstanceReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddRedisClusterInstanceReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddRedisClusterInstanceReply) ProtoMessage() {}
+
+func (x *AddRedisClusterInstanceReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddRedisClusterInstanceReply.ProtoReflect.Descriptor instead.
+func (*AddRedisClusterInstanceReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{7}
+}
+
+type DelRedisClusterInstanceReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *DelRedisClusterInstanceReq) Reset() {
+	*x = DelRedisClusterInstanceReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[8]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DelRedisClusterInstanceReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DelRedisClusterInstanceReq) ProtoMessage() {}
+
+func (x *DelRedisClusterInstanceReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[8]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DelRedisClusterInstanceReq.ProtoReflect.Descriptor instead.
+func (*DelRedisClusterInstanceReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{8}
+}
+
+type DelRedisClusterInstanceReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *DelRedisClusterInstanceReply) Reset() {
+	*x = DelRedisClusterInstanceReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[9]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DelRedisClusterInstanceReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DelRedisClusterInstanceReply) ProtoMessage() {}
+
+func (x *DelRedisClusterInstanceReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[9]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DelRedisClusterInstanceReply.ProtoReflect.Descriptor instead.
+func (*DelRedisClusterInstanceReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{9}
+}
+
+type ListRedisClusterInstanceReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ListRedisClusterInstanceReq) Reset() {
+	*x = ListRedisClusterInstanceReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[10]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListRedisClusterInstanceReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListRedisClusterInstanceReq) ProtoMessage() {}
+
+func (x *ListRedisClusterInstanceReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[10]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListRedisClusterInstanceReq.ProtoReflect.Descriptor instead.
+func (*ListRedisClusterInstanceReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{10}
+}
+
+type ListRedisClusterInstanceReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ListRedisClusterInstanceReply) Reset() {
+	*x = ListRedisClusterInstanceReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[11]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListRedisClusterInstanceReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListRedisClusterInstanceReply) ProtoMessage() {}
+
+func (x *ListRedisClusterInstanceReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[11]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListRedisClusterInstanceReply.ProtoReflect.Descriptor instead.
+func (*ListRedisClusterInstanceReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{11}
+}
+
+//
+type AddMySQLInstanceReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *AddMySQLInstanceReq) Reset() {
+	*x = AddMySQLInstanceReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[12]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddMySQLInstanceReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddMySQLInstanceReq) ProtoMessage() {}
+
+func (x *AddMySQLInstanceReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[12]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddMySQLInstanceReq.ProtoReflect.Descriptor instead.
+func (*AddMySQLInstanceReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{12}
+}
+
+type AddMySQLInstanceReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *AddMySQLInstanceReply) Reset() {
+	*x = AddMySQLInstanceReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[13]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddMySQLInstanceReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddMySQLInstanceReply) ProtoMessage() {}
+
+func (x *AddMySQLInstanceReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[13]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddMySQLInstanceReply.ProtoReflect.Descriptor instead.
+func (*AddMySQLInstanceReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{13}
+}
+
+type ListMySQLInstanceReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ListMySQLInstanceReq) Reset() {
+	*x = ListMySQLInstanceReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[14]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListMySQLInstanceReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListMySQLInstanceReq) ProtoMessage() {}
+
+func (x *ListMySQLInstanceReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[14]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListMySQLInstanceReq.ProtoReflect.Descriptor instead.
+func (*ListMySQLInstanceReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{14}
+}
+
+type ListMySQLInstanceReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ListMySQLInstanceReply) Reset() {
+	*x = ListMySQLInstanceReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[15]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListMySQLInstanceReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListMySQLInstanceReply) ProtoMessage() {}
+
+func (x *ListMySQLInstanceReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[15]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListMySQLInstanceReply.ProtoReflect.Descriptor instead.
+func (*ListMySQLInstanceReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{15}
+}
+
+type DelMySQLInstanceReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *DelMySQLInstanceReq) Reset() {
+	*x = DelMySQLInstanceReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[16]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DelMySQLInstanceReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DelMySQLInstanceReq) ProtoMessage() {}
+
+func (x *DelMySQLInstanceReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[16]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DelMySQLInstanceReq.ProtoReflect.Descriptor instead.
+func (*DelMySQLInstanceReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{16}
+}
+
+type DelMySQLInstanceReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *DelMySQLInstanceReply) Reset() {
+	*x = DelMySQLInstanceReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[17]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DelMySQLInstanceReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DelMySQLInstanceReply) ProtoMessage() {}
+
+func (x *DelMySQLInstanceReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[17]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DelMySQLInstanceReply.ProtoReflect.Descriptor instead.
+func (*DelMySQLInstanceReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{17}
+}
+
+//
+type AddMySQLMasterInstanceReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *AddMySQLMasterInstanceReq) Reset() {
+	*x = AddMySQLMasterInstanceReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[18]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddMySQLMasterInstanceReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddMySQLMasterInstanceReq) ProtoMessage() {}
+
+func (x *AddMySQLMasterInstanceReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[18]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddMySQLMasterInstanceReq.ProtoReflect.Descriptor instead.
+func (*AddMySQLMasterInstanceReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{18}
+}
+
+type AddMySQLMasterInstanceReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *AddMySQLMasterInstanceReply) Reset() {
+	*x = AddMySQLMasterInstanceReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[19]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddMySQLMasterInstanceReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddMySQLMasterInstanceReply) ProtoMessage() {}
+
+func (x *AddMySQLMasterInstanceReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[19]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddMySQLMasterInstanceReply.ProtoReflect.Descriptor instead.
+func (*AddMySQLMasterInstanceReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{19}
+}
+
+type ListMySQLMasterInstanceReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ListMySQLMasterInstanceReq) Reset() {
+	*x = ListMySQLMasterInstanceReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[20]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListMySQLMasterInstanceReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListMySQLMasterInstanceReq) ProtoMessage() {}
+
+func (x *ListMySQLMasterInstanceReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[20]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListMySQLMasterInstanceReq.ProtoReflect.Descriptor instead.
+func (*ListMySQLMasterInstanceReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{20}
+}
+
+type ListMySQLMasterInstanceReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ListMySQLMasterInstanceReply) Reset() {
+	*x = ListMySQLMasterInstanceReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[21]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListMySQLMasterInstanceReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListMySQLMasterInstanceReply) ProtoMessage() {}
+
+func (x *ListMySQLMasterInstanceReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[21]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListMySQLMasterInstanceReply.ProtoReflect.Descriptor instead.
+func (*ListMySQLMasterInstanceReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{21}
+}
+
+type DelMySQLMasterInstanceReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *DelMySQLMasterInstanceReq) Reset() {
+	*x = DelMySQLMasterInstanceReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[22]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DelMySQLMasterInstanceReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DelMySQLMasterInstanceReq) ProtoMessage() {}
+
+func (x *DelMySQLMasterInstanceReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[22]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DelMySQLMasterInstanceReq.ProtoReflect.Descriptor instead.
+func (*DelMySQLMasterInstanceReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{22}
+}
+
+type DelMySQLMasterInstanceReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *DelMySQLMasterInstanceReply) Reset() {
+	*x = DelMySQLMasterInstanceReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[23]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DelMySQLMasterInstanceReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DelMySQLMasterInstanceReply) ProtoMessage() {}
+
+func (x *DelMySQLMasterInstanceReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[23]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DelMySQLMasterInstanceReply.ProtoReflect.Descriptor instead.
+func (*DelMySQLMasterInstanceReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{23}
+}
+
+type AddMySQLSlaveInstanceReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *AddMySQLSlaveInstanceReq) Reset() {
+	*x = AddMySQLSlaveInstanceReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[24]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddMySQLSlaveInstanceReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddMySQLSlaveInstanceReq) ProtoMessage() {}
+
+func (x *AddMySQLSlaveInstanceReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[24]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddMySQLSlaveInstanceReq.ProtoReflect.Descriptor instead.
+func (*AddMySQLSlaveInstanceReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{24}
+}
+
+type AddMySQLSlaveInstanceReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *AddMySQLSlaveInstanceReply) Reset() {
+	*x = AddMySQLSlaveInstanceReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[25]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddMySQLSlaveInstanceReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddMySQLSlaveInstanceReply) ProtoMessage() {}
+
+func (x *AddMySQLSlaveInstanceReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[25]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddMySQLSlaveInstanceReply.ProtoReflect.Descriptor instead.
+func (*AddMySQLSlaveInstanceReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{25}
+}
+
+type ListMySQLSlaveInstanceReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ListMySQLSlaveInstanceReq) Reset() {
+	*x = ListMySQLSlaveInstanceReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[26]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListMySQLSlaveInstanceReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListMySQLSlaveInstanceReq) ProtoMessage() {}
+
+func (x *ListMySQLSlaveInstanceReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[26]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListMySQLSlaveInstanceReq.ProtoReflect.Descriptor instead.
+func (*ListMySQLSlaveInstanceReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{26}
+}
+
+type ListMySQLSlaveInstanceReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ListMySQLSlaveInstanceReply) Reset() {
+	*x = ListMySQLSlaveInstanceReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[27]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListMySQLSlaveInstanceReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListMySQLSlaveInstanceReply) ProtoMessage() {}
+
+func (x *ListMySQLSlaveInstanceReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[27]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListMySQLSlaveInstanceReply.ProtoReflect.Descriptor instead.
+func (*ListMySQLSlaveInstanceReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{27}
+}
+
+type DelMySQLSlaveInstanceReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *DelMySQLSlaveInstanceReq) Reset() {
+	*x = DelMySQLSlaveInstanceReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[28]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DelMySQLSlaveInstanceReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DelMySQLSlaveInstanceReq) ProtoMessage() {}
+
+func (x *DelMySQLSlaveInstanceReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[28]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DelMySQLSlaveInstanceReq.ProtoReflect.Descriptor instead.
+func (*DelMySQLSlaveInstanceReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{28}
+}
+
+type DelMySQLSlaveInstanceReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *DelMySQLSlaveInstanceReply) Reset() {
+	*x = DelMySQLSlaveInstanceReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[29]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DelMySQLSlaveInstanceReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DelMySQLSlaveInstanceReply) ProtoMessage() {}
+
+func (x *DelMySQLSlaveInstanceReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[29]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DelMySQLSlaveInstanceReply.ProtoReflect.Descriptor instead.
+func (*DelMySQLSlaveInstanceReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{29}
+}
+
+//
+type AddRocketMQClusterReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *AddRocketMQClusterReq) Reset() {
+	*x = AddRocketMQClusterReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[30]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddRocketMQClusterReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddRocketMQClusterReq) ProtoMessage() {}
+
+func (x *AddRocketMQClusterReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[30]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddRocketMQClusterReq.ProtoReflect.Descriptor instead.
+func (*AddRocketMQClusterReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{30}
+}
+
+type AddRocketMQClusterReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *AddRocketMQClusterReply) Reset() {
+	*x = AddRocketMQClusterReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[31]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddRocketMQClusterReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddRocketMQClusterReply) ProtoMessage() {}
+
+func (x *AddRocketMQClusterReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[31]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddRocketMQClusterReply.ProtoReflect.Descriptor instead.
+func (*AddRocketMQClusterReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{31}
+}
+
+type ListRocketMQClusterReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ListRocketMQClusterReq) Reset() {
+	*x = ListRocketMQClusterReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[32]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListRocketMQClusterReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListRocketMQClusterReq) ProtoMessage() {}
+
+func (x *ListRocketMQClusterReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[32]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListRocketMQClusterReq.ProtoReflect.Descriptor instead.
+func (*ListRocketMQClusterReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{32}
+}
+
+type ListRocketMQClusterReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ListRocketMQClusterReply) Reset() {
+	*x = ListRocketMQClusterReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[33]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListRocketMQClusterReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListRocketMQClusterReply) ProtoMessage() {}
+
+func (x *ListRocketMQClusterReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[33]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListRocketMQClusterReply.ProtoReflect.Descriptor instead.
+func (*ListRocketMQClusterReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{33}
+}
+
+type DelRocketMQClusterReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *DelRocketMQClusterReq) Reset() {
+	*x = DelRocketMQClusterReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[34]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DelRocketMQClusterReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DelRocketMQClusterReq) ProtoMessage() {}
+
+func (x *DelRocketMQClusterReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[34]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DelRocketMQClusterReq.ProtoReflect.Descriptor instead.
+func (*DelRocketMQClusterReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{34}
+}
+
+type DelRocketMQClusterReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *DelRocketMQClusterReply) Reset() {
+	*x = DelRocketMQClusterReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[35]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DelRocketMQClusterReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DelRocketMQClusterReply) ProtoMessage() {}
+
+func (x *DelRocketMQClusterReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[35]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DelRocketMQClusterReply.ProtoReflect.Descriptor instead.
+func (*DelRocketMQClusterReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{35}
+}
+
+type AddRocketMQClusterBrokerInstanceReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *AddRocketMQClusterBrokerInstanceReq) Reset() {
+	*x = AddRocketMQClusterBrokerInstanceReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[36]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddRocketMQClusterBrokerInstanceReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddRocketMQClusterBrokerInstanceReq) ProtoMessage() {}
+
+func (x *AddRocketMQClusterBrokerInstanceReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[36]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddRocketMQClusterBrokerInstanceReq.ProtoReflect.Descriptor instead.
+func (*AddRocketMQClusterBrokerInstanceReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{36}
+}
+
+type AddRocketMQClusterBrokerInstanceReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *AddRocketMQClusterBrokerInstanceReply) Reset() {
+	*x = AddRocketMQClusterBrokerInstanceReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[37]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddRocketMQClusterBrokerInstanceReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddRocketMQClusterBrokerInstanceReply) ProtoMessage() {}
+
+func (x *AddRocketMQClusterBrokerInstanceReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[37]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddRocketMQClusterBrokerInstanceReply.ProtoReflect.Descriptor instead.
+func (*AddRocketMQClusterBrokerInstanceReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{37}
+}
+
+type ListRocketMQClusterBrokerInstanceReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ListRocketMQClusterBrokerInstanceReq) Reset() {
+	*x = ListRocketMQClusterBrokerInstanceReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[38]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListRocketMQClusterBrokerInstanceReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListRocketMQClusterBrokerInstanceReq) ProtoMessage() {}
+
+func (x *ListRocketMQClusterBrokerInstanceReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[38]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListRocketMQClusterBrokerInstanceReq.ProtoReflect.Descriptor instead.
+func (*ListRocketMQClusterBrokerInstanceReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{38}
+}
+
+type ListRocketMQClusterBrokerInstanceReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ListRocketMQClusterBrokerInstanceReply) Reset() {
+	*x = ListRocketMQClusterBrokerInstanceReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[39]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListRocketMQClusterBrokerInstanceReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListRocketMQClusterBrokerInstanceReply) ProtoMessage() {}
+
+func (x *ListRocketMQClusterBrokerInstanceReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[39]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListRocketMQClusterBrokerInstanceReply.ProtoReflect.Descriptor instead.
+func (*ListRocketMQClusterBrokerInstanceReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{39}
+}
+
+type DelRocketMQClusterBrokerInstanceReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *DelRocketMQClusterBrokerInstanceReq) Reset() {
+	*x = DelRocketMQClusterBrokerInstanceReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[40]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DelRocketMQClusterBrokerInstanceReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DelRocketMQClusterBrokerInstanceReq) ProtoMessage() {}
+
+func (x *DelRocketMQClusterBrokerInstanceReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[40]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DelRocketMQClusterBrokerInstanceReq.ProtoReflect.Descriptor instead.
+func (*DelRocketMQClusterBrokerInstanceReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{40}
+}
+
+type DelRocketMQClusterBrokerInstanceReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *DelRocketMQClusterBrokerInstanceReply) Reset() {
+	*x = DelRocketMQClusterBrokerInstanceReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[41]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DelRocketMQClusterBrokerInstanceReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DelRocketMQClusterBrokerInstanceReply) ProtoMessage() {}
+
+func (x *DelRocketMQClusterBrokerInstanceReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[41]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DelRocketMQClusterBrokerInstanceReply.ProtoReflect.Descriptor instead.
+func (*DelRocketMQClusterBrokerInstanceReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{41}
+}
+
+type AddRocketMQClusterNameServerInstanceReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *AddRocketMQClusterNameServerInstanceReq) Reset() {
+	*x = AddRocketMQClusterNameServerInstanceReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[42]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddRocketMQClusterNameServerInstanceReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddRocketMQClusterNameServerInstanceReq) ProtoMessage() {}
+
+func (x *AddRocketMQClusterNameServerInstanceReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[42]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddRocketMQClusterNameServerInstanceReq.ProtoReflect.Descriptor instead.
+func (*AddRocketMQClusterNameServerInstanceReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{42}
+}
+
+type AddRocketMQClusterNameServerInstanceReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *AddRocketMQClusterNameServerInstanceReply) Reset() {
+	*x = AddRocketMQClusterNameServerInstanceReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[43]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddRocketMQClusterNameServerInstanceReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddRocketMQClusterNameServerInstanceReply) ProtoMessage() {}
+
+func (x *AddRocketMQClusterNameServerInstanceReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[43]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddRocketMQClusterNameServerInstanceReply.ProtoReflect.Descriptor instead.
+func (*AddRocketMQClusterNameServerInstanceReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{43}
+}
+
+type ListRocketMQClusterNameServerInstanceReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ListRocketMQClusterNameServerInstanceReq) Reset() {
+	*x = ListRocketMQClusterNameServerInstanceReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[44]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListRocketMQClusterNameServerInstanceReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListRocketMQClusterNameServerInstanceReq) ProtoMessage() {}
+
+func (x *ListRocketMQClusterNameServerInstanceReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[44]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListRocketMQClusterNameServerInstanceReq.ProtoReflect.Descriptor instead.
+func (*ListRocketMQClusterNameServerInstanceReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{44}
+}
+
+type ListRocketMQClusterNameServerInstanceReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ListRocketMQClusterNameServerInstanceReply) Reset() {
+	*x = ListRocketMQClusterNameServerInstanceReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[45]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListRocketMQClusterNameServerInstanceReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListRocketMQClusterNameServerInstanceReply) ProtoMessage() {}
+
+func (x *ListRocketMQClusterNameServerInstanceReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[45]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListRocketMQClusterNameServerInstanceReply.ProtoReflect.Descriptor instead.
+func (*ListRocketMQClusterNameServerInstanceReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{45}
+}
+
+type DelRocketMQClusterNameServerInstanceReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *DelRocketMQClusterNameServerInstanceReq) Reset() {
+	*x = DelRocketMQClusterNameServerInstanceReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[46]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DelRocketMQClusterNameServerInstanceReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DelRocketMQClusterNameServerInstanceReq) ProtoMessage() {}
+
+func (x *DelRocketMQClusterNameServerInstanceReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[46]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DelRocketMQClusterNameServerInstanceReq.ProtoReflect.Descriptor instead.
+func (*DelRocketMQClusterNameServerInstanceReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{46}
+}
+
+type DelRocketMQClusterNameServerInstanceReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *DelRocketMQClusterNameServerInstanceReply) Reset() {
+	*x = DelRocketMQClusterNameServerInstanceReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[47]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DelRocketMQClusterNameServerInstanceReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DelRocketMQClusterNameServerInstanceReply) ProtoMessage() {}
+
+func (x *DelRocketMQClusterNameServerInstanceReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[47]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DelRocketMQClusterNameServerInstanceReply.ProtoReflect.Descriptor instead.
+func (*DelRocketMQClusterNameServerInstanceReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{47}
+}
+
+type AddKafkaClusterReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *AddKafkaClusterReq) Reset() {
+	*x = AddKafkaClusterReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[48]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddKafkaClusterReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddKafkaClusterReq) ProtoMessage() {}
+
+func (x *AddKafkaClusterReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[48]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddKafkaClusterReq.ProtoReflect.Descriptor instead.
+func (*AddKafkaClusterReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{48}
+}
+
+type AddKafkaClusterReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *AddKafkaClusterReply) Reset() {
+	*x = AddKafkaClusterReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[49]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddKafkaClusterReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddKafkaClusterReply) ProtoMessage() {}
+
+func (x *AddKafkaClusterReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[49]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddKafkaClusterReply.ProtoReflect.Descriptor instead.
+func (*AddKafkaClusterReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{49}
+}
+
+type ListKafkaClusterReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ListKafkaClusterReq) Reset() {
+	*x = ListKafkaClusterReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[50]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListKafkaClusterReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListKafkaClusterReq) ProtoMessage() {}
+
+func (x *ListKafkaClusterReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[50]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListKafkaClusterReq.ProtoReflect.Descriptor instead.
+func (*ListKafkaClusterReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{50}
+}
+
+type ListKafkaClusterReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ListKafkaClusterReply) Reset() {
+	*x = ListKafkaClusterReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[51]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListKafkaClusterReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListKafkaClusterReply) ProtoMessage() {}
+
+func (x *ListKafkaClusterReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[51]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListKafkaClusterReply.ProtoReflect.Descriptor instead.
+func (*ListKafkaClusterReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{51}
+}
+
+type DelKafkaClusterReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *DelKafkaClusterReq) Reset() {
+	*x = DelKafkaClusterReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[52]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DelKafkaClusterReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DelKafkaClusterReq) ProtoMessage() {}
+
+func (x *DelKafkaClusterReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[52]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DelKafkaClusterReq.ProtoReflect.Descriptor instead.
+func (*DelKafkaClusterReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{52}
+}
+
+type DelKafkaClusterReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *DelKafkaClusterReply) Reset() {
+	*x = DelKafkaClusterReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[53]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DelKafkaClusterReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DelKafkaClusterReply) ProtoMessage() {}
+
+func (x *DelKafkaClusterReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[53]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DelKafkaClusterReply.ProtoReflect.Descriptor instead.
+func (*DelKafkaClusterReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{53}
+}
+
+type AddKafkaClusterInstanceReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *AddKafkaClusterInstanceReq) Reset() {
+	*x = AddKafkaClusterInstanceReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[54]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddKafkaClusterInstanceReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddKafkaClusterInstanceReq) ProtoMessage() {}
+
+func (x *AddKafkaClusterInstanceReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[54]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddKafkaClusterInstanceReq.ProtoReflect.Descriptor instead.
+func (*AddKafkaClusterInstanceReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{54}
+}
+
+type AddKafkaClusterInstanceReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *AddKafkaClusterInstanceReply) Reset() {
+	*x = AddKafkaClusterInstanceReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[55]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddKafkaClusterInstanceReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddKafkaClusterInstanceReply) ProtoMessage() {}
+
+func (x *AddKafkaClusterInstanceReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[55]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddKafkaClusterInstanceReply.ProtoReflect.Descriptor instead.
+func (*AddKafkaClusterInstanceReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{55}
+}
+
+type ListKafkaClusterInstanceReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ListKafkaClusterInstanceReq) Reset() {
+	*x = ListKafkaClusterInstanceReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[56]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListKafkaClusterInstanceReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListKafkaClusterInstanceReq) ProtoMessage() {}
+
+func (x *ListKafkaClusterInstanceReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[56]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListKafkaClusterInstanceReq.ProtoReflect.Descriptor instead.
+func (*ListKafkaClusterInstanceReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{56}
+}
+
+type ListKafkaClusterInstanceReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ListKafkaClusterInstanceReply) Reset() {
+	*x = ListKafkaClusterInstanceReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[57]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListKafkaClusterInstanceReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListKafkaClusterInstanceReply) ProtoMessage() {}
+
+func (x *ListKafkaClusterInstanceReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[57]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListKafkaClusterInstanceReply.ProtoReflect.Descriptor instead.
+func (*ListKafkaClusterInstanceReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{57}
+}
+
+type DelKafkaClusterInstanceReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *DelKafkaClusterInstanceReq) Reset() {
+	*x = DelKafkaClusterInstanceReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[58]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DelKafkaClusterInstanceReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DelKafkaClusterInstanceReq) ProtoMessage() {}
+
+func (x *DelKafkaClusterInstanceReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[58]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DelKafkaClusterInstanceReq.ProtoReflect.Descriptor instead.
+func (*DelKafkaClusterInstanceReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{58}
+}
+
+type DelKafkaClusterInstanceReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *DelKafkaClusterInstanceReply) Reset() {
+	*x = DelKafkaClusterInstanceReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[59]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DelKafkaClusterInstanceReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DelKafkaClusterInstanceReply) ProtoMessage() {}
+
+func (x *DelKafkaClusterInstanceReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[59]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DelKafkaClusterInstanceReply.ProtoReflect.Descriptor instead.
+func (*DelKafkaClusterInstanceReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{59}
+}
+
+//
+type AddEtcdClusterReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *AddEtcdClusterReq) Reset() {
+	*x = AddEtcdClusterReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[60]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddEtcdClusterReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddEtcdClusterReq) ProtoMessage() {}
+
+func (x *AddEtcdClusterReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[60]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddEtcdClusterReq.ProtoReflect.Descriptor instead.
+func (*AddEtcdClusterReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{60}
+}
+
+type AddEtcdClusterReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *AddEtcdClusterReply) Reset() {
+	*x = AddEtcdClusterReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[61]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddEtcdClusterReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddEtcdClusterReply) ProtoMessage() {}
+
+func (x *AddEtcdClusterReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[61]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddEtcdClusterReply.ProtoReflect.Descriptor instead.
+func (*AddEtcdClusterReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{61}
+}
+
+type ListEtcdClusterReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ListEtcdClusterReq) Reset() {
+	*x = ListEtcdClusterReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[62]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListEtcdClusterReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListEtcdClusterReq) ProtoMessage() {}
+
+func (x *ListEtcdClusterReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[62]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListEtcdClusterReq.ProtoReflect.Descriptor instead.
+func (*ListEtcdClusterReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{62}
+}
+
+type ListEtcdClusterReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ListEtcdClusterReply) Reset() {
+	*x = ListEtcdClusterReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[63]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListEtcdClusterReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListEtcdClusterReply) ProtoMessage() {}
+
+func (x *ListEtcdClusterReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[63]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListEtcdClusterReply.ProtoReflect.Descriptor instead.
+func (*ListEtcdClusterReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{63}
+}
+
+type DelEtcdClusterReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *DelEtcdClusterReq) Reset() {
+	*x = DelEtcdClusterReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[64]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DelEtcdClusterReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DelEtcdClusterReq) ProtoMessage() {}
+
+func (x *DelEtcdClusterReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[64]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DelEtcdClusterReq.ProtoReflect.Descriptor instead.
+func (*DelEtcdClusterReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{64}
+}
+
+type DelEtcdClusterReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *DelEtcdClusterReply) Reset() {
+	*x = DelEtcdClusterReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[65]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DelEtcdClusterReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DelEtcdClusterReply) ProtoMessage() {}
+
+func (x *DelEtcdClusterReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[65]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DelEtcdClusterReply.ProtoReflect.Descriptor instead.
+func (*DelEtcdClusterReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{65}
+}
+
+type AddEtcdClusterInstanceReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *AddEtcdClusterInstanceReq) Reset() {
+	*x = AddEtcdClusterInstanceReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[66]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddEtcdClusterInstanceReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddEtcdClusterInstanceReq) ProtoMessage() {}
+
+func (x *AddEtcdClusterInstanceReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[66]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddEtcdClusterInstanceReq.ProtoReflect.Descriptor instead.
+func (*AddEtcdClusterInstanceReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{66}
+}
+
+type AddEtcdClusterInstanceReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *AddEtcdClusterInstanceReply) Reset() {
+	*x = AddEtcdClusterInstanceReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[67]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddEtcdClusterInstanceReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddEtcdClusterInstanceReply) ProtoMessage() {}
+
+func (x *AddEtcdClusterInstanceReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[67]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddEtcdClusterInstanceReply.ProtoReflect.Descriptor instead.
+func (*AddEtcdClusterInstanceReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{67}
+}
+
+type ListEtcdClusterInstanceReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ListEtcdClusterInstanceReq) Reset() {
+	*x = ListEtcdClusterInstanceReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[68]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListEtcdClusterInstanceReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListEtcdClusterInstanceReq) ProtoMessage() {}
+
+func (x *ListEtcdClusterInstanceReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[68]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListEtcdClusterInstanceReq.ProtoReflect.Descriptor instead.
+func (*ListEtcdClusterInstanceReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{68}
+}
+
+type ListEtcdClusterInstanceReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ListEtcdClusterInstanceReply) Reset() {
+	*x = ListEtcdClusterInstanceReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[69]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListEtcdClusterInstanceReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListEtcdClusterInstanceReply) ProtoMessage() {}
+
+func (x *ListEtcdClusterInstanceReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[69]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListEtcdClusterInstanceReply.ProtoReflect.Descriptor instead.
+func (*ListEtcdClusterInstanceReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{69}
+}
+
+type DelEtcdClusterInstanceReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *DelEtcdClusterInstanceReq) Reset() {
+	*x = DelEtcdClusterInstanceReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[70]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DelEtcdClusterInstanceReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DelEtcdClusterInstanceReq) ProtoMessage() {}
+
+func (x *DelEtcdClusterInstanceReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[70]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DelEtcdClusterInstanceReq.ProtoReflect.Descriptor instead.
+func (*DelEtcdClusterInstanceReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{70}
+}
+
+type DelEtcdClusterInstanceReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *DelEtcdClusterInstanceReply) Reset() {
+	*x = DelEtcdClusterInstanceReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[71]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DelEtcdClusterInstanceReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DelEtcdClusterInstanceReply) ProtoMessage() {}
+
+func (x *DelEtcdClusterInstanceReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[71]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DelEtcdClusterInstanceReply.ProtoReflect.Descriptor instead.
+func (*DelEtcdClusterInstanceReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{71}
+}
+
+//
+type AddNacosClusterReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *AddNacosClusterReq) Reset() {
+	*x = AddNacosClusterReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[72]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddNacosClusterReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddNacosClusterReq) ProtoMessage() {}
+
+func (x *AddNacosClusterReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[72]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddNacosClusterReq.ProtoReflect.Descriptor instead.
+func (*AddNacosClusterReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{72}
+}
+
+type AddNacosClusterReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *AddNacosClusterReply) Reset() {
+	*x = AddNacosClusterReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[73]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddNacosClusterReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddNacosClusterReply) ProtoMessage() {}
+
+func (x *AddNacosClusterReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[73]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddNacosClusterReply.ProtoReflect.Descriptor instead.
+func (*AddNacosClusterReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{73}
+}
+
+type ListNacosClusterReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ListNacosClusterReq) Reset() {
+	*x = ListNacosClusterReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[74]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListNacosClusterReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListNacosClusterReq) ProtoMessage() {}
+
+func (x *ListNacosClusterReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[74]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListNacosClusterReq.ProtoReflect.Descriptor instead.
+func (*ListNacosClusterReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{74}
+}
+
+type ListNacosClusterReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ListNacosClusterReply) Reset() {
+	*x = ListNacosClusterReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[75]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListNacosClusterReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListNacosClusterReply) ProtoMessage() {}
+
+func (x *ListNacosClusterReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[75]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListNacosClusterReply.ProtoReflect.Descriptor instead.
+func (*ListNacosClusterReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{75}
+}
+
+type DelNacosClusterReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *DelNacosClusterReq) Reset() {
+	*x = DelNacosClusterReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[76]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DelNacosClusterReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DelNacosClusterReq) ProtoMessage() {}
+
+func (x *DelNacosClusterReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[76]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DelNacosClusterReq.ProtoReflect.Descriptor instead.
+func (*DelNacosClusterReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{76}
+}
+
+type DelNacosClusterReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *DelNacosClusterReply) Reset() {
+	*x = DelNacosClusterReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[77]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DelNacosClusterReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DelNacosClusterReply) ProtoMessage() {}
+
+func (x *DelNacosClusterReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[77]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DelNacosClusterReply.ProtoReflect.Descriptor instead.
+func (*DelNacosClusterReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{77}
+}
+
+type AddNacosClusterInstanceReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *AddNacosClusterInstanceReq) Reset() {
+	*x = AddNacosClusterInstanceReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[78]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddNacosClusterInstanceReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddNacosClusterInstanceReq) ProtoMessage() {}
+
+func (x *AddNacosClusterInstanceReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[78]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddNacosClusterInstanceReq.ProtoReflect.Descriptor instead.
+func (*AddNacosClusterInstanceReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{78}
+}
+
+type AddNacosClusterInstanceReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *AddNacosClusterInstanceReply) Reset() {
+	*x = AddNacosClusterInstanceReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[79]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddNacosClusterInstanceReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddNacosClusterInstanceReply) ProtoMessage() {}
+
+func (x *AddNacosClusterInstanceReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[79]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddNacosClusterInstanceReply.ProtoReflect.Descriptor instead.
+func (*AddNacosClusterInstanceReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{79}
+}
+
+type ListNacosClusterInstanceReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ListNacosClusterInstanceReq) Reset() {
+	*x = ListNacosClusterInstanceReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[80]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListNacosClusterInstanceReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListNacosClusterInstanceReq) ProtoMessage() {}
+
+func (x *ListNacosClusterInstanceReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[80]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListNacosClusterInstanceReq.ProtoReflect.Descriptor instead.
+func (*ListNacosClusterInstanceReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{80}
+}
+
+type ListNacosClusterInstanceReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ListNacosClusterInstanceReply) Reset() {
+	*x = ListNacosClusterInstanceReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[81]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListNacosClusterInstanceReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListNacosClusterInstanceReply) ProtoMessage() {}
+
+func (x *ListNacosClusterInstanceReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[81]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListNacosClusterInstanceReply.ProtoReflect.Descriptor instead.
+func (*ListNacosClusterInstanceReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{81}
+}
+
+type DelNacosClusterInstanceReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *DelNacosClusterInstanceReq) Reset() {
+	*x = DelNacosClusterInstanceReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[82]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DelNacosClusterInstanceReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DelNacosClusterInstanceReq) ProtoMessage() {}
+
+func (x *DelNacosClusterInstanceReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[82]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DelNacosClusterInstanceReq.ProtoReflect.Descriptor instead.
+func (*DelNacosClusterInstanceReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{82}
+}
+
+type DelNacosClusterInstanceReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *DelNacosClusterInstanceReply) Reset() {
+	*x = DelNacosClusterInstanceReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[83]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DelNacosClusterInstanceReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DelNacosClusterInstanceReply) ProtoMessage() {}
+
+func (x *DelNacosClusterInstanceReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[83]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DelNacosClusterInstanceReply.ProtoReflect.Descriptor instead.
+func (*DelNacosClusterInstanceReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{83}
+}
+
+//
+type AddConsulClusterReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *AddConsulClusterReq) Reset() {
+	*x = AddConsulClusterReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[84]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddConsulClusterReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddConsulClusterReq) ProtoMessage() {}
+
+func (x *AddConsulClusterReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[84]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddConsulClusterReq.ProtoReflect.Descriptor instead.
+func (*AddConsulClusterReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{84}
+}
+
+type AddConsulClusterReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *AddConsulClusterReply) Reset() {
+	*x = AddConsulClusterReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[85]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddConsulClusterReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddConsulClusterReply) ProtoMessage() {}
+
+func (x *AddConsulClusterReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[85]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddConsulClusterReply.ProtoReflect.Descriptor instead.
+func (*AddConsulClusterReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{85}
+}
+
+type ListConsulClusterReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ListConsulClusterReq) Reset() {
+	*x = ListConsulClusterReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[86]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListConsulClusterReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListConsulClusterReq) ProtoMessage() {}
+
+func (x *ListConsulClusterReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[86]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListConsulClusterReq.ProtoReflect.Descriptor instead.
+func (*ListConsulClusterReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{86}
+}
+
+type ListConsulClusterReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ListConsulClusterReply) Reset() {
+	*x = ListConsulClusterReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[87]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListConsulClusterReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListConsulClusterReply) ProtoMessage() {}
+
+func (x *ListConsulClusterReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[87]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListConsulClusterReply.ProtoReflect.Descriptor instead.
+func (*ListConsulClusterReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{87}
+}
+
+type DelConsulClusterReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *DelConsulClusterReq) Reset() {
+	*x = DelConsulClusterReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[88]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DelConsulClusterReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DelConsulClusterReq) ProtoMessage() {}
+
+func (x *DelConsulClusterReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[88]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DelConsulClusterReq.ProtoReflect.Descriptor instead.
+func (*DelConsulClusterReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{88}
+}
+
+type DelConsulClusterReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *DelConsulClusterReply) Reset() {
+	*x = DelConsulClusterReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[89]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DelConsulClusterReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DelConsulClusterReply) ProtoMessage() {}
+
+func (x *DelConsulClusterReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[89]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DelConsulClusterReply.ProtoReflect.Descriptor instead.
+func (*DelConsulClusterReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{89}
+}
+
+type AddConsulClusterInstanceReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *AddConsulClusterInstanceReq) Reset() {
+	*x = AddConsulClusterInstanceReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[90]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddConsulClusterInstanceReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddConsulClusterInstanceReq) ProtoMessage() {}
+
+func (x *AddConsulClusterInstanceReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[90]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddConsulClusterInstanceReq.ProtoReflect.Descriptor instead.
+func (*AddConsulClusterInstanceReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{90}
+}
+
+type AddConsulClusterInstanceReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *AddConsulClusterInstanceReply) Reset() {
+	*x = AddConsulClusterInstanceReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[91]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddConsulClusterInstanceReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddConsulClusterInstanceReply) ProtoMessage() {}
+
+func (x *AddConsulClusterInstanceReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[91]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddConsulClusterInstanceReply.ProtoReflect.Descriptor instead.
+func (*AddConsulClusterInstanceReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{91}
+}
+
+type ListConsulClusterInstanceReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ListConsulClusterInstanceReq) Reset() {
+	*x = ListConsulClusterInstanceReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[92]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListConsulClusterInstanceReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListConsulClusterInstanceReq) ProtoMessage() {}
+
+func (x *ListConsulClusterInstanceReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[92]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListConsulClusterInstanceReq.ProtoReflect.Descriptor instead.
+func (*ListConsulClusterInstanceReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{92}
+}
+
+type ListConsulClusterInstanceReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ListConsulClusterInstanceReply) Reset() {
+	*x = ListConsulClusterInstanceReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[93]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListConsulClusterInstanceReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListConsulClusterInstanceReply) ProtoMessage() {}
+
+func (x *ListConsulClusterInstanceReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[93]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListConsulClusterInstanceReply.ProtoReflect.Descriptor instead.
+func (*ListConsulClusterInstanceReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{93}
+}
+
+type DelConsulClusterInstanceReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *DelConsulClusterInstanceReq) Reset() {
+	*x = DelConsulClusterInstanceReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[94]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DelConsulClusterInstanceReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DelConsulClusterInstanceReq) ProtoMessage() {}
+
+func (x *DelConsulClusterInstanceReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[94]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DelConsulClusterInstanceReq.ProtoReflect.Descriptor instead.
+func (*DelConsulClusterInstanceReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{94}
+}
+
+type DelConsulClusterInstanceReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *DelConsulClusterInstanceReply) Reset() {
+	*x = DelConsulClusterInstanceReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[95]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DelConsulClusterInstanceReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DelConsulClusterInstanceReply) ProtoMessage() {}
+
+func (x *DelConsulClusterInstanceReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[95]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DelConsulClusterInstanceReply.ProtoReflect.Descriptor instead.
+func (*DelConsulClusterInstanceReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{95}
+}
+
+//
+type AddZookeeperClusterReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *AddZookeeperClusterReq) Reset() {
+	*x = AddZookeeperClusterReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[96]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddZookeeperClusterReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddZookeeperClusterReq) ProtoMessage() {}
+
+func (x *AddZookeeperClusterReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[96]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddZookeeperClusterReq.ProtoReflect.Descriptor instead.
+func (*AddZookeeperClusterReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{96}
+}
+
+type AddZookeeperClusterReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *AddZookeeperClusterReply) Reset() {
+	*x = AddZookeeperClusterReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[97]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddZookeeperClusterReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddZookeeperClusterReply) ProtoMessage() {}
+
+func (x *AddZookeeperClusterReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[97]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddZookeeperClusterReply.ProtoReflect.Descriptor instead.
+func (*AddZookeeperClusterReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{97}
+}
+
+type ListZookeeperClusterReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ListZookeeperClusterReq) Reset() {
+	*x = ListZookeeperClusterReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[98]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListZookeeperClusterReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListZookeeperClusterReq) ProtoMessage() {}
+
+func (x *ListZookeeperClusterReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[98]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListZookeeperClusterReq.ProtoReflect.Descriptor instead.
+func (*ListZookeeperClusterReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{98}
+}
+
+type ListZookeeperClusterReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ListZookeeperClusterReply) Reset() {
+	*x = ListZookeeperClusterReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[99]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListZookeeperClusterReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListZookeeperClusterReply) ProtoMessage() {}
+
+func (x *ListZookeeperClusterReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[99]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListZookeeperClusterReply.ProtoReflect.Descriptor instead.
+func (*ListZookeeperClusterReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{99}
+}
+
+type DelZookeeperClusterReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *DelZookeeperClusterReq) Reset() {
+	*x = DelZookeeperClusterReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[100]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DelZookeeperClusterReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DelZookeeperClusterReq) ProtoMessage() {}
+
+func (x *DelZookeeperClusterReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[100]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DelZookeeperClusterReq.ProtoReflect.Descriptor instead.
+func (*DelZookeeperClusterReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{100}
+}
+
+type DelZookeeperClusterReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *DelZookeeperClusterReply) Reset() {
+	*x = DelZookeeperClusterReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[101]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DelZookeeperClusterReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DelZookeeperClusterReply) ProtoMessage() {}
+
+func (x *DelZookeeperClusterReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[101]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DelZookeeperClusterReply.ProtoReflect.Descriptor instead.
+func (*DelZookeeperClusterReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{101}
+}
+
+type AddZookeeperClusterInstanceReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *AddZookeeperClusterInstanceReq) Reset() {
+	*x = AddZookeeperClusterInstanceReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[102]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddZookeeperClusterInstanceReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddZookeeperClusterInstanceReq) ProtoMessage() {}
+
+func (x *AddZookeeperClusterInstanceReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[102]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddZookeeperClusterInstanceReq.ProtoReflect.Descriptor instead.
+func (*AddZookeeperClusterInstanceReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{102}
+}
+
+type AddZookeeperClusterInstanceReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *AddZookeeperClusterInstanceReply) Reset() {
+	*x = AddZookeeperClusterInstanceReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[103]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddZookeeperClusterInstanceReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddZookeeperClusterInstanceReply) ProtoMessage() {}
+
+func (x *AddZookeeperClusterInstanceReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[103]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddZookeeperClusterInstanceReply.ProtoReflect.Descriptor instead.
+func (*AddZookeeperClusterInstanceReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{103}
+}
+
+type ListZookeeperClusterInstanceReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ListZookeeperClusterInstanceReq) Reset() {
+	*x = ListZookeeperClusterInstanceReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[104]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListZookeeperClusterInstanceReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListZookeeperClusterInstanceReq) ProtoMessage() {}
+
+func (x *ListZookeeperClusterInstanceReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[104]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListZookeeperClusterInstanceReq.ProtoReflect.Descriptor instead.
+func (*ListZookeeperClusterInstanceReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{104}
+}
+
+type ListZookeeperClusterInstanceReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ListZookeeperClusterInstanceReply) Reset() {
+	*x = ListZookeeperClusterInstanceReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[105]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListZookeeperClusterInstanceReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListZookeeperClusterInstanceReply) ProtoMessage() {}
+
+func (x *ListZookeeperClusterInstanceReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[105]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListZookeeperClusterInstanceReply.ProtoReflect.Descriptor instead.
+func (*ListZookeeperClusterInstanceReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{105}
+}
+
+type DelZookeeperClusterInstanceReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *DelZookeeperClusterInstanceReq) Reset() {
+	*x = DelZookeeperClusterInstanceReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[106]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DelZookeeperClusterInstanceReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DelZookeeperClusterInstanceReq) ProtoMessage() {}
+
+func (x *DelZookeeperClusterInstanceReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[106]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DelZookeeperClusterInstanceReq.ProtoReflect.Descriptor instead.
+func (*DelZookeeperClusterInstanceReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{106}
+}
+
+type DelZookeeperClusterInstanceReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *DelZookeeperClusterInstanceReply) Reset() {
+	*x = DelZookeeperClusterInstanceReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[107]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DelZookeeperClusterInstanceReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DelZookeeperClusterInstanceReply) ProtoMessage() {}
+
+func (x *DelZookeeperClusterInstanceReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[107]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DelZookeeperClusterInstanceReply.ProtoReflect.Descriptor instead.
+func (*DelZookeeperClusterInstanceReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{107}
+}
+
+//
+type AddCoreDNSClusterReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *AddCoreDNSClusterReq) Reset() {
+	*x = AddCoreDNSClusterReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[108]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddCoreDNSClusterReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddCoreDNSClusterReq) ProtoMessage() {}
+
+func (x *AddCoreDNSClusterReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[108]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddCoreDNSClusterReq.ProtoReflect.Descriptor instead.
+func (*AddCoreDNSClusterReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{108}
+}
+
+type AddCoreDNSClusterReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *AddCoreDNSClusterReply) Reset() {
+	*x = AddCoreDNSClusterReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[109]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddCoreDNSClusterReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddCoreDNSClusterReply) ProtoMessage() {}
+
+func (x *AddCoreDNSClusterReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[109]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddCoreDNSClusterReply.ProtoReflect.Descriptor instead.
+func (*AddCoreDNSClusterReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{109}
+}
+
+type ListCoreDNSClusterReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ListCoreDNSClusterReq) Reset() {
+	*x = ListCoreDNSClusterReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[110]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListCoreDNSClusterReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListCoreDNSClusterReq) ProtoMessage() {}
+
+func (x *ListCoreDNSClusterReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[110]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListCoreDNSClusterReq.ProtoReflect.Descriptor instead.
+func (*ListCoreDNSClusterReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{110}
+}
+
+type ListCoreDNSClusterReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ListCoreDNSClusterReply) Reset() {
+	*x = ListCoreDNSClusterReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[111]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListCoreDNSClusterReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListCoreDNSClusterReply) ProtoMessage() {}
+
+func (x *ListCoreDNSClusterReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[111]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListCoreDNSClusterReply.ProtoReflect.Descriptor instead.
+func (*ListCoreDNSClusterReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{111}
+}
+
+type DelCoreDNSClusterReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *DelCoreDNSClusterReq) Reset() {
+	*x = DelCoreDNSClusterReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[112]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DelCoreDNSClusterReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DelCoreDNSClusterReq) ProtoMessage() {}
+
+func (x *DelCoreDNSClusterReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[112]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DelCoreDNSClusterReq.ProtoReflect.Descriptor instead.
+func (*DelCoreDNSClusterReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{112}
+}
+
+type DelCoreDNSClusterReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *DelCoreDNSClusterReply) Reset() {
+	*x = DelCoreDNSClusterReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[113]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DelCoreDNSClusterReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DelCoreDNSClusterReply) ProtoMessage() {}
+
+func (x *DelCoreDNSClusterReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[113]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DelCoreDNSClusterReply.ProtoReflect.Descriptor instead.
+func (*DelCoreDNSClusterReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{113}
+}
+
+type AddCoreDNSClusterInstanceReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *AddCoreDNSClusterInstanceReq) Reset() {
+	*x = AddCoreDNSClusterInstanceReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[114]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddCoreDNSClusterInstanceReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddCoreDNSClusterInstanceReq) ProtoMessage() {}
+
+func (x *AddCoreDNSClusterInstanceReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[114]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddCoreDNSClusterInstanceReq.ProtoReflect.Descriptor instead.
+func (*AddCoreDNSClusterInstanceReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{114}
+}
+
+type AddCoreDNSClusterInstanceReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *AddCoreDNSClusterInstanceReply) Reset() {
+	*x = AddCoreDNSClusterInstanceReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[115]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddCoreDNSClusterInstanceReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddCoreDNSClusterInstanceReply) ProtoMessage() {}
+
+func (x *AddCoreDNSClusterInstanceReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[115]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddCoreDNSClusterInstanceReply.ProtoReflect.Descriptor instead.
+func (*AddCoreDNSClusterInstanceReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{115}
+}
+
+type ListCoreDNSClusterInstanceReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ListCoreDNSClusterInstanceReq) Reset() {
+	*x = ListCoreDNSClusterInstanceReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[116]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListCoreDNSClusterInstanceReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListCoreDNSClusterInstanceReq) ProtoMessage() {}
+
+func (x *ListCoreDNSClusterInstanceReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[116]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListCoreDNSClusterInstanceReq.ProtoReflect.Descriptor instead.
+func (*ListCoreDNSClusterInstanceReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{116}
+}
+
+type ListCoreDNSClusterInstanceReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ListCoreDNSClusterInstanceReply) Reset() {
+	*x = ListCoreDNSClusterInstanceReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[117]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListCoreDNSClusterInstanceReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListCoreDNSClusterInstanceReply) ProtoMessage() {}
+
+func (x *ListCoreDNSClusterInstanceReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[117]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListCoreDNSClusterInstanceReply.ProtoReflect.Descriptor instead.
+func (*ListCoreDNSClusterInstanceReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{117}
+}
+
+type DelCoreDNSClusterInstanceReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *DelCoreDNSClusterInstanceReq) Reset() {
+	*x = DelCoreDNSClusterInstanceReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[118]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DelCoreDNSClusterInstanceReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DelCoreDNSClusterInstanceReq) ProtoMessage() {}
+
+func (x *DelCoreDNSClusterInstanceReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[118]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DelCoreDNSClusterInstanceReq.ProtoReflect.Descriptor instead.
+func (*DelCoreDNSClusterInstanceReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{118}
+}
+
+type DelCoreDNSClusterInstanceReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *DelCoreDNSClusterInstanceReply) Reset() {
+	*x = DelCoreDNSClusterInstanceReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[119]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DelCoreDNSClusterInstanceReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DelCoreDNSClusterInstanceReply) ProtoMessage() {}
+
+func (x *DelCoreDNSClusterInstanceReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[119]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DelCoreDNSClusterInstanceReply.ProtoReflect.Descriptor instead.
+func (*DelCoreDNSClusterInstanceReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{119}
+}
+
+//
+type AddXXLJobInstanceReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *AddXXLJobInstanceReq) Reset() {
+	*x = AddXXLJobInstanceReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[120]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddXXLJobInstanceReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddXXLJobInstanceReq) ProtoMessage() {}
+
+func (x *AddXXLJobInstanceReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[120]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddXXLJobInstanceReq.ProtoReflect.Descriptor instead.
+func (*AddXXLJobInstanceReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{120}
+}
+
+type AddXXLJobInstanceReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *AddXXLJobInstanceReply) Reset() {
+	*x = AddXXLJobInstanceReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[121]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddXXLJobInstanceReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddXXLJobInstanceReply) ProtoMessage() {}
+
+func (x *AddXXLJobInstanceReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[121]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddXXLJobInstanceReply.ProtoReflect.Descriptor instead.
+func (*AddXXLJobInstanceReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{121}
+}
+
+type ListXXLJobInstanceReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ListXXLJobInstanceReq) Reset() {
+	*x = ListXXLJobInstanceReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[122]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListXXLJobInstanceReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListXXLJobInstanceReq) ProtoMessage() {}
+
+func (x *ListXXLJobInstanceReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[122]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListXXLJobInstanceReq.ProtoReflect.Descriptor instead.
+func (*ListXXLJobInstanceReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{122}
+}
+
+type ListXXLJobInstanceReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ListXXLJobInstanceReply) Reset() {
+	*x = ListXXLJobInstanceReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[123]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListXXLJobInstanceReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListXXLJobInstanceReply) ProtoMessage() {}
+
+func (x *ListXXLJobInstanceReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[123]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListXXLJobInstanceReply.ProtoReflect.Descriptor instead.
+func (*ListXXLJobInstanceReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{123}
+}
+
+type DelXXLJobInstanceReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *DelXXLJobInstanceReq) Reset() {
+	*x = DelXXLJobInstanceReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[124]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DelXXLJobInstanceReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DelXXLJobInstanceReq) ProtoMessage() {}
+
+func (x *DelXXLJobInstanceReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[124]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DelXXLJobInstanceReq.ProtoReflect.Descriptor instead.
+func (*DelXXLJobInstanceReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{124}
+}
+
+type DelXXLJobInstanceReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *DelXXLJobInstanceReply) Reset() {
+	*x = DelXXLJobInstanceReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[125]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DelXXLJobInstanceReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DelXXLJobInstanceReply) ProtoMessage() {}
+
+func (x *DelXXLJobInstanceReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[125]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DelXXLJobInstanceReply.ProtoReflect.Descriptor instead.
+func (*DelXXLJobInstanceReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{125}
+}
+
+//
+type AddTemporalClusterReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *AddTemporalClusterReq) Reset() {
+	*x = AddTemporalClusterReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[126]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddTemporalClusterReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddTemporalClusterReq) ProtoMessage() {}
+
+func (x *AddTemporalClusterReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[126]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddTemporalClusterReq.ProtoReflect.Descriptor instead.
+func (*AddTemporalClusterReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{126}
+}
+
+type AddTemporalClusterReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *AddTemporalClusterReply) Reset() {
+	*x = AddTemporalClusterReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[127]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddTemporalClusterReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddTemporalClusterReply) ProtoMessage() {}
+
+func (x *AddTemporalClusterReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[127]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddTemporalClusterReply.ProtoReflect.Descriptor instead.
+func (*AddTemporalClusterReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{127}
+}
+
+type ListTemporalClusterReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ListTemporalClusterReq) Reset() {
+	*x = ListTemporalClusterReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[128]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListTemporalClusterReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListTemporalClusterReq) ProtoMessage() {}
+
+func (x *ListTemporalClusterReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[128]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListTemporalClusterReq.ProtoReflect.Descriptor instead.
+func (*ListTemporalClusterReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{128}
+}
+
+type ListTemporalClusterReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ListTemporalClusterReply) Reset() {
+	*x = ListTemporalClusterReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[129]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListTemporalClusterReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListTemporalClusterReply) ProtoMessage() {}
+
+func (x *ListTemporalClusterReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[129]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListTemporalClusterReply.ProtoReflect.Descriptor instead.
+func (*ListTemporalClusterReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{129}
+}
+
+type DelTemporalClusterReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *DelTemporalClusterReq) Reset() {
+	*x = DelTemporalClusterReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[130]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DelTemporalClusterReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DelTemporalClusterReq) ProtoMessage() {}
+
+func (x *DelTemporalClusterReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[130]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DelTemporalClusterReq.ProtoReflect.Descriptor instead.
+func (*DelTemporalClusterReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{130}
+}
+
+type DelTemporalClusterReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *DelTemporalClusterReply) Reset() {
+	*x = DelTemporalClusterReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[131]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DelTemporalClusterReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DelTemporalClusterReply) ProtoMessage() {}
+
+func (x *DelTemporalClusterReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[131]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DelTemporalClusterReply.ProtoReflect.Descriptor instead.
+func (*DelTemporalClusterReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{131}
+}
+
+type AddTemporalClusterWorkerReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *AddTemporalClusterWorkerReq) Reset() {
+	*x = AddTemporalClusterWorkerReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[132]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddTemporalClusterWorkerReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddTemporalClusterWorkerReq) ProtoMessage() {}
+
+func (x *AddTemporalClusterWorkerReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[132]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddTemporalClusterWorkerReq.ProtoReflect.Descriptor instead.
+func (*AddTemporalClusterWorkerReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{132}
+}
+
+type AddTemporalClusterWorkerReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *AddTemporalClusterWorkerReply) Reset() {
+	*x = AddTemporalClusterWorkerReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[133]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddTemporalClusterWorkerReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddTemporalClusterWorkerReply) ProtoMessage() {}
+
+func (x *AddTemporalClusterWorkerReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[133]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddTemporalClusterWorkerReply.ProtoReflect.Descriptor instead.
+func (*AddTemporalClusterWorkerReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{133}
+}
+
+type ListTemporalClusterWorkerReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ListTemporalClusterWorkerReq) Reset() {
+	*x = ListTemporalClusterWorkerReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[134]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListTemporalClusterWorkerReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListTemporalClusterWorkerReq) ProtoMessage() {}
+
+func (x *ListTemporalClusterWorkerReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[134]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListTemporalClusterWorkerReq.ProtoReflect.Descriptor instead.
+func (*ListTemporalClusterWorkerReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{134}
+}
+
+type ListTemporalClusterWorkerReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ListTemporalClusterWorkerReply) Reset() {
+	*x = ListTemporalClusterWorkerReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[135]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListTemporalClusterWorkerReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListTemporalClusterWorkerReply) ProtoMessage() {}
+
+func (x *ListTemporalClusterWorkerReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[135]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListTemporalClusterWorkerReply.ProtoReflect.Descriptor instead.
+func (*ListTemporalClusterWorkerReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{135}
+}
+
+type DelTemporalClusterWorkerReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *DelTemporalClusterWorkerReq) Reset() {
+	*x = DelTemporalClusterWorkerReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[136]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DelTemporalClusterWorkerReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DelTemporalClusterWorkerReq) ProtoMessage() {}
+
+func (x *DelTemporalClusterWorkerReq) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[136]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DelTemporalClusterWorkerReq.ProtoReflect.Descriptor instead.
+func (*DelTemporalClusterWorkerReq) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{136}
+}
+
+type DelTemporalClusterWorkerReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *DelTemporalClusterWorkerReply) Reset() {
+	*x = DelTemporalClusterWorkerReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_middleware_v1_middleware_proto_msgTypes[137]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DelTemporalClusterWorkerReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DelTemporalClusterWorkerReply) ProtoMessage() {}
+
+func (x *DelTemporalClusterWorkerReply) ProtoReflect() protoreflect.Message {
+	mi := &file_middleware_v1_middleware_proto_msgTypes[137]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DelTemporalClusterWorkerReply.ProtoReflect.Descriptor instead.
+func (*DelTemporalClusterWorkerReply) Descriptor() ([]byte, []int) {
+	return file_middleware_v1_middleware_proto_rawDescGZIP(), []int{137}
 }
 
 var File_middleware_v1_middleware_proto protoreflect.FileDescriptor
@@ -111,20 +5282,765 @@ var file_middleware_v1_middleware_proto_rawDesc = []byte{
 	0x0a, 0x1e, 0x6d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2f, 0x76, 0x31, 0x2f,
 	0x6d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
 	0x12, 0x10, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e,
-	0x76, 0x31, 0x22, 0x24, 0x0a, 0x0a, 0x50, 0x61, 0x72, 0x73, 0x65, 0x49, 0x50, 0x52, 0x65, 0x71,
-	0x12, 0x16, 0x0a, 0x06, 0x69, 0x70, 0x41, 0x64, 0x64, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
-	0x52, 0x06, 0x69, 0x70, 0x41, 0x64, 0x64, 0x72, 0x22, 0x0e, 0x0a, 0x0c, 0x50, 0x61, 0x72, 0x73,
-	0x65, 0x49, 0x50, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x32, 0x58, 0x0a, 0x0d, 0x6f, 0x6e, 0x65, 0x4d,
-	0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x12, 0x47, 0x0a, 0x07, 0x50, 0x61, 0x72,
-	0x73, 0x65, 0x49, 0x50, 0x12, 0x1c, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65,
-	0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x50, 0x61, 0x72, 0x73, 0x65, 0x49, 0x50, 0x52,
-	0x65, 0x71, 0x1a, 0x1e, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61,
-	0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x50, 0x61, 0x72, 0x73, 0x65, 0x49, 0x50, 0x52, 0x65, 0x70,
-	0x6c, 0x79, 0x42, 0x39, 0x5a, 0x37, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d,
-	0x2f, 0x73, 0x74, 0x61, 0x72, 0x74, 0x6f, 0x70, 0x73, 0x7a, 0x2f, 0x6f, 0x6e, 0x65, 0x4d, 0x69,
-	0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x6d, 0x69, 0x64,
-	0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2f, 0x76, 0x31, 0x3b, 0x76, 0x31, 0x62, 0x06, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x76, 0x31, 0x22, 0x14, 0x0a, 0x12, 0x41, 0x64, 0x64, 0x52, 0x65, 0x64, 0x69, 0x73, 0x43, 0x6c,
+	0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x22, 0x16, 0x0a, 0x14, 0x41, 0x64, 0x64, 0x52,
+	0x65, 0x64, 0x69, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x70, 0x6c, 0x79,
+	0x22, 0x15, 0x0a, 0x13, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x64, 0x69, 0x73, 0x43, 0x6c, 0x75,
+	0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x22, 0x17, 0x0a, 0x15, 0x4c, 0x69, 0x73, 0x74, 0x52,
+	0x65, 0x64, 0x69, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x70, 0x6c, 0x79,
+	0x22, 0x14, 0x0a, 0x12, 0x44, 0x65, 0x6c, 0x52, 0x65, 0x64, 0x69, 0x73, 0x43, 0x6c, 0x75, 0x73,
+	0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x22, 0x16, 0x0a, 0x14, 0x44, 0x65, 0x6c, 0x52, 0x65, 0x64,
+	0x69, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x1c,
+	0x0a, 0x1a, 0x41, 0x64, 0x64, 0x52, 0x65, 0x64, 0x69, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65,
+	0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x22, 0x1e, 0x0a, 0x1c,
+	0x41, 0x64, 0x64, 0x52, 0x65, 0x64, 0x69, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49,
+	0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x1c, 0x0a, 0x1a,
+	0x44, 0x65, 0x6c, 0x52, 0x65, 0x64, 0x69, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49,
+	0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x22, 0x1e, 0x0a, 0x1c, 0x44, 0x65,
+	0x6c, 0x52, 0x65, 0x64, 0x69, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73,
+	0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x1d, 0x0a, 0x1b, 0x4c, 0x69,
+	0x73, 0x74, 0x52, 0x65, 0x64, 0x69, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e,
+	0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x22, 0x1f, 0x0a, 0x1d, 0x4c, 0x69, 0x73,
+	0x74, 0x52, 0x65, 0x64, 0x69, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73,
+	0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x15, 0x0a, 0x13, 0x41, 0x64,
+	0x64, 0x4d, 0x79, 0x53, 0x51, 0x4c, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65,
+	0x71, 0x22, 0x17, 0x0a, 0x15, 0x41, 0x64, 0x64, 0x4d, 0x79, 0x53, 0x51, 0x4c, 0x49, 0x6e, 0x73,
+	0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x16, 0x0a, 0x14, 0x4c, 0x69,
+	0x73, 0x74, 0x4d, 0x79, 0x53, 0x51, 0x4c, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52,
+	0x65, 0x71, 0x22, 0x18, 0x0a, 0x16, 0x4c, 0x69, 0x73, 0x74, 0x4d, 0x79, 0x53, 0x51, 0x4c, 0x49,
+	0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x15, 0x0a, 0x13,
+	0x44, 0x65, 0x6c, 0x4d, 0x79, 0x53, 0x51, 0x4c, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65,
+	0x52, 0x65, 0x71, 0x22, 0x17, 0x0a, 0x15, 0x44, 0x65, 0x6c, 0x4d, 0x79, 0x53, 0x51, 0x4c, 0x49,
+	0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x1b, 0x0a, 0x19,
+	0x41, 0x64, 0x64, 0x4d, 0x79, 0x53, 0x51, 0x4c, 0x4d, 0x61, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e,
+	0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x22, 0x1d, 0x0a, 0x1b, 0x41, 0x64, 0x64,
+	0x4d, 0x79, 0x53, 0x51, 0x4c, 0x4d, 0x61, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61,
+	0x6e, 0x63, 0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x1c, 0x0a, 0x1a, 0x4c, 0x69, 0x73, 0x74,
+	0x4d, 0x79, 0x53, 0x51, 0x4c, 0x4d, 0x61, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61,
+	0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x22, 0x1e, 0x0a, 0x1c, 0x4c, 0x69, 0x73, 0x74, 0x4d, 0x79,
+	0x53, 0x51, 0x4c, 0x4d, 0x61, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63,
+	0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x1b, 0x0a, 0x19, 0x44, 0x65, 0x6c, 0x4d, 0x79, 0x53,
+	0x51, 0x4c, 0x4d, 0x61, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65,
+	0x52, 0x65, 0x71, 0x22, 0x1d, 0x0a, 0x1b, 0x44, 0x65, 0x6c, 0x4d, 0x79, 0x53, 0x51, 0x4c, 0x4d,
+	0x61, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x70,
+	0x6c, 0x79, 0x22, 0x1a, 0x0a, 0x18, 0x41, 0x64, 0x64, 0x4d, 0x79, 0x53, 0x51, 0x4c, 0x53, 0x6c,
+	0x61, 0x76, 0x65, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x22, 0x1c,
+	0x0a, 0x1a, 0x41, 0x64, 0x64, 0x4d, 0x79, 0x53, 0x51, 0x4c, 0x53, 0x6c, 0x61, 0x76, 0x65, 0x49,
+	0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x1b, 0x0a, 0x19,
+	0x4c, 0x69, 0x73, 0x74, 0x4d, 0x79, 0x53, 0x51, 0x4c, 0x53, 0x6c, 0x61, 0x76, 0x65, 0x49, 0x6e,
+	0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x22, 0x1d, 0x0a, 0x1b, 0x4c, 0x69, 0x73,
+	0x74, 0x4d, 0x79, 0x53, 0x51, 0x4c, 0x53, 0x6c, 0x61, 0x76, 0x65, 0x49, 0x6e, 0x73, 0x74, 0x61,
+	0x6e, 0x63, 0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x1a, 0x0a, 0x18, 0x44, 0x65, 0x6c, 0x4d,
+	0x79, 0x53, 0x51, 0x4c, 0x53, 0x6c, 0x61, 0x76, 0x65, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63,
+	0x65, 0x52, 0x65, 0x71, 0x22, 0x1c, 0x0a, 0x1a, 0x44, 0x65, 0x6c, 0x4d, 0x79, 0x53, 0x51, 0x4c,
+	0x53, 0x6c, 0x61, 0x76, 0x65, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x70,
+	0x6c, 0x79, 0x22, 0x17, 0x0a, 0x15, 0x41, 0x64, 0x64, 0x52, 0x6f, 0x63, 0x6b, 0x65, 0x74, 0x4d,
+	0x51, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x22, 0x19, 0x0a, 0x17, 0x41,
+	0x64, 0x64, 0x52, 0x6f, 0x63, 0x6b, 0x65, 0x74, 0x4d, 0x51, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65,
+	0x72, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x18, 0x0a, 0x16, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x6f,
+	0x63, 0x6b, 0x65, 0x74, 0x4d, 0x51, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x71,
+	0x22, 0x1a, 0x0a, 0x18, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x6f, 0x63, 0x6b, 0x65, 0x74, 0x4d, 0x51,
+	0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x17, 0x0a, 0x15,
+	0x44, 0x65, 0x6c, 0x52, 0x6f, 0x63, 0x6b, 0x65, 0x74, 0x4d, 0x51, 0x43, 0x6c, 0x75, 0x73, 0x74,
+	0x65, 0x72, 0x52, 0x65, 0x71, 0x22, 0x19, 0x0a, 0x17, 0x44, 0x65, 0x6c, 0x52, 0x6f, 0x63, 0x6b,
+	0x65, 0x74, 0x4d, 0x51, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x70, 0x6c, 0x79,
+	0x22, 0x25, 0x0a, 0x23, 0x41, 0x64, 0x64, 0x52, 0x6f, 0x63, 0x6b, 0x65, 0x74, 0x4d, 0x51, 0x43,
+	0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x42, 0x72, 0x6f, 0x6b, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74,
+	0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x22, 0x27, 0x0a, 0x25, 0x41, 0x64, 0x64, 0x52, 0x6f,
+	0x63, 0x6b, 0x65, 0x74, 0x4d, 0x51, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x42, 0x72, 0x6f,
+	0x6b, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x70, 0x6c, 0x79,
+	0x22, 0x26, 0x0a, 0x24, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x6f, 0x63, 0x6b, 0x65, 0x74, 0x4d, 0x51,
+	0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x42, 0x72, 0x6f, 0x6b, 0x65, 0x72, 0x49, 0x6e, 0x73,
+	0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x22, 0x28, 0x0a, 0x26, 0x4c, 0x69, 0x73, 0x74,
+	0x52, 0x6f, 0x63, 0x6b, 0x65, 0x74, 0x4d, 0x51, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x42,
+	0x72, 0x6f, 0x6b, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x70,
+	0x6c, 0x79, 0x22, 0x25, 0x0a, 0x23, 0x44, 0x65, 0x6c, 0x52, 0x6f, 0x63, 0x6b, 0x65, 0x74, 0x4d,
+	0x51, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x42, 0x72, 0x6f, 0x6b, 0x65, 0x72, 0x49, 0x6e,
+	0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x22, 0x27, 0x0a, 0x25, 0x44, 0x65, 0x6c,
+	0x52, 0x6f, 0x63, 0x6b, 0x65, 0x74, 0x4d, 0x51, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x42,
+	0x72, 0x6f, 0x6b, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x70,
+	0x6c, 0x79, 0x22, 0x29, 0x0a, 0x27, 0x41, 0x64, 0x64, 0x52, 0x6f, 0x63, 0x6b, 0x65, 0x74, 0x4d,
+	0x51, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x4e, 0x61, 0x6d, 0x65, 0x53, 0x65, 0x72, 0x76,
+	0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x22, 0x2b, 0x0a,
+	0x29, 0x41, 0x64, 0x64, 0x52, 0x6f, 0x63, 0x6b, 0x65, 0x74, 0x4d, 0x51, 0x43, 0x6c, 0x75, 0x73,
+	0x74, 0x65, 0x72, 0x4e, 0x61, 0x6d, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x6e, 0x73,
+	0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x2a, 0x0a, 0x28, 0x4c, 0x69,
+	0x73, 0x74, 0x52, 0x6f, 0x63, 0x6b, 0x65, 0x74, 0x4d, 0x51, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65,
+	0x72, 0x4e, 0x61, 0x6d, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61,
+	0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x22, 0x2c, 0x0a, 0x2a, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x6f,
+	0x63, 0x6b, 0x65, 0x74, 0x4d, 0x51, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x4e, 0x61, 0x6d,
+	0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52,
+	0x65, 0x70, 0x6c, 0x79, 0x22, 0x29, 0x0a, 0x27, 0x44, 0x65, 0x6c, 0x52, 0x6f, 0x63, 0x6b, 0x65,
+	0x74, 0x4d, 0x51, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x4e, 0x61, 0x6d, 0x65, 0x53, 0x65,
+	0x72, 0x76, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x22,
+	0x2b, 0x0a, 0x29, 0x44, 0x65, 0x6c, 0x52, 0x6f, 0x63, 0x6b, 0x65, 0x74, 0x4d, 0x51, 0x43, 0x6c,
+	0x75, 0x73, 0x74, 0x65, 0x72, 0x4e, 0x61, 0x6d, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x49,
+	0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x14, 0x0a, 0x12,
+	0x41, 0x64, 0x64, 0x4b, 0x61, 0x66, 0x6b, 0x61, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52,
+	0x65, 0x71, 0x22, 0x16, 0x0a, 0x14, 0x41, 0x64, 0x64, 0x4b, 0x61, 0x66, 0x6b, 0x61, 0x43, 0x6c,
+	0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x15, 0x0a, 0x13, 0x4c, 0x69,
+	0x73, 0x74, 0x4b, 0x61, 0x66, 0x6b, 0x61, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65,
+	0x71, 0x22, 0x17, 0x0a, 0x15, 0x4c, 0x69, 0x73, 0x74, 0x4b, 0x61, 0x66, 0x6b, 0x61, 0x43, 0x6c,
+	0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x14, 0x0a, 0x12, 0x44, 0x65,
+	0x6c, 0x4b, 0x61, 0x66, 0x6b, 0x61, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x71,
+	0x22, 0x16, 0x0a, 0x14, 0x44, 0x65, 0x6c, 0x4b, 0x61, 0x66, 0x6b, 0x61, 0x43, 0x6c, 0x75, 0x73,
+	0x74, 0x65, 0x72, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x1c, 0x0a, 0x1a, 0x41, 0x64, 0x64, 0x4b,
+	0x61, 0x66, 0x6b, 0x61, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61,
+	0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x22, 0x1e, 0x0a, 0x1c, 0x41, 0x64, 0x64, 0x4b, 0x61, 0x66,
+	0x6b, 0x61, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63,
+	0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x1d, 0x0a, 0x1b, 0x4c, 0x69, 0x73, 0x74, 0x4b, 0x61,
+	0x66, 0x6b, 0x61, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e,
+	0x63, 0x65, 0x52, 0x65, 0x71, 0x22, 0x1f, 0x0a, 0x1d, 0x4c, 0x69, 0x73, 0x74, 0x4b, 0x61, 0x66,
+	0x6b, 0x61, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63,
+	0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x1c, 0x0a, 0x1a, 0x44, 0x65, 0x6c, 0x4b, 0x61, 0x66,
+	0x6b, 0x61, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63,
+	0x65, 0x52, 0x65, 0x71, 0x22, 0x1e, 0x0a, 0x1c, 0x44, 0x65, 0x6c, 0x4b, 0x61, 0x66, 0x6b, 0x61,
+	0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52,
+	0x65, 0x70, 0x6c, 0x79, 0x22, 0x13, 0x0a, 0x11, 0x41, 0x64, 0x64, 0x45, 0x74, 0x63, 0x64, 0x43,
+	0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x22, 0x15, 0x0a, 0x13, 0x41, 0x64, 0x64,
+	0x45, 0x74, 0x63, 0x64, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x70, 0x6c, 0x79,
+	0x22, 0x14, 0x0a, 0x12, 0x4c, 0x69, 0x73, 0x74, 0x45, 0x74, 0x63, 0x64, 0x43, 0x6c, 0x75, 0x73,
+	0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x22, 0x16, 0x0a, 0x14, 0x4c, 0x69, 0x73, 0x74, 0x45, 0x74,
+	0x63, 0x64, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x13,
+	0x0a, 0x11, 0x44, 0x65, 0x6c, 0x45, 0x74, 0x63, 0x64, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72,
+	0x52, 0x65, 0x71, 0x22, 0x15, 0x0a, 0x13, 0x44, 0x65, 0x6c, 0x45, 0x74, 0x63, 0x64, 0x43, 0x6c,
+	0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x1b, 0x0a, 0x19, 0x41, 0x64,
+	0x64, 0x45, 0x74, 0x63, 0x64, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74,
+	0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x22, 0x1d, 0x0a, 0x1b, 0x41, 0x64, 0x64, 0x45, 0x74,
+	0x63, 0x64, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63,
+	0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x1c, 0x0a, 0x1a, 0x4c, 0x69, 0x73, 0x74, 0x45, 0x74,
+	0x63, 0x64, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63,
+	0x65, 0x52, 0x65, 0x71, 0x22, 0x1e, 0x0a, 0x1c, 0x4c, 0x69, 0x73, 0x74, 0x45, 0x74, 0x63, 0x64,
+	0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52,
+	0x65, 0x70, 0x6c, 0x79, 0x22, 0x1b, 0x0a, 0x19, 0x44, 0x65, 0x6c, 0x45, 0x74, 0x63, 0x64, 0x43,
+	0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65,
+	0x71, 0x22, 0x1d, 0x0a, 0x1b, 0x44, 0x65, 0x6c, 0x45, 0x74, 0x63, 0x64, 0x43, 0x6c, 0x75, 0x73,
+	0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x70, 0x6c, 0x79,
+	0x22, 0x14, 0x0a, 0x12, 0x41, 0x64, 0x64, 0x4e, 0x61, 0x63, 0x6f, 0x73, 0x43, 0x6c, 0x75, 0x73,
+	0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x22, 0x16, 0x0a, 0x14, 0x41, 0x64, 0x64, 0x4e, 0x61, 0x63,
+	0x6f, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x15,
+	0x0a, 0x13, 0x4c, 0x69, 0x73, 0x74, 0x4e, 0x61, 0x63, 0x6f, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74,
+	0x65, 0x72, 0x52, 0x65, 0x71, 0x22, 0x17, 0x0a, 0x15, 0x4c, 0x69, 0x73, 0x74, 0x4e, 0x61, 0x63,
+	0x6f, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x14,
+	0x0a, 0x12, 0x44, 0x65, 0x6c, 0x4e, 0x61, 0x63, 0x6f, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65,
+	0x72, 0x52, 0x65, 0x71, 0x22, 0x16, 0x0a, 0x14, 0x44, 0x65, 0x6c, 0x4e, 0x61, 0x63, 0x6f, 0x73,
+	0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x1c, 0x0a, 0x1a,
+	0x41, 0x64, 0x64, 0x4e, 0x61, 0x63, 0x6f, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49,
+	0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x22, 0x1e, 0x0a, 0x1c, 0x41, 0x64,
+	0x64, 0x4e, 0x61, 0x63, 0x6f, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73,
+	0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x1d, 0x0a, 0x1b, 0x4c, 0x69,
+	0x73, 0x74, 0x4e, 0x61, 0x63, 0x6f, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e,
+	0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x22, 0x1f, 0x0a, 0x1d, 0x4c, 0x69, 0x73,
+	0x74, 0x4e, 0x61, 0x63, 0x6f, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73,
+	0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x1c, 0x0a, 0x1a, 0x44, 0x65,
+	0x6c, 0x4e, 0x61, 0x63, 0x6f, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73,
+	0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x22, 0x1e, 0x0a, 0x1c, 0x44, 0x65, 0x6c, 0x4e,
+	0x61, 0x63, 0x6f, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61,
+	0x6e, 0x63, 0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x15, 0x0a, 0x13, 0x41, 0x64, 0x64, 0x43,
+	0x6f, 0x6e, 0x73, 0x75, 0x6c, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x22,
+	0x17, 0x0a, 0x15, 0x41, 0x64, 0x64, 0x43, 0x6f, 0x6e, 0x73, 0x75, 0x6c, 0x43, 0x6c, 0x75, 0x73,
+	0x74, 0x65, 0x72, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x16, 0x0a, 0x14, 0x4c, 0x69, 0x73, 0x74,
+	0x43, 0x6f, 0x6e, 0x73, 0x75, 0x6c, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x71,
+	0x22, 0x18, 0x0a, 0x16, 0x4c, 0x69, 0x73, 0x74, 0x43, 0x6f, 0x6e, 0x73, 0x75, 0x6c, 0x43, 0x6c,
+	0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x15, 0x0a, 0x13, 0x44, 0x65,
+	0x6c, 0x43, 0x6f, 0x6e, 0x73, 0x75, 0x6c, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65,
+	0x71, 0x22, 0x17, 0x0a, 0x15, 0x44, 0x65, 0x6c, 0x43, 0x6f, 0x6e, 0x73, 0x75, 0x6c, 0x43, 0x6c,
+	0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x1d, 0x0a, 0x1b, 0x41, 0x64,
+	0x64, 0x43, 0x6f, 0x6e, 0x73, 0x75, 0x6c, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e,
+	0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x22, 0x1f, 0x0a, 0x1d, 0x41, 0x64, 0x64,
+	0x43, 0x6f, 0x6e, 0x73, 0x75, 0x6c, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73,
+	0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x1e, 0x0a, 0x1c, 0x4c, 0x69,
+	0x73, 0x74, 0x43, 0x6f, 0x6e, 0x73, 0x75, 0x6c, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49,
+	0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x22, 0x20, 0x0a, 0x1e, 0x4c, 0x69,
+	0x73, 0x74, 0x43, 0x6f, 0x6e, 0x73, 0x75, 0x6c, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49,
+	0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x1d, 0x0a, 0x1b,
+	0x44, 0x65, 0x6c, 0x43, 0x6f, 0x6e, 0x73, 0x75, 0x6c, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72,
+	0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x22, 0x1f, 0x0a, 0x1d, 0x44,
+	0x65, 0x6c, 0x43, 0x6f, 0x6e, 0x73, 0x75, 0x6c, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49,
+	0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x18, 0x0a, 0x16,
+	0x41, 0x64, 0x64, 0x5a, 0x6f, 0x6f, 0x6b, 0x65, 0x65, 0x70, 0x65, 0x72, 0x43, 0x6c, 0x75, 0x73,
+	0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x22, 0x1a, 0x0a, 0x18, 0x41, 0x64, 0x64, 0x5a, 0x6f, 0x6f,
+	0x6b, 0x65, 0x65, 0x70, 0x65, 0x72, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x70,
+	0x6c, 0x79, 0x22, 0x19, 0x0a, 0x17, 0x4c, 0x69, 0x73, 0x74, 0x5a, 0x6f, 0x6f, 0x6b, 0x65, 0x65,
+	0x70, 0x65, 0x72, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x22, 0x1b, 0x0a,
+	0x19, 0x4c, 0x69, 0x73, 0x74, 0x5a, 0x6f, 0x6f, 0x6b, 0x65, 0x65, 0x70, 0x65, 0x72, 0x43, 0x6c,
+	0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x18, 0x0a, 0x16, 0x44, 0x65,
+	0x6c, 0x5a, 0x6f, 0x6f, 0x6b, 0x65, 0x65, 0x70, 0x65, 0x72, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65,
+	0x72, 0x52, 0x65, 0x71, 0x22, 0x1a, 0x0a, 0x18, 0x44, 0x65, 0x6c, 0x5a, 0x6f, 0x6f, 0x6b, 0x65,
+	0x65, 0x70, 0x65, 0x72, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x70, 0x6c, 0x79,
+	0x22, 0x20, 0x0a, 0x1e, 0x41, 0x64, 0x64, 0x5a, 0x6f, 0x6f, 0x6b, 0x65, 0x65, 0x70, 0x65, 0x72,
+	0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52,
+	0x65, 0x71, 0x22, 0x22, 0x0a, 0x20, 0x41, 0x64, 0x64, 0x5a, 0x6f, 0x6f, 0x6b, 0x65, 0x65, 0x70,
+	0x65, 0x72, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63,
+	0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x21, 0x0a, 0x1f, 0x4c, 0x69, 0x73, 0x74, 0x5a, 0x6f,
+	0x6f, 0x6b, 0x65, 0x65, 0x70, 0x65, 0x72, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e,
+	0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x22, 0x23, 0x0a, 0x21, 0x4c, 0x69, 0x73,
+	0x74, 0x5a, 0x6f, 0x6f, 0x6b, 0x65, 0x65, 0x70, 0x65, 0x72, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65,
+	0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x20,
+	0x0a, 0x1e, 0x44, 0x65, 0x6c, 0x5a, 0x6f, 0x6f, 0x6b, 0x65, 0x65, 0x70, 0x65, 0x72, 0x43, 0x6c,
+	0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71,
+	0x22, 0x22, 0x0a, 0x20, 0x44, 0x65, 0x6c, 0x5a, 0x6f, 0x6f, 0x6b, 0x65, 0x65, 0x70, 0x65, 0x72,
+	0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52,
+	0x65, 0x70, 0x6c, 0x79, 0x22, 0x16, 0x0a, 0x14, 0x41, 0x64, 0x64, 0x43, 0x6f, 0x72, 0x65, 0x44,
+	0x4e, 0x53, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x22, 0x18, 0x0a, 0x16,
+	0x41, 0x64, 0x64, 0x43, 0x6f, 0x72, 0x65, 0x44, 0x4e, 0x53, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65,
+	0x72, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x17, 0x0a, 0x15, 0x4c, 0x69, 0x73, 0x74, 0x43, 0x6f,
+	0x72, 0x65, 0x44, 0x4e, 0x53, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x22,
+	0x19, 0x0a, 0x17, 0x4c, 0x69, 0x73, 0x74, 0x43, 0x6f, 0x72, 0x65, 0x44, 0x4e, 0x53, 0x43, 0x6c,
+	0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x16, 0x0a, 0x14, 0x44, 0x65,
+	0x6c, 0x43, 0x6f, 0x72, 0x65, 0x44, 0x4e, 0x53, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52,
+	0x65, 0x71, 0x22, 0x18, 0x0a, 0x16, 0x44, 0x65, 0x6c, 0x43, 0x6f, 0x72, 0x65, 0x44, 0x4e, 0x53,
+	0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x1e, 0x0a, 0x1c,
+	0x41, 0x64, 0x64, 0x43, 0x6f, 0x72, 0x65, 0x44, 0x4e, 0x53, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65,
+	0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x22, 0x20, 0x0a, 0x1e,
+	0x41, 0x64, 0x64, 0x43, 0x6f, 0x72, 0x65, 0x44, 0x4e, 0x53, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65,
+	0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x1f,
+	0x0a, 0x1d, 0x4c, 0x69, 0x73, 0x74, 0x43, 0x6f, 0x72, 0x65, 0x44, 0x4e, 0x53, 0x43, 0x6c, 0x75,
+	0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x22,
+	0x21, 0x0a, 0x1f, 0x4c, 0x69, 0x73, 0x74, 0x43, 0x6f, 0x72, 0x65, 0x44, 0x4e, 0x53, 0x43, 0x6c,
+	0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x70,
+	0x6c, 0x79, 0x22, 0x1e, 0x0a, 0x1c, 0x44, 0x65, 0x6c, 0x43, 0x6f, 0x72, 0x65, 0x44, 0x4e, 0x53,
+	0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52,
+	0x65, 0x71, 0x22, 0x20, 0x0a, 0x1e, 0x44, 0x65, 0x6c, 0x43, 0x6f, 0x72, 0x65, 0x44, 0x4e, 0x53,
+	0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52,
+	0x65, 0x70, 0x6c, 0x79, 0x22, 0x16, 0x0a, 0x14, 0x41, 0x64, 0x64, 0x58, 0x58, 0x4c, 0x4a, 0x6f,
+	0x62, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x22, 0x18, 0x0a, 0x16,
+	0x41, 0x64, 0x64, 0x58, 0x58, 0x4c, 0x4a, 0x6f, 0x62, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63,
+	0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x17, 0x0a, 0x15, 0x4c, 0x69, 0x73, 0x74, 0x58, 0x58,
+	0x4c, 0x4a, 0x6f, 0x62, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x22,
+	0x19, 0x0a, 0x17, 0x4c, 0x69, 0x73, 0x74, 0x58, 0x58, 0x4c, 0x4a, 0x6f, 0x62, 0x49, 0x6e, 0x73,
+	0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x16, 0x0a, 0x14, 0x44, 0x65,
+	0x6c, 0x58, 0x58, 0x4c, 0x4a, 0x6f, 0x62, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52,
+	0x65, 0x71, 0x22, 0x18, 0x0a, 0x16, 0x44, 0x65, 0x6c, 0x58, 0x58, 0x4c, 0x4a, 0x6f, 0x62, 0x49,
+	0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x17, 0x0a, 0x15,
+	0x41, 0x64, 0x64, 0x54, 0x65, 0x6d, 0x70, 0x6f, 0x72, 0x61, 0x6c, 0x43, 0x6c, 0x75, 0x73, 0x74,
+	0x65, 0x72, 0x52, 0x65, 0x71, 0x22, 0x19, 0x0a, 0x17, 0x41, 0x64, 0x64, 0x54, 0x65, 0x6d, 0x70,
+	0x6f, 0x72, 0x61, 0x6c, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x70, 0x6c, 0x79,
+	0x22, 0x18, 0x0a, 0x16, 0x4c, 0x69, 0x73, 0x74, 0x54, 0x65, 0x6d, 0x70, 0x6f, 0x72, 0x61, 0x6c,
+	0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x22, 0x1a, 0x0a, 0x18, 0x4c, 0x69,
+	0x73, 0x74, 0x54, 0x65, 0x6d, 0x70, 0x6f, 0x72, 0x61, 0x6c, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65,
+	0x72, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x17, 0x0a, 0x15, 0x44, 0x65, 0x6c, 0x54, 0x65, 0x6d,
+	0x70, 0x6f, 0x72, 0x61, 0x6c, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x22,
+	0x19, 0x0a, 0x17, 0x44, 0x65, 0x6c, 0x54, 0x65, 0x6d, 0x70, 0x6f, 0x72, 0x61, 0x6c, 0x43, 0x6c,
+	0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x1d, 0x0a, 0x1b, 0x41, 0x64,
+	0x64, 0x54, 0x65, 0x6d, 0x70, 0x6f, 0x72, 0x61, 0x6c, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72,
+	0x57, 0x6f, 0x72, 0x6b, 0x65, 0x72, 0x52, 0x65, 0x71, 0x22, 0x1f, 0x0a, 0x1d, 0x41, 0x64, 0x64,
+	0x54, 0x65, 0x6d, 0x70, 0x6f, 0x72, 0x61, 0x6c, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x57,
+	0x6f, 0x72, 0x6b, 0x65, 0x72, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x1e, 0x0a, 0x1c, 0x4c, 0x69,
+	0x73, 0x74, 0x54, 0x65, 0x6d, 0x70, 0x6f, 0x72, 0x61, 0x6c, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65,
+	0x72, 0x57, 0x6f, 0x72, 0x6b, 0x65, 0x72, 0x52, 0x65, 0x71, 0x22, 0x20, 0x0a, 0x1e, 0x4c, 0x69,
+	0x73, 0x74, 0x54, 0x65, 0x6d, 0x70, 0x6f, 0x72, 0x61, 0x6c, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65,
+	0x72, 0x57, 0x6f, 0x72, 0x6b, 0x65, 0x72, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x1d, 0x0a, 0x1b,
+	0x44, 0x65, 0x6c, 0x54, 0x65, 0x6d, 0x70, 0x6f, 0x72, 0x61, 0x6c, 0x43, 0x6c, 0x75, 0x73, 0x74,
+	0x65, 0x72, 0x57, 0x6f, 0x72, 0x6b, 0x65, 0x72, 0x52, 0x65, 0x71, 0x22, 0x1f, 0x0a, 0x1d, 0x44,
+	0x65, 0x6c, 0x54, 0x65, 0x6d, 0x70, 0x6f, 0x72, 0x61, 0x6c, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65,
+	0x72, 0x57, 0x6f, 0x72, 0x6b, 0x65, 0x72, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x32, 0xd4, 0x3e, 0x0a,
+	0x0d, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x12, 0x5f,
+	0x0a, 0x0f, 0x41, 0x64, 0x64, 0x52, 0x65, 0x64, 0x69, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65,
+	0x72, 0x12, 0x24, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72,
+	0x65, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x64, 0x64, 0x52, 0x65, 0x64, 0x69, 0x73, 0x43, 0x6c, 0x75,
+	0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x1a, 0x26, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64,
+	0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x64, 0x64, 0x52, 0x65,
+	0x64, 0x69, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x12,
+	0x62, 0x0a, 0x10, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x64, 0x69, 0x73, 0x43, 0x6c, 0x75, 0x73,
+	0x74, 0x65, 0x72, 0x12, 0x25, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77,
+	0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x64, 0x69, 0x73,
+	0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x1a, 0x27, 0x2e, 0x6f, 0x6e, 0x65,
+	0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x4c, 0x69,
+	0x73, 0x74, 0x52, 0x65, 0x64, 0x69, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65,
+	0x70, 0x6c, 0x79, 0x12, 0x5f, 0x0a, 0x0f, 0x44, 0x65, 0x6c, 0x52, 0x65, 0x64, 0x69, 0x73, 0x43,
+	0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x12, 0x24, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64,
+	0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c, 0x52, 0x65, 0x64,
+	0x69, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x1a, 0x26, 0x2e, 0x6f,
+	0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e,
+	0x44, 0x65, 0x6c, 0x52, 0x65, 0x64, 0x69, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52,
+	0x65, 0x70, 0x6c, 0x79, 0x12, 0x77, 0x0a, 0x17, 0x41, 0x64, 0x64, 0x52, 0x65, 0x64, 0x69, 0x73,
+	0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x12,
+	0x2c, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e,
+	0x76, 0x31, 0x2e, 0x41, 0x64, 0x64, 0x52, 0x65, 0x64, 0x69, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74,
+	0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x1a, 0x2e, 0x2e,
+	0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31,
+	0x2e, 0x41, 0x64, 0x64, 0x52, 0x65, 0x64, 0x69, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72,
+	0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x12, 0x77, 0x0a,
+	0x17, 0x44, 0x65, 0x6c, 0x52, 0x65, 0x64, 0x69, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72,
+	0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x12, 0x2c, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69,
+	0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c, 0x52,
+	0x65, 0x64, 0x69, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61,
+	0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x1a, 0x2e, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64,
+	0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c, 0x52, 0x65, 0x64,
+	0x69, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63,
+	0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x12, 0x7a, 0x0a, 0x18, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65,
+	0x64, 0x69, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e,
+	0x63, 0x65, 0x12, 0x2d, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61,
+	0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x64, 0x69, 0x73, 0x43,
+	0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65,
+	0x71, 0x1a, 0x2f, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72,
+	0x65, 0x2e, 0x76, 0x31, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x64, 0x69, 0x73, 0x43, 0x6c,
+	0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x70,
+	0x6c, 0x79, 0x12, 0x62, 0x0a, 0x10, 0x41, 0x64, 0x64, 0x4d, 0x79, 0x53, 0x51, 0x4c, 0x49, 0x6e,
+	0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x12, 0x25, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64,
+	0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x64, 0x64, 0x4d, 0x79, 0x53,
+	0x51, 0x4c, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x1a, 0x27, 0x2e,
+	0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31,
+	0x2e, 0x41, 0x64, 0x64, 0x4d, 0x79, 0x53, 0x51, 0x4c, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63,
+	0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x12, 0x65, 0x0a, 0x11, 0x4c, 0x69, 0x73, 0x74, 0x4d, 0x79,
+	0x53, 0x51, 0x4c, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x12, 0x26, 0x2e, 0x6f, 0x6e,
+	0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x4c,
+	0x69, 0x73, 0x74, 0x4d, 0x79, 0x53, 0x51, 0x4c, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65,
+	0x52, 0x65, 0x71, 0x1a, 0x28, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77,
+	0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x4d, 0x79, 0x53, 0x51, 0x4c,
+	0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x12, 0x62, 0x0a,
+	0x10, 0x44, 0x65, 0x6c, 0x4d, 0x79, 0x53, 0x51, 0x4c, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63,
+	0x65, 0x12, 0x25, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72,
+	0x65, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c, 0x4d, 0x79, 0x53, 0x51, 0x4c, 0x49, 0x6e, 0x73,
+	0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x1a, 0x27, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69,
+	0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c, 0x4d,
+	0x79, 0x53, 0x51, 0x4c, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x70, 0x6c,
+	0x79, 0x12, 0x74, 0x0a, 0x16, 0x41, 0x64, 0x64, 0x4d, 0x79, 0x53, 0x51, 0x4c, 0x4d, 0x61, 0x73,
+	0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x12, 0x2b, 0x2e, 0x6f, 0x6e,
+	0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x41,
+	0x64, 0x64, 0x4d, 0x79, 0x53, 0x51, 0x4c, 0x4d, 0x61, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73,
+	0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x1a, 0x2d, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69,
+	0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x64, 0x64, 0x4d,
+	0x79, 0x53, 0x51, 0x4c, 0x4d, 0x61, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e,
+	0x63, 0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x12, 0x77, 0x0a, 0x17, 0x4c, 0x69, 0x73, 0x74, 0x4d,
+	0x79, 0x53, 0x51, 0x4c, 0x4d, 0x61, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e,
+	0x63, 0x65, 0x12, 0x2c, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61,
+	0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x4d, 0x79, 0x53, 0x51, 0x4c, 0x4d,
+	0x61, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71,
+	0x1a, 0x2e, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65,
+	0x2e, 0x76, 0x31, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x4d, 0x79, 0x53, 0x51, 0x4c, 0x4d, 0x61, 0x73,
+	0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x70, 0x6c, 0x79,
+	0x12, 0x74, 0x0a, 0x16, 0x44, 0x65, 0x6c, 0x4d, 0x79, 0x53, 0x51, 0x4c, 0x4d, 0x61, 0x73, 0x74,
+	0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x12, 0x2b, 0x2e, 0x6f, 0x6e, 0x65,
+	0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65,
+	0x6c, 0x4d, 0x79, 0x53, 0x51, 0x4c, 0x4d, 0x61, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74,
+	0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x1a, 0x2d, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64,
+	0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c, 0x4d, 0x79,
+	0x53, 0x51, 0x4c, 0x4d, 0x61, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63,
+	0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x12, 0x71, 0x0a, 0x15, 0x41, 0x64, 0x64, 0x4d, 0x79, 0x53,
+	0x51, 0x4c, 0x53, 0x6c, 0x61, 0x76, 0x65, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x12,
+	0x2a, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e,
+	0x76, 0x31, 0x2e, 0x41, 0x64, 0x64, 0x4d, 0x79, 0x53, 0x51, 0x4c, 0x53, 0x6c, 0x61, 0x76, 0x65,
+	0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x1a, 0x2c, 0x2e, 0x6f, 0x6e,
+	0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x41,
+	0x64, 0x64, 0x4d, 0x79, 0x53, 0x51, 0x4c, 0x53, 0x6c, 0x61, 0x76, 0x65, 0x49, 0x6e, 0x73, 0x74,
+	0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x12, 0x74, 0x0a, 0x16, 0x4c, 0x69, 0x73,
+	0x74, 0x4d, 0x79, 0x53, 0x51, 0x4c, 0x53, 0x6c, 0x61, 0x76, 0x65, 0x49, 0x6e, 0x73, 0x74, 0x61,
+	0x6e, 0x63, 0x65, 0x12, 0x2b, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77,
+	0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x4d, 0x79, 0x53, 0x51, 0x4c,
+	0x53, 0x6c, 0x61, 0x76, 0x65, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71,
+	0x1a, 0x2d, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65,
+	0x2e, 0x76, 0x31, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x4d, 0x79, 0x53, 0x51, 0x4c, 0x53, 0x6c, 0x61,
+	0x76, 0x65, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x12,
+	0x71, 0x0a, 0x15, 0x44, 0x65, 0x6c, 0x4d, 0x79, 0x53, 0x51, 0x4c, 0x53, 0x6c, 0x61, 0x76, 0x65,
+	0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x12, 0x2a, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69,
+	0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c, 0x4d,
+	0x79, 0x53, 0x51, 0x4c, 0x53, 0x6c, 0x61, 0x76, 0x65, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63,
+	0x65, 0x52, 0x65, 0x71, 0x1a, 0x2c, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65,
+	0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c, 0x4d, 0x79, 0x53, 0x51, 0x4c,
+	0x53, 0x6c, 0x61, 0x76, 0x65, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x70,
+	0x6c, 0x79, 0x12, 0x68, 0x0a, 0x12, 0x41, 0x64, 0x64, 0x52, 0x6f, 0x63, 0x6b, 0x65, 0x74, 0x4d,
+	0x51, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x12, 0x27, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69,
+	0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x64, 0x64, 0x52,
+	0x6f, 0x63, 0x6b, 0x65, 0x74, 0x4d, 0x51, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65,
+	0x71, 0x1a, 0x29, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72,
+	0x65, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x64, 0x64, 0x52, 0x6f, 0x63, 0x6b, 0x65, 0x74, 0x4d, 0x51,
+	0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x12, 0x6b, 0x0a, 0x13,
+	0x4c, 0x69, 0x73, 0x74, 0x52, 0x6f, 0x63, 0x6b, 0x65, 0x74, 0x4d, 0x51, 0x43, 0x6c, 0x75, 0x73,
+	0x74, 0x65, 0x72, 0x12, 0x28, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77,
+	0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x6f, 0x63, 0x6b, 0x65,
+	0x74, 0x4d, 0x51, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x1a, 0x2a, 0x2e,
+	0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31,
+	0x2e, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x6f, 0x63, 0x6b, 0x65, 0x74, 0x4d, 0x51, 0x43, 0x6c, 0x75,
+	0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x12, 0x68, 0x0a, 0x12, 0x44, 0x65, 0x6c,
+	0x52, 0x6f, 0x63, 0x6b, 0x65, 0x74, 0x4d, 0x51, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x12,
+	0x27, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e,
+	0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c, 0x52, 0x6f, 0x63, 0x6b, 0x65, 0x74, 0x4d, 0x51, 0x43, 0x6c,
+	0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x1a, 0x29, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69,
+	0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c, 0x52,
+	0x6f, 0x63, 0x6b, 0x65, 0x74, 0x4d, 0x51, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65,
+	0x70, 0x6c, 0x79, 0x12, 0x92, 0x01, 0x0a, 0x20, 0x41, 0x64, 0x64, 0x52, 0x6f, 0x63, 0x6b, 0x65,
+	0x74, 0x4d, 0x51, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x42, 0x72, 0x6f, 0x6b, 0x65, 0x72,
+	0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x12, 0x35, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69,
+	0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x64, 0x64, 0x52,
+	0x6f, 0x63, 0x6b, 0x65, 0x74, 0x4d, 0x51, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x42, 0x72,
+	0x6f, 0x6b, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x1a,
+	0x37, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e,
+	0x76, 0x31, 0x2e, 0x41, 0x64, 0x64, 0x52, 0x6f, 0x63, 0x6b, 0x65, 0x74, 0x4d, 0x51, 0x43, 0x6c,
+	0x75, 0x73, 0x74, 0x65, 0x72, 0x42, 0x72, 0x6f, 0x6b, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61,
+	0x6e, 0x63, 0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x12, 0x95, 0x01, 0x0a, 0x21, 0x4c, 0x69, 0x73,
+	0x74, 0x52, 0x6f, 0x63, 0x6b, 0x65, 0x74, 0x4d, 0x51, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72,
+	0x42, 0x72, 0x6f, 0x6b, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x12, 0x36,
+	0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76,
+	0x31, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x6f, 0x63, 0x6b, 0x65, 0x74, 0x4d, 0x51, 0x43, 0x6c,
+	0x75, 0x73, 0x74, 0x65, 0x72, 0x42, 0x72, 0x6f, 0x6b, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61,
+	0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x1a, 0x38, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64,
+	0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x6f,
+	0x63, 0x6b, 0x65, 0x74, 0x4d, 0x51, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x42, 0x72, 0x6f,
+	0x6b, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x70, 0x6c, 0x79,
+	0x12, 0x92, 0x01, 0x0a, 0x20, 0x44, 0x65, 0x6c, 0x52, 0x6f, 0x63, 0x6b, 0x65, 0x74, 0x4d, 0x51,
+	0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x42, 0x72, 0x6f, 0x6b, 0x65, 0x72, 0x49, 0x6e, 0x73,
+	0x74, 0x61, 0x6e, 0x63, 0x65, 0x12, 0x35, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c,
+	0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c, 0x52, 0x6f, 0x63, 0x6b,
+	0x65, 0x74, 0x4d, 0x51, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x42, 0x72, 0x6f, 0x6b, 0x65,
+	0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x1a, 0x37, 0x2e, 0x6f,
+	0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e,
+	0x44, 0x65, 0x6c, 0x52, 0x6f, 0x63, 0x6b, 0x65, 0x74, 0x4d, 0x51, 0x43, 0x6c, 0x75, 0x73, 0x74,
+	0x65, 0x72, 0x42, 0x72, 0x6f, 0x6b, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65,
+	0x52, 0x65, 0x70, 0x6c, 0x79, 0x12, 0x9e, 0x01, 0x0a, 0x24, 0x41, 0x64, 0x64, 0x52, 0x6f, 0x63,
+	0x6b, 0x65, 0x74, 0x4d, 0x51, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x4e, 0x61, 0x6d, 0x65,
+	0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x12, 0x39,
+	0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76,
+	0x31, 0x2e, 0x41, 0x64, 0x64, 0x52, 0x6f, 0x63, 0x6b, 0x65, 0x74, 0x4d, 0x51, 0x43, 0x6c, 0x75,
+	0x73, 0x74, 0x65, 0x72, 0x4e, 0x61, 0x6d, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x6e,
+	0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x1a, 0x3b, 0x2e, 0x6f, 0x6e, 0x65, 0x4d,
+	0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x64, 0x64,
+	0x52, 0x6f, 0x63, 0x6b, 0x65, 0x74, 0x4d, 0x51, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x4e,
+	0x61, 0x6d, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63,
+	0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x12, 0xa1, 0x01, 0x0a, 0x25, 0x4c, 0x69, 0x73, 0x74, 0x52,
+	0x6f, 0x63, 0x6b, 0x65, 0x74, 0x4d, 0x51, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x4e, 0x61,
+	0x6d, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65,
+	0x12, 0x3a, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65,
+	0x2e, 0x76, 0x31, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x6f, 0x63, 0x6b, 0x65, 0x74, 0x4d, 0x51,
+	0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x4e, 0x61, 0x6d, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65,
+	0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x1a, 0x3c, 0x2e, 0x6f,
+	0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e,
+	0x4c, 0x69, 0x73, 0x74, 0x52, 0x6f, 0x63, 0x6b, 0x65, 0x74, 0x4d, 0x51, 0x43, 0x6c, 0x75, 0x73,
+	0x74, 0x65, 0x72, 0x4e, 0x61, 0x6d, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x6e, 0x73,
+	0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x12, 0x9e, 0x01, 0x0a, 0x24, 0x44,
+	0x65, 0x6c, 0x52, 0x6f, 0x63, 0x6b, 0x65, 0x74, 0x4d, 0x51, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65,
+	0x72, 0x4e, 0x61, 0x6d, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61,
+	0x6e, 0x63, 0x65, 0x12, 0x39, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77,
+	0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c, 0x52, 0x6f, 0x63, 0x6b, 0x65, 0x74,
+	0x4d, 0x51, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x4e, 0x61, 0x6d, 0x65, 0x53, 0x65, 0x72,
+	0x76, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x1a, 0x3b,
+	0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76,
+	0x31, 0x2e, 0x44, 0x65, 0x6c, 0x52, 0x6f, 0x63, 0x6b, 0x65, 0x74, 0x4d, 0x51, 0x43, 0x6c, 0x75,
+	0x73, 0x74, 0x65, 0x72, 0x4e, 0x61, 0x6d, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x6e,
+	0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x12, 0x5f, 0x0a, 0x0f, 0x41,
+	0x64, 0x64, 0x4b, 0x61, 0x66, 0x6b, 0x61, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x12, 0x24,
+	0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76,
+	0x31, 0x2e, 0x41, 0x64, 0x64, 0x4b, 0x61, 0x66, 0x6b, 0x61, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65,
+	0x72, 0x52, 0x65, 0x71, 0x1a, 0x26, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65,
+	0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x64, 0x64, 0x4b, 0x61, 0x66, 0x6b, 0x61,
+	0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x12, 0x62, 0x0a, 0x10,
+	0x4c, 0x69, 0x73, 0x74, 0x4b, 0x61, 0x66, 0x6b, 0x61, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72,
+	0x12, 0x25, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65,
+	0x2e, 0x76, 0x31, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x4b, 0x61, 0x66, 0x6b, 0x61, 0x43, 0x6c, 0x75,
+	0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x1a, 0x27, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64,
+	0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x4b,
+	0x61, 0x66, 0x6b, 0x61, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x70, 0x6c, 0x79,
+	0x12, 0x5f, 0x0a, 0x0f, 0x44, 0x65, 0x6c, 0x4b, 0x61, 0x66, 0x6b, 0x61, 0x43, 0x6c, 0x75, 0x73,
+	0x74, 0x65, 0x72, 0x12, 0x24, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77,
+	0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c, 0x4b, 0x61, 0x66, 0x6b, 0x61, 0x43,
+	0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x1a, 0x26, 0x2e, 0x6f, 0x6e, 0x65, 0x4d,
+	0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c,
+	0x4b, 0x61, 0x66, 0x6b, 0x61, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x70, 0x6c,
+	0x79, 0x12, 0x77, 0x0a, 0x17, 0x41, 0x64, 0x64, 0x4b, 0x61, 0x66, 0x6b, 0x61, 0x43, 0x6c, 0x75,
+	0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x12, 0x2c, 0x2e, 0x6f,
+	0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e,
+	0x41, 0x64, 0x64, 0x4b, 0x61, 0x66, 0x6b, 0x61, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49,
+	0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x1a, 0x2e, 0x2e, 0x6f, 0x6e, 0x65,
+	0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x64,
+	0x64, 0x4b, 0x61, 0x66, 0x6b, 0x61, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73,
+	0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x12, 0x7a, 0x0a, 0x18, 0x4c, 0x69,
+	0x73, 0x74, 0x4b, 0x61, 0x66, 0x6b, 0x61, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e,
+	0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x12, 0x2d, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64,
+	0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x4b, 0x61,
+	0x66, 0x6b, 0x61, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e,
+	0x63, 0x65, 0x52, 0x65, 0x71, 0x1a, 0x2f, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c,
+	0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x4b, 0x61, 0x66,
+	0x6b, 0x61, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63,
+	0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x12, 0x77, 0x0a, 0x17, 0x44, 0x65, 0x6c, 0x4b, 0x61, 0x66,
+	0x6b, 0x61, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63,
+	0x65, 0x12, 0x2c, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72,
+	0x65, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c, 0x4b, 0x61, 0x66, 0x6b, 0x61, 0x43, 0x6c, 0x75,
+	0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x1a,
+	0x2e, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e,
+	0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c, 0x4b, 0x61, 0x66, 0x6b, 0x61, 0x43, 0x6c, 0x75, 0x73, 0x74,
+	0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x12,
+	0x5c, 0x0a, 0x0e, 0x41, 0x64, 0x64, 0x45, 0x74, 0x63, 0x64, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65,
+	0x72, 0x12, 0x23, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72,
+	0x65, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x64, 0x64, 0x45, 0x74, 0x63, 0x64, 0x43, 0x6c, 0x75, 0x73,
+	0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x1a, 0x25, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64,
+	0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x64, 0x64, 0x45, 0x74, 0x63,
+	0x64, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x12, 0x5f, 0x0a,
+	0x0f, 0x4c, 0x69, 0x73, 0x74, 0x45, 0x74, 0x63, 0x64, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72,
+	0x12, 0x24, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65,
+	0x2e, 0x76, 0x31, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x45, 0x74, 0x63, 0x64, 0x43, 0x6c, 0x75, 0x73,
+	0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x1a, 0x26, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64,
+	0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x45, 0x74,
+	0x63, 0x64, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x12, 0x5c,
+	0x0a, 0x0e, 0x44, 0x65, 0x6c, 0x45, 0x74, 0x63, 0x64, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72,
+	0x12, 0x23, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65,
+	0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c, 0x45, 0x74, 0x63, 0x64, 0x43, 0x6c, 0x75, 0x73, 0x74,
+	0x65, 0x72, 0x52, 0x65, 0x71, 0x1a, 0x25, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c,
+	0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c, 0x45, 0x74, 0x63, 0x64,
+	0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x12, 0x74, 0x0a, 0x16,
+	0x41, 0x64, 0x64, 0x45, 0x74, 0x63, 0x64, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e,
+	0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x12, 0x2b, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64,
+	0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x64, 0x64, 0x45, 0x74, 0x63,
+	0x64, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65,
+	0x52, 0x65, 0x71, 0x1a, 0x2d, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77,
+	0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x64, 0x64, 0x45, 0x74, 0x63, 0x64, 0x43, 0x6c,
+	0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x70,
+	0x6c, 0x79, 0x12, 0x77, 0x0a, 0x17, 0x4c, 0x69, 0x73, 0x74, 0x45, 0x74, 0x63, 0x64, 0x43, 0x6c,
+	0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x12, 0x2c, 0x2e,
+	0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31,
+	0x2e, 0x4c, 0x69, 0x73, 0x74, 0x45, 0x74, 0x63, 0x64, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72,
+	0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x1a, 0x2e, 0x2e, 0x6f, 0x6e,
+	0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x4c,
+	0x69, 0x73, 0x74, 0x45, 0x74, 0x63, 0x64, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e,
+	0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x12, 0x74, 0x0a, 0x16, 0x44,
+	0x65, 0x6c, 0x45, 0x74, 0x63, 0x64, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73,
+	0x74, 0x61, 0x6e, 0x63, 0x65, 0x12, 0x2b, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c,
+	0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c, 0x45, 0x74, 0x63, 0x64,
+	0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52,
+	0x65, 0x71, 0x1a, 0x2d, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61,
+	0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c, 0x45, 0x74, 0x63, 0x64, 0x43, 0x6c, 0x75,
+	0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x70, 0x6c,
+	0x79, 0x12, 0x5f, 0x0a, 0x0f, 0x41, 0x64, 0x64, 0x4e, 0x61, 0x63, 0x6f, 0x73, 0x43, 0x6c, 0x75,
+	0x73, 0x74, 0x65, 0x72, 0x12, 0x24, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65,
+	0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x64, 0x64, 0x4e, 0x61, 0x63, 0x6f, 0x73,
+	0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x1a, 0x26, 0x2e, 0x6f, 0x6e, 0x65,
+	0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x64,
+	0x64, 0x4e, 0x61, 0x63, 0x6f, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x70,
+	0x6c, 0x79, 0x12, 0x62, 0x0a, 0x10, 0x4c, 0x69, 0x73, 0x74, 0x4e, 0x61, 0x63, 0x6f, 0x73, 0x43,
+	0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x12, 0x25, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64,
+	0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x4e, 0x61,
+	0x63, 0x6f, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x1a, 0x27, 0x2e,
+	0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31,
+	0x2e, 0x4c, 0x69, 0x73, 0x74, 0x4e, 0x61, 0x63, 0x6f, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65,
+	0x72, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x12, 0x5f, 0x0a, 0x0f, 0x44, 0x65, 0x6c, 0x4e, 0x61, 0x63,
+	0x6f, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x12, 0x24, 0x2e, 0x6f, 0x6e, 0x65, 0x4d,
+	0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c,
+	0x4e, 0x61, 0x63, 0x6f, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x1a,
+	0x26, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e,
+	0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c, 0x4e, 0x61, 0x63, 0x6f, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74,
+	0x65, 0x72, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x12, 0x77, 0x0a, 0x17, 0x41, 0x64, 0x64, 0x4e, 0x61,
+	0x63, 0x6f, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e,
+	0x63, 0x65, 0x12, 0x2c, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61,
+	0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x64, 0x64, 0x4e, 0x61, 0x63, 0x6f, 0x73, 0x43, 0x6c,
+	0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71,
+	0x1a, 0x2e, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65,
+	0x2e, 0x76, 0x31, 0x2e, 0x41, 0x64, 0x64, 0x4e, 0x61, 0x63, 0x6f, 0x73, 0x43, 0x6c, 0x75, 0x73,
+	0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x70, 0x6c, 0x79,
+	0x12, 0x7a, 0x0a, 0x18, 0x4c, 0x69, 0x73, 0x74, 0x4e, 0x61, 0x63, 0x6f, 0x73, 0x43, 0x6c, 0x75,
+	0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x12, 0x2d, 0x2e, 0x6f,
+	0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e,
+	0x4c, 0x69, 0x73, 0x74, 0x4e, 0x61, 0x63, 0x6f, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72,
+	0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x1a, 0x2f, 0x2e, 0x6f, 0x6e,
+	0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x4c,
+	0x69, 0x73, 0x74, 0x4e, 0x61, 0x63, 0x6f, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49,
+	0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x12, 0x77, 0x0a, 0x17,
+	0x44, 0x65, 0x6c, 0x4e, 0x61, 0x63, 0x6f, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49,
+	0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x12, 0x2c, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64,
+	0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c, 0x4e, 0x61,
+	0x63, 0x6f, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e,
+	0x63, 0x65, 0x52, 0x65, 0x71, 0x1a, 0x2e, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c,
+	0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c, 0x4e, 0x61, 0x63, 0x6f,
+	0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65,
+	0x52, 0x65, 0x70, 0x6c, 0x79, 0x12, 0x62, 0x0a, 0x10, 0x41, 0x64, 0x64, 0x43, 0x6f, 0x6e, 0x73,
+	0x75, 0x6c, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x12, 0x25, 0x2e, 0x6f, 0x6e, 0x65, 0x4d,
+	0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x64, 0x64,
+	0x43, 0x6f, 0x6e, 0x73, 0x75, 0x6c, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x71,
+	0x1a, 0x27, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65,
+	0x2e, 0x76, 0x31, 0x2e, 0x41, 0x64, 0x64, 0x43, 0x6f, 0x6e, 0x73, 0x75, 0x6c, 0x43, 0x6c, 0x75,
+	0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x12, 0x65, 0x0a, 0x11, 0x4c, 0x69, 0x73,
+	0x74, 0x43, 0x6f, 0x6e, 0x73, 0x75, 0x6c, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x12, 0x26,
+	0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76,
+	0x31, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x43, 0x6f, 0x6e, 0x73, 0x75, 0x6c, 0x43, 0x6c, 0x75, 0x73,
+	0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x1a, 0x28, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64,
+	0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x43, 0x6f,
+	0x6e, 0x73, 0x75, 0x6c, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x70, 0x6c, 0x79,
+	0x12, 0x62, 0x0a, 0x10, 0x44, 0x65, 0x6c, 0x43, 0x6f, 0x6e, 0x73, 0x75, 0x6c, 0x43, 0x6c, 0x75,
+	0x73, 0x74, 0x65, 0x72, 0x12, 0x25, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65,
+	0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c, 0x43, 0x6f, 0x6e, 0x73, 0x75,
+	0x6c, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x1a, 0x27, 0x2e, 0x6f, 0x6e,
+	0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x44,
+	0x65, 0x6c, 0x43, 0x6f, 0x6e, 0x73, 0x75, 0x6c, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52,
+	0x65, 0x70, 0x6c, 0x79, 0x12, 0x7a, 0x0a, 0x18, 0x41, 0x64, 0x64, 0x43, 0x6f, 0x6e, 0x73, 0x75,
+	0x6c, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65,
+	0x12, 0x2d, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65,
+	0x2e, 0x76, 0x31, 0x2e, 0x41, 0x64, 0x64, 0x43, 0x6f, 0x6e, 0x73, 0x75, 0x6c, 0x43, 0x6c, 0x75,
+	0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x1a,
+	0x2f, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e,
+	0x76, 0x31, 0x2e, 0x41, 0x64, 0x64, 0x43, 0x6f, 0x6e, 0x73, 0x75, 0x6c, 0x43, 0x6c, 0x75, 0x73,
+	0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x70, 0x6c, 0x79,
+	0x12, 0x7d, 0x0a, 0x19, 0x4c, 0x69, 0x73, 0x74, 0x43, 0x6f, 0x6e, 0x73, 0x75, 0x6c, 0x43, 0x6c,
+	0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x12, 0x2e, 0x2e,
+	0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31,
+	0x2e, 0x4c, 0x69, 0x73, 0x74, 0x43, 0x6f, 0x6e, 0x73, 0x75, 0x6c, 0x43, 0x6c, 0x75, 0x73, 0x74,
+	0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x1a, 0x30, 0x2e,
+	0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31,
+	0x2e, 0x4c, 0x69, 0x73, 0x74, 0x43, 0x6f, 0x6e, 0x73, 0x75, 0x6c, 0x43, 0x6c, 0x75, 0x73, 0x74,
+	0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x12,
+	0x7a, 0x0a, 0x18, 0x44, 0x65, 0x6c, 0x43, 0x6f, 0x6e, 0x73, 0x75, 0x6c, 0x43, 0x6c, 0x75, 0x73,
+	0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x12, 0x2d, 0x2e, 0x6f, 0x6e,
+	0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x44,
+	0x65, 0x6c, 0x43, 0x6f, 0x6e, 0x73, 0x75, 0x6c, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49,
+	0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x1a, 0x2f, 0x2e, 0x6f, 0x6e, 0x65,
+	0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65,
+	0x6c, 0x43, 0x6f, 0x6e, 0x73, 0x75, 0x6c, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e,
+	0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x12, 0x6b, 0x0a, 0x13, 0x41,
+	0x64, 0x64, 0x5a, 0x6f, 0x6f, 0x6b, 0x65, 0x65, 0x70, 0x65, 0x72, 0x43, 0x6c, 0x75, 0x73, 0x74,
+	0x65, 0x72, 0x12, 0x28, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61,
+	0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x64, 0x64, 0x5a, 0x6f, 0x6f, 0x6b, 0x65, 0x65, 0x70,
+	0x65, 0x72, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x1a, 0x2a, 0x2e, 0x6f,
+	0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e,
+	0x41, 0x64, 0x64, 0x5a, 0x6f, 0x6f, 0x6b, 0x65, 0x65, 0x70, 0x65, 0x72, 0x43, 0x6c, 0x75, 0x73,
+	0x74, 0x65, 0x72, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x12, 0x6e, 0x0a, 0x14, 0x4c, 0x69, 0x73, 0x74,
+	0x5a, 0x6f, 0x6f, 0x6b, 0x65, 0x65, 0x70, 0x65, 0x72, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72,
+	0x12, 0x29, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65,
+	0x2e, 0x76, 0x31, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x5a, 0x6f, 0x6f, 0x6b, 0x65, 0x65, 0x70, 0x65,
+	0x72, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x1a, 0x2b, 0x2e, 0x6f, 0x6e,
+	0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x4c,
+	0x69, 0x73, 0x74, 0x5a, 0x6f, 0x6f, 0x6b, 0x65, 0x65, 0x70, 0x65, 0x72, 0x43, 0x6c, 0x75, 0x73,
+	0x74, 0x65, 0x72, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x12, 0x6b, 0x0a, 0x13, 0x44, 0x65, 0x6c, 0x5a,
+	0x6f, 0x6f, 0x6b, 0x65, 0x65, 0x70, 0x65, 0x72, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x12,
+	0x28, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e,
+	0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c, 0x5a, 0x6f, 0x6f, 0x6b, 0x65, 0x65, 0x70, 0x65, 0x72, 0x43,
+	0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x1a, 0x2a, 0x2e, 0x6f, 0x6e, 0x65, 0x4d,
+	0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c,
+	0x5a, 0x6f, 0x6f, 0x6b, 0x65, 0x65, 0x70, 0x65, 0x72, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72,
+	0x52, 0x65, 0x70, 0x6c, 0x79, 0x12, 0x83, 0x01, 0x0a, 0x1b, 0x41, 0x64, 0x64, 0x5a, 0x6f, 0x6f,
+	0x6b, 0x65, 0x65, 0x70, 0x65, 0x72, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73,
+	0x74, 0x61, 0x6e, 0x63, 0x65, 0x12, 0x30, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c,
+	0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x64, 0x64, 0x5a, 0x6f, 0x6f, 0x6b,
+	0x65, 0x65, 0x70, 0x65, 0x72, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74,
+	0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x1a, 0x32, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64,
+	0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x64, 0x64, 0x5a, 0x6f,
+	0x6f, 0x6b, 0x65, 0x65, 0x70, 0x65, 0x72, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e,
+	0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x12, 0x86, 0x01, 0x0a, 0x1c,
+	0x4c, 0x69, 0x73, 0x74, 0x5a, 0x6f, 0x6f, 0x6b, 0x65, 0x65, 0x70, 0x65, 0x72, 0x43, 0x6c, 0x75,
+	0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x12, 0x31, 0x2e, 0x6f,
+	0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e,
+	0x4c, 0x69, 0x73, 0x74, 0x5a, 0x6f, 0x6f, 0x6b, 0x65, 0x65, 0x70, 0x65, 0x72, 0x43, 0x6c, 0x75,
+	0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x1a,
+	0x33, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e,
+	0x76, 0x31, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x5a, 0x6f, 0x6f, 0x6b, 0x65, 0x65, 0x70, 0x65, 0x72,
+	0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52,
+	0x65, 0x70, 0x6c, 0x79, 0x12, 0x83, 0x01, 0x0a, 0x1b, 0x44, 0x65, 0x6c, 0x5a, 0x6f, 0x6f, 0x6b,
+	0x65, 0x65, 0x70, 0x65, 0x72, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74,
+	0x61, 0x6e, 0x63, 0x65, 0x12, 0x30, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65,
+	0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c, 0x5a, 0x6f, 0x6f, 0x6b, 0x65,
+	0x65, 0x70, 0x65, 0x72, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61,
+	0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x1a, 0x32, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64,
+	0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c, 0x5a, 0x6f, 0x6f,
+	0x6b, 0x65, 0x65, 0x70, 0x65, 0x72, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73,
+	0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x12, 0x65, 0x0a, 0x11, 0x41, 0x64,
+	0x64, 0x43, 0x6f, 0x72, 0x65, 0x44, 0x4e, 0x53, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x12,
+	0x26, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e,
+	0x76, 0x31, 0x2e, 0x41, 0x64, 0x64, 0x43, 0x6f, 0x72, 0x65, 0x44, 0x4e, 0x53, 0x43, 0x6c, 0x75,
+	0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x1a, 0x28, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64,
+	0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x64, 0x64, 0x43, 0x6f,
+	0x72, 0x65, 0x44, 0x4e, 0x53, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x70, 0x6c,
+	0x79, 0x12, 0x68, 0x0a, 0x12, 0x4c, 0x69, 0x73, 0x74, 0x43, 0x6f, 0x72, 0x65, 0x44, 0x4e, 0x53,
+	0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x12, 0x27, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64,
+	0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x43,
+	0x6f, 0x72, 0x65, 0x44, 0x4e, 0x53, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x71,
+	0x1a, 0x29, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65,
+	0x2e, 0x76, 0x31, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x43, 0x6f, 0x72, 0x65, 0x44, 0x4e, 0x53, 0x43,
+	0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x12, 0x65, 0x0a, 0x11, 0x44,
+	0x65, 0x6c, 0x43, 0x6f, 0x72, 0x65, 0x44, 0x4e, 0x53, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72,
+	0x12, 0x26, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65,
+	0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c, 0x43, 0x6f, 0x72, 0x65, 0x44, 0x4e, 0x53, 0x43, 0x6c,
+	0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x1a, 0x28, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69,
+	0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c, 0x43,
+	0x6f, 0x72, 0x65, 0x44, 0x4e, 0x53, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x70,
+	0x6c, 0x79, 0x12, 0x7d, 0x0a, 0x19, 0x41, 0x64, 0x64, 0x43, 0x6f, 0x72, 0x65, 0x44, 0x4e, 0x53,
+	0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x12,
+	0x2e, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e,
+	0x76, 0x31, 0x2e, 0x41, 0x64, 0x64, 0x43, 0x6f, 0x72, 0x65, 0x44, 0x4e, 0x53, 0x43, 0x6c, 0x75,
+	0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x1a,
+	0x30, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e,
+	0x76, 0x31, 0x2e, 0x41, 0x64, 0x64, 0x43, 0x6f, 0x72, 0x65, 0x44, 0x4e, 0x53, 0x43, 0x6c, 0x75,
+	0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x70, 0x6c,
+	0x79, 0x12, 0x80, 0x01, 0x0a, 0x1a, 0x4c, 0x69, 0x73, 0x74, 0x43, 0x6f, 0x72, 0x65, 0x44, 0x4e,
+	0x53, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65,
+	0x12, 0x2f, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65,
+	0x2e, 0x76, 0x31, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x43, 0x6f, 0x72, 0x65, 0x44, 0x4e, 0x53, 0x43,
+	0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65,
+	0x71, 0x1a, 0x31, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72,
+	0x65, 0x2e, 0x76, 0x31, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x43, 0x6f, 0x72, 0x65, 0x44, 0x4e, 0x53,
+	0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52,
+	0x65, 0x70, 0x6c, 0x79, 0x12, 0x7d, 0x0a, 0x19, 0x44, 0x65, 0x6c, 0x43, 0x6f, 0x72, 0x65, 0x44,
+	0x4e, 0x53, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63,
+	0x65, 0x12, 0x2e, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72,
+	0x65, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c, 0x43, 0x6f, 0x72, 0x65, 0x44, 0x4e, 0x53, 0x43,
+	0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65,
+	0x71, 0x1a, 0x30, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72,
+	0x65, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c, 0x43, 0x6f, 0x72, 0x65, 0x44, 0x4e, 0x53, 0x43,
+	0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65,
+	0x70, 0x6c, 0x79, 0x12, 0x65, 0x0a, 0x11, 0x41, 0x64, 0x64, 0x58, 0x58, 0x4c, 0x4a, 0x6f, 0x62,
+	0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x12, 0x26, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69,
+	0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x64, 0x64, 0x58,
+	0x58, 0x4c, 0x4a, 0x6f, 0x62, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71,
+	0x1a, 0x28, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65,
+	0x2e, 0x76, 0x31, 0x2e, 0x41, 0x64, 0x64, 0x58, 0x58, 0x4c, 0x4a, 0x6f, 0x62, 0x49, 0x6e, 0x73,
+	0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x12, 0x68, 0x0a, 0x12, 0x4c, 0x69,
+	0x73, 0x74, 0x58, 0x58, 0x4c, 0x4a, 0x6f, 0x62, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65,
+	0x12, 0x27, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65,
+	0x2e, 0x76, 0x31, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x58, 0x58, 0x4c, 0x4a, 0x6f, 0x62, 0x49, 0x6e,
+	0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x1a, 0x29, 0x2e, 0x6f, 0x6e, 0x65, 0x4d,
+	0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x4c, 0x69, 0x73,
+	0x74, 0x58, 0x58, 0x4c, 0x4a, 0x6f, 0x62, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52,
+	0x65, 0x70, 0x6c, 0x79, 0x12, 0x65, 0x0a, 0x11, 0x44, 0x65, 0x6c, 0x58, 0x58, 0x4c, 0x4a, 0x6f,
+	0x62, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x12, 0x26, 0x2e, 0x6f, 0x6e, 0x65, 0x4d,
+	0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c,
+	0x58, 0x58, 0x4c, 0x4a, 0x6f, 0x62, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65,
+	0x71, 0x1a, 0x28, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72,
+	0x65, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c, 0x58, 0x58, 0x4c, 0x4a, 0x6f, 0x62, 0x49, 0x6e,
+	0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x12, 0x68, 0x0a, 0x12, 0x41,
+	0x64, 0x64, 0x54, 0x65, 0x6d, 0x70, 0x6f, 0x72, 0x61, 0x6c, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65,
+	0x72, 0x12, 0x27, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72,
+	0x65, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x64, 0x64, 0x54, 0x65, 0x6d, 0x70, 0x6f, 0x72, 0x61, 0x6c,
+	0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x1a, 0x29, 0x2e, 0x6f, 0x6e, 0x65,
+	0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x64,
+	0x64, 0x54, 0x65, 0x6d, 0x70, 0x6f, 0x72, 0x61, 0x6c, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72,
+	0x52, 0x65, 0x70, 0x6c, 0x79, 0x12, 0x6b, 0x0a, 0x13, 0x4c, 0x69, 0x73, 0x74, 0x54, 0x65, 0x6d,
+	0x70, 0x6f, 0x72, 0x61, 0x6c, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x12, 0x28, 0x2e, 0x6f,
+	0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e,
+	0x4c, 0x69, 0x73, 0x74, 0x54, 0x65, 0x6d, 0x70, 0x6f, 0x72, 0x61, 0x6c, 0x43, 0x6c, 0x75, 0x73,
+	0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x1a, 0x2a, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64,
+	0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x54, 0x65,
+	0x6d, 0x70, 0x6f, 0x72, 0x61, 0x6c, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x70,
+	0x6c, 0x79, 0x12, 0x68, 0x0a, 0x12, 0x44, 0x65, 0x6c, 0x54, 0x65, 0x6d, 0x70, 0x6f, 0x72, 0x61,
+	0x6c, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x12, 0x27, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69,
+	0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c, 0x54,
+	0x65, 0x6d, 0x70, 0x6f, 0x72, 0x61, 0x6c, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65,
+	0x71, 0x1a, 0x29, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72,
+	0x65, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c, 0x54, 0x65, 0x6d, 0x70, 0x6f, 0x72, 0x61, 0x6c,
+	0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x12, 0x7a, 0x0a, 0x18,
+	0x41, 0x64, 0x64, 0x54, 0x65, 0x6d, 0x70, 0x6f, 0x72, 0x61, 0x6c, 0x43, 0x6c, 0x75, 0x73, 0x74,
+	0x65, 0x72, 0x57, 0x6f, 0x72, 0x6b, 0x65, 0x72, 0x12, 0x2d, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69,
+	0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x64, 0x64, 0x54,
+	0x65, 0x6d, 0x70, 0x6f, 0x72, 0x61, 0x6c, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x57, 0x6f,
+	0x72, 0x6b, 0x65, 0x72, 0x52, 0x65, 0x71, 0x1a, 0x2f, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64,
+	0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x64, 0x64, 0x54, 0x65,
+	0x6d, 0x70, 0x6f, 0x72, 0x61, 0x6c, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x57, 0x6f, 0x72,
+	0x6b, 0x65, 0x72, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x12, 0x7d, 0x0a, 0x19, 0x4c, 0x69, 0x73, 0x74,
+	0x54, 0x65, 0x6d, 0x70, 0x6f, 0x72, 0x61, 0x6c, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x57,
+	0x6f, 0x72, 0x6b, 0x65, 0x72, 0x12, 0x2e, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c,
+	0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x54, 0x65, 0x6d,
+	0x70, 0x6f, 0x72, 0x61, 0x6c, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x57, 0x6f, 0x72, 0x6b,
+	0x65, 0x72, 0x52, 0x65, 0x71, 0x1a, 0x30, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c,
+	0x65, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x54, 0x65, 0x6d,
+	0x70, 0x6f, 0x72, 0x61, 0x6c, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x57, 0x6f, 0x72, 0x6b,
+	0x65, 0x72, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x12, 0x7a, 0x0a, 0x18, 0x44, 0x65, 0x6c, 0x54, 0x65,
+	0x6d, 0x70, 0x6f, 0x72, 0x61, 0x6c, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x57, 0x6f, 0x72,
+	0x6b, 0x65, 0x72, 0x12, 0x2d, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77,
+	0x61, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c, 0x54, 0x65, 0x6d, 0x70, 0x6f, 0x72,
+	0x61, 0x6c, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x57, 0x6f, 0x72, 0x6b, 0x65, 0x72, 0x52,
+	0x65, 0x71, 0x1a, 0x2f, 0x2e, 0x6f, 0x6e, 0x65, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61,
+	0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c, 0x54, 0x65, 0x6d, 0x70, 0x6f, 0x72, 0x61,
+	0x6c, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x57, 0x6f, 0x72, 0x6b, 0x65, 0x72, 0x52, 0x65,
+	0x70, 0x6c, 0x79, 0x42, 0x39, 0x5a, 0x37, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f,
+	0x6d, 0x2f, 0x73, 0x74, 0x61, 0x72, 0x74, 0x6f, 0x70, 0x73, 0x7a, 0x2f, 0x6f, 0x6e, 0x65, 0x4d,
+	0x69, 0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x6d, 0x69,
+	0x64, 0x64, 0x6c, 0x65, 0x77, 0x61, 0x72, 0x65, 0x2f, 0x76, 0x31, 0x3b, 0x76, 0x31, 0x62, 0x06,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -139,19 +6055,291 @@ func file_middleware_v1_middleware_proto_rawDescGZIP() []byte {
 	return file_middleware_v1_middleware_proto_rawDescData
 }
 
-var file_middleware_v1_middleware_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_middleware_v1_middleware_proto_msgTypes = make([]protoimpl.MessageInfo, 138)
 var file_middleware_v1_middleware_proto_goTypes = []interface{}{
-	(*ParseIPReq)(nil),   // 0: oneMiddleware.v1.ParseIPReq
-	(*ParseIPReply)(nil), // 1: oneMiddleware.v1.ParseIPReply
+	(*AddRedisClusterReq)(nil),                         // 0: oneMiddleware.v1.AddRedisClusterReq
+	(*AddRedisClusterReply)(nil),                       // 1: oneMiddleware.v1.AddRedisClusterReply
+	(*ListRedisClusterReq)(nil),                        // 2: oneMiddleware.v1.ListRedisClusterReq
+	(*ListRedisClusterReply)(nil),                      // 3: oneMiddleware.v1.ListRedisClusterReply
+	(*DelRedisClusterReq)(nil),                         // 4: oneMiddleware.v1.DelRedisClusterReq
+	(*DelRedisClusterReply)(nil),                       // 5: oneMiddleware.v1.DelRedisClusterReply
+	(*AddRedisClusterInstanceReq)(nil),                 // 6: oneMiddleware.v1.AddRedisClusterInstanceReq
+	(*AddRedisClusterInstanceReply)(nil),               // 7: oneMiddleware.v1.AddRedisClusterInstanceReply
+	(*DelRedisClusterInstanceReq)(nil),                 // 8: oneMiddleware.v1.DelRedisClusterInstanceReq
+	(*DelRedisClusterInstanceReply)(nil),               // 9: oneMiddleware.v1.DelRedisClusterInstanceReply
+	(*ListRedisClusterInstanceReq)(nil),                // 10: oneMiddleware.v1.ListRedisClusterInstanceReq
+	(*ListRedisClusterInstanceReply)(nil),              // 11: oneMiddleware.v1.ListRedisClusterInstanceReply
+	(*AddMySQLInstanceReq)(nil),                        // 12: oneMiddleware.v1.AddMySQLInstanceReq
+	(*AddMySQLInstanceReply)(nil),                      // 13: oneMiddleware.v1.AddMySQLInstanceReply
+	(*ListMySQLInstanceReq)(nil),                       // 14: oneMiddleware.v1.ListMySQLInstanceReq
+	(*ListMySQLInstanceReply)(nil),                     // 15: oneMiddleware.v1.ListMySQLInstanceReply
+	(*DelMySQLInstanceReq)(nil),                        // 16: oneMiddleware.v1.DelMySQLInstanceReq
+	(*DelMySQLInstanceReply)(nil),                      // 17: oneMiddleware.v1.DelMySQLInstanceReply
+	(*AddMySQLMasterInstanceReq)(nil),                  // 18: oneMiddleware.v1.AddMySQLMasterInstanceReq
+	(*AddMySQLMasterInstanceReply)(nil),                // 19: oneMiddleware.v1.AddMySQLMasterInstanceReply
+	(*ListMySQLMasterInstanceReq)(nil),                 // 20: oneMiddleware.v1.ListMySQLMasterInstanceReq
+	(*ListMySQLMasterInstanceReply)(nil),               // 21: oneMiddleware.v1.ListMySQLMasterInstanceReply
+	(*DelMySQLMasterInstanceReq)(nil),                  // 22: oneMiddleware.v1.DelMySQLMasterInstanceReq
+	(*DelMySQLMasterInstanceReply)(nil),                // 23: oneMiddleware.v1.DelMySQLMasterInstanceReply
+	(*AddMySQLSlaveInstanceReq)(nil),                   // 24: oneMiddleware.v1.AddMySQLSlaveInstanceReq
+	(*AddMySQLSlaveInstanceReply)(nil),                 // 25: oneMiddleware.v1.AddMySQLSlaveInstanceReply
+	(*ListMySQLSlaveInstanceReq)(nil),                  // 26: oneMiddleware.v1.ListMySQLSlaveInstanceReq
+	(*ListMySQLSlaveInstanceReply)(nil),                // 27: oneMiddleware.v1.ListMySQLSlaveInstanceReply
+	(*DelMySQLSlaveInstanceReq)(nil),                   // 28: oneMiddleware.v1.DelMySQLSlaveInstanceReq
+	(*DelMySQLSlaveInstanceReply)(nil),                 // 29: oneMiddleware.v1.DelMySQLSlaveInstanceReply
+	(*AddRocketMQClusterReq)(nil),                      // 30: oneMiddleware.v1.AddRocketMQClusterReq
+	(*AddRocketMQClusterReply)(nil),                    // 31: oneMiddleware.v1.AddRocketMQClusterReply
+	(*ListRocketMQClusterReq)(nil),                     // 32: oneMiddleware.v1.ListRocketMQClusterReq
+	(*ListRocketMQClusterReply)(nil),                   // 33: oneMiddleware.v1.ListRocketMQClusterReply
+	(*DelRocketMQClusterReq)(nil),                      // 34: oneMiddleware.v1.DelRocketMQClusterReq
+	(*DelRocketMQClusterReply)(nil),                    // 35: oneMiddleware.v1.DelRocketMQClusterReply
+	(*AddRocketMQClusterBrokerInstanceReq)(nil),        // 36: oneMiddleware.v1.AddRocketMQClusterBrokerInstanceReq
+	(*AddRocketMQClusterBrokerInstanceReply)(nil),      // 37: oneMiddleware.v1.AddRocketMQClusterBrokerInstanceReply
+	(*ListRocketMQClusterBrokerInstanceReq)(nil),       // 38: oneMiddleware.v1.ListRocketMQClusterBrokerInstanceReq
+	(*ListRocketMQClusterBrokerInstanceReply)(nil),     // 39: oneMiddleware.v1.ListRocketMQClusterBrokerInstanceReply
+	(*DelRocketMQClusterBrokerInstanceReq)(nil),        // 40: oneMiddleware.v1.DelRocketMQClusterBrokerInstanceReq
+	(*DelRocketMQClusterBrokerInstanceReply)(nil),      // 41: oneMiddleware.v1.DelRocketMQClusterBrokerInstanceReply
+	(*AddRocketMQClusterNameServerInstanceReq)(nil),    // 42: oneMiddleware.v1.AddRocketMQClusterNameServerInstanceReq
+	(*AddRocketMQClusterNameServerInstanceReply)(nil),  // 43: oneMiddleware.v1.AddRocketMQClusterNameServerInstanceReply
+	(*ListRocketMQClusterNameServerInstanceReq)(nil),   // 44: oneMiddleware.v1.ListRocketMQClusterNameServerInstanceReq
+	(*ListRocketMQClusterNameServerInstanceReply)(nil), // 45: oneMiddleware.v1.ListRocketMQClusterNameServerInstanceReply
+	(*DelRocketMQClusterNameServerInstanceReq)(nil),    // 46: oneMiddleware.v1.DelRocketMQClusterNameServerInstanceReq
+	(*DelRocketMQClusterNameServerInstanceReply)(nil),  // 47: oneMiddleware.v1.DelRocketMQClusterNameServerInstanceReply
+	(*AddKafkaClusterReq)(nil),                         // 48: oneMiddleware.v1.AddKafkaClusterReq
+	(*AddKafkaClusterReply)(nil),                       // 49: oneMiddleware.v1.AddKafkaClusterReply
+	(*ListKafkaClusterReq)(nil),                        // 50: oneMiddleware.v1.ListKafkaClusterReq
+	(*ListKafkaClusterReply)(nil),                      // 51: oneMiddleware.v1.ListKafkaClusterReply
+	(*DelKafkaClusterReq)(nil),                         // 52: oneMiddleware.v1.DelKafkaClusterReq
+	(*DelKafkaClusterReply)(nil),                       // 53: oneMiddleware.v1.DelKafkaClusterReply
+	(*AddKafkaClusterInstanceReq)(nil),                 // 54: oneMiddleware.v1.AddKafkaClusterInstanceReq
+	(*AddKafkaClusterInstanceReply)(nil),               // 55: oneMiddleware.v1.AddKafkaClusterInstanceReply
+	(*ListKafkaClusterInstanceReq)(nil),                // 56: oneMiddleware.v1.ListKafkaClusterInstanceReq
+	(*ListKafkaClusterInstanceReply)(nil),              // 57: oneMiddleware.v1.ListKafkaClusterInstanceReply
+	(*DelKafkaClusterInstanceReq)(nil),                 // 58: oneMiddleware.v1.DelKafkaClusterInstanceReq
+	(*DelKafkaClusterInstanceReply)(nil),               // 59: oneMiddleware.v1.DelKafkaClusterInstanceReply
+	(*AddEtcdClusterReq)(nil),                          // 60: oneMiddleware.v1.AddEtcdClusterReq
+	(*AddEtcdClusterReply)(nil),                        // 61: oneMiddleware.v1.AddEtcdClusterReply
+	(*ListEtcdClusterReq)(nil),                         // 62: oneMiddleware.v1.ListEtcdClusterReq
+	(*ListEtcdClusterReply)(nil),                       // 63: oneMiddleware.v1.ListEtcdClusterReply
+	(*DelEtcdClusterReq)(nil),                          // 64: oneMiddleware.v1.DelEtcdClusterReq
+	(*DelEtcdClusterReply)(nil),                        // 65: oneMiddleware.v1.DelEtcdClusterReply
+	(*AddEtcdClusterInstanceReq)(nil),                  // 66: oneMiddleware.v1.AddEtcdClusterInstanceReq
+	(*AddEtcdClusterInstanceReply)(nil),                // 67: oneMiddleware.v1.AddEtcdClusterInstanceReply
+	(*ListEtcdClusterInstanceReq)(nil),                 // 68: oneMiddleware.v1.ListEtcdClusterInstanceReq
+	(*ListEtcdClusterInstanceReply)(nil),               // 69: oneMiddleware.v1.ListEtcdClusterInstanceReply
+	(*DelEtcdClusterInstanceReq)(nil),                  // 70: oneMiddleware.v1.DelEtcdClusterInstanceReq
+	(*DelEtcdClusterInstanceReply)(nil),                // 71: oneMiddleware.v1.DelEtcdClusterInstanceReply
+	(*AddNacosClusterReq)(nil),                         // 72: oneMiddleware.v1.AddNacosClusterReq
+	(*AddNacosClusterReply)(nil),                       // 73: oneMiddleware.v1.AddNacosClusterReply
+	(*ListNacosClusterReq)(nil),                        // 74: oneMiddleware.v1.ListNacosClusterReq
+	(*ListNacosClusterReply)(nil),                      // 75: oneMiddleware.v1.ListNacosClusterReply
+	(*DelNacosClusterReq)(nil),                         // 76: oneMiddleware.v1.DelNacosClusterReq
+	(*DelNacosClusterReply)(nil),                       // 77: oneMiddleware.v1.DelNacosClusterReply
+	(*AddNacosClusterInstanceReq)(nil),                 // 78: oneMiddleware.v1.AddNacosClusterInstanceReq
+	(*AddNacosClusterInstanceReply)(nil),               // 79: oneMiddleware.v1.AddNacosClusterInstanceReply
+	(*ListNacosClusterInstanceReq)(nil),                // 80: oneMiddleware.v1.ListNacosClusterInstanceReq
+	(*ListNacosClusterInstanceReply)(nil),              // 81: oneMiddleware.v1.ListNacosClusterInstanceReply
+	(*DelNacosClusterInstanceReq)(nil),                 // 82: oneMiddleware.v1.DelNacosClusterInstanceReq
+	(*DelNacosClusterInstanceReply)(nil),               // 83: oneMiddleware.v1.DelNacosClusterInstanceReply
+	(*AddConsulClusterReq)(nil),                        // 84: oneMiddleware.v1.AddConsulClusterReq
+	(*AddConsulClusterReply)(nil),                      // 85: oneMiddleware.v1.AddConsulClusterReply
+	(*ListConsulClusterReq)(nil),                       // 86: oneMiddleware.v1.ListConsulClusterReq
+	(*ListConsulClusterReply)(nil),                     // 87: oneMiddleware.v1.ListConsulClusterReply
+	(*DelConsulClusterReq)(nil),                        // 88: oneMiddleware.v1.DelConsulClusterReq
+	(*DelConsulClusterReply)(nil),                      // 89: oneMiddleware.v1.DelConsulClusterReply
+	(*AddConsulClusterInstanceReq)(nil),                // 90: oneMiddleware.v1.AddConsulClusterInstanceReq
+	(*AddConsulClusterInstanceReply)(nil),              // 91: oneMiddleware.v1.AddConsulClusterInstanceReply
+	(*ListConsulClusterInstanceReq)(nil),               // 92: oneMiddleware.v1.ListConsulClusterInstanceReq
+	(*ListConsulClusterInstanceReply)(nil),             // 93: oneMiddleware.v1.ListConsulClusterInstanceReply
+	(*DelConsulClusterInstanceReq)(nil),                // 94: oneMiddleware.v1.DelConsulClusterInstanceReq
+	(*DelConsulClusterInstanceReply)(nil),              // 95: oneMiddleware.v1.DelConsulClusterInstanceReply
+	(*AddZookeeperClusterReq)(nil),                     // 96: oneMiddleware.v1.AddZookeeperClusterReq
+	(*AddZookeeperClusterReply)(nil),                   // 97: oneMiddleware.v1.AddZookeeperClusterReply
+	(*ListZookeeperClusterReq)(nil),                    // 98: oneMiddleware.v1.ListZookeeperClusterReq
+	(*ListZookeeperClusterReply)(nil),                  // 99: oneMiddleware.v1.ListZookeeperClusterReply
+	(*DelZookeeperClusterReq)(nil),                     // 100: oneMiddleware.v1.DelZookeeperClusterReq
+	(*DelZookeeperClusterReply)(nil),                   // 101: oneMiddleware.v1.DelZookeeperClusterReply
+	(*AddZookeeperClusterInstanceReq)(nil),             // 102: oneMiddleware.v1.AddZookeeperClusterInstanceReq
+	(*AddZookeeperClusterInstanceReply)(nil),           // 103: oneMiddleware.v1.AddZookeeperClusterInstanceReply
+	(*ListZookeeperClusterInstanceReq)(nil),            // 104: oneMiddleware.v1.ListZookeeperClusterInstanceReq
+	(*ListZookeeperClusterInstanceReply)(nil),          // 105: oneMiddleware.v1.ListZookeeperClusterInstanceReply
+	(*DelZookeeperClusterInstanceReq)(nil),             // 106: oneMiddleware.v1.DelZookeeperClusterInstanceReq
+	(*DelZookeeperClusterInstanceReply)(nil),           // 107: oneMiddleware.v1.DelZookeeperClusterInstanceReply
+	(*AddCoreDNSClusterReq)(nil),                       // 108: oneMiddleware.v1.AddCoreDNSClusterReq
+	(*AddCoreDNSClusterReply)(nil),                     // 109: oneMiddleware.v1.AddCoreDNSClusterReply
+	(*ListCoreDNSClusterReq)(nil),                      // 110: oneMiddleware.v1.ListCoreDNSClusterReq
+	(*ListCoreDNSClusterReply)(nil),                    // 111: oneMiddleware.v1.ListCoreDNSClusterReply
+	(*DelCoreDNSClusterReq)(nil),                       // 112: oneMiddleware.v1.DelCoreDNSClusterReq
+	(*DelCoreDNSClusterReply)(nil),                     // 113: oneMiddleware.v1.DelCoreDNSClusterReply
+	(*AddCoreDNSClusterInstanceReq)(nil),               // 114: oneMiddleware.v1.AddCoreDNSClusterInstanceReq
+	(*AddCoreDNSClusterInstanceReply)(nil),             // 115: oneMiddleware.v1.AddCoreDNSClusterInstanceReply
+	(*ListCoreDNSClusterInstanceReq)(nil),              // 116: oneMiddleware.v1.ListCoreDNSClusterInstanceReq
+	(*ListCoreDNSClusterInstanceReply)(nil),            // 117: oneMiddleware.v1.ListCoreDNSClusterInstanceReply
+	(*DelCoreDNSClusterInstanceReq)(nil),               // 118: oneMiddleware.v1.DelCoreDNSClusterInstanceReq
+	(*DelCoreDNSClusterInstanceReply)(nil),             // 119: oneMiddleware.v1.DelCoreDNSClusterInstanceReply
+	(*AddXXLJobInstanceReq)(nil),                       // 120: oneMiddleware.v1.AddXXLJobInstanceReq
+	(*AddXXLJobInstanceReply)(nil),                     // 121: oneMiddleware.v1.AddXXLJobInstanceReply
+	(*ListXXLJobInstanceReq)(nil),                      // 122: oneMiddleware.v1.ListXXLJobInstanceReq
+	(*ListXXLJobInstanceReply)(nil),                    // 123: oneMiddleware.v1.ListXXLJobInstanceReply
+	(*DelXXLJobInstanceReq)(nil),                       // 124: oneMiddleware.v1.DelXXLJobInstanceReq
+	(*DelXXLJobInstanceReply)(nil),                     // 125: oneMiddleware.v1.DelXXLJobInstanceReply
+	(*AddTemporalClusterReq)(nil),                      // 126: oneMiddleware.v1.AddTemporalClusterReq
+	(*AddTemporalClusterReply)(nil),                    // 127: oneMiddleware.v1.AddTemporalClusterReply
+	(*ListTemporalClusterReq)(nil),                     // 128: oneMiddleware.v1.ListTemporalClusterReq
+	(*ListTemporalClusterReply)(nil),                   // 129: oneMiddleware.v1.ListTemporalClusterReply
+	(*DelTemporalClusterReq)(nil),                      // 130: oneMiddleware.v1.DelTemporalClusterReq
+	(*DelTemporalClusterReply)(nil),                    // 131: oneMiddleware.v1.DelTemporalClusterReply
+	(*AddTemporalClusterWorkerReq)(nil),                // 132: oneMiddleware.v1.AddTemporalClusterWorkerReq
+	(*AddTemporalClusterWorkerReply)(nil),              // 133: oneMiddleware.v1.AddTemporalClusterWorkerReply
+	(*ListTemporalClusterWorkerReq)(nil),               // 134: oneMiddleware.v1.ListTemporalClusterWorkerReq
+	(*ListTemporalClusterWorkerReply)(nil),             // 135: oneMiddleware.v1.ListTemporalClusterWorkerReply
+	(*DelTemporalClusterWorkerReq)(nil),                // 136: oneMiddleware.v1.DelTemporalClusterWorkerReq
+	(*DelTemporalClusterWorkerReply)(nil),              // 137: oneMiddleware.v1.DelTemporalClusterWorkerReply
 }
 var file_middleware_v1_middleware_proto_depIdxs = []int32{
-	0, // 0: oneMiddleware.v1.oneMiddleware.ParseIP:input_type -> oneMiddleware.v1.ParseIPReq
-	1, // 1: oneMiddleware.v1.oneMiddleware.ParseIP:output_type -> oneMiddleware.v1.ParseIPReply
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	0,   // 0: oneMiddleware.v1.oneMiddleware.AddRedisCluster:input_type -> oneMiddleware.v1.AddRedisClusterReq
+	2,   // 1: oneMiddleware.v1.oneMiddleware.ListRedisCluster:input_type -> oneMiddleware.v1.ListRedisClusterReq
+	4,   // 2: oneMiddleware.v1.oneMiddleware.DelRedisCluster:input_type -> oneMiddleware.v1.DelRedisClusterReq
+	6,   // 3: oneMiddleware.v1.oneMiddleware.AddRedisClusterInstance:input_type -> oneMiddleware.v1.AddRedisClusterInstanceReq
+	8,   // 4: oneMiddleware.v1.oneMiddleware.DelRedisClusterInstance:input_type -> oneMiddleware.v1.DelRedisClusterInstanceReq
+	10,  // 5: oneMiddleware.v1.oneMiddleware.ListRedisClusterInstance:input_type -> oneMiddleware.v1.ListRedisClusterInstanceReq
+	12,  // 6: oneMiddleware.v1.oneMiddleware.AddMySQLInstance:input_type -> oneMiddleware.v1.AddMySQLInstanceReq
+	14,  // 7: oneMiddleware.v1.oneMiddleware.ListMySQLInstance:input_type -> oneMiddleware.v1.ListMySQLInstanceReq
+	16,  // 8: oneMiddleware.v1.oneMiddleware.DelMySQLInstance:input_type -> oneMiddleware.v1.DelMySQLInstanceReq
+	18,  // 9: oneMiddleware.v1.oneMiddleware.AddMySQLMasterInstance:input_type -> oneMiddleware.v1.AddMySQLMasterInstanceReq
+	20,  // 10: oneMiddleware.v1.oneMiddleware.ListMySQLMasterInstance:input_type -> oneMiddleware.v1.ListMySQLMasterInstanceReq
+	22,  // 11: oneMiddleware.v1.oneMiddleware.DelMySQLMasterInstance:input_type -> oneMiddleware.v1.DelMySQLMasterInstanceReq
+	24,  // 12: oneMiddleware.v1.oneMiddleware.AddMySQLSlaveInstance:input_type -> oneMiddleware.v1.AddMySQLSlaveInstanceReq
+	26,  // 13: oneMiddleware.v1.oneMiddleware.ListMySQLSlaveInstance:input_type -> oneMiddleware.v1.ListMySQLSlaveInstanceReq
+	28,  // 14: oneMiddleware.v1.oneMiddleware.DelMySQLSlaveInstance:input_type -> oneMiddleware.v1.DelMySQLSlaveInstanceReq
+	30,  // 15: oneMiddleware.v1.oneMiddleware.AddRocketMQCluster:input_type -> oneMiddleware.v1.AddRocketMQClusterReq
+	32,  // 16: oneMiddleware.v1.oneMiddleware.ListRocketMQCluster:input_type -> oneMiddleware.v1.ListRocketMQClusterReq
+	34,  // 17: oneMiddleware.v1.oneMiddleware.DelRocketMQCluster:input_type -> oneMiddleware.v1.DelRocketMQClusterReq
+	36,  // 18: oneMiddleware.v1.oneMiddleware.AddRocketMQClusterBrokerInstance:input_type -> oneMiddleware.v1.AddRocketMQClusterBrokerInstanceReq
+	38,  // 19: oneMiddleware.v1.oneMiddleware.ListRocketMQClusterBrokerInstance:input_type -> oneMiddleware.v1.ListRocketMQClusterBrokerInstanceReq
+	40,  // 20: oneMiddleware.v1.oneMiddleware.DelRocketMQClusterBrokerInstance:input_type -> oneMiddleware.v1.DelRocketMQClusterBrokerInstanceReq
+	42,  // 21: oneMiddleware.v1.oneMiddleware.AddRocketMQClusterNameServerInstance:input_type -> oneMiddleware.v1.AddRocketMQClusterNameServerInstanceReq
+	44,  // 22: oneMiddleware.v1.oneMiddleware.ListRocketMQClusterNameServerInstance:input_type -> oneMiddleware.v1.ListRocketMQClusterNameServerInstanceReq
+	46,  // 23: oneMiddleware.v1.oneMiddleware.DelRocketMQClusterNameServerInstance:input_type -> oneMiddleware.v1.DelRocketMQClusterNameServerInstanceReq
+	48,  // 24: oneMiddleware.v1.oneMiddleware.AddKafkaCluster:input_type -> oneMiddleware.v1.AddKafkaClusterReq
+	50,  // 25: oneMiddleware.v1.oneMiddleware.ListKafkaCluster:input_type -> oneMiddleware.v1.ListKafkaClusterReq
+	52,  // 26: oneMiddleware.v1.oneMiddleware.DelKafkaCluster:input_type -> oneMiddleware.v1.DelKafkaClusterReq
+	54,  // 27: oneMiddleware.v1.oneMiddleware.AddKafkaClusterInstance:input_type -> oneMiddleware.v1.AddKafkaClusterInstanceReq
+	56,  // 28: oneMiddleware.v1.oneMiddleware.ListKafkaClusterInstance:input_type -> oneMiddleware.v1.ListKafkaClusterInstanceReq
+	58,  // 29: oneMiddleware.v1.oneMiddleware.DelKafkaClusterInstance:input_type -> oneMiddleware.v1.DelKafkaClusterInstanceReq
+	60,  // 30: oneMiddleware.v1.oneMiddleware.AddEtcdCluster:input_type -> oneMiddleware.v1.AddEtcdClusterReq
+	62,  // 31: oneMiddleware.v1.oneMiddleware.ListEtcdCluster:input_type -> oneMiddleware.v1.ListEtcdClusterReq
+	64,  // 32: oneMiddleware.v1.oneMiddleware.DelEtcdCluster:input_type -> oneMiddleware.v1.DelEtcdClusterReq
+	66,  // 33: oneMiddleware.v1.oneMiddleware.AddEtcdClusterInstance:input_type -> oneMiddleware.v1.AddEtcdClusterInstanceReq
+	68,  // 34: oneMiddleware.v1.oneMiddleware.ListEtcdClusterInstance:input_type -> oneMiddleware.v1.ListEtcdClusterInstanceReq
+	70,  // 35: oneMiddleware.v1.oneMiddleware.DelEtcdClusterInstance:input_type -> oneMiddleware.v1.DelEtcdClusterInstanceReq
+	72,  // 36: oneMiddleware.v1.oneMiddleware.AddNacosCluster:input_type -> oneMiddleware.v1.AddNacosClusterReq
+	74,  // 37: oneMiddleware.v1.oneMiddleware.ListNacosCluster:input_type -> oneMiddleware.v1.ListNacosClusterReq
+	76,  // 38: oneMiddleware.v1.oneMiddleware.DelNacosCluster:input_type -> oneMiddleware.v1.DelNacosClusterReq
+	78,  // 39: oneMiddleware.v1.oneMiddleware.AddNacosClusterInstance:input_type -> oneMiddleware.v1.AddNacosClusterInstanceReq
+	80,  // 40: oneMiddleware.v1.oneMiddleware.ListNacosClusterInstance:input_type -> oneMiddleware.v1.ListNacosClusterInstanceReq
+	82,  // 41: oneMiddleware.v1.oneMiddleware.DelNacosClusterInstance:input_type -> oneMiddleware.v1.DelNacosClusterInstanceReq
+	84,  // 42: oneMiddleware.v1.oneMiddleware.AddConsulCluster:input_type -> oneMiddleware.v1.AddConsulClusterReq
+	86,  // 43: oneMiddleware.v1.oneMiddleware.ListConsulCluster:input_type -> oneMiddleware.v1.ListConsulClusterReq
+	88,  // 44: oneMiddleware.v1.oneMiddleware.DelConsulCluster:input_type -> oneMiddleware.v1.DelConsulClusterReq
+	90,  // 45: oneMiddleware.v1.oneMiddleware.AddConsulClusterInstance:input_type -> oneMiddleware.v1.AddConsulClusterInstanceReq
+	92,  // 46: oneMiddleware.v1.oneMiddleware.ListConsulClusterInstance:input_type -> oneMiddleware.v1.ListConsulClusterInstanceReq
+	94,  // 47: oneMiddleware.v1.oneMiddleware.DelConsulClusterInstance:input_type -> oneMiddleware.v1.DelConsulClusterInstanceReq
+	96,  // 48: oneMiddleware.v1.oneMiddleware.AddZookeeperCluster:input_type -> oneMiddleware.v1.AddZookeeperClusterReq
+	98,  // 49: oneMiddleware.v1.oneMiddleware.ListZookeeperCluster:input_type -> oneMiddleware.v1.ListZookeeperClusterReq
+	100, // 50: oneMiddleware.v1.oneMiddleware.DelZookeeperCluster:input_type -> oneMiddleware.v1.DelZookeeperClusterReq
+	102, // 51: oneMiddleware.v1.oneMiddleware.AddZookeeperClusterInstance:input_type -> oneMiddleware.v1.AddZookeeperClusterInstanceReq
+	104, // 52: oneMiddleware.v1.oneMiddleware.ListZookeeperClusterInstance:input_type -> oneMiddleware.v1.ListZookeeperClusterInstanceReq
+	106, // 53: oneMiddleware.v1.oneMiddleware.DelZookeeperClusterInstance:input_type -> oneMiddleware.v1.DelZookeeperClusterInstanceReq
+	108, // 54: oneMiddleware.v1.oneMiddleware.AddCoreDNSCluster:input_type -> oneMiddleware.v1.AddCoreDNSClusterReq
+	110, // 55: oneMiddleware.v1.oneMiddleware.ListCoreDNSCluster:input_type -> oneMiddleware.v1.ListCoreDNSClusterReq
+	112, // 56: oneMiddleware.v1.oneMiddleware.DelCoreDNSCluster:input_type -> oneMiddleware.v1.DelCoreDNSClusterReq
+	114, // 57: oneMiddleware.v1.oneMiddleware.AddCoreDNSClusterInstance:input_type -> oneMiddleware.v1.AddCoreDNSClusterInstanceReq
+	116, // 58: oneMiddleware.v1.oneMiddleware.ListCoreDNSClusterInstance:input_type -> oneMiddleware.v1.ListCoreDNSClusterInstanceReq
+	118, // 59: oneMiddleware.v1.oneMiddleware.DelCoreDNSClusterInstance:input_type -> oneMiddleware.v1.DelCoreDNSClusterInstanceReq
+	120, // 60: oneMiddleware.v1.oneMiddleware.AddXXLJobInstance:input_type -> oneMiddleware.v1.AddXXLJobInstanceReq
+	122, // 61: oneMiddleware.v1.oneMiddleware.ListXXLJobInstance:input_type -> oneMiddleware.v1.ListXXLJobInstanceReq
+	124, // 62: oneMiddleware.v1.oneMiddleware.DelXXLJobInstance:input_type -> oneMiddleware.v1.DelXXLJobInstanceReq
+	126, // 63: oneMiddleware.v1.oneMiddleware.AddTemporalCluster:input_type -> oneMiddleware.v1.AddTemporalClusterReq
+	128, // 64: oneMiddleware.v1.oneMiddleware.ListTemporalCluster:input_type -> oneMiddleware.v1.ListTemporalClusterReq
+	130, // 65: oneMiddleware.v1.oneMiddleware.DelTemporalCluster:input_type -> oneMiddleware.v1.DelTemporalClusterReq
+	132, // 66: oneMiddleware.v1.oneMiddleware.AddTemporalClusterWorker:input_type -> oneMiddleware.v1.AddTemporalClusterWorkerReq
+	134, // 67: oneMiddleware.v1.oneMiddleware.ListTemporalClusterWorker:input_type -> oneMiddleware.v1.ListTemporalClusterWorkerReq
+	136, // 68: oneMiddleware.v1.oneMiddleware.DelTemporalClusterWorker:input_type -> oneMiddleware.v1.DelTemporalClusterWorkerReq
+	1,   // 69: oneMiddleware.v1.oneMiddleware.AddRedisCluster:output_type -> oneMiddleware.v1.AddRedisClusterReply
+	3,   // 70: oneMiddleware.v1.oneMiddleware.ListRedisCluster:output_type -> oneMiddleware.v1.ListRedisClusterReply
+	5,   // 71: oneMiddleware.v1.oneMiddleware.DelRedisCluster:output_type -> oneMiddleware.v1.DelRedisClusterReply
+	7,   // 72: oneMiddleware.v1.oneMiddleware.AddRedisClusterInstance:output_type -> oneMiddleware.v1.AddRedisClusterInstanceReply
+	9,   // 73: oneMiddleware.v1.oneMiddleware.DelRedisClusterInstance:output_type -> oneMiddleware.v1.DelRedisClusterInstanceReply
+	11,  // 74: oneMiddleware.v1.oneMiddleware.ListRedisClusterInstance:output_type -> oneMiddleware.v1.ListRedisClusterInstanceReply
+	13,  // 75: oneMiddleware.v1.oneMiddleware.AddMySQLInstance:output_type -> oneMiddleware.v1.AddMySQLInstanceReply
+	15,  // 76: oneMiddleware.v1.oneMiddleware.ListMySQLInstance:output_type -> oneMiddleware.v1.ListMySQLInstanceReply
+	17,  // 77: oneMiddleware.v1.oneMiddleware.DelMySQLInstance:output_type -> oneMiddleware.v1.DelMySQLInstanceReply
+	19,  // 78: oneMiddleware.v1.oneMiddleware.AddMySQLMasterInstance:output_type -> oneMiddleware.v1.AddMySQLMasterInstanceReply
+	21,  // 79: oneMiddleware.v1.oneMiddleware.ListMySQLMasterInstance:output_type -> oneMiddleware.v1.ListMySQLMasterInstanceReply
+	23,  // 80: oneMiddleware.v1.oneMiddleware.DelMySQLMasterInstance:output_type -> oneMiddleware.v1.DelMySQLMasterInstanceReply
+	25,  // 81: oneMiddleware.v1.oneMiddleware.AddMySQLSlaveInstance:output_type -> oneMiddleware.v1.AddMySQLSlaveInstanceReply
+	27,  // 82: oneMiddleware.v1.oneMiddleware.ListMySQLSlaveInstance:output_type -> oneMiddleware.v1.ListMySQLSlaveInstanceReply
+	29,  // 83: oneMiddleware.v1.oneMiddleware.DelMySQLSlaveInstance:output_type -> oneMiddleware.v1.DelMySQLSlaveInstanceReply
+	31,  // 84: oneMiddleware.v1.oneMiddleware.AddRocketMQCluster:output_type -> oneMiddleware.v1.AddRocketMQClusterReply
+	33,  // 85: oneMiddleware.v1.oneMiddleware.ListRocketMQCluster:output_type -> oneMiddleware.v1.ListRocketMQClusterReply
+	35,  // 86: oneMiddleware.v1.oneMiddleware.DelRocketMQCluster:output_type -> oneMiddleware.v1.DelRocketMQClusterReply
+	37,  // 87: oneMiddleware.v1.oneMiddleware.AddRocketMQClusterBrokerInstance:output_type -> oneMiddleware.v1.AddRocketMQClusterBrokerInstanceReply
+	39,  // 88: oneMiddleware.v1.oneMiddleware.ListRocketMQClusterBrokerInstance:output_type -> oneMiddleware.v1.ListRocketMQClusterBrokerInstanceReply
+	41,  // 89: oneMiddleware.v1.oneMiddleware.DelRocketMQClusterBrokerInstance:output_type -> oneMiddleware.v1.DelRocketMQClusterBrokerInstanceReply
+	43,  // 90: oneMiddleware.v1.oneMiddleware.AddRocketMQClusterNameServerInstance:output_type -> oneMiddleware.v1.AddRocketMQClusterNameServerInstanceReply
+	45,  // 91: oneMiddleware.v1.oneMiddleware.ListRocketMQClusterNameServerInstance:output_type -> oneMiddleware.v1.ListRocketMQClusterNameServerInstanceReply
+	47,  // 92: oneMiddleware.v1.oneMiddleware.DelRocketMQClusterNameServerInstance:output_type -> oneMiddleware.v1.DelRocketMQClusterNameServerInstanceReply
+	49,  // 93: oneMiddleware.v1.oneMiddleware.AddKafkaCluster:output_type -> oneMiddleware.v1.AddKafkaClusterReply
+	51,  // 94: oneMiddleware.v1.oneMiddleware.ListKafkaCluster:output_type -> oneMiddleware.v1.ListKafkaClusterReply
+	53,  // 95: oneMiddleware.v1.oneMiddleware.DelKafkaCluster:output_type -> oneMiddleware.v1.DelKafkaClusterReply
+	55,  // 96: oneMiddleware.v1.oneMiddleware.AddKafkaClusterInstance:output_type -> oneMiddleware.v1.AddKafkaClusterInstanceReply
+	57,  // 97: oneMiddleware.v1.oneMiddleware.ListKafkaClusterInstance:output_type -> oneMiddleware.v1.ListKafkaClusterInstanceReply
+	59,  // 98: oneMiddleware.v1.oneMiddleware.DelKafkaClusterInstance:output_type -> oneMiddleware.v1.DelKafkaClusterInstanceReply
+	61,  // 99: oneMiddleware.v1.oneMiddleware.AddEtcdCluster:output_type -> oneMiddleware.v1.AddEtcdClusterReply
+	63,  // 100: oneMiddleware.v1.oneMiddleware.ListEtcdCluster:output_type -> oneMiddleware.v1.ListEtcdClusterReply
+	65,  // 101: oneMiddleware.v1.oneMiddleware.DelEtcdCluster:output_type -> oneMiddleware.v1.DelEtcdClusterReply
+	67,  // 102: oneMiddleware.v1.oneMiddleware.AddEtcdClusterInstance:output_type -> oneMiddleware.v1.AddEtcdClusterInstanceReply
+	69,  // 103: oneMiddleware.v1.oneMiddleware.ListEtcdClusterInstance:output_type -> oneMiddleware.v1.ListEtcdClusterInstanceReply
+	71,  // 104: oneMiddleware.v1.oneMiddleware.DelEtcdClusterInstance:output_type -> oneMiddleware.v1.DelEtcdClusterInstanceReply
+	73,  // 105: oneMiddleware.v1.oneMiddleware.AddNacosCluster:output_type -> oneMiddleware.v1.AddNacosClusterReply
+	75,  // 106: oneMiddleware.v1.oneMiddleware.ListNacosCluster:output_type -> oneMiddleware.v1.ListNacosClusterReply
+	77,  // 107: oneMiddleware.v1.oneMiddleware.DelNacosCluster:output_type -> oneMiddleware.v1.DelNacosClusterReply
+	79,  // 108: oneMiddleware.v1.oneMiddleware.AddNacosClusterInstance:output_type -> oneMiddleware.v1.AddNacosClusterInstanceReply
+	81,  // 109: oneMiddleware.v1.oneMiddleware.ListNacosClusterInstance:output_type -> oneMiddleware.v1.ListNacosClusterInstanceReply
+	83,  // 110: oneMiddleware.v1.oneMiddleware.DelNacosClusterInstance:output_type -> oneMiddleware.v1.DelNacosClusterInstanceReply
+	85,  // 111: oneMiddleware.v1.oneMiddleware.AddConsulCluster:output_type -> oneMiddleware.v1.AddConsulClusterReply
+	87,  // 112: oneMiddleware.v1.oneMiddleware.ListConsulCluster:output_type -> oneMiddleware.v1.ListConsulClusterReply
+	89,  // 113: oneMiddleware.v1.oneMiddleware.DelConsulCluster:output_type -> oneMiddleware.v1.DelConsulClusterReply
+	91,  // 114: oneMiddleware.v1.oneMiddleware.AddConsulClusterInstance:output_type -> oneMiddleware.v1.AddConsulClusterInstanceReply
+	93,  // 115: oneMiddleware.v1.oneMiddleware.ListConsulClusterInstance:output_type -> oneMiddleware.v1.ListConsulClusterInstanceReply
+	95,  // 116: oneMiddleware.v1.oneMiddleware.DelConsulClusterInstance:output_type -> oneMiddleware.v1.DelConsulClusterInstanceReply
+	97,  // 117: oneMiddleware.v1.oneMiddleware.AddZookeeperCluster:output_type -> oneMiddleware.v1.AddZookeeperClusterReply
+	99,  // 118: oneMiddleware.v1.oneMiddleware.ListZookeeperCluster:output_type -> oneMiddleware.v1.ListZookeeperClusterReply
+	101, // 119: oneMiddleware.v1.oneMiddleware.DelZookeeperCluster:output_type -> oneMiddleware.v1.DelZookeeperClusterReply
+	103, // 120: oneMiddleware.v1.oneMiddleware.AddZookeeperClusterInstance:output_type -> oneMiddleware.v1.AddZookeeperClusterInstanceReply
+	105, // 121: oneMiddleware.v1.oneMiddleware.ListZookeeperClusterInstance:output_type -> oneMiddleware.v1.ListZookeeperClusterInstanceReply
+	107, // 122: oneMiddleware.v1.oneMiddleware.DelZookeeperClusterInstance:output_type -> oneMiddleware.v1.DelZookeeperClusterInstanceReply
+	109, // 123: oneMiddleware.v1.oneMiddleware.AddCoreDNSCluster:output_type -> oneMiddleware.v1.AddCoreDNSClusterReply
+	111, // 124: oneMiddleware.v1.oneMiddleware.ListCoreDNSCluster:output_type -> oneMiddleware.v1.ListCoreDNSClusterReply
+	113, // 125: oneMiddleware.v1.oneMiddleware.DelCoreDNSCluster:output_type -> oneMiddleware.v1.DelCoreDNSClusterReply
+	115, // 126: oneMiddleware.v1.oneMiddleware.AddCoreDNSClusterInstance:output_type -> oneMiddleware.v1.AddCoreDNSClusterInstanceReply
+	117, // 127: oneMiddleware.v1.oneMiddleware.ListCoreDNSClusterInstance:output_type -> oneMiddleware.v1.ListCoreDNSClusterInstanceReply
+	119, // 128: oneMiddleware.v1.oneMiddleware.DelCoreDNSClusterInstance:output_type -> oneMiddleware.v1.DelCoreDNSClusterInstanceReply
+	121, // 129: oneMiddleware.v1.oneMiddleware.AddXXLJobInstance:output_type -> oneMiddleware.v1.AddXXLJobInstanceReply
+	123, // 130: oneMiddleware.v1.oneMiddleware.ListXXLJobInstance:output_type -> oneMiddleware.v1.ListXXLJobInstanceReply
+	125, // 131: oneMiddleware.v1.oneMiddleware.DelXXLJobInstance:output_type -> oneMiddleware.v1.DelXXLJobInstanceReply
+	127, // 132: oneMiddleware.v1.oneMiddleware.AddTemporalCluster:output_type -> oneMiddleware.v1.AddTemporalClusterReply
+	129, // 133: oneMiddleware.v1.oneMiddleware.ListTemporalCluster:output_type -> oneMiddleware.v1.ListTemporalClusterReply
+	131, // 134: oneMiddleware.v1.oneMiddleware.DelTemporalCluster:output_type -> oneMiddleware.v1.DelTemporalClusterReply
+	133, // 135: oneMiddleware.v1.oneMiddleware.AddTemporalClusterWorker:output_type -> oneMiddleware.v1.AddTemporalClusterWorkerReply
+	135, // 136: oneMiddleware.v1.oneMiddleware.ListTemporalClusterWorker:output_type -> oneMiddleware.v1.ListTemporalClusterWorkerReply
+	137, // 137: oneMiddleware.v1.oneMiddleware.DelTemporalClusterWorker:output_type -> oneMiddleware.v1.DelTemporalClusterWorkerReply
+	69,  // [69:138] is the sub-list for method output_type
+	0,   // [0:69] is the sub-list for method input_type
+	0,   // [0:0] is the sub-list for extension type_name
+	0,   // [0:0] is the sub-list for extension extendee
+	0,   // [0:0] is the sub-list for field type_name
 }
 
 func init() { file_middleware_v1_middleware_proto_init() }
@@ -161,7 +6349,7 @@ func file_middleware_v1_middleware_proto_init() {
 	}
 	if !protoimpl.UnsafeEnabled {
 		file_middleware_v1_middleware_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ParseIPReq); i {
+			switch v := v.(*AddRedisClusterReq); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -173,7 +6361,1639 @@ func file_middleware_v1_middleware_proto_init() {
 			}
 		}
 		file_middleware_v1_middleware_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ParseIPReply); i {
+			switch v := v.(*AddRedisClusterReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListRedisClusterReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListRedisClusterReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DelRedisClusterReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DelRedisClusterReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddRedisClusterInstanceReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddRedisClusterInstanceReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DelRedisClusterInstanceReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DelRedisClusterInstanceReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListRedisClusterInstanceReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListRedisClusterInstanceReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddMySQLInstanceReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddMySQLInstanceReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListMySQLInstanceReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListMySQLInstanceReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DelMySQLInstanceReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DelMySQLInstanceReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddMySQLMasterInstanceReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddMySQLMasterInstanceReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListMySQLMasterInstanceReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListMySQLMasterInstanceReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DelMySQLMasterInstanceReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[23].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DelMySQLMasterInstanceReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[24].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddMySQLSlaveInstanceReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[25].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddMySQLSlaveInstanceReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[26].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListMySQLSlaveInstanceReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[27].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListMySQLSlaveInstanceReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[28].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DelMySQLSlaveInstanceReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[29].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DelMySQLSlaveInstanceReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[30].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddRocketMQClusterReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[31].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddRocketMQClusterReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[32].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListRocketMQClusterReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[33].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListRocketMQClusterReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[34].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DelRocketMQClusterReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[35].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DelRocketMQClusterReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[36].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddRocketMQClusterBrokerInstanceReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[37].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddRocketMQClusterBrokerInstanceReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[38].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListRocketMQClusterBrokerInstanceReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[39].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListRocketMQClusterBrokerInstanceReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[40].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DelRocketMQClusterBrokerInstanceReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[41].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DelRocketMQClusterBrokerInstanceReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[42].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddRocketMQClusterNameServerInstanceReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[43].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddRocketMQClusterNameServerInstanceReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[44].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListRocketMQClusterNameServerInstanceReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[45].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListRocketMQClusterNameServerInstanceReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[46].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DelRocketMQClusterNameServerInstanceReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[47].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DelRocketMQClusterNameServerInstanceReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[48].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddKafkaClusterReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[49].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddKafkaClusterReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[50].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListKafkaClusterReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[51].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListKafkaClusterReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[52].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DelKafkaClusterReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[53].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DelKafkaClusterReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[54].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddKafkaClusterInstanceReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[55].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddKafkaClusterInstanceReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[56].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListKafkaClusterInstanceReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[57].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListKafkaClusterInstanceReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[58].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DelKafkaClusterInstanceReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[59].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DelKafkaClusterInstanceReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[60].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddEtcdClusterReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[61].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddEtcdClusterReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[62].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListEtcdClusterReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[63].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListEtcdClusterReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[64].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DelEtcdClusterReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[65].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DelEtcdClusterReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[66].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddEtcdClusterInstanceReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[67].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddEtcdClusterInstanceReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[68].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListEtcdClusterInstanceReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[69].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListEtcdClusterInstanceReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[70].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DelEtcdClusterInstanceReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[71].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DelEtcdClusterInstanceReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[72].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddNacosClusterReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[73].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddNacosClusterReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[74].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListNacosClusterReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[75].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListNacosClusterReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[76].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DelNacosClusterReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[77].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DelNacosClusterReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[78].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddNacosClusterInstanceReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[79].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddNacosClusterInstanceReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[80].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListNacosClusterInstanceReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[81].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListNacosClusterInstanceReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[82].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DelNacosClusterInstanceReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[83].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DelNacosClusterInstanceReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[84].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddConsulClusterReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[85].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddConsulClusterReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[86].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListConsulClusterReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[87].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListConsulClusterReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[88].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DelConsulClusterReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[89].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DelConsulClusterReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[90].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddConsulClusterInstanceReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[91].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddConsulClusterInstanceReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[92].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListConsulClusterInstanceReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[93].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListConsulClusterInstanceReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[94].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DelConsulClusterInstanceReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[95].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DelConsulClusterInstanceReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[96].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddZookeeperClusterReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[97].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddZookeeperClusterReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[98].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListZookeeperClusterReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[99].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListZookeeperClusterReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[100].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DelZookeeperClusterReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[101].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DelZookeeperClusterReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[102].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddZookeeperClusterInstanceReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[103].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddZookeeperClusterInstanceReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[104].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListZookeeperClusterInstanceReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[105].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListZookeeperClusterInstanceReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[106].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DelZookeeperClusterInstanceReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[107].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DelZookeeperClusterInstanceReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[108].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddCoreDNSClusterReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[109].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddCoreDNSClusterReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[110].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListCoreDNSClusterReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[111].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListCoreDNSClusterReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[112].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DelCoreDNSClusterReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[113].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DelCoreDNSClusterReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[114].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddCoreDNSClusterInstanceReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[115].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddCoreDNSClusterInstanceReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[116].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListCoreDNSClusterInstanceReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[117].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListCoreDNSClusterInstanceReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[118].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DelCoreDNSClusterInstanceReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[119].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DelCoreDNSClusterInstanceReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[120].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddXXLJobInstanceReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[121].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddXXLJobInstanceReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[122].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListXXLJobInstanceReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[123].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListXXLJobInstanceReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[124].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DelXXLJobInstanceReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[125].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DelXXLJobInstanceReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[126].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddTemporalClusterReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[127].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddTemporalClusterReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[128].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListTemporalClusterReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[129].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListTemporalClusterReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[130].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DelTemporalClusterReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[131].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DelTemporalClusterReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[132].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddTemporalClusterWorkerReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[133].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddTemporalClusterWorkerReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[134].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListTemporalClusterWorkerReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[135].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListTemporalClusterWorkerReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[136].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DelTemporalClusterWorkerReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_middleware_v1_middleware_proto_msgTypes[137].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DelTemporalClusterWorkerReply); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -191,7 +8011,7 @@ func file_middleware_v1_middleware_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_middleware_v1_middleware_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   138,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

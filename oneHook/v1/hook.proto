@@ -33,6 +33,10 @@ service OneHook {
   rpc SkywalkingAlert (SkywalkingAlertReq) returns (SkywalkingAlertReply) {};
   rpc SystemAudit (SystemAuditReq) returns (SystemAuditReply) {};
   rpc CloudSubScribe (CloudSubScribeReq) returns (CloudSubScribeReply) {};
+
+  // Diag
+  rpc GenerateWebDiagUrl (GenerateWebDiagUrlReq) returns (GenerateWebDiagUrlReply) {};
+  rpc WebDiag (WebDiagReq) returns (WebDiagReply) {};
 }
 
 // 一定要传入 orgUuid， 不然无法区分产品，无法查询，也无法进行权限验证
@@ -347,3 +351,22 @@ message CloudSubScribeReply {
 }
 
 
+
+// 生成 web 诊断
+message GenerateWebDiagUrlReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  repeated string urls = 4;
+}
+message GenerateWebDiagUrlReply {
+  string url = 1;
+}
+// web 诊断
+message WebDiagReq {
+  string msg = 1;
+}
+
+message WebDiagReply {
+  string id = 1;
+}

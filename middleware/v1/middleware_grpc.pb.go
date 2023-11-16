@@ -19,14 +19,160 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	OneMiddleware_ParseIP_FullMethodName = "/oneMiddleware.v1.oneMiddleware/ParseIP"
+	OneMiddleware_AddRedisCluster_FullMethodName                       = "/oneMiddleware.v1.oneMiddleware/AddRedisCluster"
+	OneMiddleware_ListRedisCluster_FullMethodName                      = "/oneMiddleware.v1.oneMiddleware/ListRedisCluster"
+	OneMiddleware_DelRedisCluster_FullMethodName                       = "/oneMiddleware.v1.oneMiddleware/DelRedisCluster"
+	OneMiddleware_AddRedisClusterInstance_FullMethodName               = "/oneMiddleware.v1.oneMiddleware/AddRedisClusterInstance"
+	OneMiddleware_DelRedisClusterInstance_FullMethodName               = "/oneMiddleware.v1.oneMiddleware/DelRedisClusterInstance"
+	OneMiddleware_ListRedisClusterInstance_FullMethodName              = "/oneMiddleware.v1.oneMiddleware/ListRedisClusterInstance"
+	OneMiddleware_AddMySQLInstance_FullMethodName                      = "/oneMiddleware.v1.oneMiddleware/AddMySQLInstance"
+	OneMiddleware_ListMySQLInstance_FullMethodName                     = "/oneMiddleware.v1.oneMiddleware/ListMySQLInstance"
+	OneMiddleware_DelMySQLInstance_FullMethodName                      = "/oneMiddleware.v1.oneMiddleware/DelMySQLInstance"
+	OneMiddleware_AddMySQLMasterInstance_FullMethodName                = "/oneMiddleware.v1.oneMiddleware/AddMySQLMasterInstance"
+	OneMiddleware_ListMySQLMasterInstance_FullMethodName               = "/oneMiddleware.v1.oneMiddleware/ListMySQLMasterInstance"
+	OneMiddleware_DelMySQLMasterInstance_FullMethodName                = "/oneMiddleware.v1.oneMiddleware/DelMySQLMasterInstance"
+	OneMiddleware_AddMySQLSlaveInstance_FullMethodName                 = "/oneMiddleware.v1.oneMiddleware/AddMySQLSlaveInstance"
+	OneMiddleware_ListMySQLSlaveInstance_FullMethodName                = "/oneMiddleware.v1.oneMiddleware/ListMySQLSlaveInstance"
+	OneMiddleware_DelMySQLSlaveInstance_FullMethodName                 = "/oneMiddleware.v1.oneMiddleware/DelMySQLSlaveInstance"
+	OneMiddleware_AddRocketMQCluster_FullMethodName                    = "/oneMiddleware.v1.oneMiddleware/AddRocketMQCluster"
+	OneMiddleware_ListRocketMQCluster_FullMethodName                   = "/oneMiddleware.v1.oneMiddleware/ListRocketMQCluster"
+	OneMiddleware_DelRocketMQCluster_FullMethodName                    = "/oneMiddleware.v1.oneMiddleware/DelRocketMQCluster"
+	OneMiddleware_AddRocketMQClusterBrokerInstance_FullMethodName      = "/oneMiddleware.v1.oneMiddleware/AddRocketMQClusterBrokerInstance"
+	OneMiddleware_ListRocketMQClusterBrokerInstance_FullMethodName     = "/oneMiddleware.v1.oneMiddleware/ListRocketMQClusterBrokerInstance"
+	OneMiddleware_DelRocketMQClusterBrokerInstance_FullMethodName      = "/oneMiddleware.v1.oneMiddleware/DelRocketMQClusterBrokerInstance"
+	OneMiddleware_AddRocketMQClusterNameServerInstance_FullMethodName  = "/oneMiddleware.v1.oneMiddleware/AddRocketMQClusterNameServerInstance"
+	OneMiddleware_ListRocketMQClusterNameServerInstance_FullMethodName = "/oneMiddleware.v1.oneMiddleware/ListRocketMQClusterNameServerInstance"
+	OneMiddleware_DelRocketMQClusterNameServerInstance_FullMethodName  = "/oneMiddleware.v1.oneMiddleware/DelRocketMQClusterNameServerInstance"
+	OneMiddleware_AddKafkaCluster_FullMethodName                       = "/oneMiddleware.v1.oneMiddleware/AddKafkaCluster"
+	OneMiddleware_ListKafkaCluster_FullMethodName                      = "/oneMiddleware.v1.oneMiddleware/ListKafkaCluster"
+	OneMiddleware_DelKafkaCluster_FullMethodName                       = "/oneMiddleware.v1.oneMiddleware/DelKafkaCluster"
+	OneMiddleware_AddKafkaClusterInstance_FullMethodName               = "/oneMiddleware.v1.oneMiddleware/AddKafkaClusterInstance"
+	OneMiddleware_ListKafkaClusterInstance_FullMethodName              = "/oneMiddleware.v1.oneMiddleware/ListKafkaClusterInstance"
+	OneMiddleware_DelKafkaClusterInstance_FullMethodName               = "/oneMiddleware.v1.oneMiddleware/DelKafkaClusterInstance"
+	OneMiddleware_AddEtcdCluster_FullMethodName                        = "/oneMiddleware.v1.oneMiddleware/AddEtcdCluster"
+	OneMiddleware_ListEtcdCluster_FullMethodName                       = "/oneMiddleware.v1.oneMiddleware/ListEtcdCluster"
+	OneMiddleware_DelEtcdCluster_FullMethodName                        = "/oneMiddleware.v1.oneMiddleware/DelEtcdCluster"
+	OneMiddleware_AddEtcdClusterInstance_FullMethodName                = "/oneMiddleware.v1.oneMiddleware/AddEtcdClusterInstance"
+	OneMiddleware_ListEtcdClusterInstance_FullMethodName               = "/oneMiddleware.v1.oneMiddleware/ListEtcdClusterInstance"
+	OneMiddleware_DelEtcdClusterInstance_FullMethodName                = "/oneMiddleware.v1.oneMiddleware/DelEtcdClusterInstance"
+	OneMiddleware_AddNacosCluster_FullMethodName                       = "/oneMiddleware.v1.oneMiddleware/AddNacosCluster"
+	OneMiddleware_ListNacosCluster_FullMethodName                      = "/oneMiddleware.v1.oneMiddleware/ListNacosCluster"
+	OneMiddleware_DelNacosCluster_FullMethodName                       = "/oneMiddleware.v1.oneMiddleware/DelNacosCluster"
+	OneMiddleware_AddNacosClusterInstance_FullMethodName               = "/oneMiddleware.v1.oneMiddleware/AddNacosClusterInstance"
+	OneMiddleware_ListNacosClusterInstance_FullMethodName              = "/oneMiddleware.v1.oneMiddleware/ListNacosClusterInstance"
+	OneMiddleware_DelNacosClusterInstance_FullMethodName               = "/oneMiddleware.v1.oneMiddleware/DelNacosClusterInstance"
+	OneMiddleware_AddConsulCluster_FullMethodName                      = "/oneMiddleware.v1.oneMiddleware/AddConsulCluster"
+	OneMiddleware_ListConsulCluster_FullMethodName                     = "/oneMiddleware.v1.oneMiddleware/ListConsulCluster"
+	OneMiddleware_DelConsulCluster_FullMethodName                      = "/oneMiddleware.v1.oneMiddleware/DelConsulCluster"
+	OneMiddleware_AddConsulClusterInstance_FullMethodName              = "/oneMiddleware.v1.oneMiddleware/AddConsulClusterInstance"
+	OneMiddleware_ListConsulClusterInstance_FullMethodName             = "/oneMiddleware.v1.oneMiddleware/ListConsulClusterInstance"
+	OneMiddleware_DelConsulClusterInstance_FullMethodName              = "/oneMiddleware.v1.oneMiddleware/DelConsulClusterInstance"
+	OneMiddleware_AddZookeeperCluster_FullMethodName                   = "/oneMiddleware.v1.oneMiddleware/AddZookeeperCluster"
+	OneMiddleware_ListZookeeperCluster_FullMethodName                  = "/oneMiddleware.v1.oneMiddleware/ListZookeeperCluster"
+	OneMiddleware_DelZookeeperCluster_FullMethodName                   = "/oneMiddleware.v1.oneMiddleware/DelZookeeperCluster"
+	OneMiddleware_AddZookeeperClusterInstance_FullMethodName           = "/oneMiddleware.v1.oneMiddleware/AddZookeeperClusterInstance"
+	OneMiddleware_ListZookeeperClusterInstance_FullMethodName          = "/oneMiddleware.v1.oneMiddleware/ListZookeeperClusterInstance"
+	OneMiddleware_DelZookeeperClusterInstance_FullMethodName           = "/oneMiddleware.v1.oneMiddleware/DelZookeeperClusterInstance"
+	OneMiddleware_AddCoreDNSCluster_FullMethodName                     = "/oneMiddleware.v1.oneMiddleware/AddCoreDNSCluster"
+	OneMiddleware_ListCoreDNSCluster_FullMethodName                    = "/oneMiddleware.v1.oneMiddleware/ListCoreDNSCluster"
+	OneMiddleware_DelCoreDNSCluster_FullMethodName                     = "/oneMiddleware.v1.oneMiddleware/DelCoreDNSCluster"
+	OneMiddleware_AddCoreDNSClusterInstance_FullMethodName             = "/oneMiddleware.v1.oneMiddleware/AddCoreDNSClusterInstance"
+	OneMiddleware_ListCoreDNSClusterInstance_FullMethodName            = "/oneMiddleware.v1.oneMiddleware/ListCoreDNSClusterInstance"
+	OneMiddleware_DelCoreDNSClusterInstance_FullMethodName             = "/oneMiddleware.v1.oneMiddleware/DelCoreDNSClusterInstance"
+	OneMiddleware_AddXXLJobInstance_FullMethodName                     = "/oneMiddleware.v1.oneMiddleware/AddXXLJobInstance"
+	OneMiddleware_ListXXLJobInstance_FullMethodName                    = "/oneMiddleware.v1.oneMiddleware/ListXXLJobInstance"
+	OneMiddleware_DelXXLJobInstance_FullMethodName                     = "/oneMiddleware.v1.oneMiddleware/DelXXLJobInstance"
+	OneMiddleware_AddTemporalCluster_FullMethodName                    = "/oneMiddleware.v1.oneMiddleware/AddTemporalCluster"
+	OneMiddleware_ListTemporalCluster_FullMethodName                   = "/oneMiddleware.v1.oneMiddleware/ListTemporalCluster"
+	OneMiddleware_DelTemporalCluster_FullMethodName                    = "/oneMiddleware.v1.oneMiddleware/DelTemporalCluster"
+	OneMiddleware_AddTemporalClusterWorker_FullMethodName              = "/oneMiddleware.v1.oneMiddleware/AddTemporalClusterWorker"
+	OneMiddleware_ListTemporalClusterWorker_FullMethodName             = "/oneMiddleware.v1.oneMiddleware/ListTemporalClusterWorker"
+	OneMiddleware_DelTemporalClusterWorker_FullMethodName              = "/oneMiddleware.v1.oneMiddleware/DelTemporalClusterWorker"
 )
 
 // OneMiddlewareClient is the client API for OneMiddleware service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type OneMiddlewareClient interface {
-	ParseIP(ctx context.Context, in *ParseIPReq, opts ...grpc.CallOption) (*ParseIPReply, error)
+	AddRedisCluster(ctx context.Context, in *AddRedisClusterReq, opts ...grpc.CallOption) (*AddRedisClusterReply, error)
+	ListRedisCluster(ctx context.Context, in *ListRedisClusterReq, opts ...grpc.CallOption) (*ListRedisClusterReply, error)
+	DelRedisCluster(ctx context.Context, in *DelRedisClusterReq, opts ...grpc.CallOption) (*DelRedisClusterReply, error)
+	AddRedisClusterInstance(ctx context.Context, in *AddRedisClusterInstanceReq, opts ...grpc.CallOption) (*AddRedisClusterInstanceReply, error)
+	DelRedisClusterInstance(ctx context.Context, in *DelRedisClusterInstanceReq, opts ...grpc.CallOption) (*DelRedisClusterInstanceReply, error)
+	ListRedisClusterInstance(ctx context.Context, in *ListRedisClusterInstanceReq, opts ...grpc.CallOption) (*ListRedisClusterInstanceReply, error)
+	// mysql
+	AddMySQLInstance(ctx context.Context, in *AddMySQLInstanceReq, opts ...grpc.CallOption) (*AddMySQLInstanceReply, error)
+	ListMySQLInstance(ctx context.Context, in *ListMySQLInstanceReq, opts ...grpc.CallOption) (*ListMySQLInstanceReply, error)
+	DelMySQLInstance(ctx context.Context, in *DelMySQLInstanceReq, opts ...grpc.CallOption) (*DelMySQLInstanceReply, error)
+	AddMySQLMasterInstance(ctx context.Context, in *AddMySQLMasterInstanceReq, opts ...grpc.CallOption) (*AddMySQLMasterInstanceReply, error)
+	ListMySQLMasterInstance(ctx context.Context, in *ListMySQLMasterInstanceReq, opts ...grpc.CallOption) (*ListMySQLMasterInstanceReply, error)
+	DelMySQLMasterInstance(ctx context.Context, in *DelMySQLMasterInstanceReq, opts ...grpc.CallOption) (*DelMySQLMasterInstanceReply, error)
+	AddMySQLSlaveInstance(ctx context.Context, in *AddMySQLSlaveInstanceReq, opts ...grpc.CallOption) (*AddMySQLSlaveInstanceReply, error)
+	ListMySQLSlaveInstance(ctx context.Context, in *ListMySQLSlaveInstanceReq, opts ...grpc.CallOption) (*ListMySQLSlaveInstanceReply, error)
+	DelMySQLSlaveInstance(ctx context.Context, in *DelMySQLSlaveInstanceReq, opts ...grpc.CallOption) (*DelMySQLSlaveInstanceReply, error)
+	// RocketMQ
+	AddRocketMQCluster(ctx context.Context, in *AddRocketMQClusterReq, opts ...grpc.CallOption) (*AddRocketMQClusterReply, error)
+	ListRocketMQCluster(ctx context.Context, in *ListRocketMQClusterReq, opts ...grpc.CallOption) (*ListRocketMQClusterReply, error)
+	DelRocketMQCluster(ctx context.Context, in *DelRocketMQClusterReq, opts ...grpc.CallOption) (*DelRocketMQClusterReply, error)
+	AddRocketMQClusterBrokerInstance(ctx context.Context, in *AddRocketMQClusterBrokerInstanceReq, opts ...grpc.CallOption) (*AddRocketMQClusterBrokerInstanceReply, error)
+	ListRocketMQClusterBrokerInstance(ctx context.Context, in *ListRocketMQClusterBrokerInstanceReq, opts ...grpc.CallOption) (*ListRocketMQClusterBrokerInstanceReply, error)
+	DelRocketMQClusterBrokerInstance(ctx context.Context, in *DelRocketMQClusterBrokerInstanceReq, opts ...grpc.CallOption) (*DelRocketMQClusterBrokerInstanceReply, error)
+	AddRocketMQClusterNameServerInstance(ctx context.Context, in *AddRocketMQClusterNameServerInstanceReq, opts ...grpc.CallOption) (*AddRocketMQClusterNameServerInstanceReply, error)
+	ListRocketMQClusterNameServerInstance(ctx context.Context, in *ListRocketMQClusterNameServerInstanceReq, opts ...grpc.CallOption) (*ListRocketMQClusterNameServerInstanceReply, error)
+	DelRocketMQClusterNameServerInstance(ctx context.Context, in *DelRocketMQClusterNameServerInstanceReq, opts ...grpc.CallOption) (*DelRocketMQClusterNameServerInstanceReply, error)
+	// Kafka
+	AddKafkaCluster(ctx context.Context, in *AddKafkaClusterReq, opts ...grpc.CallOption) (*AddKafkaClusterReply, error)
+	ListKafkaCluster(ctx context.Context, in *ListKafkaClusterReq, opts ...grpc.CallOption) (*ListKafkaClusterReply, error)
+	DelKafkaCluster(ctx context.Context, in *DelKafkaClusterReq, opts ...grpc.CallOption) (*DelKafkaClusterReply, error)
+	AddKafkaClusterInstance(ctx context.Context, in *AddKafkaClusterInstanceReq, opts ...grpc.CallOption) (*AddKafkaClusterInstanceReply, error)
+	ListKafkaClusterInstance(ctx context.Context, in *ListKafkaClusterInstanceReq, opts ...grpc.CallOption) (*ListKafkaClusterInstanceReply, error)
+	DelKafkaClusterInstance(ctx context.Context, in *DelKafkaClusterInstanceReq, opts ...grpc.CallOption) (*DelKafkaClusterInstanceReply, error)
+	// Etcd
+	AddEtcdCluster(ctx context.Context, in *AddEtcdClusterReq, opts ...grpc.CallOption) (*AddEtcdClusterReply, error)
+	ListEtcdCluster(ctx context.Context, in *ListEtcdClusterReq, opts ...grpc.CallOption) (*ListEtcdClusterReply, error)
+	DelEtcdCluster(ctx context.Context, in *DelEtcdClusterReq, opts ...grpc.CallOption) (*DelEtcdClusterReply, error)
+	AddEtcdClusterInstance(ctx context.Context, in *AddEtcdClusterInstanceReq, opts ...grpc.CallOption) (*AddEtcdClusterInstanceReply, error)
+	ListEtcdClusterInstance(ctx context.Context, in *ListEtcdClusterInstanceReq, opts ...grpc.CallOption) (*ListEtcdClusterInstanceReply, error)
+	DelEtcdClusterInstance(ctx context.Context, in *DelEtcdClusterInstanceReq, opts ...grpc.CallOption) (*DelEtcdClusterInstanceReply, error)
+	// Nacos
+	AddNacosCluster(ctx context.Context, in *AddNacosClusterReq, opts ...grpc.CallOption) (*AddNacosClusterReply, error)
+	ListNacosCluster(ctx context.Context, in *ListNacosClusterReq, opts ...grpc.CallOption) (*ListNacosClusterReply, error)
+	DelNacosCluster(ctx context.Context, in *DelNacosClusterReq, opts ...grpc.CallOption) (*DelNacosClusterReply, error)
+	AddNacosClusterInstance(ctx context.Context, in *AddNacosClusterInstanceReq, opts ...grpc.CallOption) (*AddNacosClusterInstanceReply, error)
+	ListNacosClusterInstance(ctx context.Context, in *ListNacosClusterInstanceReq, opts ...grpc.CallOption) (*ListNacosClusterInstanceReply, error)
+	DelNacosClusterInstance(ctx context.Context, in *DelNacosClusterInstanceReq, opts ...grpc.CallOption) (*DelNacosClusterInstanceReply, error)
+	// Consul
+	AddConsulCluster(ctx context.Context, in *AddConsulClusterReq, opts ...grpc.CallOption) (*AddConsulClusterReply, error)
+	ListConsulCluster(ctx context.Context, in *ListConsulClusterReq, opts ...grpc.CallOption) (*ListConsulClusterReply, error)
+	DelConsulCluster(ctx context.Context, in *DelConsulClusterReq, opts ...grpc.CallOption) (*DelConsulClusterReply, error)
+	AddConsulClusterInstance(ctx context.Context, in *AddConsulClusterInstanceReq, opts ...grpc.CallOption) (*AddConsulClusterInstanceReply, error)
+	ListConsulClusterInstance(ctx context.Context, in *ListConsulClusterInstanceReq, opts ...grpc.CallOption) (*ListConsulClusterInstanceReply, error)
+	DelConsulClusterInstance(ctx context.Context, in *DelConsulClusterInstanceReq, opts ...grpc.CallOption) (*DelConsulClusterInstanceReply, error)
+	// Zookeeper
+	AddZookeeperCluster(ctx context.Context, in *AddZookeeperClusterReq, opts ...grpc.CallOption) (*AddZookeeperClusterReply, error)
+	ListZookeeperCluster(ctx context.Context, in *ListZookeeperClusterReq, opts ...grpc.CallOption) (*ListZookeeperClusterReply, error)
+	DelZookeeperCluster(ctx context.Context, in *DelZookeeperClusterReq, opts ...grpc.CallOption) (*DelZookeeperClusterReply, error)
+	AddZookeeperClusterInstance(ctx context.Context, in *AddZookeeperClusterInstanceReq, opts ...grpc.CallOption) (*AddZookeeperClusterInstanceReply, error)
+	ListZookeeperClusterInstance(ctx context.Context, in *ListZookeeperClusterInstanceReq, opts ...grpc.CallOption) (*ListZookeeperClusterInstanceReply, error)
+	DelZookeeperClusterInstance(ctx context.Context, in *DelZookeeperClusterInstanceReq, opts ...grpc.CallOption) (*DelZookeeperClusterInstanceReply, error)
+	// CoreDNS
+	AddCoreDNSCluster(ctx context.Context, in *AddCoreDNSClusterReq, opts ...grpc.CallOption) (*AddCoreDNSClusterReply, error)
+	ListCoreDNSCluster(ctx context.Context, in *ListCoreDNSClusterReq, opts ...grpc.CallOption) (*ListCoreDNSClusterReply, error)
+	DelCoreDNSCluster(ctx context.Context, in *DelCoreDNSClusterReq, opts ...grpc.CallOption) (*DelCoreDNSClusterReply, error)
+	AddCoreDNSClusterInstance(ctx context.Context, in *AddCoreDNSClusterInstanceReq, opts ...grpc.CallOption) (*AddCoreDNSClusterInstanceReply, error)
+	ListCoreDNSClusterInstance(ctx context.Context, in *ListCoreDNSClusterInstanceReq, opts ...grpc.CallOption) (*ListCoreDNSClusterInstanceReply, error)
+	DelCoreDNSClusterInstance(ctx context.Context, in *DelCoreDNSClusterInstanceReq, opts ...grpc.CallOption) (*DelCoreDNSClusterInstanceReply, error)
+	// XXLJob
+	AddXXLJobInstance(ctx context.Context, in *AddXXLJobInstanceReq, opts ...grpc.CallOption) (*AddXXLJobInstanceReply, error)
+	ListXXLJobInstance(ctx context.Context, in *ListXXLJobInstanceReq, opts ...grpc.CallOption) (*ListXXLJobInstanceReply, error)
+	DelXXLJobInstance(ctx context.Context, in *DelXXLJobInstanceReq, opts ...grpc.CallOption) (*DelXXLJobInstanceReply, error)
+	// Temporal
+	AddTemporalCluster(ctx context.Context, in *AddTemporalClusterReq, opts ...grpc.CallOption) (*AddTemporalClusterReply, error)
+	ListTemporalCluster(ctx context.Context, in *ListTemporalClusterReq, opts ...grpc.CallOption) (*ListTemporalClusterReply, error)
+	DelTemporalCluster(ctx context.Context, in *DelTemporalClusterReq, opts ...grpc.CallOption) (*DelTemporalClusterReply, error)
+	AddTemporalClusterWorker(ctx context.Context, in *AddTemporalClusterWorkerReq, opts ...grpc.CallOption) (*AddTemporalClusterWorkerReply, error)
+	ListTemporalClusterWorker(ctx context.Context, in *ListTemporalClusterWorkerReq, opts ...grpc.CallOption) (*ListTemporalClusterWorkerReply, error)
+	DelTemporalClusterWorker(ctx context.Context, in *DelTemporalClusterWorkerReq, opts ...grpc.CallOption) (*DelTemporalClusterWorkerReply, error)
 }
 
 type oneMiddlewareClient struct {
@@ -37,9 +183,621 @@ func NewOneMiddlewareClient(cc grpc.ClientConnInterface) OneMiddlewareClient {
 	return &oneMiddlewareClient{cc}
 }
 
-func (c *oneMiddlewareClient) ParseIP(ctx context.Context, in *ParseIPReq, opts ...grpc.CallOption) (*ParseIPReply, error) {
-	out := new(ParseIPReply)
-	err := c.cc.Invoke(ctx, OneMiddleware_ParseIP_FullMethodName, in, out, opts...)
+func (c *oneMiddlewareClient) AddRedisCluster(ctx context.Context, in *AddRedisClusterReq, opts ...grpc.CallOption) (*AddRedisClusterReply, error) {
+	out := new(AddRedisClusterReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_AddRedisCluster_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) ListRedisCluster(ctx context.Context, in *ListRedisClusterReq, opts ...grpc.CallOption) (*ListRedisClusterReply, error) {
+	out := new(ListRedisClusterReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_ListRedisCluster_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) DelRedisCluster(ctx context.Context, in *DelRedisClusterReq, opts ...grpc.CallOption) (*DelRedisClusterReply, error) {
+	out := new(DelRedisClusterReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_DelRedisCluster_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) AddRedisClusterInstance(ctx context.Context, in *AddRedisClusterInstanceReq, opts ...grpc.CallOption) (*AddRedisClusterInstanceReply, error) {
+	out := new(AddRedisClusterInstanceReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_AddRedisClusterInstance_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) DelRedisClusterInstance(ctx context.Context, in *DelRedisClusterInstanceReq, opts ...grpc.CallOption) (*DelRedisClusterInstanceReply, error) {
+	out := new(DelRedisClusterInstanceReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_DelRedisClusterInstance_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) ListRedisClusterInstance(ctx context.Context, in *ListRedisClusterInstanceReq, opts ...grpc.CallOption) (*ListRedisClusterInstanceReply, error) {
+	out := new(ListRedisClusterInstanceReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_ListRedisClusterInstance_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) AddMySQLInstance(ctx context.Context, in *AddMySQLInstanceReq, opts ...grpc.CallOption) (*AddMySQLInstanceReply, error) {
+	out := new(AddMySQLInstanceReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_AddMySQLInstance_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) ListMySQLInstance(ctx context.Context, in *ListMySQLInstanceReq, opts ...grpc.CallOption) (*ListMySQLInstanceReply, error) {
+	out := new(ListMySQLInstanceReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_ListMySQLInstance_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) DelMySQLInstance(ctx context.Context, in *DelMySQLInstanceReq, opts ...grpc.CallOption) (*DelMySQLInstanceReply, error) {
+	out := new(DelMySQLInstanceReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_DelMySQLInstance_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) AddMySQLMasterInstance(ctx context.Context, in *AddMySQLMasterInstanceReq, opts ...grpc.CallOption) (*AddMySQLMasterInstanceReply, error) {
+	out := new(AddMySQLMasterInstanceReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_AddMySQLMasterInstance_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) ListMySQLMasterInstance(ctx context.Context, in *ListMySQLMasterInstanceReq, opts ...grpc.CallOption) (*ListMySQLMasterInstanceReply, error) {
+	out := new(ListMySQLMasterInstanceReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_ListMySQLMasterInstance_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) DelMySQLMasterInstance(ctx context.Context, in *DelMySQLMasterInstanceReq, opts ...grpc.CallOption) (*DelMySQLMasterInstanceReply, error) {
+	out := new(DelMySQLMasterInstanceReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_DelMySQLMasterInstance_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) AddMySQLSlaveInstance(ctx context.Context, in *AddMySQLSlaveInstanceReq, opts ...grpc.CallOption) (*AddMySQLSlaveInstanceReply, error) {
+	out := new(AddMySQLSlaveInstanceReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_AddMySQLSlaveInstance_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) ListMySQLSlaveInstance(ctx context.Context, in *ListMySQLSlaveInstanceReq, opts ...grpc.CallOption) (*ListMySQLSlaveInstanceReply, error) {
+	out := new(ListMySQLSlaveInstanceReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_ListMySQLSlaveInstance_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) DelMySQLSlaveInstance(ctx context.Context, in *DelMySQLSlaveInstanceReq, opts ...grpc.CallOption) (*DelMySQLSlaveInstanceReply, error) {
+	out := new(DelMySQLSlaveInstanceReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_DelMySQLSlaveInstance_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) AddRocketMQCluster(ctx context.Context, in *AddRocketMQClusterReq, opts ...grpc.CallOption) (*AddRocketMQClusterReply, error) {
+	out := new(AddRocketMQClusterReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_AddRocketMQCluster_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) ListRocketMQCluster(ctx context.Context, in *ListRocketMQClusterReq, opts ...grpc.CallOption) (*ListRocketMQClusterReply, error) {
+	out := new(ListRocketMQClusterReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_ListRocketMQCluster_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) DelRocketMQCluster(ctx context.Context, in *DelRocketMQClusterReq, opts ...grpc.CallOption) (*DelRocketMQClusterReply, error) {
+	out := new(DelRocketMQClusterReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_DelRocketMQCluster_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) AddRocketMQClusterBrokerInstance(ctx context.Context, in *AddRocketMQClusterBrokerInstanceReq, opts ...grpc.CallOption) (*AddRocketMQClusterBrokerInstanceReply, error) {
+	out := new(AddRocketMQClusterBrokerInstanceReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_AddRocketMQClusterBrokerInstance_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) ListRocketMQClusterBrokerInstance(ctx context.Context, in *ListRocketMQClusterBrokerInstanceReq, opts ...grpc.CallOption) (*ListRocketMQClusterBrokerInstanceReply, error) {
+	out := new(ListRocketMQClusterBrokerInstanceReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_ListRocketMQClusterBrokerInstance_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) DelRocketMQClusterBrokerInstance(ctx context.Context, in *DelRocketMQClusterBrokerInstanceReq, opts ...grpc.CallOption) (*DelRocketMQClusterBrokerInstanceReply, error) {
+	out := new(DelRocketMQClusterBrokerInstanceReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_DelRocketMQClusterBrokerInstance_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) AddRocketMQClusterNameServerInstance(ctx context.Context, in *AddRocketMQClusterNameServerInstanceReq, opts ...grpc.CallOption) (*AddRocketMQClusterNameServerInstanceReply, error) {
+	out := new(AddRocketMQClusterNameServerInstanceReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_AddRocketMQClusterNameServerInstance_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) ListRocketMQClusterNameServerInstance(ctx context.Context, in *ListRocketMQClusterNameServerInstanceReq, opts ...grpc.CallOption) (*ListRocketMQClusterNameServerInstanceReply, error) {
+	out := new(ListRocketMQClusterNameServerInstanceReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_ListRocketMQClusterNameServerInstance_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) DelRocketMQClusterNameServerInstance(ctx context.Context, in *DelRocketMQClusterNameServerInstanceReq, opts ...grpc.CallOption) (*DelRocketMQClusterNameServerInstanceReply, error) {
+	out := new(DelRocketMQClusterNameServerInstanceReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_DelRocketMQClusterNameServerInstance_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) AddKafkaCluster(ctx context.Context, in *AddKafkaClusterReq, opts ...grpc.CallOption) (*AddKafkaClusterReply, error) {
+	out := new(AddKafkaClusterReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_AddKafkaCluster_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) ListKafkaCluster(ctx context.Context, in *ListKafkaClusterReq, opts ...grpc.CallOption) (*ListKafkaClusterReply, error) {
+	out := new(ListKafkaClusterReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_ListKafkaCluster_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) DelKafkaCluster(ctx context.Context, in *DelKafkaClusterReq, opts ...grpc.CallOption) (*DelKafkaClusterReply, error) {
+	out := new(DelKafkaClusterReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_DelKafkaCluster_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) AddKafkaClusterInstance(ctx context.Context, in *AddKafkaClusterInstanceReq, opts ...grpc.CallOption) (*AddKafkaClusterInstanceReply, error) {
+	out := new(AddKafkaClusterInstanceReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_AddKafkaClusterInstance_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) ListKafkaClusterInstance(ctx context.Context, in *ListKafkaClusterInstanceReq, opts ...grpc.CallOption) (*ListKafkaClusterInstanceReply, error) {
+	out := new(ListKafkaClusterInstanceReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_ListKafkaClusterInstance_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) DelKafkaClusterInstance(ctx context.Context, in *DelKafkaClusterInstanceReq, opts ...grpc.CallOption) (*DelKafkaClusterInstanceReply, error) {
+	out := new(DelKafkaClusterInstanceReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_DelKafkaClusterInstance_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) AddEtcdCluster(ctx context.Context, in *AddEtcdClusterReq, opts ...grpc.CallOption) (*AddEtcdClusterReply, error) {
+	out := new(AddEtcdClusterReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_AddEtcdCluster_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) ListEtcdCluster(ctx context.Context, in *ListEtcdClusterReq, opts ...grpc.CallOption) (*ListEtcdClusterReply, error) {
+	out := new(ListEtcdClusterReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_ListEtcdCluster_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) DelEtcdCluster(ctx context.Context, in *DelEtcdClusterReq, opts ...grpc.CallOption) (*DelEtcdClusterReply, error) {
+	out := new(DelEtcdClusterReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_DelEtcdCluster_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) AddEtcdClusterInstance(ctx context.Context, in *AddEtcdClusterInstanceReq, opts ...grpc.CallOption) (*AddEtcdClusterInstanceReply, error) {
+	out := new(AddEtcdClusterInstanceReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_AddEtcdClusterInstance_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) ListEtcdClusterInstance(ctx context.Context, in *ListEtcdClusterInstanceReq, opts ...grpc.CallOption) (*ListEtcdClusterInstanceReply, error) {
+	out := new(ListEtcdClusterInstanceReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_ListEtcdClusterInstance_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) DelEtcdClusterInstance(ctx context.Context, in *DelEtcdClusterInstanceReq, opts ...grpc.CallOption) (*DelEtcdClusterInstanceReply, error) {
+	out := new(DelEtcdClusterInstanceReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_DelEtcdClusterInstance_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) AddNacosCluster(ctx context.Context, in *AddNacosClusterReq, opts ...grpc.CallOption) (*AddNacosClusterReply, error) {
+	out := new(AddNacosClusterReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_AddNacosCluster_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) ListNacosCluster(ctx context.Context, in *ListNacosClusterReq, opts ...grpc.CallOption) (*ListNacosClusterReply, error) {
+	out := new(ListNacosClusterReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_ListNacosCluster_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) DelNacosCluster(ctx context.Context, in *DelNacosClusterReq, opts ...grpc.CallOption) (*DelNacosClusterReply, error) {
+	out := new(DelNacosClusterReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_DelNacosCluster_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) AddNacosClusterInstance(ctx context.Context, in *AddNacosClusterInstanceReq, opts ...grpc.CallOption) (*AddNacosClusterInstanceReply, error) {
+	out := new(AddNacosClusterInstanceReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_AddNacosClusterInstance_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) ListNacosClusterInstance(ctx context.Context, in *ListNacosClusterInstanceReq, opts ...grpc.CallOption) (*ListNacosClusterInstanceReply, error) {
+	out := new(ListNacosClusterInstanceReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_ListNacosClusterInstance_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) DelNacosClusterInstance(ctx context.Context, in *DelNacosClusterInstanceReq, opts ...grpc.CallOption) (*DelNacosClusterInstanceReply, error) {
+	out := new(DelNacosClusterInstanceReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_DelNacosClusterInstance_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) AddConsulCluster(ctx context.Context, in *AddConsulClusterReq, opts ...grpc.CallOption) (*AddConsulClusterReply, error) {
+	out := new(AddConsulClusterReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_AddConsulCluster_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) ListConsulCluster(ctx context.Context, in *ListConsulClusterReq, opts ...grpc.CallOption) (*ListConsulClusterReply, error) {
+	out := new(ListConsulClusterReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_ListConsulCluster_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) DelConsulCluster(ctx context.Context, in *DelConsulClusterReq, opts ...grpc.CallOption) (*DelConsulClusterReply, error) {
+	out := new(DelConsulClusterReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_DelConsulCluster_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) AddConsulClusterInstance(ctx context.Context, in *AddConsulClusterInstanceReq, opts ...grpc.CallOption) (*AddConsulClusterInstanceReply, error) {
+	out := new(AddConsulClusterInstanceReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_AddConsulClusterInstance_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) ListConsulClusterInstance(ctx context.Context, in *ListConsulClusterInstanceReq, opts ...grpc.CallOption) (*ListConsulClusterInstanceReply, error) {
+	out := new(ListConsulClusterInstanceReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_ListConsulClusterInstance_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) DelConsulClusterInstance(ctx context.Context, in *DelConsulClusterInstanceReq, opts ...grpc.CallOption) (*DelConsulClusterInstanceReply, error) {
+	out := new(DelConsulClusterInstanceReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_DelConsulClusterInstance_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) AddZookeeperCluster(ctx context.Context, in *AddZookeeperClusterReq, opts ...grpc.CallOption) (*AddZookeeperClusterReply, error) {
+	out := new(AddZookeeperClusterReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_AddZookeeperCluster_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) ListZookeeperCluster(ctx context.Context, in *ListZookeeperClusterReq, opts ...grpc.CallOption) (*ListZookeeperClusterReply, error) {
+	out := new(ListZookeeperClusterReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_ListZookeeperCluster_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) DelZookeeperCluster(ctx context.Context, in *DelZookeeperClusterReq, opts ...grpc.CallOption) (*DelZookeeperClusterReply, error) {
+	out := new(DelZookeeperClusterReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_DelZookeeperCluster_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) AddZookeeperClusterInstance(ctx context.Context, in *AddZookeeperClusterInstanceReq, opts ...grpc.CallOption) (*AddZookeeperClusterInstanceReply, error) {
+	out := new(AddZookeeperClusterInstanceReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_AddZookeeperClusterInstance_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) ListZookeeperClusterInstance(ctx context.Context, in *ListZookeeperClusterInstanceReq, opts ...grpc.CallOption) (*ListZookeeperClusterInstanceReply, error) {
+	out := new(ListZookeeperClusterInstanceReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_ListZookeeperClusterInstance_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) DelZookeeperClusterInstance(ctx context.Context, in *DelZookeeperClusterInstanceReq, opts ...grpc.CallOption) (*DelZookeeperClusterInstanceReply, error) {
+	out := new(DelZookeeperClusterInstanceReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_DelZookeeperClusterInstance_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) AddCoreDNSCluster(ctx context.Context, in *AddCoreDNSClusterReq, opts ...grpc.CallOption) (*AddCoreDNSClusterReply, error) {
+	out := new(AddCoreDNSClusterReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_AddCoreDNSCluster_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) ListCoreDNSCluster(ctx context.Context, in *ListCoreDNSClusterReq, opts ...grpc.CallOption) (*ListCoreDNSClusterReply, error) {
+	out := new(ListCoreDNSClusterReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_ListCoreDNSCluster_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) DelCoreDNSCluster(ctx context.Context, in *DelCoreDNSClusterReq, opts ...grpc.CallOption) (*DelCoreDNSClusterReply, error) {
+	out := new(DelCoreDNSClusterReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_DelCoreDNSCluster_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) AddCoreDNSClusterInstance(ctx context.Context, in *AddCoreDNSClusterInstanceReq, opts ...grpc.CallOption) (*AddCoreDNSClusterInstanceReply, error) {
+	out := new(AddCoreDNSClusterInstanceReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_AddCoreDNSClusterInstance_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) ListCoreDNSClusterInstance(ctx context.Context, in *ListCoreDNSClusterInstanceReq, opts ...grpc.CallOption) (*ListCoreDNSClusterInstanceReply, error) {
+	out := new(ListCoreDNSClusterInstanceReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_ListCoreDNSClusterInstance_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) DelCoreDNSClusterInstance(ctx context.Context, in *DelCoreDNSClusterInstanceReq, opts ...grpc.CallOption) (*DelCoreDNSClusterInstanceReply, error) {
+	out := new(DelCoreDNSClusterInstanceReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_DelCoreDNSClusterInstance_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) AddXXLJobInstance(ctx context.Context, in *AddXXLJobInstanceReq, opts ...grpc.CallOption) (*AddXXLJobInstanceReply, error) {
+	out := new(AddXXLJobInstanceReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_AddXXLJobInstance_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) ListXXLJobInstance(ctx context.Context, in *ListXXLJobInstanceReq, opts ...grpc.CallOption) (*ListXXLJobInstanceReply, error) {
+	out := new(ListXXLJobInstanceReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_ListXXLJobInstance_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) DelXXLJobInstance(ctx context.Context, in *DelXXLJobInstanceReq, opts ...grpc.CallOption) (*DelXXLJobInstanceReply, error) {
+	out := new(DelXXLJobInstanceReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_DelXXLJobInstance_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) AddTemporalCluster(ctx context.Context, in *AddTemporalClusterReq, opts ...grpc.CallOption) (*AddTemporalClusterReply, error) {
+	out := new(AddTemporalClusterReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_AddTemporalCluster_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) ListTemporalCluster(ctx context.Context, in *ListTemporalClusterReq, opts ...grpc.CallOption) (*ListTemporalClusterReply, error) {
+	out := new(ListTemporalClusterReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_ListTemporalCluster_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) DelTemporalCluster(ctx context.Context, in *DelTemporalClusterReq, opts ...grpc.CallOption) (*DelTemporalClusterReply, error) {
+	out := new(DelTemporalClusterReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_DelTemporalCluster_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) AddTemporalClusterWorker(ctx context.Context, in *AddTemporalClusterWorkerReq, opts ...grpc.CallOption) (*AddTemporalClusterWorkerReply, error) {
+	out := new(AddTemporalClusterWorkerReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_AddTemporalClusterWorker_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) ListTemporalClusterWorker(ctx context.Context, in *ListTemporalClusterWorkerReq, opts ...grpc.CallOption) (*ListTemporalClusterWorkerReply, error) {
+	out := new(ListTemporalClusterWorkerReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_ListTemporalClusterWorker_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneMiddlewareClient) DelTemporalClusterWorker(ctx context.Context, in *DelTemporalClusterWorkerReq, opts ...grpc.CallOption) (*DelTemporalClusterWorkerReply, error) {
+	out := new(DelTemporalClusterWorkerReply)
+	err := c.cc.Invoke(ctx, OneMiddleware_DelTemporalClusterWorker_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -50,7 +808,85 @@ func (c *oneMiddlewareClient) ParseIP(ctx context.Context, in *ParseIPReq, opts 
 // All implementations must embed UnimplementedOneMiddlewareServer
 // for forward compatibility
 type OneMiddlewareServer interface {
-	ParseIP(context.Context, *ParseIPReq) (*ParseIPReply, error)
+	AddRedisCluster(context.Context, *AddRedisClusterReq) (*AddRedisClusterReply, error)
+	ListRedisCluster(context.Context, *ListRedisClusterReq) (*ListRedisClusterReply, error)
+	DelRedisCluster(context.Context, *DelRedisClusterReq) (*DelRedisClusterReply, error)
+	AddRedisClusterInstance(context.Context, *AddRedisClusterInstanceReq) (*AddRedisClusterInstanceReply, error)
+	DelRedisClusterInstance(context.Context, *DelRedisClusterInstanceReq) (*DelRedisClusterInstanceReply, error)
+	ListRedisClusterInstance(context.Context, *ListRedisClusterInstanceReq) (*ListRedisClusterInstanceReply, error)
+	// mysql
+	AddMySQLInstance(context.Context, *AddMySQLInstanceReq) (*AddMySQLInstanceReply, error)
+	ListMySQLInstance(context.Context, *ListMySQLInstanceReq) (*ListMySQLInstanceReply, error)
+	DelMySQLInstance(context.Context, *DelMySQLInstanceReq) (*DelMySQLInstanceReply, error)
+	AddMySQLMasterInstance(context.Context, *AddMySQLMasterInstanceReq) (*AddMySQLMasterInstanceReply, error)
+	ListMySQLMasterInstance(context.Context, *ListMySQLMasterInstanceReq) (*ListMySQLMasterInstanceReply, error)
+	DelMySQLMasterInstance(context.Context, *DelMySQLMasterInstanceReq) (*DelMySQLMasterInstanceReply, error)
+	AddMySQLSlaveInstance(context.Context, *AddMySQLSlaveInstanceReq) (*AddMySQLSlaveInstanceReply, error)
+	ListMySQLSlaveInstance(context.Context, *ListMySQLSlaveInstanceReq) (*ListMySQLSlaveInstanceReply, error)
+	DelMySQLSlaveInstance(context.Context, *DelMySQLSlaveInstanceReq) (*DelMySQLSlaveInstanceReply, error)
+	// RocketMQ
+	AddRocketMQCluster(context.Context, *AddRocketMQClusterReq) (*AddRocketMQClusterReply, error)
+	ListRocketMQCluster(context.Context, *ListRocketMQClusterReq) (*ListRocketMQClusterReply, error)
+	DelRocketMQCluster(context.Context, *DelRocketMQClusterReq) (*DelRocketMQClusterReply, error)
+	AddRocketMQClusterBrokerInstance(context.Context, *AddRocketMQClusterBrokerInstanceReq) (*AddRocketMQClusterBrokerInstanceReply, error)
+	ListRocketMQClusterBrokerInstance(context.Context, *ListRocketMQClusterBrokerInstanceReq) (*ListRocketMQClusterBrokerInstanceReply, error)
+	DelRocketMQClusterBrokerInstance(context.Context, *DelRocketMQClusterBrokerInstanceReq) (*DelRocketMQClusterBrokerInstanceReply, error)
+	AddRocketMQClusterNameServerInstance(context.Context, *AddRocketMQClusterNameServerInstanceReq) (*AddRocketMQClusterNameServerInstanceReply, error)
+	ListRocketMQClusterNameServerInstance(context.Context, *ListRocketMQClusterNameServerInstanceReq) (*ListRocketMQClusterNameServerInstanceReply, error)
+	DelRocketMQClusterNameServerInstance(context.Context, *DelRocketMQClusterNameServerInstanceReq) (*DelRocketMQClusterNameServerInstanceReply, error)
+	// Kafka
+	AddKafkaCluster(context.Context, *AddKafkaClusterReq) (*AddKafkaClusterReply, error)
+	ListKafkaCluster(context.Context, *ListKafkaClusterReq) (*ListKafkaClusterReply, error)
+	DelKafkaCluster(context.Context, *DelKafkaClusterReq) (*DelKafkaClusterReply, error)
+	AddKafkaClusterInstance(context.Context, *AddKafkaClusterInstanceReq) (*AddKafkaClusterInstanceReply, error)
+	ListKafkaClusterInstance(context.Context, *ListKafkaClusterInstanceReq) (*ListKafkaClusterInstanceReply, error)
+	DelKafkaClusterInstance(context.Context, *DelKafkaClusterInstanceReq) (*DelKafkaClusterInstanceReply, error)
+	// Etcd
+	AddEtcdCluster(context.Context, *AddEtcdClusterReq) (*AddEtcdClusterReply, error)
+	ListEtcdCluster(context.Context, *ListEtcdClusterReq) (*ListEtcdClusterReply, error)
+	DelEtcdCluster(context.Context, *DelEtcdClusterReq) (*DelEtcdClusterReply, error)
+	AddEtcdClusterInstance(context.Context, *AddEtcdClusterInstanceReq) (*AddEtcdClusterInstanceReply, error)
+	ListEtcdClusterInstance(context.Context, *ListEtcdClusterInstanceReq) (*ListEtcdClusterInstanceReply, error)
+	DelEtcdClusterInstance(context.Context, *DelEtcdClusterInstanceReq) (*DelEtcdClusterInstanceReply, error)
+	// Nacos
+	AddNacosCluster(context.Context, *AddNacosClusterReq) (*AddNacosClusterReply, error)
+	ListNacosCluster(context.Context, *ListNacosClusterReq) (*ListNacosClusterReply, error)
+	DelNacosCluster(context.Context, *DelNacosClusterReq) (*DelNacosClusterReply, error)
+	AddNacosClusterInstance(context.Context, *AddNacosClusterInstanceReq) (*AddNacosClusterInstanceReply, error)
+	ListNacosClusterInstance(context.Context, *ListNacosClusterInstanceReq) (*ListNacosClusterInstanceReply, error)
+	DelNacosClusterInstance(context.Context, *DelNacosClusterInstanceReq) (*DelNacosClusterInstanceReply, error)
+	// Consul
+	AddConsulCluster(context.Context, *AddConsulClusterReq) (*AddConsulClusterReply, error)
+	ListConsulCluster(context.Context, *ListConsulClusterReq) (*ListConsulClusterReply, error)
+	DelConsulCluster(context.Context, *DelConsulClusterReq) (*DelConsulClusterReply, error)
+	AddConsulClusterInstance(context.Context, *AddConsulClusterInstanceReq) (*AddConsulClusterInstanceReply, error)
+	ListConsulClusterInstance(context.Context, *ListConsulClusterInstanceReq) (*ListConsulClusterInstanceReply, error)
+	DelConsulClusterInstance(context.Context, *DelConsulClusterInstanceReq) (*DelConsulClusterInstanceReply, error)
+	// Zookeeper
+	AddZookeeperCluster(context.Context, *AddZookeeperClusterReq) (*AddZookeeperClusterReply, error)
+	ListZookeeperCluster(context.Context, *ListZookeeperClusterReq) (*ListZookeeperClusterReply, error)
+	DelZookeeperCluster(context.Context, *DelZookeeperClusterReq) (*DelZookeeperClusterReply, error)
+	AddZookeeperClusterInstance(context.Context, *AddZookeeperClusterInstanceReq) (*AddZookeeperClusterInstanceReply, error)
+	ListZookeeperClusterInstance(context.Context, *ListZookeeperClusterInstanceReq) (*ListZookeeperClusterInstanceReply, error)
+	DelZookeeperClusterInstance(context.Context, *DelZookeeperClusterInstanceReq) (*DelZookeeperClusterInstanceReply, error)
+	// CoreDNS
+	AddCoreDNSCluster(context.Context, *AddCoreDNSClusterReq) (*AddCoreDNSClusterReply, error)
+	ListCoreDNSCluster(context.Context, *ListCoreDNSClusterReq) (*ListCoreDNSClusterReply, error)
+	DelCoreDNSCluster(context.Context, *DelCoreDNSClusterReq) (*DelCoreDNSClusterReply, error)
+	AddCoreDNSClusterInstance(context.Context, *AddCoreDNSClusterInstanceReq) (*AddCoreDNSClusterInstanceReply, error)
+	ListCoreDNSClusterInstance(context.Context, *ListCoreDNSClusterInstanceReq) (*ListCoreDNSClusterInstanceReply, error)
+	DelCoreDNSClusterInstance(context.Context, *DelCoreDNSClusterInstanceReq) (*DelCoreDNSClusterInstanceReply, error)
+	// XXLJob
+	AddXXLJobInstance(context.Context, *AddXXLJobInstanceReq) (*AddXXLJobInstanceReply, error)
+	ListXXLJobInstance(context.Context, *ListXXLJobInstanceReq) (*ListXXLJobInstanceReply, error)
+	DelXXLJobInstance(context.Context, *DelXXLJobInstanceReq) (*DelXXLJobInstanceReply, error)
+	// Temporal
+	AddTemporalCluster(context.Context, *AddTemporalClusterReq) (*AddTemporalClusterReply, error)
+	ListTemporalCluster(context.Context, *ListTemporalClusterReq) (*ListTemporalClusterReply, error)
+	DelTemporalCluster(context.Context, *DelTemporalClusterReq) (*DelTemporalClusterReply, error)
+	AddTemporalClusterWorker(context.Context, *AddTemporalClusterWorkerReq) (*AddTemporalClusterWorkerReply, error)
+	ListTemporalClusterWorker(context.Context, *ListTemporalClusterWorkerReq) (*ListTemporalClusterWorkerReply, error)
+	DelTemporalClusterWorker(context.Context, *DelTemporalClusterWorkerReq) (*DelTemporalClusterWorkerReply, error)
 	mustEmbedUnimplementedOneMiddlewareServer()
 }
 
@@ -58,8 +894,212 @@ type OneMiddlewareServer interface {
 type UnimplementedOneMiddlewareServer struct {
 }
 
-func (UnimplementedOneMiddlewareServer) ParseIP(context.Context, *ParseIPReq) (*ParseIPReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ParseIP not implemented")
+func (UnimplementedOneMiddlewareServer) AddRedisCluster(context.Context, *AddRedisClusterReq) (*AddRedisClusterReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddRedisCluster not implemented")
+}
+func (UnimplementedOneMiddlewareServer) ListRedisCluster(context.Context, *ListRedisClusterReq) (*ListRedisClusterReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListRedisCluster not implemented")
+}
+func (UnimplementedOneMiddlewareServer) DelRedisCluster(context.Context, *DelRedisClusterReq) (*DelRedisClusterReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DelRedisCluster not implemented")
+}
+func (UnimplementedOneMiddlewareServer) AddRedisClusterInstance(context.Context, *AddRedisClusterInstanceReq) (*AddRedisClusterInstanceReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddRedisClusterInstance not implemented")
+}
+func (UnimplementedOneMiddlewareServer) DelRedisClusterInstance(context.Context, *DelRedisClusterInstanceReq) (*DelRedisClusterInstanceReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DelRedisClusterInstance not implemented")
+}
+func (UnimplementedOneMiddlewareServer) ListRedisClusterInstance(context.Context, *ListRedisClusterInstanceReq) (*ListRedisClusterInstanceReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListRedisClusterInstance not implemented")
+}
+func (UnimplementedOneMiddlewareServer) AddMySQLInstance(context.Context, *AddMySQLInstanceReq) (*AddMySQLInstanceReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddMySQLInstance not implemented")
+}
+func (UnimplementedOneMiddlewareServer) ListMySQLInstance(context.Context, *ListMySQLInstanceReq) (*ListMySQLInstanceReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListMySQLInstance not implemented")
+}
+func (UnimplementedOneMiddlewareServer) DelMySQLInstance(context.Context, *DelMySQLInstanceReq) (*DelMySQLInstanceReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DelMySQLInstance not implemented")
+}
+func (UnimplementedOneMiddlewareServer) AddMySQLMasterInstance(context.Context, *AddMySQLMasterInstanceReq) (*AddMySQLMasterInstanceReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddMySQLMasterInstance not implemented")
+}
+func (UnimplementedOneMiddlewareServer) ListMySQLMasterInstance(context.Context, *ListMySQLMasterInstanceReq) (*ListMySQLMasterInstanceReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListMySQLMasterInstance not implemented")
+}
+func (UnimplementedOneMiddlewareServer) DelMySQLMasterInstance(context.Context, *DelMySQLMasterInstanceReq) (*DelMySQLMasterInstanceReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DelMySQLMasterInstance not implemented")
+}
+func (UnimplementedOneMiddlewareServer) AddMySQLSlaveInstance(context.Context, *AddMySQLSlaveInstanceReq) (*AddMySQLSlaveInstanceReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddMySQLSlaveInstance not implemented")
+}
+func (UnimplementedOneMiddlewareServer) ListMySQLSlaveInstance(context.Context, *ListMySQLSlaveInstanceReq) (*ListMySQLSlaveInstanceReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListMySQLSlaveInstance not implemented")
+}
+func (UnimplementedOneMiddlewareServer) DelMySQLSlaveInstance(context.Context, *DelMySQLSlaveInstanceReq) (*DelMySQLSlaveInstanceReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DelMySQLSlaveInstance not implemented")
+}
+func (UnimplementedOneMiddlewareServer) AddRocketMQCluster(context.Context, *AddRocketMQClusterReq) (*AddRocketMQClusterReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddRocketMQCluster not implemented")
+}
+func (UnimplementedOneMiddlewareServer) ListRocketMQCluster(context.Context, *ListRocketMQClusterReq) (*ListRocketMQClusterReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListRocketMQCluster not implemented")
+}
+func (UnimplementedOneMiddlewareServer) DelRocketMQCluster(context.Context, *DelRocketMQClusterReq) (*DelRocketMQClusterReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DelRocketMQCluster not implemented")
+}
+func (UnimplementedOneMiddlewareServer) AddRocketMQClusterBrokerInstance(context.Context, *AddRocketMQClusterBrokerInstanceReq) (*AddRocketMQClusterBrokerInstanceReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddRocketMQClusterBrokerInstance not implemented")
+}
+func (UnimplementedOneMiddlewareServer) ListRocketMQClusterBrokerInstance(context.Context, *ListRocketMQClusterBrokerInstanceReq) (*ListRocketMQClusterBrokerInstanceReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListRocketMQClusterBrokerInstance not implemented")
+}
+func (UnimplementedOneMiddlewareServer) DelRocketMQClusterBrokerInstance(context.Context, *DelRocketMQClusterBrokerInstanceReq) (*DelRocketMQClusterBrokerInstanceReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DelRocketMQClusterBrokerInstance not implemented")
+}
+func (UnimplementedOneMiddlewareServer) AddRocketMQClusterNameServerInstance(context.Context, *AddRocketMQClusterNameServerInstanceReq) (*AddRocketMQClusterNameServerInstanceReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddRocketMQClusterNameServerInstance not implemented")
+}
+func (UnimplementedOneMiddlewareServer) ListRocketMQClusterNameServerInstance(context.Context, *ListRocketMQClusterNameServerInstanceReq) (*ListRocketMQClusterNameServerInstanceReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListRocketMQClusterNameServerInstance not implemented")
+}
+func (UnimplementedOneMiddlewareServer) DelRocketMQClusterNameServerInstance(context.Context, *DelRocketMQClusterNameServerInstanceReq) (*DelRocketMQClusterNameServerInstanceReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DelRocketMQClusterNameServerInstance not implemented")
+}
+func (UnimplementedOneMiddlewareServer) AddKafkaCluster(context.Context, *AddKafkaClusterReq) (*AddKafkaClusterReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddKafkaCluster not implemented")
+}
+func (UnimplementedOneMiddlewareServer) ListKafkaCluster(context.Context, *ListKafkaClusterReq) (*ListKafkaClusterReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListKafkaCluster not implemented")
+}
+func (UnimplementedOneMiddlewareServer) DelKafkaCluster(context.Context, *DelKafkaClusterReq) (*DelKafkaClusterReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DelKafkaCluster not implemented")
+}
+func (UnimplementedOneMiddlewareServer) AddKafkaClusterInstance(context.Context, *AddKafkaClusterInstanceReq) (*AddKafkaClusterInstanceReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddKafkaClusterInstance not implemented")
+}
+func (UnimplementedOneMiddlewareServer) ListKafkaClusterInstance(context.Context, *ListKafkaClusterInstanceReq) (*ListKafkaClusterInstanceReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListKafkaClusterInstance not implemented")
+}
+func (UnimplementedOneMiddlewareServer) DelKafkaClusterInstance(context.Context, *DelKafkaClusterInstanceReq) (*DelKafkaClusterInstanceReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DelKafkaClusterInstance not implemented")
+}
+func (UnimplementedOneMiddlewareServer) AddEtcdCluster(context.Context, *AddEtcdClusterReq) (*AddEtcdClusterReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddEtcdCluster not implemented")
+}
+func (UnimplementedOneMiddlewareServer) ListEtcdCluster(context.Context, *ListEtcdClusterReq) (*ListEtcdClusterReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListEtcdCluster not implemented")
+}
+func (UnimplementedOneMiddlewareServer) DelEtcdCluster(context.Context, *DelEtcdClusterReq) (*DelEtcdClusterReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DelEtcdCluster not implemented")
+}
+func (UnimplementedOneMiddlewareServer) AddEtcdClusterInstance(context.Context, *AddEtcdClusterInstanceReq) (*AddEtcdClusterInstanceReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddEtcdClusterInstance not implemented")
+}
+func (UnimplementedOneMiddlewareServer) ListEtcdClusterInstance(context.Context, *ListEtcdClusterInstanceReq) (*ListEtcdClusterInstanceReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListEtcdClusterInstance not implemented")
+}
+func (UnimplementedOneMiddlewareServer) DelEtcdClusterInstance(context.Context, *DelEtcdClusterInstanceReq) (*DelEtcdClusterInstanceReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DelEtcdClusterInstance not implemented")
+}
+func (UnimplementedOneMiddlewareServer) AddNacosCluster(context.Context, *AddNacosClusterReq) (*AddNacosClusterReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddNacosCluster not implemented")
+}
+func (UnimplementedOneMiddlewareServer) ListNacosCluster(context.Context, *ListNacosClusterReq) (*ListNacosClusterReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListNacosCluster not implemented")
+}
+func (UnimplementedOneMiddlewareServer) DelNacosCluster(context.Context, *DelNacosClusterReq) (*DelNacosClusterReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DelNacosCluster not implemented")
+}
+func (UnimplementedOneMiddlewareServer) AddNacosClusterInstance(context.Context, *AddNacosClusterInstanceReq) (*AddNacosClusterInstanceReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddNacosClusterInstance not implemented")
+}
+func (UnimplementedOneMiddlewareServer) ListNacosClusterInstance(context.Context, *ListNacosClusterInstanceReq) (*ListNacosClusterInstanceReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListNacosClusterInstance not implemented")
+}
+func (UnimplementedOneMiddlewareServer) DelNacosClusterInstance(context.Context, *DelNacosClusterInstanceReq) (*DelNacosClusterInstanceReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DelNacosClusterInstance not implemented")
+}
+func (UnimplementedOneMiddlewareServer) AddConsulCluster(context.Context, *AddConsulClusterReq) (*AddConsulClusterReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddConsulCluster not implemented")
+}
+func (UnimplementedOneMiddlewareServer) ListConsulCluster(context.Context, *ListConsulClusterReq) (*ListConsulClusterReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListConsulCluster not implemented")
+}
+func (UnimplementedOneMiddlewareServer) DelConsulCluster(context.Context, *DelConsulClusterReq) (*DelConsulClusterReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DelConsulCluster not implemented")
+}
+func (UnimplementedOneMiddlewareServer) AddConsulClusterInstance(context.Context, *AddConsulClusterInstanceReq) (*AddConsulClusterInstanceReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddConsulClusterInstance not implemented")
+}
+func (UnimplementedOneMiddlewareServer) ListConsulClusterInstance(context.Context, *ListConsulClusterInstanceReq) (*ListConsulClusterInstanceReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListConsulClusterInstance not implemented")
+}
+func (UnimplementedOneMiddlewareServer) DelConsulClusterInstance(context.Context, *DelConsulClusterInstanceReq) (*DelConsulClusterInstanceReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DelConsulClusterInstance not implemented")
+}
+func (UnimplementedOneMiddlewareServer) AddZookeeperCluster(context.Context, *AddZookeeperClusterReq) (*AddZookeeperClusterReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddZookeeperCluster not implemented")
+}
+func (UnimplementedOneMiddlewareServer) ListZookeeperCluster(context.Context, *ListZookeeperClusterReq) (*ListZookeeperClusterReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListZookeeperCluster not implemented")
+}
+func (UnimplementedOneMiddlewareServer) DelZookeeperCluster(context.Context, *DelZookeeperClusterReq) (*DelZookeeperClusterReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DelZookeeperCluster not implemented")
+}
+func (UnimplementedOneMiddlewareServer) AddZookeeperClusterInstance(context.Context, *AddZookeeperClusterInstanceReq) (*AddZookeeperClusterInstanceReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddZookeeperClusterInstance not implemented")
+}
+func (UnimplementedOneMiddlewareServer) ListZookeeperClusterInstance(context.Context, *ListZookeeperClusterInstanceReq) (*ListZookeeperClusterInstanceReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListZookeeperClusterInstance not implemented")
+}
+func (UnimplementedOneMiddlewareServer) DelZookeeperClusterInstance(context.Context, *DelZookeeperClusterInstanceReq) (*DelZookeeperClusterInstanceReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DelZookeeperClusterInstance not implemented")
+}
+func (UnimplementedOneMiddlewareServer) AddCoreDNSCluster(context.Context, *AddCoreDNSClusterReq) (*AddCoreDNSClusterReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddCoreDNSCluster not implemented")
+}
+func (UnimplementedOneMiddlewareServer) ListCoreDNSCluster(context.Context, *ListCoreDNSClusterReq) (*ListCoreDNSClusterReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListCoreDNSCluster not implemented")
+}
+func (UnimplementedOneMiddlewareServer) DelCoreDNSCluster(context.Context, *DelCoreDNSClusterReq) (*DelCoreDNSClusterReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DelCoreDNSCluster not implemented")
+}
+func (UnimplementedOneMiddlewareServer) AddCoreDNSClusterInstance(context.Context, *AddCoreDNSClusterInstanceReq) (*AddCoreDNSClusterInstanceReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddCoreDNSClusterInstance not implemented")
+}
+func (UnimplementedOneMiddlewareServer) ListCoreDNSClusterInstance(context.Context, *ListCoreDNSClusterInstanceReq) (*ListCoreDNSClusterInstanceReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListCoreDNSClusterInstance not implemented")
+}
+func (UnimplementedOneMiddlewareServer) DelCoreDNSClusterInstance(context.Context, *DelCoreDNSClusterInstanceReq) (*DelCoreDNSClusterInstanceReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DelCoreDNSClusterInstance not implemented")
+}
+func (UnimplementedOneMiddlewareServer) AddXXLJobInstance(context.Context, *AddXXLJobInstanceReq) (*AddXXLJobInstanceReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddXXLJobInstance not implemented")
+}
+func (UnimplementedOneMiddlewareServer) ListXXLJobInstance(context.Context, *ListXXLJobInstanceReq) (*ListXXLJobInstanceReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListXXLJobInstance not implemented")
+}
+func (UnimplementedOneMiddlewareServer) DelXXLJobInstance(context.Context, *DelXXLJobInstanceReq) (*DelXXLJobInstanceReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DelXXLJobInstance not implemented")
+}
+func (UnimplementedOneMiddlewareServer) AddTemporalCluster(context.Context, *AddTemporalClusterReq) (*AddTemporalClusterReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddTemporalCluster not implemented")
+}
+func (UnimplementedOneMiddlewareServer) ListTemporalCluster(context.Context, *ListTemporalClusterReq) (*ListTemporalClusterReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListTemporalCluster not implemented")
+}
+func (UnimplementedOneMiddlewareServer) DelTemporalCluster(context.Context, *DelTemporalClusterReq) (*DelTemporalClusterReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DelTemporalCluster not implemented")
+}
+func (UnimplementedOneMiddlewareServer) AddTemporalClusterWorker(context.Context, *AddTemporalClusterWorkerReq) (*AddTemporalClusterWorkerReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddTemporalClusterWorker not implemented")
+}
+func (UnimplementedOneMiddlewareServer) ListTemporalClusterWorker(context.Context, *ListTemporalClusterWorkerReq) (*ListTemporalClusterWorkerReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListTemporalClusterWorker not implemented")
+}
+func (UnimplementedOneMiddlewareServer) DelTemporalClusterWorker(context.Context, *DelTemporalClusterWorkerReq) (*DelTemporalClusterWorkerReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DelTemporalClusterWorker not implemented")
 }
 func (UnimplementedOneMiddlewareServer) mustEmbedUnimplementedOneMiddlewareServer() {}
 
@@ -74,20 +1114,1244 @@ func RegisterOneMiddlewareServer(s grpc.ServiceRegistrar, srv OneMiddlewareServe
 	s.RegisterService(&OneMiddleware_ServiceDesc, srv)
 }
 
-func _OneMiddleware_ParseIP_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ParseIPReq)
+func _OneMiddleware_AddRedisCluster_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddRedisClusterReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(OneMiddlewareServer).ParseIP(ctx, in)
+		return srv.(OneMiddlewareServer).AddRedisCluster(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: OneMiddleware_ParseIP_FullMethodName,
+		FullMethod: OneMiddleware_AddRedisCluster_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OneMiddlewareServer).ParseIP(ctx, req.(*ParseIPReq))
+		return srv.(OneMiddlewareServer).AddRedisCluster(ctx, req.(*AddRedisClusterReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_ListRedisCluster_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListRedisClusterReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).ListRedisCluster(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_ListRedisCluster_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).ListRedisCluster(ctx, req.(*ListRedisClusterReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_DelRedisCluster_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DelRedisClusterReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).DelRedisCluster(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_DelRedisCluster_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).DelRedisCluster(ctx, req.(*DelRedisClusterReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_AddRedisClusterInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddRedisClusterInstanceReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).AddRedisClusterInstance(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_AddRedisClusterInstance_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).AddRedisClusterInstance(ctx, req.(*AddRedisClusterInstanceReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_DelRedisClusterInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DelRedisClusterInstanceReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).DelRedisClusterInstance(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_DelRedisClusterInstance_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).DelRedisClusterInstance(ctx, req.(*DelRedisClusterInstanceReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_ListRedisClusterInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListRedisClusterInstanceReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).ListRedisClusterInstance(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_ListRedisClusterInstance_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).ListRedisClusterInstance(ctx, req.(*ListRedisClusterInstanceReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_AddMySQLInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddMySQLInstanceReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).AddMySQLInstance(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_AddMySQLInstance_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).AddMySQLInstance(ctx, req.(*AddMySQLInstanceReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_ListMySQLInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListMySQLInstanceReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).ListMySQLInstance(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_ListMySQLInstance_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).ListMySQLInstance(ctx, req.(*ListMySQLInstanceReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_DelMySQLInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DelMySQLInstanceReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).DelMySQLInstance(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_DelMySQLInstance_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).DelMySQLInstance(ctx, req.(*DelMySQLInstanceReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_AddMySQLMasterInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddMySQLMasterInstanceReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).AddMySQLMasterInstance(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_AddMySQLMasterInstance_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).AddMySQLMasterInstance(ctx, req.(*AddMySQLMasterInstanceReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_ListMySQLMasterInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListMySQLMasterInstanceReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).ListMySQLMasterInstance(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_ListMySQLMasterInstance_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).ListMySQLMasterInstance(ctx, req.(*ListMySQLMasterInstanceReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_DelMySQLMasterInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DelMySQLMasterInstanceReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).DelMySQLMasterInstance(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_DelMySQLMasterInstance_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).DelMySQLMasterInstance(ctx, req.(*DelMySQLMasterInstanceReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_AddMySQLSlaveInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddMySQLSlaveInstanceReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).AddMySQLSlaveInstance(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_AddMySQLSlaveInstance_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).AddMySQLSlaveInstance(ctx, req.(*AddMySQLSlaveInstanceReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_ListMySQLSlaveInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListMySQLSlaveInstanceReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).ListMySQLSlaveInstance(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_ListMySQLSlaveInstance_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).ListMySQLSlaveInstance(ctx, req.(*ListMySQLSlaveInstanceReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_DelMySQLSlaveInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DelMySQLSlaveInstanceReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).DelMySQLSlaveInstance(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_DelMySQLSlaveInstance_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).DelMySQLSlaveInstance(ctx, req.(*DelMySQLSlaveInstanceReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_AddRocketMQCluster_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddRocketMQClusterReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).AddRocketMQCluster(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_AddRocketMQCluster_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).AddRocketMQCluster(ctx, req.(*AddRocketMQClusterReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_ListRocketMQCluster_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListRocketMQClusterReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).ListRocketMQCluster(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_ListRocketMQCluster_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).ListRocketMQCluster(ctx, req.(*ListRocketMQClusterReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_DelRocketMQCluster_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DelRocketMQClusterReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).DelRocketMQCluster(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_DelRocketMQCluster_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).DelRocketMQCluster(ctx, req.(*DelRocketMQClusterReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_AddRocketMQClusterBrokerInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddRocketMQClusterBrokerInstanceReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).AddRocketMQClusterBrokerInstance(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_AddRocketMQClusterBrokerInstance_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).AddRocketMQClusterBrokerInstance(ctx, req.(*AddRocketMQClusterBrokerInstanceReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_ListRocketMQClusterBrokerInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListRocketMQClusterBrokerInstanceReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).ListRocketMQClusterBrokerInstance(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_ListRocketMQClusterBrokerInstance_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).ListRocketMQClusterBrokerInstance(ctx, req.(*ListRocketMQClusterBrokerInstanceReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_DelRocketMQClusterBrokerInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DelRocketMQClusterBrokerInstanceReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).DelRocketMQClusterBrokerInstance(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_DelRocketMQClusterBrokerInstance_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).DelRocketMQClusterBrokerInstance(ctx, req.(*DelRocketMQClusterBrokerInstanceReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_AddRocketMQClusterNameServerInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddRocketMQClusterNameServerInstanceReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).AddRocketMQClusterNameServerInstance(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_AddRocketMQClusterNameServerInstance_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).AddRocketMQClusterNameServerInstance(ctx, req.(*AddRocketMQClusterNameServerInstanceReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_ListRocketMQClusterNameServerInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListRocketMQClusterNameServerInstanceReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).ListRocketMQClusterNameServerInstance(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_ListRocketMQClusterNameServerInstance_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).ListRocketMQClusterNameServerInstance(ctx, req.(*ListRocketMQClusterNameServerInstanceReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_DelRocketMQClusterNameServerInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DelRocketMQClusterNameServerInstanceReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).DelRocketMQClusterNameServerInstance(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_DelRocketMQClusterNameServerInstance_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).DelRocketMQClusterNameServerInstance(ctx, req.(*DelRocketMQClusterNameServerInstanceReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_AddKafkaCluster_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddKafkaClusterReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).AddKafkaCluster(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_AddKafkaCluster_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).AddKafkaCluster(ctx, req.(*AddKafkaClusterReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_ListKafkaCluster_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListKafkaClusterReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).ListKafkaCluster(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_ListKafkaCluster_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).ListKafkaCluster(ctx, req.(*ListKafkaClusterReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_DelKafkaCluster_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DelKafkaClusterReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).DelKafkaCluster(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_DelKafkaCluster_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).DelKafkaCluster(ctx, req.(*DelKafkaClusterReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_AddKafkaClusterInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddKafkaClusterInstanceReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).AddKafkaClusterInstance(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_AddKafkaClusterInstance_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).AddKafkaClusterInstance(ctx, req.(*AddKafkaClusterInstanceReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_ListKafkaClusterInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListKafkaClusterInstanceReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).ListKafkaClusterInstance(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_ListKafkaClusterInstance_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).ListKafkaClusterInstance(ctx, req.(*ListKafkaClusterInstanceReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_DelKafkaClusterInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DelKafkaClusterInstanceReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).DelKafkaClusterInstance(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_DelKafkaClusterInstance_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).DelKafkaClusterInstance(ctx, req.(*DelKafkaClusterInstanceReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_AddEtcdCluster_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddEtcdClusterReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).AddEtcdCluster(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_AddEtcdCluster_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).AddEtcdCluster(ctx, req.(*AddEtcdClusterReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_ListEtcdCluster_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListEtcdClusterReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).ListEtcdCluster(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_ListEtcdCluster_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).ListEtcdCluster(ctx, req.(*ListEtcdClusterReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_DelEtcdCluster_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DelEtcdClusterReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).DelEtcdCluster(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_DelEtcdCluster_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).DelEtcdCluster(ctx, req.(*DelEtcdClusterReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_AddEtcdClusterInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddEtcdClusterInstanceReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).AddEtcdClusterInstance(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_AddEtcdClusterInstance_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).AddEtcdClusterInstance(ctx, req.(*AddEtcdClusterInstanceReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_ListEtcdClusterInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListEtcdClusterInstanceReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).ListEtcdClusterInstance(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_ListEtcdClusterInstance_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).ListEtcdClusterInstance(ctx, req.(*ListEtcdClusterInstanceReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_DelEtcdClusterInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DelEtcdClusterInstanceReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).DelEtcdClusterInstance(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_DelEtcdClusterInstance_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).DelEtcdClusterInstance(ctx, req.(*DelEtcdClusterInstanceReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_AddNacosCluster_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddNacosClusterReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).AddNacosCluster(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_AddNacosCluster_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).AddNacosCluster(ctx, req.(*AddNacosClusterReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_ListNacosCluster_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListNacosClusterReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).ListNacosCluster(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_ListNacosCluster_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).ListNacosCluster(ctx, req.(*ListNacosClusterReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_DelNacosCluster_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DelNacosClusterReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).DelNacosCluster(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_DelNacosCluster_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).DelNacosCluster(ctx, req.(*DelNacosClusterReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_AddNacosClusterInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddNacosClusterInstanceReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).AddNacosClusterInstance(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_AddNacosClusterInstance_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).AddNacosClusterInstance(ctx, req.(*AddNacosClusterInstanceReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_ListNacosClusterInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListNacosClusterInstanceReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).ListNacosClusterInstance(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_ListNacosClusterInstance_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).ListNacosClusterInstance(ctx, req.(*ListNacosClusterInstanceReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_DelNacosClusterInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DelNacosClusterInstanceReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).DelNacosClusterInstance(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_DelNacosClusterInstance_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).DelNacosClusterInstance(ctx, req.(*DelNacosClusterInstanceReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_AddConsulCluster_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddConsulClusterReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).AddConsulCluster(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_AddConsulCluster_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).AddConsulCluster(ctx, req.(*AddConsulClusterReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_ListConsulCluster_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListConsulClusterReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).ListConsulCluster(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_ListConsulCluster_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).ListConsulCluster(ctx, req.(*ListConsulClusterReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_DelConsulCluster_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DelConsulClusterReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).DelConsulCluster(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_DelConsulCluster_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).DelConsulCluster(ctx, req.(*DelConsulClusterReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_AddConsulClusterInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddConsulClusterInstanceReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).AddConsulClusterInstance(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_AddConsulClusterInstance_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).AddConsulClusterInstance(ctx, req.(*AddConsulClusterInstanceReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_ListConsulClusterInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListConsulClusterInstanceReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).ListConsulClusterInstance(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_ListConsulClusterInstance_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).ListConsulClusterInstance(ctx, req.(*ListConsulClusterInstanceReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_DelConsulClusterInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DelConsulClusterInstanceReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).DelConsulClusterInstance(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_DelConsulClusterInstance_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).DelConsulClusterInstance(ctx, req.(*DelConsulClusterInstanceReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_AddZookeeperCluster_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddZookeeperClusterReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).AddZookeeperCluster(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_AddZookeeperCluster_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).AddZookeeperCluster(ctx, req.(*AddZookeeperClusterReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_ListZookeeperCluster_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListZookeeperClusterReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).ListZookeeperCluster(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_ListZookeeperCluster_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).ListZookeeperCluster(ctx, req.(*ListZookeeperClusterReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_DelZookeeperCluster_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DelZookeeperClusterReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).DelZookeeperCluster(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_DelZookeeperCluster_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).DelZookeeperCluster(ctx, req.(*DelZookeeperClusterReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_AddZookeeperClusterInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddZookeeperClusterInstanceReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).AddZookeeperClusterInstance(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_AddZookeeperClusterInstance_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).AddZookeeperClusterInstance(ctx, req.(*AddZookeeperClusterInstanceReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_ListZookeeperClusterInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListZookeeperClusterInstanceReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).ListZookeeperClusterInstance(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_ListZookeeperClusterInstance_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).ListZookeeperClusterInstance(ctx, req.(*ListZookeeperClusterInstanceReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_DelZookeeperClusterInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DelZookeeperClusterInstanceReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).DelZookeeperClusterInstance(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_DelZookeeperClusterInstance_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).DelZookeeperClusterInstance(ctx, req.(*DelZookeeperClusterInstanceReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_AddCoreDNSCluster_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddCoreDNSClusterReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).AddCoreDNSCluster(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_AddCoreDNSCluster_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).AddCoreDNSCluster(ctx, req.(*AddCoreDNSClusterReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_ListCoreDNSCluster_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListCoreDNSClusterReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).ListCoreDNSCluster(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_ListCoreDNSCluster_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).ListCoreDNSCluster(ctx, req.(*ListCoreDNSClusterReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_DelCoreDNSCluster_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DelCoreDNSClusterReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).DelCoreDNSCluster(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_DelCoreDNSCluster_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).DelCoreDNSCluster(ctx, req.(*DelCoreDNSClusterReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_AddCoreDNSClusterInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddCoreDNSClusterInstanceReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).AddCoreDNSClusterInstance(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_AddCoreDNSClusterInstance_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).AddCoreDNSClusterInstance(ctx, req.(*AddCoreDNSClusterInstanceReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_ListCoreDNSClusterInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListCoreDNSClusterInstanceReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).ListCoreDNSClusterInstance(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_ListCoreDNSClusterInstance_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).ListCoreDNSClusterInstance(ctx, req.(*ListCoreDNSClusterInstanceReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_DelCoreDNSClusterInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DelCoreDNSClusterInstanceReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).DelCoreDNSClusterInstance(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_DelCoreDNSClusterInstance_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).DelCoreDNSClusterInstance(ctx, req.(*DelCoreDNSClusterInstanceReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_AddXXLJobInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddXXLJobInstanceReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).AddXXLJobInstance(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_AddXXLJobInstance_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).AddXXLJobInstance(ctx, req.(*AddXXLJobInstanceReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_ListXXLJobInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListXXLJobInstanceReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).ListXXLJobInstance(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_ListXXLJobInstance_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).ListXXLJobInstance(ctx, req.(*ListXXLJobInstanceReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_DelXXLJobInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DelXXLJobInstanceReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).DelXXLJobInstance(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_DelXXLJobInstance_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).DelXXLJobInstance(ctx, req.(*DelXXLJobInstanceReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_AddTemporalCluster_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddTemporalClusterReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).AddTemporalCluster(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_AddTemporalCluster_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).AddTemporalCluster(ctx, req.(*AddTemporalClusterReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_ListTemporalCluster_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListTemporalClusterReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).ListTemporalCluster(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_ListTemporalCluster_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).ListTemporalCluster(ctx, req.(*ListTemporalClusterReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_DelTemporalCluster_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DelTemporalClusterReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).DelTemporalCluster(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_DelTemporalCluster_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).DelTemporalCluster(ctx, req.(*DelTemporalClusterReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_AddTemporalClusterWorker_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddTemporalClusterWorkerReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).AddTemporalClusterWorker(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_AddTemporalClusterWorker_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).AddTemporalClusterWorker(ctx, req.(*AddTemporalClusterWorkerReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_ListTemporalClusterWorker_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListTemporalClusterWorkerReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).ListTemporalClusterWorker(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_ListTemporalClusterWorker_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).ListTemporalClusterWorker(ctx, req.(*ListTemporalClusterWorkerReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneMiddleware_DelTemporalClusterWorker_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DelTemporalClusterWorkerReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneMiddlewareServer).DelTemporalClusterWorker(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneMiddleware_DelTemporalClusterWorker_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneMiddlewareServer).DelTemporalClusterWorker(ctx, req.(*DelTemporalClusterWorkerReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -100,8 +2364,280 @@ var OneMiddleware_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*OneMiddlewareServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "ParseIP",
-			Handler:    _OneMiddleware_ParseIP_Handler,
+			MethodName: "AddRedisCluster",
+			Handler:    _OneMiddleware_AddRedisCluster_Handler,
+		},
+		{
+			MethodName: "ListRedisCluster",
+			Handler:    _OneMiddleware_ListRedisCluster_Handler,
+		},
+		{
+			MethodName: "DelRedisCluster",
+			Handler:    _OneMiddleware_DelRedisCluster_Handler,
+		},
+		{
+			MethodName: "AddRedisClusterInstance",
+			Handler:    _OneMiddleware_AddRedisClusterInstance_Handler,
+		},
+		{
+			MethodName: "DelRedisClusterInstance",
+			Handler:    _OneMiddleware_DelRedisClusterInstance_Handler,
+		},
+		{
+			MethodName: "ListRedisClusterInstance",
+			Handler:    _OneMiddleware_ListRedisClusterInstance_Handler,
+		},
+		{
+			MethodName: "AddMySQLInstance",
+			Handler:    _OneMiddleware_AddMySQLInstance_Handler,
+		},
+		{
+			MethodName: "ListMySQLInstance",
+			Handler:    _OneMiddleware_ListMySQLInstance_Handler,
+		},
+		{
+			MethodName: "DelMySQLInstance",
+			Handler:    _OneMiddleware_DelMySQLInstance_Handler,
+		},
+		{
+			MethodName: "AddMySQLMasterInstance",
+			Handler:    _OneMiddleware_AddMySQLMasterInstance_Handler,
+		},
+		{
+			MethodName: "ListMySQLMasterInstance",
+			Handler:    _OneMiddleware_ListMySQLMasterInstance_Handler,
+		},
+		{
+			MethodName: "DelMySQLMasterInstance",
+			Handler:    _OneMiddleware_DelMySQLMasterInstance_Handler,
+		},
+		{
+			MethodName: "AddMySQLSlaveInstance",
+			Handler:    _OneMiddleware_AddMySQLSlaveInstance_Handler,
+		},
+		{
+			MethodName: "ListMySQLSlaveInstance",
+			Handler:    _OneMiddleware_ListMySQLSlaveInstance_Handler,
+		},
+		{
+			MethodName: "DelMySQLSlaveInstance",
+			Handler:    _OneMiddleware_DelMySQLSlaveInstance_Handler,
+		},
+		{
+			MethodName: "AddRocketMQCluster",
+			Handler:    _OneMiddleware_AddRocketMQCluster_Handler,
+		},
+		{
+			MethodName: "ListRocketMQCluster",
+			Handler:    _OneMiddleware_ListRocketMQCluster_Handler,
+		},
+		{
+			MethodName: "DelRocketMQCluster",
+			Handler:    _OneMiddleware_DelRocketMQCluster_Handler,
+		},
+		{
+			MethodName: "AddRocketMQClusterBrokerInstance",
+			Handler:    _OneMiddleware_AddRocketMQClusterBrokerInstance_Handler,
+		},
+		{
+			MethodName: "ListRocketMQClusterBrokerInstance",
+			Handler:    _OneMiddleware_ListRocketMQClusterBrokerInstance_Handler,
+		},
+		{
+			MethodName: "DelRocketMQClusterBrokerInstance",
+			Handler:    _OneMiddleware_DelRocketMQClusterBrokerInstance_Handler,
+		},
+		{
+			MethodName: "AddRocketMQClusterNameServerInstance",
+			Handler:    _OneMiddleware_AddRocketMQClusterNameServerInstance_Handler,
+		},
+		{
+			MethodName: "ListRocketMQClusterNameServerInstance",
+			Handler:    _OneMiddleware_ListRocketMQClusterNameServerInstance_Handler,
+		},
+		{
+			MethodName: "DelRocketMQClusterNameServerInstance",
+			Handler:    _OneMiddleware_DelRocketMQClusterNameServerInstance_Handler,
+		},
+		{
+			MethodName: "AddKafkaCluster",
+			Handler:    _OneMiddleware_AddKafkaCluster_Handler,
+		},
+		{
+			MethodName: "ListKafkaCluster",
+			Handler:    _OneMiddleware_ListKafkaCluster_Handler,
+		},
+		{
+			MethodName: "DelKafkaCluster",
+			Handler:    _OneMiddleware_DelKafkaCluster_Handler,
+		},
+		{
+			MethodName: "AddKafkaClusterInstance",
+			Handler:    _OneMiddleware_AddKafkaClusterInstance_Handler,
+		},
+		{
+			MethodName: "ListKafkaClusterInstance",
+			Handler:    _OneMiddleware_ListKafkaClusterInstance_Handler,
+		},
+		{
+			MethodName: "DelKafkaClusterInstance",
+			Handler:    _OneMiddleware_DelKafkaClusterInstance_Handler,
+		},
+		{
+			MethodName: "AddEtcdCluster",
+			Handler:    _OneMiddleware_AddEtcdCluster_Handler,
+		},
+		{
+			MethodName: "ListEtcdCluster",
+			Handler:    _OneMiddleware_ListEtcdCluster_Handler,
+		},
+		{
+			MethodName: "DelEtcdCluster",
+			Handler:    _OneMiddleware_DelEtcdCluster_Handler,
+		},
+		{
+			MethodName: "AddEtcdClusterInstance",
+			Handler:    _OneMiddleware_AddEtcdClusterInstance_Handler,
+		},
+		{
+			MethodName: "ListEtcdClusterInstance",
+			Handler:    _OneMiddleware_ListEtcdClusterInstance_Handler,
+		},
+		{
+			MethodName: "DelEtcdClusterInstance",
+			Handler:    _OneMiddleware_DelEtcdClusterInstance_Handler,
+		},
+		{
+			MethodName: "AddNacosCluster",
+			Handler:    _OneMiddleware_AddNacosCluster_Handler,
+		},
+		{
+			MethodName: "ListNacosCluster",
+			Handler:    _OneMiddleware_ListNacosCluster_Handler,
+		},
+		{
+			MethodName: "DelNacosCluster",
+			Handler:    _OneMiddleware_DelNacosCluster_Handler,
+		},
+		{
+			MethodName: "AddNacosClusterInstance",
+			Handler:    _OneMiddleware_AddNacosClusterInstance_Handler,
+		},
+		{
+			MethodName: "ListNacosClusterInstance",
+			Handler:    _OneMiddleware_ListNacosClusterInstance_Handler,
+		},
+		{
+			MethodName: "DelNacosClusterInstance",
+			Handler:    _OneMiddleware_DelNacosClusterInstance_Handler,
+		},
+		{
+			MethodName: "AddConsulCluster",
+			Handler:    _OneMiddleware_AddConsulCluster_Handler,
+		},
+		{
+			MethodName: "ListConsulCluster",
+			Handler:    _OneMiddleware_ListConsulCluster_Handler,
+		},
+		{
+			MethodName: "DelConsulCluster",
+			Handler:    _OneMiddleware_DelConsulCluster_Handler,
+		},
+		{
+			MethodName: "AddConsulClusterInstance",
+			Handler:    _OneMiddleware_AddConsulClusterInstance_Handler,
+		},
+		{
+			MethodName: "ListConsulClusterInstance",
+			Handler:    _OneMiddleware_ListConsulClusterInstance_Handler,
+		},
+		{
+			MethodName: "DelConsulClusterInstance",
+			Handler:    _OneMiddleware_DelConsulClusterInstance_Handler,
+		},
+		{
+			MethodName: "AddZookeeperCluster",
+			Handler:    _OneMiddleware_AddZookeeperCluster_Handler,
+		},
+		{
+			MethodName: "ListZookeeperCluster",
+			Handler:    _OneMiddleware_ListZookeeperCluster_Handler,
+		},
+		{
+			MethodName: "DelZookeeperCluster",
+			Handler:    _OneMiddleware_DelZookeeperCluster_Handler,
+		},
+		{
+			MethodName: "AddZookeeperClusterInstance",
+			Handler:    _OneMiddleware_AddZookeeperClusterInstance_Handler,
+		},
+		{
+			MethodName: "ListZookeeperClusterInstance",
+			Handler:    _OneMiddleware_ListZookeeperClusterInstance_Handler,
+		},
+		{
+			MethodName: "DelZookeeperClusterInstance",
+			Handler:    _OneMiddleware_DelZookeeperClusterInstance_Handler,
+		},
+		{
+			MethodName: "AddCoreDNSCluster",
+			Handler:    _OneMiddleware_AddCoreDNSCluster_Handler,
+		},
+		{
+			MethodName: "ListCoreDNSCluster",
+			Handler:    _OneMiddleware_ListCoreDNSCluster_Handler,
+		},
+		{
+			MethodName: "DelCoreDNSCluster",
+			Handler:    _OneMiddleware_DelCoreDNSCluster_Handler,
+		},
+		{
+			MethodName: "AddCoreDNSClusterInstance",
+			Handler:    _OneMiddleware_AddCoreDNSClusterInstance_Handler,
+		},
+		{
+			MethodName: "ListCoreDNSClusterInstance",
+			Handler:    _OneMiddleware_ListCoreDNSClusterInstance_Handler,
+		},
+		{
+			MethodName: "DelCoreDNSClusterInstance",
+			Handler:    _OneMiddleware_DelCoreDNSClusterInstance_Handler,
+		},
+		{
+			MethodName: "AddXXLJobInstance",
+			Handler:    _OneMiddleware_AddXXLJobInstance_Handler,
+		},
+		{
+			MethodName: "ListXXLJobInstance",
+			Handler:    _OneMiddleware_ListXXLJobInstance_Handler,
+		},
+		{
+			MethodName: "DelXXLJobInstance",
+			Handler:    _OneMiddleware_DelXXLJobInstance_Handler,
+		},
+		{
+			MethodName: "AddTemporalCluster",
+			Handler:    _OneMiddleware_AddTemporalCluster_Handler,
+		},
+		{
+			MethodName: "ListTemporalCluster",
+			Handler:    _OneMiddleware_ListTemporalCluster_Handler,
+		},
+		{
+			MethodName: "DelTemporalCluster",
+			Handler:    _OneMiddleware_DelTemporalCluster_Handler,
+		},
+		{
+			MethodName: "AddTemporalClusterWorker",
+			Handler:    _OneMiddleware_AddTemporalClusterWorker_Handler,
+		},
+		{
+			MethodName: "ListTemporalClusterWorker",
+			Handler:    _OneMiddleware_ListTemporalClusterWorker_Handler,
+		},
+		{
+			MethodName: "DelTemporalClusterWorker",
+			Handler:    _OneMiddleware_DelTemporalClusterWorker_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

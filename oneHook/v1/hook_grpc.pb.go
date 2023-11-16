@@ -34,6 +34,8 @@ const (
 	OneHook_SkywalkingAlert_FullMethodName               = "/oneHook.v1.OneHook/SkywalkingAlert"
 	OneHook_SystemAudit_FullMethodName                   = "/oneHook.v1.OneHook/SystemAudit"
 	OneHook_CloudSubScribe_FullMethodName                = "/oneHook.v1.OneHook/CloudSubScribe"
+	OneHook_GenerateWebDiagUrl_FullMethodName            = "/oneHook.v1.OneHook/GenerateWebDiagUrl"
+	OneHook_WebDiag_FullMethodName                       = "/oneHook.v1.OneHook/WebDiag"
 )
 
 // OneHookClient is the client API for OneHook service.
@@ -59,6 +61,9 @@ type OneHookClient interface {
 	SkywalkingAlert(ctx context.Context, in *SkywalkingAlertReq, opts ...grpc.CallOption) (*SkywalkingAlertReply, error)
 	SystemAudit(ctx context.Context, in *SystemAuditReq, opts ...grpc.CallOption) (*SystemAuditReply, error)
 	CloudSubScribe(ctx context.Context, in *CloudSubScribeReq, opts ...grpc.CallOption) (*CloudSubScribeReply, error)
+	// Diag
+	GenerateWebDiagUrl(ctx context.Context, in *GenerateWebDiagUrlReq, opts ...grpc.CallOption) (*GenerateWebDiagUrlReply, error)
+	WebDiag(ctx context.Context, in *WebDiagReq, opts ...grpc.CallOption) (*WebDiagReply, error)
 }
 
 type oneHookClient struct {
@@ -204,6 +209,24 @@ func (c *oneHookClient) CloudSubScribe(ctx context.Context, in *CloudSubScribeRe
 	return out, nil
 }
 
+func (c *oneHookClient) GenerateWebDiagUrl(ctx context.Context, in *GenerateWebDiagUrlReq, opts ...grpc.CallOption) (*GenerateWebDiagUrlReply, error) {
+	out := new(GenerateWebDiagUrlReply)
+	err := c.cc.Invoke(ctx, OneHook_GenerateWebDiagUrl_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneHookClient) WebDiag(ctx context.Context, in *WebDiagReq, opts ...grpc.CallOption) (*WebDiagReply, error) {
+	out := new(WebDiagReply)
+	err := c.cc.Invoke(ctx, OneHook_WebDiag_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // OneHookServer is the server API for OneHook service.
 // All implementations must embed UnimplementedOneHookServer
 // for forward compatibility
@@ -227,6 +250,9 @@ type OneHookServer interface {
 	SkywalkingAlert(context.Context, *SkywalkingAlertReq) (*SkywalkingAlertReply, error)
 	SystemAudit(context.Context, *SystemAuditReq) (*SystemAuditReply, error)
 	CloudSubScribe(context.Context, *CloudSubScribeReq) (*CloudSubScribeReply, error)
+	// Diag
+	GenerateWebDiagUrl(context.Context, *GenerateWebDiagUrlReq) (*GenerateWebDiagUrlReply, error)
+	WebDiag(context.Context, *WebDiagReq) (*WebDiagReply, error)
 	mustEmbedUnimplementedOneHookServer()
 }
 
@@ -278,6 +304,12 @@ func (UnimplementedOneHookServer) SystemAudit(context.Context, *SystemAuditReq) 
 }
 func (UnimplementedOneHookServer) CloudSubScribe(context.Context, *CloudSubScribeReq) (*CloudSubScribeReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CloudSubScribe not implemented")
+}
+func (UnimplementedOneHookServer) GenerateWebDiagUrl(context.Context, *GenerateWebDiagUrlReq) (*GenerateWebDiagUrlReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GenerateWebDiagUrl not implemented")
+}
+func (UnimplementedOneHookServer) WebDiag(context.Context, *WebDiagReq) (*WebDiagReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method WebDiag not implemented")
 }
 func (UnimplementedOneHookServer) mustEmbedUnimplementedOneHookServer() {}
 
@@ -562,6 +594,42 @@ func _OneHook_CloudSubScribe_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _OneHook_GenerateWebDiagUrl_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GenerateWebDiagUrlReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneHookServer).GenerateWebDiagUrl(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneHook_GenerateWebDiagUrl_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneHookServer).GenerateWebDiagUrl(ctx, req.(*GenerateWebDiagUrlReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneHook_WebDiag_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WebDiagReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneHookServer).WebDiag(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneHook_WebDiag_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneHookServer).WebDiag(ctx, req.(*WebDiagReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // OneHook_ServiceDesc is the grpc.ServiceDesc for OneHook service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -628,6 +696,14 @@ var OneHook_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CloudSubScribe",
 			Handler:    _OneHook_CloudSubScribe_Handler,
+		},
+		{
+			MethodName: "GenerateWebDiagUrl",
+			Handler:    _OneHook_GenerateWebDiagUrl_Handler,
+		},
+		{
+			MethodName: "WebDiag",
+			Handler:    _OneHook_WebDiag_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

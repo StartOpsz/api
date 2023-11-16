@@ -10,12 +10,560 @@ option go_package = "github.com/startopsz/oneMiddleware/api/middleware/v1;v1";
 
 
 service oneMiddleware {
-  rpc ParseIP (ParseIPReq) returns (ParseIPReply);
+  // redis
+  //rpc AddRedisInstance (AddRedisInstanceReq) returns (AddRedisInstanceReply);
+  //rpc ListRedisInstance (ListRedisInstanceReq) returns (ListRedisInstanceReply);
+  //rpc DelRedisResource (DelRedisInstanceReq) returns (DelRedisInstanceReply);
+
+  rpc AddRedisCluster (AddRedisClusterReq) returns (AddRedisClusterReply);
+  rpc ListRedisCluster (ListRedisClusterReq) returns (ListRedisClusterReply);
+  rpc DelRedisCluster (DelRedisClusterReq) returns (DelRedisClusterReply);
+
+  rpc AddRedisClusterInstance (AddRedisClusterInstanceReq) returns (AddRedisClusterInstanceReply);
+  rpc DelRedisClusterInstance (DelRedisClusterInstanceReq) returns (DelRedisClusterInstanceReply);
+  rpc ListRedisClusterInstance (ListRedisClusterInstanceReq) returns (ListRedisClusterInstanceReply);
+
+  // mysql
+  rpc AddMySQLInstance (AddMySQLInstanceReq) returns (AddMySQLInstanceReply);
+  rpc ListMySQLInstance (ListMySQLInstanceReq) returns (ListMySQLInstanceReply);
+  rpc DelMySQLInstance (DelMySQLInstanceReq) returns (DelMySQLInstanceReply);
+
+  rpc AddMySQLMasterInstance (AddMySQLMasterInstanceReq) returns (AddMySQLMasterInstanceReply);
+  rpc ListMySQLMasterInstance (ListMySQLMasterInstanceReq) returns (ListMySQLMasterInstanceReply);
+  rpc DelMySQLMasterInstance (DelMySQLMasterInstanceReq) returns (DelMySQLMasterInstanceReply);
+
+  rpc AddMySQLSlaveInstance (AddMySQLSlaveInstanceReq) returns (AddMySQLSlaveInstanceReply);
+  rpc ListMySQLSlaveInstance (ListMySQLSlaveInstanceReq) returns (ListMySQLSlaveInstanceReply);
+  rpc DelMySQLSlaveInstance (DelMySQLSlaveInstanceReq) returns (DelMySQLSlaveInstanceReply);
+
+  // RocketMQ
+  rpc AddRocketMQCluster (AddRocketMQClusterReq) returns (AddRocketMQClusterReply);
+  rpc ListRocketMQCluster (ListRocketMQClusterReq) returns (ListRocketMQClusterReply);
+  rpc DelRocketMQCluster (DelRocketMQClusterReq) returns (DelRocketMQClusterReply);
+
+  rpc AddRocketMQClusterBrokerInstance (AddRocketMQClusterBrokerInstanceReq) returns (AddRocketMQClusterBrokerInstanceReply);
+  rpc ListRocketMQClusterBrokerInstance (ListRocketMQClusterBrokerInstanceReq) returns (ListRocketMQClusterBrokerInstanceReply);
+  rpc DelRocketMQClusterBrokerInstance (DelRocketMQClusterBrokerInstanceReq) returns (DelRocketMQClusterBrokerInstanceReply);
+
+  rpc AddRocketMQClusterNameServerInstance (AddRocketMQClusterNameServerInstanceReq) returns (AddRocketMQClusterNameServerInstanceReply);
+  rpc ListRocketMQClusterNameServerInstance (ListRocketMQClusterNameServerInstanceReq) returns (ListRocketMQClusterNameServerInstanceReply);
+  rpc DelRocketMQClusterNameServerInstance (DelRocketMQClusterNameServerInstanceReq) returns (DelRocketMQClusterNameServerInstanceReply);
+
+  // Kafka
+  rpc AddKafkaCluster (AddKafkaClusterReq) returns (AddKafkaClusterReply);
+  rpc ListKafkaCluster (ListKafkaClusterReq) returns (ListKafkaClusterReply);
+  rpc DelKafkaCluster (DelKafkaClusterReq) returns (DelKafkaClusterReply);
+
+  rpc AddKafkaClusterInstance (AddKafkaClusterInstanceReq) returns (AddKafkaClusterInstanceReply);
+  rpc ListKafkaClusterInstance (ListKafkaClusterInstanceReq) returns (ListKafkaClusterInstanceReply);
+  rpc DelKafkaClusterInstance (DelKafkaClusterInstanceReq) returns (DelKafkaClusterInstanceReply);
+
+  // Etcd
+  rpc AddEtcdCluster (AddEtcdClusterReq) returns (AddEtcdClusterReply);
+  rpc ListEtcdCluster (ListEtcdClusterReq) returns (ListEtcdClusterReply);
+  rpc DelEtcdCluster (DelEtcdClusterReq) returns (DelEtcdClusterReply);
+
+  rpc AddEtcdClusterInstance (AddEtcdClusterInstanceReq) returns (AddEtcdClusterInstanceReply);
+  rpc ListEtcdClusterInstance (ListEtcdClusterInstanceReq) returns (ListEtcdClusterInstanceReply);
+  rpc DelEtcdClusterInstance (DelEtcdClusterInstanceReq) returns (DelEtcdClusterInstanceReply);
+
+  // Nacos
+  rpc AddNacosCluster (AddNacosClusterReq) returns (AddNacosClusterReply);
+  rpc ListNacosCluster (ListNacosClusterReq) returns (ListNacosClusterReply);
+  rpc DelNacosCluster (DelNacosClusterReq) returns (DelNacosClusterReply);
+
+  rpc AddNacosClusterInstance (AddNacosClusterInstanceReq) returns (AddNacosClusterInstanceReply);
+  rpc ListNacosClusterInstance (ListNacosClusterInstanceReq) returns (ListNacosClusterInstanceReply);
+  rpc DelNacosClusterInstance (DelNacosClusterInstanceReq) returns (DelNacosClusterInstanceReply);
+
+  // Consul
+  rpc AddConsulCluster (AddConsulClusterReq) returns (AddConsulClusterReply);
+  rpc ListConsulCluster (ListConsulClusterReq) returns (ListConsulClusterReply);
+  rpc DelConsulCluster (DelConsulClusterReq) returns (DelConsulClusterReply);
+
+  rpc AddConsulClusterInstance (AddConsulClusterInstanceReq) returns (AddConsulClusterInstanceReply);
+  rpc ListConsulClusterInstance (ListConsulClusterInstanceReq) returns (ListConsulClusterInstanceReply);
+  rpc DelConsulClusterInstance (DelConsulClusterInstanceReq) returns (DelConsulClusterInstanceReply);
+
+  // Zookeeper
+  rpc AddZookeeperCluster (AddZookeeperClusterReq) returns (AddZookeeperClusterReply);
+  rpc ListZookeeperCluster (ListZookeeperClusterReq) returns (ListZookeeperClusterReply);
+  rpc DelZookeeperCluster (DelZookeeperClusterReq) returns (DelZookeeperClusterReply);
+
+  rpc AddZookeeperClusterInstance (AddZookeeperClusterInstanceReq) returns (AddZookeeperClusterInstanceReply);
+  rpc ListZookeeperClusterInstance (ListZookeeperClusterInstanceReq) returns (ListZookeeperClusterInstanceReply);
+  rpc DelZookeeperClusterInstance (DelZookeeperClusterInstanceReq) returns (DelZookeeperClusterInstanceReply);
+
+
+  // CoreDNS
+  rpc AddCoreDNSCluster (AddCoreDNSClusterReq) returns (AddCoreDNSClusterReply);
+  rpc ListCoreDNSCluster (ListCoreDNSClusterReq) returns (ListCoreDNSClusterReply);
+  rpc DelCoreDNSCluster (DelCoreDNSClusterReq) returns (DelCoreDNSClusterReply);
+
+  rpc AddCoreDNSClusterInstance (AddCoreDNSClusterInstanceReq) returns (AddCoreDNSClusterInstanceReply);
+  rpc ListCoreDNSClusterInstance (ListCoreDNSClusterInstanceReq) returns (ListCoreDNSClusterInstanceReply);
+  rpc DelCoreDNSClusterInstance (DelCoreDNSClusterInstanceReq) returns (DelCoreDNSClusterInstanceReply);
+
+
+  // XXLJob
+  rpc AddXXLJobInstance (AddXXLJobInstanceReq) returns (AddXXLJobInstanceReply);
+  rpc ListXXLJobInstance (ListXXLJobInstanceReq) returns (ListXXLJobInstanceReply);
+  rpc DelXXLJobInstance (DelXXLJobInstanceReq) returns (DelXXLJobInstanceReply);
+
+
+  // Temporal
+  rpc AddTemporalCluster (AddTemporalClusterReq) returns (AddTemporalClusterReply);
+  rpc ListTemporalCluster (ListTemporalClusterReq) returns (ListTemporalClusterReply);
+  rpc DelTemporalCluster (DelTemporalClusterReq) returns (DelTemporalClusterReply);
+
+  rpc AddTemporalClusterWorker (AddTemporalClusterWorkerReq) returns (AddTemporalClusterWorkerReply);
+  rpc ListTemporalClusterWorker (ListTemporalClusterWorkerReq) returns (ListTemporalClusterWorkerReply);
+  rpc DelTemporalClusterWorker (DelTemporalClusterWorkerReq) returns (DelTemporalClusterWorkerReply);
 }
 
-message ParseIPReq {
-  string ipAddr = 1;
+//
+message AddRedisClusterReq {
+
 }
-message ParseIPReply {
+message AddRedisClusterReply {
+
+}
+message ListRedisClusterReq {
+
+}
+message ListRedisClusterReply {
+
+}
+message DelRedisClusterReq {
+
+}
+message DelRedisClusterReply {
+
+}
+
+//
+message AddRedisClusterInstanceReq {
+
+}
+message AddRedisClusterInstanceReply {
+
+}
+message DelRedisClusterInstanceReq {
+
+}
+message DelRedisClusterInstanceReply {
+
+}
+message ListRedisClusterInstanceReq {
+
+}
+message ListRedisClusterInstanceReply {
+
+}
+
+//
+message AddMySQLInstanceReq {
+
+}
+message AddMySQLInstanceReply {
+
+}
+message ListMySQLInstanceReq {
+
+}
+message ListMySQLInstanceReply {
+
+}
+message DelMySQLInstanceReq {
+
+}
+message DelMySQLInstanceReply {
+
+}
+
+//
+message AddMySQLMasterInstanceReq {
+
+}
+message AddMySQLMasterInstanceReply {
+
+}
+message ListMySQLMasterInstanceReq {
+
+}
+message ListMySQLMasterInstanceReply {
+
+}
+message DelMySQLMasterInstanceReq {
+
+}
+message DelMySQLMasterInstanceReply {
+
+}
+message AddMySQLSlaveInstanceReq {
+
+}
+message AddMySQLSlaveInstanceReply {
+
+}
+message ListMySQLSlaveInstanceReq {
+
+}
+message ListMySQLSlaveInstanceReply {
+
+}
+message DelMySQLSlaveInstanceReq {
+
+}
+message DelMySQLSlaveInstanceReply {
+
+}
+
+//
+message AddRocketMQClusterReq {
+
+}
+message AddRocketMQClusterReply {
+
+}
+message ListRocketMQClusterReq {
+
+}
+message ListRocketMQClusterReply {
+
+}
+message DelRocketMQClusterReq {
+
+}
+message DelRocketMQClusterReply {
+
+}
+message AddRocketMQClusterBrokerInstanceReq {
+
+}
+message AddRocketMQClusterBrokerInstanceReply {
+
+}
+message ListRocketMQClusterBrokerInstanceReq {
+
+}
+message ListRocketMQClusterBrokerInstanceReply {
+
+}
+message DelRocketMQClusterBrokerInstanceReq {
+
+}
+message DelRocketMQClusterBrokerInstanceReply {
+
+}
+message AddRocketMQClusterNameServerInstanceReq {
+
+}
+message AddRocketMQClusterNameServerInstanceReply {
+
+}
+message ListRocketMQClusterNameServerInstanceReq {
+
+}
+message ListRocketMQClusterNameServerInstanceReply {
+
+}
+message DelRocketMQClusterNameServerInstanceReq {
+
+}
+message DelRocketMQClusterNameServerInstanceReply {
+
+}
+//
+
+message AddKafkaClusterReq {
+
+}
+message AddKafkaClusterReply {
+
+}
+message ListKafkaClusterReq {
+
+}
+message ListKafkaClusterReply {
+
+}
+message DelKafkaClusterReq {
+
+}
+message DelKafkaClusterReply {
+
+}
+message AddKafkaClusterInstanceReq {
+
+}
+message AddKafkaClusterInstanceReply {
+
+}
+message ListKafkaClusterInstanceReq {
+
+}
+message ListKafkaClusterInstanceReply {
+
+}
+message DelKafkaClusterInstanceReq {
+
+}
+message DelKafkaClusterInstanceReply {
+
+}
+
+//
+message AddEtcdClusterReq {
+
+}
+message AddEtcdClusterReply {
+
+}
+message ListEtcdClusterReq {
+
+}
+message ListEtcdClusterReply {
+
+}
+message DelEtcdClusterReq {
+
+}
+message DelEtcdClusterReply {
+
+}
+message AddEtcdClusterInstanceReq {
+
+}
+message AddEtcdClusterInstanceReply {
+
+}
+message ListEtcdClusterInstanceReq {
+
+}
+message ListEtcdClusterInstanceReply {
+
+}
+message DelEtcdClusterInstanceReq {
+
+}
+message DelEtcdClusterInstanceReply {
+
+}
+
+//
+message AddNacosClusterReq {
+
+}
+message AddNacosClusterReply {
+
+}
+message ListNacosClusterReq {
+
+}
+message ListNacosClusterReply {
+
+}
+message DelNacosClusterReq {
+
+}
+message DelNacosClusterReply {
+
+}
+message AddNacosClusterInstanceReq {
+
+}
+message AddNacosClusterInstanceReply {
+
+}
+message ListNacosClusterInstanceReq {
+
+}
+message ListNacosClusterInstanceReply {
+
+}
+message DelNacosClusterInstanceReq {
+
+}
+message DelNacosClusterInstanceReply {
+
+}
+
+//
+message AddConsulClusterReq {
+
+}
+message AddConsulClusterReply {
+
+}
+message ListConsulClusterReq {
+
+}
+message ListConsulClusterReply {
+
+}
+message DelConsulClusterReq {
+
+}
+message DelConsulClusterReply {
+
+}
+message AddConsulClusterInstanceReq {
+
+}
+message AddConsulClusterInstanceReply {
+
+}
+message ListConsulClusterInstanceReq {
+
+}
+message ListConsulClusterInstanceReply {
+
+}
+message DelConsulClusterInstanceReq {
+
+}
+message DelConsulClusterInstanceReply {
+
+}
+//
+message AddZookeeperClusterReq {
+
+}
+
+message AddZookeeperClusterReply {
+
+}
+
+message ListZookeeperClusterReq {
+
+}
+message ListZookeeperClusterReply {
+
+}
+
+message DelZookeeperClusterReq {
+
+}
+message DelZookeeperClusterReply {
+
+}
+
+message AddZookeeperClusterInstanceReq {
+
+}
+message AddZookeeperClusterInstanceReply {
+
+}
+
+
+message ListZookeeperClusterInstanceReq {
+
+}
+
+message ListZookeeperClusterInstanceReply {
+
+}
+
+message DelZookeeperClusterInstanceReq {
+
+}
+message DelZookeeperClusterInstanceReply {
+
+}
+
+//
+message AddCoreDNSClusterReq {
+
+}
+message AddCoreDNSClusterReply {
+
+}
+message ListCoreDNSClusterReq {
+
+}
+message ListCoreDNSClusterReply {
+
+}
+message DelCoreDNSClusterReq {
+
+}
+message DelCoreDNSClusterReply {
+
+}
+message AddCoreDNSClusterInstanceReq {
+
+}
+message AddCoreDNSClusterInstanceReply {
+
+}
+message ListCoreDNSClusterInstanceReq {
+
+}
+message ListCoreDNSClusterInstanceReply {
+
+}
+message DelCoreDNSClusterInstanceReq {
+
+}
+message DelCoreDNSClusterInstanceReply {
+
+}
+
+//
+message AddXXLJobInstanceReq {
+
+}
+message AddXXLJobInstanceReply {
+
+}
+message ListXXLJobInstanceReq {
+
+}
+message ListXXLJobInstanceReply {
+
+}
+message DelXXLJobInstanceReq {
+
+}
+message DelXXLJobInstanceReply {
+
+}
+
+//
+message AddTemporalClusterReq {
+
+}
+message AddTemporalClusterReply {
+
+}
+message ListTemporalClusterReq {
+
+}
+message ListTemporalClusterReply {
+
+}
+message DelTemporalClusterReq {
+
+}
+message DelTemporalClusterReply {
+
+}
+message AddTemporalClusterWorkerReq {
+
+}
+message AddTemporalClusterWorkerReply {
+
+}
+message ListTemporalClusterWorkerReq {
+
+}
+message ListTemporalClusterWorkerReply {
+
+}
+message DelTemporalClusterWorkerReq {
+
+}
+message DelTemporalClusterWorkerReply {
 
 }
