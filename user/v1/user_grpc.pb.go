@@ -65,7 +65,7 @@ type UserClient interface {
 	// 1.1 注册用户
 	GetRegisterUserVerifyCode(ctx context.Context, in *GetRegisterUserVerifyCodeReq, opts ...grpc.CallOption) (*GetRegisterUserVerifyCodeReply, error)
 	Register(ctx context.Context, in *RegisterUserReq, opts ...grpc.CallOption) (*RegisterUserReply, error)
-	//rpc RegisterFromDingTalk (RegisterDingTalkUserReq) returns (RegisterDingTalkUserReply) {};
+	// rpc RegisterFromDingTalk (RegisterDingTalkUserReq) returns (RegisterDingTalkUserReply) {};
 	// 1.2 验证用户是否存在
 	ExistUser(ctx context.Context, in *ExistUserReq, opts ...grpc.CallOption) (*ExistUserReply, error)
 	// 1.3 更新用户密码
@@ -88,7 +88,7 @@ type UserClient interface {
 	// 2.1 创建组织
 	CreateOrganization(ctx context.Context, in *CreateOrganizationReq, opts ...grpc.CallOption) (*CreateOrganizationReply, error)
 	// 获取组织
-	//rpc GetOrganization (GetOrganizationReq) returns (GetOrganizationReply) {};
+	// rpc GetOrganization (GetOrganizationReq) returns (GetOrganizationReply) {};
 	// 2.2 删除组织
 	DelOrganization(ctx context.Context, in *DelOrganizationReq, opts ...grpc.CallOption) (*DelOrganizationReply, error)
 	// 2.3.1 用户加入组织
@@ -487,7 +487,7 @@ type UserServer interface {
 	// 1.1 注册用户
 	GetRegisterUserVerifyCode(context.Context, *GetRegisterUserVerifyCodeReq) (*GetRegisterUserVerifyCodeReply, error)
 	Register(context.Context, *RegisterUserReq) (*RegisterUserReply, error)
-	//rpc RegisterFromDingTalk (RegisterDingTalkUserReq) returns (RegisterDingTalkUserReply) {};
+	// rpc RegisterFromDingTalk (RegisterDingTalkUserReq) returns (RegisterDingTalkUserReply) {};
 	// 1.2 验证用户是否存在
 	ExistUser(context.Context, *ExistUserReq) (*ExistUserReply, error)
 	// 1.3 更新用户密码
@@ -510,7 +510,7 @@ type UserServer interface {
 	// 2.1 创建组织
 	CreateOrganization(context.Context, *CreateOrganizationReq) (*CreateOrganizationReply, error)
 	// 获取组织
-	//rpc GetOrganization (GetOrganizationReq) returns (GetOrganizationReply) {};
+	// rpc GetOrganization (GetOrganizationReq) returns (GetOrganizationReply) {};
 	// 2.2 删除组织
 	DelOrganization(context.Context, *DelOrganizationReq) (*DelOrganizationReply, error)
 	// 2.3.1 用户加入组织

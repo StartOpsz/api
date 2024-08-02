@@ -38,20 +38,16 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type JumpServerClient interface {
-	//
 	AddUserPublicKey(ctx context.Context, in *AddUserPublicKeyReq, opts ...grpc.CallOption) (*AddUserPublicKeyReply, error)
 	UpdateUserPublicKey(ctx context.Context, in *UpdateUserPublicKeyReq, opts ...grpc.CallOption) (*UpdateUserPublicKeyReply, error)
 	GetUserPublicKey(ctx context.Context, in *GetUserPublicKeyReq, opts ...grpc.CallOption) (*GetUserPublicKeyReply, error)
 	DelUserPublicKey(ctx context.Context, in *DelUserPublicKeyReq, opts ...grpc.CallOption) (*DelUserPublicKeyReply, error)
-	//
 	GeneratePrivateKey(ctx context.Context, in *GeneratePrivateKeyReq, opts ...grpc.CallOption) (*GeneratePrivateKeyReply, error)
 	ListPrivateKey(ctx context.Context, in *ListPrivateKeyReq, opts ...grpc.CallOption) (*ListPrivateKeyReply, error)
 	GetPrivateKey(ctx context.Context, in *GetPrivateKeyReq, opts ...grpc.CallOption) (*GetPrivateKeyReply, error)
 	DelPrivateKey(ctx context.Context, in *DelPrivateKeyReq, opts ...grpc.CallOption) (*DelPrivateKeyReply, error)
-	//
 	AddDomain(ctx context.Context, in *AddDomainReq, opts ...grpc.CallOption) (*AddDomainReply, error)
 	ListDomain(ctx context.Context, in *ListDomainReq, opts ...grpc.CallOption) (*ListDomainReply, error)
-	//
 	AddHost(ctx context.Context, in *AddHostReq, opts ...grpc.CallOption) (*AddHostReply, error)
 	ListHost(ctx context.Context, in *ListHostReq, opts ...grpc.CallOption) (*ListHostReply, error)
 	DelHost(ctx context.Context, in *DelHostReq, opts ...grpc.CallOption) (*DelHostReply, error)
@@ -186,20 +182,16 @@ func (c *jumpServerClient) DelHost(ctx context.Context, in *DelHostReq, opts ...
 // All implementations must embed UnimplementedJumpServerServer
 // for forward compatibility
 type JumpServerServer interface {
-	//
 	AddUserPublicKey(context.Context, *AddUserPublicKeyReq) (*AddUserPublicKeyReply, error)
 	UpdateUserPublicKey(context.Context, *UpdateUserPublicKeyReq) (*UpdateUserPublicKeyReply, error)
 	GetUserPublicKey(context.Context, *GetUserPublicKeyReq) (*GetUserPublicKeyReply, error)
 	DelUserPublicKey(context.Context, *DelUserPublicKeyReq) (*DelUserPublicKeyReply, error)
-	//
 	GeneratePrivateKey(context.Context, *GeneratePrivateKeyReq) (*GeneratePrivateKeyReply, error)
 	ListPrivateKey(context.Context, *ListPrivateKeyReq) (*ListPrivateKeyReply, error)
 	GetPrivateKey(context.Context, *GetPrivateKeyReq) (*GetPrivateKeyReply, error)
 	DelPrivateKey(context.Context, *DelPrivateKeyReq) (*DelPrivateKeyReply, error)
-	//
 	AddDomain(context.Context, *AddDomainReq) (*AddDomainReply, error)
 	ListDomain(context.Context, *ListDomainReq) (*ListDomainReply, error)
-	//
 	AddHost(context.Context, *AddHostReq) (*AddHostReply, error)
 	ListHost(context.Context, *ListHostReq) (*ListHostReply, error)
 	DelHost(context.Context, *DelHostReq) (*DelHostReply, error)

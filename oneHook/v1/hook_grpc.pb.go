@@ -50,14 +50,12 @@ type OneHookClient interface {
 	// Kubernetes Event
 	KubernetesEvent(ctx context.Context, in *KubernetesEventReq, opts ...grpc.CallOption) (*KubernetesEventReply, error)
 	GetKubernetesEvent(ctx context.Context, in *GetKubernetesEventReq, opts ...grpc.CallOption) (*GetKubernetesEventReply, error)
-	//
 	CreateMonitorReceiver(ctx context.Context, in *CreateMonitorReceiverReq, opts ...grpc.CallOption) (*CreateMonitorReceiverReply, error)
 	ListMonitorReceiver(ctx context.Context, in *ListMonitorReceiverReq, opts ...grpc.CallOption) (*ListMonitorReceiverReply, error)
 	DelMonitorReceiver(ctx context.Context, in *DelMonitorReceiverReq, opts ...grpc.CallOption) (*DelMonitorReceiverReply, error)
 	CreateKubernetesEventReceiver(ctx context.Context, in *CreateKubernetesEventReceiverReq, opts ...grpc.CallOption) (*CreateKubernetesEventReceiverReply, error)
 	GetKubernetesEventReceiver(ctx context.Context, in *GetKubernetesEventReceiverReq, opts ...grpc.CallOption) (*GetKubernetesEventReceiverReply, error)
 	DelKubernetesEventReceiver(ctx context.Context, in *DelKubernetesEventReceiverReq, opts ...grpc.CallOption) (*DelKubernetesEventReceiverReply, error)
-	//
 	SkywalkingAlert(ctx context.Context, in *SkywalkingAlertReq, opts ...grpc.CallOption) (*SkywalkingAlertReply, error)
 	SystemAudit(ctx context.Context, in *SystemAuditReq, opts ...grpc.CallOption) (*SystemAuditReply, error)
 	CloudSubScribe(ctx context.Context, in *CloudSubScribeReq, opts ...grpc.CallOption) (*CloudSubScribeReply, error)
@@ -239,14 +237,12 @@ type OneHookServer interface {
 	// Kubernetes Event
 	KubernetesEvent(context.Context, *KubernetesEventReq) (*KubernetesEventReply, error)
 	GetKubernetesEvent(context.Context, *GetKubernetesEventReq) (*GetKubernetesEventReply, error)
-	//
 	CreateMonitorReceiver(context.Context, *CreateMonitorReceiverReq) (*CreateMonitorReceiverReply, error)
 	ListMonitorReceiver(context.Context, *ListMonitorReceiverReq) (*ListMonitorReceiverReply, error)
 	DelMonitorReceiver(context.Context, *DelMonitorReceiverReq) (*DelMonitorReceiverReply, error)
 	CreateKubernetesEventReceiver(context.Context, *CreateKubernetesEventReceiverReq) (*CreateKubernetesEventReceiverReply, error)
 	GetKubernetesEventReceiver(context.Context, *GetKubernetesEventReceiverReq) (*GetKubernetesEventReceiverReply, error)
 	DelKubernetesEventReceiver(context.Context, *DelKubernetesEventReceiverReq) (*DelKubernetesEventReceiverReply, error)
-	//
 	SkywalkingAlert(context.Context, *SkywalkingAlertReq) (*SkywalkingAlertReply, error)
 	SystemAudit(context.Context, *SystemAuditReq) (*SystemAuditReply, error)
 	CloudSubScribe(context.Context, *CloudSubScribeReq) (*CloudSubScribeReply, error)

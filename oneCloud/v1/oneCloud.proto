@@ -168,10 +168,23 @@ service oneCloud {
   rpc GetObjectStorageSecurityTokenByGenerator (GetObjectStorageSecurityTokenByGeneratorReq) returns (GetObjectStorageSecurityTokenByGeneratorReply) {};
 
   // 云平台Region
-  rpc AddOrgCloudPlatformRegion (AddCloudPlatformRegionReq ) returns (AddCloudPlatformRegionReply) {};
-  rpc DelOrgCloudPlatformRegion (DelCloudPlatformRegionReq ) returns (DelCloudPlatformRegionReply) {};
-  rpc ListOrgCloudPlatformRegion (ListCloudPlatformRegionReq ) returns (ListCloudPlatformRegionReply) {};
+  rpc AddOrgCloudPlatformRegion (AddCloudPlatformRegionReq) returns (AddCloudPlatformRegionReply) {};
+  rpc DelOrgCloudPlatformRegion (DelCloudPlatformRegionReq) returns (DelCloudPlatformRegionReply) {};
+  rpc ListOrgCloudPlatformRegion (ListCloudPlatformRegionReq) returns (ListCloudPlatformRegionReply) {};
 
+
+  // ACME
+  rpc CreateAcmeAccount (CreateAcmeAccountReq) returns (CreateAcmeAccountReply) {};
+  rpc DeleteAcmeAccount (DeleteAcmeAccountReq) returns (DeleteAcmeAccountReply) {};
+  rpc GetAcmeAccount (GetAcmeAccountReq) returns (GetAcmeAccountReply) {};
+
+  rpc CreateAcmeOrder (CreateAcmeOrderReq) returns (CreateAcmeOrderReply) {};
+  rpc ListAcmeOrder (ListAcmeOrderReq) returns (ListAcmeOrderReply) {};
+  rpc GetAcmeOrder (GetAcmeOrderReq) returns (GetAcmeOrderReply) {};
+  rpc GetAcmeOrderAuthorizations (GetAcmeOrderAuthorizationsReq) returns (GetAcmeOrderAuthorizationsReply) {};
+  rpc GetAcmeOrderChallenges (GetAcmeOrderChallengesReq) returns (GetAcmeOrderChallengesReply) {};
+  rpc FinalizeAcmeOrder (FinalizeAcmeOrderReq) returns (FinalizeAcmeOrderReply) {};
+  rpc GetAcmeOrderCertificate (GetAcmeOrderCertificateReq) returns (GetAcmeOrderCertificateReply) {};
 }
 
 // Platform
@@ -1336,3 +1349,127 @@ message ListCloudPlatformRegionReply {
     string regionName = 4 [(validate.rules).string.min_len = 1];
   }
 }
+
+// ACME
+message CreateAcmeAccountReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  repeated string contacts = 2;
+}
+message CreateAcmeAccountReply {
+
+}
+message DeleteAcmeAccountReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+}
+message DeleteAcmeAccountReply {
+
+}
+
+message AcmeAccount {
+  string uuid = 1;
+  string contact = 2;
+  bool termsOfServiceAgreed = 3;
+  string privateKey = 4;
+  string status = 5;
+  string url = 6;
+  int64 createTime = 7;
+}
+message GetAcmeAccountReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+}
+message GetAcmeAccountReply {
+  AcmeAccount account = 1;
+}
+
+
+
+message CreateAcmeOrderReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+  repeated string  domains = 2;
+}
+message CreateAcmeOrderReply {
+
+}
+
+message AcmeOrder {
+  string uuid = 1;
+  string accountUuid = 2;
+  string orderUrl = 3;
+  string status = 4;
+  string expires = 5;
+  string notBefore = 6;
+  string notAfter = 7;
+  string identifiers = 8;
+  string authorizations = 9;
+  string finalize = 10;
+  string privateKey = 11;
+  string csr = 12;
+  string certificate = 13;
+  int64 createTime = 14;
+}
+
+message    ListAcmeOrderReq {
+  string userUuid = 1 [(validate.rules).string.min_len = 1];
+}
+message    ListAcmeOrderReply {
+  repeated AcmeOrder orders = 1;
+}
+
+message GetAcmeOrderReq {
+  string  userUuid = 1 [(validate.rules).string.min_len = 1];
+  string  orderUuid = 2 [(validate.rules).string.min_len = 1];
+}
+message GetAcmeOrderReply {
+  AcmeOrder order = 1;
+}
+
+
+message AcmeOrderDnsChallenge {
+  string domainName = 1;
+  string type = 2;
+  string value = 3;
+  string token = 4;
+  string status = 5;
+  bool result = 6;
+}
+message GetAcmeOrderAuthorizationsReq {
+  string  userUuid = 1 [(validate.rules).string.min_len = 1];
+  string  orderUuid = 2 [(validate.rules).string.min_len = 1];
+}
+message GetAcmeOrderAuthorizationsReply {
+  //Identifier Identifier  `json:"identifier"`
+  string status = 1;
+  string expires = 2;
+  bool wildcard = 3;
+  AcmeOrderDnsChallenge dnsChallenge = 4;
+  //Challenges []Challenge `json:"challenges"`
+}
+
+message GetAcmeOrderChallengesReq {
+  string  userUuid = 1 [(validate.rules).string.min_len = 1];
+  string  orderUuid = 2 [(validate.rules).string.min_len = 1];
+}
+message GetAcmeOrderChallengesReply {
+  string status = 1;
+  string expires = 2;
+  bool wildcard = 3;
+  AcmeOrderDnsChallenge dnsChallenge = 4;
+}
+
+message FinalizeAcmeOrderReq {
+  string  userUuid = 1 [(validate.rules).string.min_len = 1];
+  string  orderUuid = 2 [(validate.rules).string.min_len = 1];
+}
+message FinalizeAcmeOrderReply {
+  AcmeOrder order = 1;
+}
+
+message GetAcmeOrderCertificateReq {
+  string  userUuid = 1 [(validate.rules).string.min_len = 1];
+  string  orderUuid = 2 [(validate.rules).string.min_len = 1];
+}
+message GetAcmeOrderCertificateReply {
+  AcmeOrder order = 1;
+}
+
+

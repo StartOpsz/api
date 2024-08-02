@@ -41,7 +41,6 @@ type RobotClient interface {
 	CreateChatSession(ctx context.Context, in *CreateChatSessionReq, opts ...grpc.CallOption) (*CreateChatSessionReply, error)
 	ListChatSession(ctx context.Context, in *ListChatSessionReq, opts ...grpc.CallOption) (*ListChatSessionReply, error)
 	SendChatSessionMsg(ctx context.Context, in *SendChatSessionMsgReq, opts ...grpc.CallOption) (*SendChatSessionMsgReply, error)
-	//
 	DingTalkBotAssistant(ctx context.Context, in *DingTalkBotAssistantReq, opts ...grpc.CallOption) (*DingTalkBotAssistantReply, error)
 	// 第三方 chat websocket
 	GetThirdChatWsInfo(ctx context.Context, in *GetThirdChatWsInfoReq, opts ...grpc.CallOption) (*GetThirdChatWsInfoReply, error)
@@ -139,7 +138,6 @@ type RobotServer interface {
 	CreateChatSession(context.Context, *CreateChatSessionReq) (*CreateChatSessionReply, error)
 	ListChatSession(context.Context, *ListChatSessionReq) (*ListChatSessionReply, error)
 	SendChatSessionMsg(context.Context, *SendChatSessionMsgReq) (*SendChatSessionMsgReply, error)
-	//
 	DingTalkBotAssistant(context.Context, *DingTalkBotAssistantReq) (*DingTalkBotAssistantReply, error)
 	// 第三方 chat websocket
 	GetThirdChatWsInfo(context.Context, *GetThirdChatWsInfoReq) (*GetThirdChatWsInfoReply, error)

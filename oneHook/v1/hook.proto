@@ -366,7 +366,6 @@ message GenerateWebDiagUrlReply {
 message WebDiagReq {
   string msg = 1;
 }
-
 message WebDiagReply {
   string id = 1;
 }

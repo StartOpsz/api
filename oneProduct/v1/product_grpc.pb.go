@@ -211,7 +211,7 @@ type ProductClient interface {
 	// 验证K8S集群是否存在
 	ExistK8SCluster(ctx context.Context, in *ExistK8SClusterReq, opts ...grpc.CallOption) (*ExistK8SClusterReply, error)
 	// 获取K8S集群
-	//rpc GetK8SCluster (GetK8SClusterReq) returns (GetK8SClusterReply) {};
+	// rpc GetK8SCluster (GetK8SClusterReq) returns (GetK8SClusterReply) {};
 	// 删除K8S集群
 	DelK8SCluster(ctx context.Context, in *DelK8SClusterReq, opts ...grpc.CallOption) (*DelK8SClusterReply, error)
 	// 添加K8S集群KubeEdge
@@ -1776,7 +1776,7 @@ type ProductServer interface {
 	// 验证K8S集群是否存在
 	ExistK8SCluster(context.Context, *ExistK8SClusterReq) (*ExistK8SClusterReply, error)
 	// 获取K8S集群
-	//rpc GetK8SCluster (GetK8SClusterReq) returns (GetK8SClusterReply) {};
+	// rpc GetK8SCluster (GetK8SClusterReq) returns (GetK8SClusterReply) {};
 	// 删除K8S集群
 	DelK8SCluster(context.Context, *DelK8SClusterReq) (*DelK8SClusterReply, error)
 	// 添加K8S集群KubeEdge

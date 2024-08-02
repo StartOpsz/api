@@ -94,7 +94,7 @@ type OneKubeEdgeClient interface {
 	// nameSpace
 	CreateNameSpace(ctx context.Context, in *CreateNameSpaceReq, opts ...grpc.CallOption) (*CreateNameSpaceReply, error)
 	ListNameSpace(ctx context.Context, in *ListNameSpaceReq, opts ...grpc.CallOption) (*ListNameSpaceReply, error)
-	//rpc GetNameSpace (GetNameSpaceReq) returns (GetNameSpaceReply) {};
+	// rpc GetNameSpace (GetNameSpaceReq) returns (GetNameSpaceReply) {};
 	DelNameSpace(ctx context.Context, in *DelNameSpaceReq, opts ...grpc.CallOption) (*DelNameSpaceReply, error)
 	// ConfigMap
 	CreateConfigMap(ctx context.Context, in *CreateConfigMapReq, opts ...grpc.CallOption) (*CreateConfigMapReply, error)
@@ -112,7 +112,7 @@ type OneKubeEdgeClient interface {
 	CreateDockerConfigJsonSecret(ctx context.Context, in *CreateDockerConfigJsonSecretReq, opts ...grpc.CallOption) (*CreateDockerConfigJsonSecretReply, error)
 	CreateBasicAuthSecret(ctx context.Context, in *CreateBasicAuthSecretReq, opts ...grpc.CallOption) (*CreateBasicAuthSecretReply, error)
 	CreateSshAuthSecret(ctx context.Context, in *CreateSshAuthSecretReq, opts ...grpc.CallOption) (*CreateSshAuthSecretReply, error)
-	//rpc CreateTokenSecret (CreateTokenSecretReq) returns (CreateTokenSecretReply) {};
+	// rpc CreateTokenSecret (CreateTokenSecretReq) returns (CreateTokenSecretReply) {};
 	UpdateTlsSecret(ctx context.Context, in *UpdateTlsSecretReq, opts ...grpc.CallOption) (*UpdateTlsSecretReply, error)
 	UpdateOpaqueSecret(ctx context.Context, in *UpdateOpaqueSecretReq, opts ...grpc.CallOption) (*UpdateOpaqueSecretReply, error)
 	UpdateDockerConfigJsonSecret(ctx context.Context, in *UpdateDockerConfigJsonSecretReq, opts ...grpc.CallOption) (*UpdateDockerConfigJsonSecretReply, error)
@@ -771,7 +771,7 @@ type OneKubeEdgeServer interface {
 	// nameSpace
 	CreateNameSpace(context.Context, *CreateNameSpaceReq) (*CreateNameSpaceReply, error)
 	ListNameSpace(context.Context, *ListNameSpaceReq) (*ListNameSpaceReply, error)
-	//rpc GetNameSpace (GetNameSpaceReq) returns (GetNameSpaceReply) {};
+	// rpc GetNameSpace (GetNameSpaceReq) returns (GetNameSpaceReply) {};
 	DelNameSpace(context.Context, *DelNameSpaceReq) (*DelNameSpaceReply, error)
 	// ConfigMap
 	CreateConfigMap(context.Context, *CreateConfigMapReq) (*CreateConfigMapReply, error)
@@ -789,7 +789,7 @@ type OneKubeEdgeServer interface {
 	CreateDockerConfigJsonSecret(context.Context, *CreateDockerConfigJsonSecretReq) (*CreateDockerConfigJsonSecretReply, error)
 	CreateBasicAuthSecret(context.Context, *CreateBasicAuthSecretReq) (*CreateBasicAuthSecretReply, error)
 	CreateSshAuthSecret(context.Context, *CreateSshAuthSecretReq) (*CreateSshAuthSecretReply, error)
-	//rpc CreateTokenSecret (CreateTokenSecretReq) returns (CreateTokenSecretReply) {};
+	// rpc CreateTokenSecret (CreateTokenSecretReq) returns (CreateTokenSecretReply) {};
 	UpdateTlsSecret(context.Context, *UpdateTlsSecretReq) (*UpdateTlsSecretReply, error)
 	UpdateOpaqueSecret(context.Context, *UpdateOpaqueSecretReq) (*UpdateOpaqueSecretReply, error)
 	UpdateDockerConfigJsonSecret(context.Context, *UpdateDockerConfigJsonSecretReq) (*UpdateDockerConfigJsonSecretReply, error)

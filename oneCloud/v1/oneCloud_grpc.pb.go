@@ -91,6 +91,16 @@ const (
 	OneCloud_AddOrgCloudPlatformRegion_FullMethodName                   = "/oneCloud.v1.oneCloud/AddOrgCloudPlatformRegion"
 	OneCloud_DelOrgCloudPlatformRegion_FullMethodName                   = "/oneCloud.v1.oneCloud/DelOrgCloudPlatformRegion"
 	OneCloud_ListOrgCloudPlatformRegion_FullMethodName                  = "/oneCloud.v1.oneCloud/ListOrgCloudPlatformRegion"
+	OneCloud_CreateAcmeAccount_FullMethodName                           = "/oneCloud.v1.oneCloud/CreateAcmeAccount"
+	OneCloud_DeleteAcmeAccount_FullMethodName                           = "/oneCloud.v1.oneCloud/DeleteAcmeAccount"
+	OneCloud_GetAcmeAccount_FullMethodName                              = "/oneCloud.v1.oneCloud/GetAcmeAccount"
+	OneCloud_CreateAcmeOrder_FullMethodName                             = "/oneCloud.v1.oneCloud/CreateAcmeOrder"
+	OneCloud_ListAcmeOrder_FullMethodName                               = "/oneCloud.v1.oneCloud/ListAcmeOrder"
+	OneCloud_GetAcmeOrder_FullMethodName                                = "/oneCloud.v1.oneCloud/GetAcmeOrder"
+	OneCloud_GetAcmeOrderAuthorizations_FullMethodName                  = "/oneCloud.v1.oneCloud/GetAcmeOrderAuthorizations"
+	OneCloud_GetAcmeOrderChallenges_FullMethodName                      = "/oneCloud.v1.oneCloud/GetAcmeOrderChallenges"
+	OneCloud_FinalizeAcmeOrder_FullMethodName                           = "/oneCloud.v1.oneCloud/FinalizeAcmeOrder"
+	OneCloud_GetAcmeOrderCertificate_FullMethodName                     = "/oneCloud.v1.oneCloud/GetAcmeOrderCertificate"
 )
 
 // OneCloudClient is the client API for OneCloud service.
@@ -123,7 +133,6 @@ type OneCloudClient interface {
 	// 生成临时安全Token对应的"单一"Policy
 	GenerateObjectStorageSecurityTokenPutPolicy(ctx context.Context, in *GenerateObjectStorageSecurityTokenPutPolicyReq, opts ...grpc.CallOption) (*GenerateObjectStorageSecurityTokenPutPolicyReply, error)
 	// Bill
-	//
 	AccountBalance(ctx context.Context, in *AccountBalanceReq, opts ...grpc.CallOption) (*AccountBalanceReply, error)
 	// Certificate
 	// 购买证书
@@ -234,6 +243,17 @@ type OneCloudClient interface {
 	AddOrgCloudPlatformRegion(ctx context.Context, in *AddCloudPlatformRegionReq, opts ...grpc.CallOption) (*AddCloudPlatformRegionReply, error)
 	DelOrgCloudPlatformRegion(ctx context.Context, in *DelCloudPlatformRegionReq, opts ...grpc.CallOption) (*DelCloudPlatformRegionReply, error)
 	ListOrgCloudPlatformRegion(ctx context.Context, in *ListCloudPlatformRegionReq, opts ...grpc.CallOption) (*ListCloudPlatformRegionReply, error)
+	// ACME
+	CreateAcmeAccount(ctx context.Context, in *CreateAcmeAccountReq, opts ...grpc.CallOption) (*CreateAcmeAccountReply, error)
+	DeleteAcmeAccount(ctx context.Context, in *DeleteAcmeAccountReq, opts ...grpc.CallOption) (*DeleteAcmeAccountReply, error)
+	GetAcmeAccount(ctx context.Context, in *GetAcmeAccountReq, opts ...grpc.CallOption) (*GetAcmeAccountReply, error)
+	CreateAcmeOrder(ctx context.Context, in *CreateAcmeOrderReq, opts ...grpc.CallOption) (*CreateAcmeOrderReply, error)
+	ListAcmeOrder(ctx context.Context, in *ListAcmeOrderReq, opts ...grpc.CallOption) (*ListAcmeOrderReply, error)
+	GetAcmeOrder(ctx context.Context, in *GetAcmeOrderReq, opts ...grpc.CallOption) (*GetAcmeOrderReply, error)
+	GetAcmeOrderAuthorizations(ctx context.Context, in *GetAcmeOrderAuthorizationsReq, opts ...grpc.CallOption) (*GetAcmeOrderAuthorizationsReply, error)
+	GetAcmeOrderChallenges(ctx context.Context, in *GetAcmeOrderChallengesReq, opts ...grpc.CallOption) (*GetAcmeOrderChallengesReply, error)
+	FinalizeAcmeOrder(ctx context.Context, in *FinalizeAcmeOrderReq, opts ...grpc.CallOption) (*FinalizeAcmeOrderReply, error)
+	GetAcmeOrderCertificate(ctx context.Context, in *GetAcmeOrderCertificateReq, opts ...grpc.CallOption) (*GetAcmeOrderCertificateReply, error)
 }
 
 type oneCloudClient struct {
@@ -892,6 +912,96 @@ func (c *oneCloudClient) ListOrgCloudPlatformRegion(ctx context.Context, in *Lis
 	return out, nil
 }
 
+func (c *oneCloudClient) CreateAcmeAccount(ctx context.Context, in *CreateAcmeAccountReq, opts ...grpc.CallOption) (*CreateAcmeAccountReply, error) {
+	out := new(CreateAcmeAccountReply)
+	err := c.cc.Invoke(ctx, OneCloud_CreateAcmeAccount_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneCloudClient) DeleteAcmeAccount(ctx context.Context, in *DeleteAcmeAccountReq, opts ...grpc.CallOption) (*DeleteAcmeAccountReply, error) {
+	out := new(DeleteAcmeAccountReply)
+	err := c.cc.Invoke(ctx, OneCloud_DeleteAcmeAccount_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneCloudClient) GetAcmeAccount(ctx context.Context, in *GetAcmeAccountReq, opts ...grpc.CallOption) (*GetAcmeAccountReply, error) {
+	out := new(GetAcmeAccountReply)
+	err := c.cc.Invoke(ctx, OneCloud_GetAcmeAccount_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneCloudClient) CreateAcmeOrder(ctx context.Context, in *CreateAcmeOrderReq, opts ...grpc.CallOption) (*CreateAcmeOrderReply, error) {
+	out := new(CreateAcmeOrderReply)
+	err := c.cc.Invoke(ctx, OneCloud_CreateAcmeOrder_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneCloudClient) ListAcmeOrder(ctx context.Context, in *ListAcmeOrderReq, opts ...grpc.CallOption) (*ListAcmeOrderReply, error) {
+	out := new(ListAcmeOrderReply)
+	err := c.cc.Invoke(ctx, OneCloud_ListAcmeOrder_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneCloudClient) GetAcmeOrder(ctx context.Context, in *GetAcmeOrderReq, opts ...grpc.CallOption) (*GetAcmeOrderReply, error) {
+	out := new(GetAcmeOrderReply)
+	err := c.cc.Invoke(ctx, OneCloud_GetAcmeOrder_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneCloudClient) GetAcmeOrderAuthorizations(ctx context.Context, in *GetAcmeOrderAuthorizationsReq, opts ...grpc.CallOption) (*GetAcmeOrderAuthorizationsReply, error) {
+	out := new(GetAcmeOrderAuthorizationsReply)
+	err := c.cc.Invoke(ctx, OneCloud_GetAcmeOrderAuthorizations_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneCloudClient) GetAcmeOrderChallenges(ctx context.Context, in *GetAcmeOrderChallengesReq, opts ...grpc.CallOption) (*GetAcmeOrderChallengesReply, error) {
+	out := new(GetAcmeOrderChallengesReply)
+	err := c.cc.Invoke(ctx, OneCloud_GetAcmeOrderChallenges_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneCloudClient) FinalizeAcmeOrder(ctx context.Context, in *FinalizeAcmeOrderReq, opts ...grpc.CallOption) (*FinalizeAcmeOrderReply, error) {
+	out := new(FinalizeAcmeOrderReply)
+	err := c.cc.Invoke(ctx, OneCloud_FinalizeAcmeOrder_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *oneCloudClient) GetAcmeOrderCertificate(ctx context.Context, in *GetAcmeOrderCertificateReq, opts ...grpc.CallOption) (*GetAcmeOrderCertificateReply, error) {
+	out := new(GetAcmeOrderCertificateReply)
+	err := c.cc.Invoke(ctx, OneCloud_GetAcmeOrderCertificate_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // OneCloudServer is the server API for OneCloud service.
 // All implementations must embed UnimplementedOneCloudServer
 // for forward compatibility
@@ -922,7 +1032,6 @@ type OneCloudServer interface {
 	// 生成临时安全Token对应的"单一"Policy
 	GenerateObjectStorageSecurityTokenPutPolicy(context.Context, *GenerateObjectStorageSecurityTokenPutPolicyReq) (*GenerateObjectStorageSecurityTokenPutPolicyReply, error)
 	// Bill
-	//
 	AccountBalance(context.Context, *AccountBalanceReq) (*AccountBalanceReply, error)
 	// Certificate
 	// 购买证书
@@ -1033,6 +1142,17 @@ type OneCloudServer interface {
 	AddOrgCloudPlatformRegion(context.Context, *AddCloudPlatformRegionReq) (*AddCloudPlatformRegionReply, error)
 	DelOrgCloudPlatformRegion(context.Context, *DelCloudPlatformRegionReq) (*DelCloudPlatformRegionReply, error)
 	ListOrgCloudPlatformRegion(context.Context, *ListCloudPlatformRegionReq) (*ListCloudPlatformRegionReply, error)
+	// ACME
+	CreateAcmeAccount(context.Context, *CreateAcmeAccountReq) (*CreateAcmeAccountReply, error)
+	DeleteAcmeAccount(context.Context, *DeleteAcmeAccountReq) (*DeleteAcmeAccountReply, error)
+	GetAcmeAccount(context.Context, *GetAcmeAccountReq) (*GetAcmeAccountReply, error)
+	CreateAcmeOrder(context.Context, *CreateAcmeOrderReq) (*CreateAcmeOrderReply, error)
+	ListAcmeOrder(context.Context, *ListAcmeOrderReq) (*ListAcmeOrderReply, error)
+	GetAcmeOrder(context.Context, *GetAcmeOrderReq) (*GetAcmeOrderReply, error)
+	GetAcmeOrderAuthorizations(context.Context, *GetAcmeOrderAuthorizationsReq) (*GetAcmeOrderAuthorizationsReply, error)
+	GetAcmeOrderChallenges(context.Context, *GetAcmeOrderChallengesReq) (*GetAcmeOrderChallengesReply, error)
+	FinalizeAcmeOrder(context.Context, *FinalizeAcmeOrderReq) (*FinalizeAcmeOrderReply, error)
+	GetAcmeOrderCertificate(context.Context, *GetAcmeOrderCertificateReq) (*GetAcmeOrderCertificateReply, error)
 	mustEmbedUnimplementedOneCloudServer()
 }
 
@@ -1255,6 +1375,36 @@ func (UnimplementedOneCloudServer) DelOrgCloudPlatformRegion(context.Context, *D
 }
 func (UnimplementedOneCloudServer) ListOrgCloudPlatformRegion(context.Context, *ListCloudPlatformRegionReq) (*ListCloudPlatformRegionReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListOrgCloudPlatformRegion not implemented")
+}
+func (UnimplementedOneCloudServer) CreateAcmeAccount(context.Context, *CreateAcmeAccountReq) (*CreateAcmeAccountReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateAcmeAccount not implemented")
+}
+func (UnimplementedOneCloudServer) DeleteAcmeAccount(context.Context, *DeleteAcmeAccountReq) (*DeleteAcmeAccountReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteAcmeAccount not implemented")
+}
+func (UnimplementedOneCloudServer) GetAcmeAccount(context.Context, *GetAcmeAccountReq) (*GetAcmeAccountReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAcmeAccount not implemented")
+}
+func (UnimplementedOneCloudServer) CreateAcmeOrder(context.Context, *CreateAcmeOrderReq) (*CreateAcmeOrderReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateAcmeOrder not implemented")
+}
+func (UnimplementedOneCloudServer) ListAcmeOrder(context.Context, *ListAcmeOrderReq) (*ListAcmeOrderReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListAcmeOrder not implemented")
+}
+func (UnimplementedOneCloudServer) GetAcmeOrder(context.Context, *GetAcmeOrderReq) (*GetAcmeOrderReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAcmeOrder not implemented")
+}
+func (UnimplementedOneCloudServer) GetAcmeOrderAuthorizations(context.Context, *GetAcmeOrderAuthorizationsReq) (*GetAcmeOrderAuthorizationsReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAcmeOrderAuthorizations not implemented")
+}
+func (UnimplementedOneCloudServer) GetAcmeOrderChallenges(context.Context, *GetAcmeOrderChallengesReq) (*GetAcmeOrderChallengesReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAcmeOrderChallenges not implemented")
+}
+func (UnimplementedOneCloudServer) FinalizeAcmeOrder(context.Context, *FinalizeAcmeOrderReq) (*FinalizeAcmeOrderReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FinalizeAcmeOrder not implemented")
+}
+func (UnimplementedOneCloudServer) GetAcmeOrderCertificate(context.Context, *GetAcmeOrderCertificateReq) (*GetAcmeOrderCertificateReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAcmeOrderCertificate not implemented")
 }
 func (UnimplementedOneCloudServer) mustEmbedUnimplementedOneCloudServer() {}
 
@@ -2565,6 +2715,186 @@ func _OneCloud_ListOrgCloudPlatformRegion_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
+func _OneCloud_CreateAcmeAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateAcmeAccountReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneCloudServer).CreateAcmeAccount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneCloud_CreateAcmeAccount_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneCloudServer).CreateAcmeAccount(ctx, req.(*CreateAcmeAccountReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneCloud_DeleteAcmeAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteAcmeAccountReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneCloudServer).DeleteAcmeAccount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneCloud_DeleteAcmeAccount_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneCloudServer).DeleteAcmeAccount(ctx, req.(*DeleteAcmeAccountReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneCloud_GetAcmeAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAcmeAccountReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneCloudServer).GetAcmeAccount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneCloud_GetAcmeAccount_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneCloudServer).GetAcmeAccount(ctx, req.(*GetAcmeAccountReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneCloud_CreateAcmeOrder_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateAcmeOrderReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneCloudServer).CreateAcmeOrder(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneCloud_CreateAcmeOrder_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneCloudServer).CreateAcmeOrder(ctx, req.(*CreateAcmeOrderReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneCloud_ListAcmeOrder_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListAcmeOrderReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneCloudServer).ListAcmeOrder(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneCloud_ListAcmeOrder_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneCloudServer).ListAcmeOrder(ctx, req.(*ListAcmeOrderReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneCloud_GetAcmeOrder_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAcmeOrderReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneCloudServer).GetAcmeOrder(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneCloud_GetAcmeOrder_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneCloudServer).GetAcmeOrder(ctx, req.(*GetAcmeOrderReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneCloud_GetAcmeOrderAuthorizations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAcmeOrderAuthorizationsReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneCloudServer).GetAcmeOrderAuthorizations(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneCloud_GetAcmeOrderAuthorizations_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneCloudServer).GetAcmeOrderAuthorizations(ctx, req.(*GetAcmeOrderAuthorizationsReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneCloud_GetAcmeOrderChallenges_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAcmeOrderChallengesReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneCloudServer).GetAcmeOrderChallenges(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneCloud_GetAcmeOrderChallenges_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneCloudServer).GetAcmeOrderChallenges(ctx, req.(*GetAcmeOrderChallengesReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneCloud_FinalizeAcmeOrder_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FinalizeAcmeOrderReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneCloudServer).FinalizeAcmeOrder(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneCloud_FinalizeAcmeOrder_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneCloudServer).FinalizeAcmeOrder(ctx, req.(*FinalizeAcmeOrderReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OneCloud_GetAcmeOrderCertificate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAcmeOrderCertificateReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OneCloudServer).GetAcmeOrderCertificate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OneCloud_GetAcmeOrderCertificate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OneCloudServer).GetAcmeOrderCertificate(ctx, req.(*GetAcmeOrderCertificateReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // OneCloud_ServiceDesc is the grpc.ServiceDesc for OneCloud service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -2859,6 +3189,46 @@ var OneCloud_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListOrgCloudPlatformRegion",
 			Handler:    _OneCloud_ListOrgCloudPlatformRegion_Handler,
+		},
+		{
+			MethodName: "CreateAcmeAccount",
+			Handler:    _OneCloud_CreateAcmeAccount_Handler,
+		},
+		{
+			MethodName: "DeleteAcmeAccount",
+			Handler:    _OneCloud_DeleteAcmeAccount_Handler,
+		},
+		{
+			MethodName: "GetAcmeAccount",
+			Handler:    _OneCloud_GetAcmeAccount_Handler,
+		},
+		{
+			MethodName: "CreateAcmeOrder",
+			Handler:    _OneCloud_CreateAcmeOrder_Handler,
+		},
+		{
+			MethodName: "ListAcmeOrder",
+			Handler:    _OneCloud_ListAcmeOrder_Handler,
+		},
+		{
+			MethodName: "GetAcmeOrder",
+			Handler:    _OneCloud_GetAcmeOrder_Handler,
+		},
+		{
+			MethodName: "GetAcmeOrderAuthorizations",
+			Handler:    _OneCloud_GetAcmeOrderAuthorizations_Handler,
+		},
+		{
+			MethodName: "GetAcmeOrderChallenges",
+			Handler:    _OneCloud_GetAcmeOrderChallenges_Handler,
+		},
+		{
+			MethodName: "FinalizeAcmeOrder",
+			Handler:    _OneCloud_FinalizeAcmeOrder_Handler,
+		},
+		{
+			MethodName: "GetAcmeOrderCertificate",
+			Handler:    _OneCloud_GetAcmeOrderCertificate_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
