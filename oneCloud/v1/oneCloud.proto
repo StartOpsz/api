@@ -1441,11 +1441,12 @@ message AcmeOrderChallenge {
 
 message AcmeOrderDnsChallenge {
   string domainName = 1;
-  string type = 2;
-  string value = 3;
-  string token = 4;
-  string status = 5;
-  bool result = 6;
+  string fqdn = 2;
+  string type = 3;
+  string value = 4;
+  string token = 5;
+  string status = 6;
+  bool result = 7;
 }
 message GetAcmeOrderAuthorizationsReq {
   string  userUuid = 1 [(validate.rules).string.min_len = 1];
