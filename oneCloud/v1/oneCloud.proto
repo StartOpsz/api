@@ -1423,6 +1423,21 @@ message GetAcmeOrderReply {
   AcmeOrder order = 1;
 }
 
+message AcmeOrderAuthorization {
+  string status = 1;
+  string expires = 2;
+  bool wildcard = 3;
+  repeated AcmeOrderChallenge challenges = 4;
+  repeated AcmeOrderDnsChallenge dnsChallenges = 5;
+}
+
+message AcmeOrderChallenge {
+  string type = 1;
+  string status = 2;
+  string url = 3;
+  string token = 4;
+  string validated = 5;
+}
 
 message AcmeOrderDnsChallenge {
   string domainName = 1;
@@ -1437,12 +1452,7 @@ message GetAcmeOrderAuthorizationsReq {
   string  orderUuid = 2 [(validate.rules).string.min_len = 1];
 }
 message GetAcmeOrderAuthorizationsReply {
-  //Identifier Identifier  `json:"identifier"`
-  string status = 1;
-  string expires = 2;
-  bool wildcard = 3;
-  AcmeOrderDnsChallenge dnsChallenge = 4;
-  //Challenges []Challenge `json:"challenges"`
+  repeated AcmeOrderAuthorization authorizations = 1;
 }
 
 message GetAcmeOrderChallengesReq {
@@ -1450,10 +1460,7 @@ message GetAcmeOrderChallengesReq {
   string  orderUuid = 2 [(validate.rules).string.min_len = 1];
 }
 message GetAcmeOrderChallengesReply {
-  string status = 1;
-  string expires = 2;
-  bool wildcard = 3;
-  AcmeOrderDnsChallenge dnsChallenge = 4;
+  repeated AcmeOrderAuthorization authorizations = 1;
 }
 
 message FinalizeAcmeOrderReq {
