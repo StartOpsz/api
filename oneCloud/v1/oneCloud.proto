@@ -1353,13 +1353,17 @@ message ListCloudPlatformRegionReply {
 // ACME
 message CreateAcmeAccountReq {
   string userUuid = 1 [(validate.rules).string.min_len = 1];
-  repeated string contacts = 2;
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  repeated string contacts = 4;
 }
 message CreateAcmeAccountReply {
 
 }
 message DeleteAcmeAccountReq {
   string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
 }
 message DeleteAcmeAccountReply {
 
@@ -1367,15 +1371,19 @@ message DeleteAcmeAccountReply {
 
 message AcmeAccount {
   string uuid = 1;
-  string contact = 2;
-  bool termsOfServiceAgreed = 3;
-  string privateKey = 4;
-  string status = 5;
-  string url = 6;
-  int64 createTime = 7;
+  string orgUuid = 2;
+  string productUuid = 3;
+  string contact = 4;
+  bool termsOfServiceAgreed = 5;
+  string privateKey = 6;
+  string status = 7;
+  string url = 8;
+  int64 createTime = 9;
 }
 message GetAcmeAccountReq {
   string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
 }
 message GetAcmeAccountReply {
   AcmeAccount account = 1;
@@ -1385,7 +1393,9 @@ message GetAcmeAccountReply {
 
 message CreateAcmeOrderReq {
   string userUuid = 1 [(validate.rules).string.min_len = 1];
-  repeated string  domains = 2;
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  repeated string  domains = 4;
 }
 message CreateAcmeOrderReply {
 
@@ -1410,14 +1420,19 @@ message AcmeOrder {
 
 message    ListAcmeOrderReq {
   string userUuid = 1 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
 }
+
 message    ListAcmeOrderReply {
   repeated AcmeOrder orders = 1;
 }
 
 message GetAcmeOrderReq {
   string  userUuid = 1 [(validate.rules).string.min_len = 1];
-  string  orderUuid = 2 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string  orderUuid = 4 [(validate.rules).string.min_len = 1];
 }
 message GetAcmeOrderReply {
   AcmeOrder order = 1;
@@ -1450,7 +1465,9 @@ message AcmeOrderDnsChallenge {
 }
 message GetAcmeOrderAuthorizationsReq {
   string  userUuid = 1 [(validate.rules).string.min_len = 1];
-  string  orderUuid = 2 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string  orderUuid = 4 [(validate.rules).string.min_len = 1];
 }
 message GetAcmeOrderAuthorizationsReply {
   repeated AcmeOrderAuthorization authorizations = 1;
@@ -1458,7 +1475,9 @@ message GetAcmeOrderAuthorizationsReply {
 
 message GetAcmeOrderChallengesReq {
   string  userUuid = 1 [(validate.rules).string.min_len = 1];
-  string  orderUuid = 2 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string  orderUuid = 4 [(validate.rules).string.min_len = 1];
 }
 message GetAcmeOrderChallengesReply {
   repeated AcmeOrderAuthorization authorizations = 1;
@@ -1466,7 +1485,9 @@ message GetAcmeOrderChallengesReply {
 
 message FinalizeAcmeOrderReq {
   string  userUuid = 1 [(validate.rules).string.min_len = 1];
-  string  orderUuid = 2 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string  orderUuid = 4 [(validate.rules).string.min_len = 1];
 }
 message FinalizeAcmeOrderReply {
   AcmeOrder order = 1;
@@ -1474,7 +1495,9 @@ message FinalizeAcmeOrderReply {
 
 message GetAcmeOrderCertificateReq {
   string  userUuid = 1 [(validate.rules).string.min_len = 1];
-  string  orderUuid = 2 [(validate.rules).string.min_len = 1];
+  string orgUuid = 2 [(validate.rules).string.min_len = 1];
+  string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string  orderUuid = 4 [(validate.rules).string.min_len = 1];
 }
 message GetAcmeOrderCertificateReply {
   AcmeOrder order = 1;
