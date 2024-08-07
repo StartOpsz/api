@@ -1364,6 +1364,7 @@ message DeleteAcmeAccountReq {
   string userUuid = 1 [(validate.rules).string.min_len = 1];
   string orgUuid = 2 [(validate.rules).string.min_len = 1];
   string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string accountUuid = 4 [(validate.rules).string.min_len = 1];
 }
 message DeleteAcmeAccountReply {
 
@@ -1396,7 +1397,8 @@ message CreateAcmeOrderReq {
   string userUuid = 1 [(validate.rules).string.min_len = 1];
   string orgUuid = 2 [(validate.rules).string.min_len = 1];
   string productUuid = 3 [(validate.rules).string.min_len = 1];
-  repeated string  domains = 4;
+  string accountUuid = 4 [(validate.rules).string.min_len = 1];
+  repeated string  domains = 5;
 }
 message CreateAcmeOrderReply {
 
@@ -1419,10 +1421,11 @@ message AcmeOrder {
   int64 createTime = 14;
 }
 
-message    ListAcmeOrderReq {
+message ListAcmeOrderReq {
   string userUuid = 1 [(validate.rules).string.min_len = 1];
   string orgUuid = 2 [(validate.rules).string.min_len = 1];
   string productUuid = 3 [(validate.rules).string.min_len = 1];
+  string accountUuid = 4;
 }
 
 message    ListAcmeOrderReply {
