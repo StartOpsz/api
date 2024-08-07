@@ -176,7 +176,7 @@ service oneCloud {
   // ACME
   rpc CreateAcmeAccount (CreateAcmeAccountReq) returns (CreateAcmeAccountReply) {};
   rpc DeleteAcmeAccount (DeleteAcmeAccountReq) returns (DeleteAcmeAccountReply) {};
-  rpc GetAcmeAccount (GetAcmeAccountReq) returns (GetAcmeAccountReply) {};
+  rpc ListAcmeAccount (ListAcmeAccountReq) returns (ListAcmeAccountReply) {};
 
   rpc CreateAcmeOrder (CreateAcmeOrderReq) returns (CreateAcmeOrderReply) {};
   rpc ListAcmeOrder (ListAcmeOrderReq) returns (ListAcmeOrderReply) {};
@@ -1373,20 +1373,21 @@ message AcmeAccount {
   string uuid = 1;
   string orgUuid = 2;
   string productUuid = 3;
-  string contact = 4;
-  bool termsOfServiceAgreed = 5;
-  string privateKey = 6;
-  string status = 7;
-  string url = 8;
-  int64 createTime = 9;
+  string userUuid = 4;
+  string contact = 5;
+  bool termsOfServiceAgreed = 6;
+  string privateKey = 7;
+  string status = 8;
+  string url = 9;
+  int64 createTime = 10;
 }
-message GetAcmeAccountReq {
+message ListAcmeAccountReq {
   string userUuid = 1 [(validate.rules).string.min_len = 1];
   string orgUuid = 2 [(validate.rules).string.min_len = 1];
   string productUuid = 3 [(validate.rules).string.min_len = 1];
 }
-message GetAcmeAccountReply {
-  AcmeAccount account = 1;
+message ListAcmeAccountReply {
+  repeated AcmeAccount accounts = 1;
 }
 
 

@@ -93,7 +93,7 @@ const (
 	OneCloud_ListOrgCloudPlatformRegion_FullMethodName                  = "/oneCloud.v1.oneCloud/ListOrgCloudPlatformRegion"
 	OneCloud_CreateAcmeAccount_FullMethodName                           = "/oneCloud.v1.oneCloud/CreateAcmeAccount"
 	OneCloud_DeleteAcmeAccount_FullMethodName                           = "/oneCloud.v1.oneCloud/DeleteAcmeAccount"
-	OneCloud_GetAcmeAccount_FullMethodName                              = "/oneCloud.v1.oneCloud/GetAcmeAccount"
+	OneCloud_ListAcmeAccount_FullMethodName                             = "/oneCloud.v1.oneCloud/ListAcmeAccount"
 	OneCloud_CreateAcmeOrder_FullMethodName                             = "/oneCloud.v1.oneCloud/CreateAcmeOrder"
 	OneCloud_ListAcmeOrder_FullMethodName                               = "/oneCloud.v1.oneCloud/ListAcmeOrder"
 	OneCloud_GetAcmeOrder_FullMethodName                                = "/oneCloud.v1.oneCloud/GetAcmeOrder"
@@ -246,7 +246,7 @@ type OneCloudClient interface {
 	// ACME
 	CreateAcmeAccount(ctx context.Context, in *CreateAcmeAccountReq, opts ...grpc.CallOption) (*CreateAcmeAccountReply, error)
 	DeleteAcmeAccount(ctx context.Context, in *DeleteAcmeAccountReq, opts ...grpc.CallOption) (*DeleteAcmeAccountReply, error)
-	GetAcmeAccount(ctx context.Context, in *GetAcmeAccountReq, opts ...grpc.CallOption) (*GetAcmeAccountReply, error)
+	ListAcmeAccount(ctx context.Context, in *ListAcmeAccountReq, opts ...grpc.CallOption) (*ListAcmeAccountReply, error)
 	CreateAcmeOrder(ctx context.Context, in *CreateAcmeOrderReq, opts ...grpc.CallOption) (*CreateAcmeOrderReply, error)
 	ListAcmeOrder(ctx context.Context, in *ListAcmeOrderReq, opts ...grpc.CallOption) (*ListAcmeOrderReply, error)
 	GetAcmeOrder(ctx context.Context, in *GetAcmeOrderReq, opts ...grpc.CallOption) (*GetAcmeOrderReply, error)
@@ -930,9 +930,9 @@ func (c *oneCloudClient) DeleteAcmeAccount(ctx context.Context, in *DeleteAcmeAc
 	return out, nil
 }
 
-func (c *oneCloudClient) GetAcmeAccount(ctx context.Context, in *GetAcmeAccountReq, opts ...grpc.CallOption) (*GetAcmeAccountReply, error) {
-	out := new(GetAcmeAccountReply)
-	err := c.cc.Invoke(ctx, OneCloud_GetAcmeAccount_FullMethodName, in, out, opts...)
+func (c *oneCloudClient) ListAcmeAccount(ctx context.Context, in *ListAcmeAccountReq, opts ...grpc.CallOption) (*ListAcmeAccountReply, error) {
+	out := new(ListAcmeAccountReply)
+	err := c.cc.Invoke(ctx, OneCloud_ListAcmeAccount_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1145,7 +1145,7 @@ type OneCloudServer interface {
 	// ACME
 	CreateAcmeAccount(context.Context, *CreateAcmeAccountReq) (*CreateAcmeAccountReply, error)
 	DeleteAcmeAccount(context.Context, *DeleteAcmeAccountReq) (*DeleteAcmeAccountReply, error)
-	GetAcmeAccount(context.Context, *GetAcmeAccountReq) (*GetAcmeAccountReply, error)
+	ListAcmeAccount(context.Context, *ListAcmeAccountReq) (*ListAcmeAccountReply, error)
 	CreateAcmeOrder(context.Context, *CreateAcmeOrderReq) (*CreateAcmeOrderReply, error)
 	ListAcmeOrder(context.Context, *ListAcmeOrderReq) (*ListAcmeOrderReply, error)
 	GetAcmeOrder(context.Context, *GetAcmeOrderReq) (*GetAcmeOrderReply, error)
@@ -1382,8 +1382,8 @@ func (UnimplementedOneCloudServer) CreateAcmeAccount(context.Context, *CreateAcm
 func (UnimplementedOneCloudServer) DeleteAcmeAccount(context.Context, *DeleteAcmeAccountReq) (*DeleteAcmeAccountReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteAcmeAccount not implemented")
 }
-func (UnimplementedOneCloudServer) GetAcmeAccount(context.Context, *GetAcmeAccountReq) (*GetAcmeAccountReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetAcmeAccount not implemented")
+func (UnimplementedOneCloudServer) ListAcmeAccount(context.Context, *ListAcmeAccountReq) (*ListAcmeAccountReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListAcmeAccount not implemented")
 }
 func (UnimplementedOneCloudServer) CreateAcmeOrder(context.Context, *CreateAcmeOrderReq) (*CreateAcmeOrderReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateAcmeOrder not implemented")
@@ -2751,20 +2751,20 @@ func _OneCloud_DeleteAcmeAccount_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
-func _OneCloud_GetAcmeAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetAcmeAccountReq)
+func _OneCloud_ListAcmeAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListAcmeAccountReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(OneCloudServer).GetAcmeAccount(ctx, in)
+		return srv.(OneCloudServer).ListAcmeAccount(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: OneCloud_GetAcmeAccount_FullMethodName,
+		FullMethod: OneCloud_ListAcmeAccount_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OneCloudServer).GetAcmeAccount(ctx, req.(*GetAcmeAccountReq))
+		return srv.(OneCloudServer).ListAcmeAccount(ctx, req.(*ListAcmeAccountReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -3199,8 +3199,8 @@ var OneCloud_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _OneCloud_DeleteAcmeAccount_Handler,
 		},
 		{
-			MethodName: "GetAcmeAccount",
-			Handler:    _OneCloud_GetAcmeAccount_Handler,
+			MethodName: "ListAcmeAccount",
+			Handler:    _OneCloud_ListAcmeAccount_Handler,
 		},
 		{
 			MethodName: "CreateAcmeOrder",
