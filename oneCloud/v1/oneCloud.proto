@@ -1407,6 +1407,7 @@ message CreateAcmeOrderReply {
 message AcmeOrder {
   string uuid = 1;
   string accountUuid = 2;
+  string domains = 15;
   string orderUrl = 3;
   string status = 4;
   string expires = 5;
