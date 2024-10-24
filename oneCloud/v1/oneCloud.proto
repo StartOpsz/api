@@ -1005,7 +1005,8 @@ message ListCloudDomainDnsRecordReq {
   string subAccountUuid = 6 [(validate.rules).string.min_len = 1];
   string subAccountAccessKeyUuid = 7 [(validate.rules).string.min_len = 1];
   string domainName = 8 [(validate.rules).string.min_len = 1];
-  string keyword = 9;
+  string domainId = 9;
+  string keyword = 10;
 }
 message ListCloudDomainDnsRecordReply {
   repeated Record records = 1;
