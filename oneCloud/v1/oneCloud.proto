@@ -866,6 +866,7 @@ message RefreshCDNCacheReq {
   string subAccountAccessKeyUuid = 7 [(validate.rules).string.min_len = 1];
   int32 type = 8;
   repeated string paths = 9;
+  string distributionId = 10;
 }
 message RefreshCDNCacheReply {
   bool result = 1;
